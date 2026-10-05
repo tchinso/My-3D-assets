@@ -1,0 +1,975 @@
+{
+  "generated_utc": "2026-10-05T15:44:42.391197+00:00",
+  "root": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets",
+  "scope": "GLB structure, accessor safety, skin bind/weights, clip motion/loops and PNG sheets",
+  "errors": [],
+  "warnings": [],
+  "characters": [
+    {
+      "glb": "characters/01_marine_maid/01_marine_maid.glb",
+      "sheet": "characters/01_marine_maid/01_marine_maid_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1072180,
+        "nodes": 222,
+        "meshes": 9,
+        "skins": 1,
+        "embedded_images": 7,
+        "accessors": 451,
+        "skin_bind_residuals": [
+          9.315243199026213e-08
+        ],
+        "vertex_records": 6036,
+        "triangles": 7985,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 109,
+          "duration_seconds": 2.0,
+          "moving_channels": 84,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.03815261040466322
+        },
+        "Walk": {
+          "channels": 110,
+          "duration_seconds": 1.2000000476837158,
+          "moving_channels": 97,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.2730997277238768
+        },
+        "Attack": {
+          "channels": 27,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.6586205867306522
+        },
+        "Victory": {
+          "channels": 112,
+          "duration_seconds": 3.0,
+          "moving_channels": 112,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.9511156426582671
+        }
+      },
+      "status": "passed",
+      "id": 1,
+      "name": "Marin",
+      "slug": "01_marine_maid"
+    },
+    {
+      "glb": "characters/02_azure_reaper/02_azure_reaper.glb",
+      "sheet": "characters/02_azure_reaper/02_azure_reaper_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1788552,
+        "nodes": 160,
+        "meshes": 35,
+        "skins": 1,
+        "embedded_images": 9,
+        "accessors": 640,
+        "skin_bind_residuals": [
+          3.864936670705532e-08
+        ],
+        "vertex_records": 13399,
+        "triangles": 18709,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            256,
+            256
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 112,
+          "duration_seconds": 4.0,
+          "moving_channels": 89,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.018445274036057866
+        },
+        "Walk": {
+          "channels": 118,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 96,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.37917398207527264
+        },
+        "Attack": {
+          "channels": 37,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 1.0429984942238615
+        },
+        "Victory": {
+          "channels": 123,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 123,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 1.0857058119176695
+        }
+      },
+      "status": "passed",
+      "id": 2,
+      "name": "Viola",
+      "slug": "02_azure_reaper"
+    },
+    {
+      "glb": "characters/03_sky_cardigan/03_sky_cardigan.glb",
+      "sheet": "characters/03_sky_cardigan/03_sky_cardigan_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1525380,
+        "nodes": 400,
+        "meshes": 100,
+        "skins": 1,
+        "embedded_images": 9,
+        "accessors": 937,
+        "skin_bind_residuals": [
+          3.923752200929442e-08
+        ],
+        "vertex_records": 8107,
+        "triangles": 10181,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 90,
+          "duration_seconds": 1.6666667461395264,
+          "moving_channels": 89,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.07819963937359099
+        },
+        "Walk": {
+          "channels": 80,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 77,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.36032832280930377
+        },
+        "Attack": {
+          "channels": 27,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.37940158036341703
+        },
+        "Victory": {
+          "channels": 84,
+          "duration_seconds": 3.2333335876464844,
+          "moving_channels": 84,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_geometry_max_displacement": 0.5323590582893569
+        }
+      },
+      "status": "passed",
+      "id": 3,
+      "name": "Sora",
+      "slug": "03_sky_cardigan"
+    },
+    {
+      "glb": "characters/04_tidal_dress/04_tidal_dress.glb",
+      "sheet": "characters/04_tidal_dress/04_tidal_dress_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1656104,
+        "nodes": 317,
+        "meshes": 10,
+        "skins": 1,
+        "embedded_images": 8,
+        "accessors": 592,
+        "skin_bind_residuals": [
+          5.899811217346951e-08
+        ],
+        "vertex_records": 7716,
+        "triangles": 9689,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            64,
+            64
+          ],
+          [
+            64,
+            64
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 146,
+          "duration_seconds": 4.6666669845581055,
+          "moving_channels": 140,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.0224989447418299
+        },
+        "Walk": {
+          "channels": 141,
+          "duration_seconds": 2.6666667461395264,
+          "moving_channels": 135,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.32711089062707266
+        },
+        "Attack": {
+          "channels": 25,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3625175370006944
+        },
+        "Victory": {
+          "channels": 155,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 155,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.5132024933254943
+        }
+      },
+      "status": "passed",
+      "id": 4,
+      "name": "Elise",
+      "slug": "04_tidal_dress"
+    },
+    {
+      "glb": "characters/05_rosy_blazer/05_rosy_blazer.glb",
+      "sheet": "characters/05_rosy_blazer/05_rosy_blazer_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1522832,
+        "nodes": 270,
+        "meshes": 14,
+        "skins": 1,
+        "embedded_images": 7,
+        "accessors": 608,
+        "skin_bind_residuals": [
+          4.0762627051549316e-08
+        ],
+        "vertex_records": 6571,
+        "triangles": 8057,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 145,
+          "duration_seconds": 5.000000476837158,
+          "moving_channels": 126,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.03185226650813675
+        },
+        "Walk": {
+          "channels": 146,
+          "duration_seconds": 1.3333334922790527,
+          "moving_channels": 98,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3941993328762363
+        },
+        "Attack": {
+          "channels": 23,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 23,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3607321890901454
+        },
+        "Victory": {
+          "channels": 144,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 144,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.46525745854067485
+        }
+      },
+      "status": "passed",
+      "id": 5,
+      "name": "Rina",
+      "slug": "05_rosy_blazer"
+    },
+    {
+      "glb": "characters/06_clover_sprite/06_clover_sprite.glb",
+      "sheet": "characters/06_clover_sprite/06_clover_sprite_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1463104,
+        "nodes": 308,
+        "meshes": 19,
+        "skins": 1,
+        "embedded_images": 7,
+        "accessors": 670,
+        "skin_bind_residuals": [
+          4.1071835488182273e-08
+        ],
+        "vertex_records": 6138,
+        "triangles": 7150,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 151,
+          "duration_seconds": 4.0,
+          "moving_channels": 142,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_geometry_max_displacement": 0.026708899978801784
+        },
+        "Walk": {
+          "channels": 177,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 127,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3889805615822826
+        },
+        "Attack": {
+          "channels": 25,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.46303347075552326
+        },
+        "Victory": {
+          "channels": 163,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 163,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.8747178601686275
+        }
+      },
+      "status": "passed",
+      "id": 6,
+      "name": "Fennel",
+      "slug": "06_clover_sprite"
+    },
+    {
+      "glb": "characters/07_neon_cat/07_neon_cat.glb",
+      "sheet": "characters/07_neon_cat/07_neon_cat_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1615952,
+        "nodes": 179,
+        "meshes": 12,
+        "skins": 1,
+        "embedded_images": 8,
+        "accessors": 520,
+        "skin_bind_residuals": [
+          3.8651646772080994e-08
+        ],
+        "vertex_records": 7670,
+        "triangles": 8807,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 117,
+          "duration_seconds": 4.0,
+          "moving_channels": 87,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.026324428824454803
+        },
+        "Walk": {
+          "channels": 119,
+          "duration_seconds": 7.200000286102295,
+          "moving_channels": 80,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.37228270609660846
+        },
+        "Attack": {
+          "channels": 35,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 35,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.4678021095676587
+        },
+        "Victory": {
+          "channels": 112,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 112,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3107659122056098
+        }
+      },
+      "status": "passed",
+      "id": 7,
+      "name": "Momo",
+      "slug": "07_neon_cat"
+    },
+    {
+      "glb": "characters/08_carmine_doll/08_carmine_doll.glb",
+      "sheet": "characters/08_carmine_doll/08_carmine_doll_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 2125312,
+        "nodes": 152,
+        "meshes": 12,
+        "skins": 1,
+        "embedded_images": 7,
+        "accessors": 557,
+        "skin_bind_residuals": [
+          5.2564138375288394e-08
+        ],
+        "vertex_records": 12717,
+        "triangles": 15192,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 132,
+          "duration_seconds": 4.0,
+          "moving_channels": 106,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.04259226932872541
+        },
+        "Walk": {
+          "channels": 119,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 108,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.38210759167609654
+        },
+        "Attack": {
+          "channels": 27,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3657687445427587
+        },
+        "Victory": {
+          "channels": 141,
+          "duration_seconds": 8.866666793823242,
+          "moving_channels": 141,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.7382684360871433
+        }
+      },
+      "status": "passed",
+      "id": 8,
+      "name": "Rosette",
+      "slug": "08_carmine_doll"
+    },
+    {
+      "glb": "characters/09_crimson_qipao/09_crimson_qipao.glb",
+      "sheet": "characters/09_crimson_qipao/09_crimson_qipao_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 2311468,
+        "nodes": 210,
+        "meshes": 28,
+        "skins": 1,
+        "embedded_images": 8,
+        "accessors": 690,
+        "skin_bind_residuals": [
+          3.7264980758298335e-08
+        ],
+        "vertex_records": 6152,
+        "triangles": 9134,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 146,
+          "duration_seconds": 4.0,
+          "moving_channels": 135,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.021173276659835157
+        },
+        "Walk": {
+          "channels": 152,
+          "duration_seconds": 6.333333492279053,
+          "moving_channels": 141,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_geometry_max_displacement": 0.3501585632098871
+        },
+        "Attack": {
+          "channels": 27,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.38270801192525356
+        },
+        "Victory": {
+          "channels": 157,
+          "duration_seconds": 9.333333969116211,
+          "moving_channels": 157,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.6371325821360978
+        }
+      },
+      "status": "passed",
+      "id": 9,
+      "name": "Meilin",
+      "slug": "09_crimson_qipao"
+    },
+    {
+      "glb": "characters/10_snow_buns/10_snow_buns.glb",
+      "sheet": "characters/10_snow_buns/10_snow_buns_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 2253628,
+        "nodes": 292,
+        "meshes": 9,
+        "skins": 1,
+        "embedded_images": 7,
+        "accessors": 552,
+        "skin_bind_residuals": [
+          9.622692442867731e-08
+        ],
+        "vertex_records": 9140,
+        "triangles": 12086,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            64,
+            64
+          ],
+          [
+            64,
+            64
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 139,
+          "duration_seconds": 10.333333969116211,
+          "moving_channels": 125,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.07213221066065646
+        },
+        "Walk": {
+          "channels": 121,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 105,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.28713652589302757
+        },
+        "Attack": {
+          "channels": 25,
+          "duration_seconds": 1.600000023841858,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.35156409768291497
+        },
+        "Victory": {
+          "channels": 148,
+          "duration_seconds": 6.833333492279053,
+          "moving_channels": 148,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.564269974732646
+        }
+      },
+      "status": "passed",
+      "id": 10,
+      "name": "Nevia",
+      "slug": "10_snow_buns"
+    }
+  ],
+  "summary": {
+    "characters": 10,
+    "passed": 10,
+    "errors": 0,
+    "warnings": 0,
+    "status": "passed",
+    "sheet_checks_skipped": false
+  }
+}

@@ -1,0 +1,418 @@
+[
+  {
+    "id": 1,
+    "slug": "01_marine_maid",
+    "name": "Marin",
+    "name_ko": "마린",
+    "tagline": "Tea service · ribbon rapier",
+    "palette": [
+      "#f7f6ff",
+      "#192944",
+      "#ed9bc2",
+      "#9ec9e9"
+    ],
+    "design": "분홍 트윈테일, 흰색·남색 메이드 드레스, 흰 팬티스타킹. 물결 프릴 앞치마와 진주 브로치, 차 숟가락 모양 레이피어.",
+    "source_parts": [
+      "Momoi (Maid).glb",
+      "Hatsune Miku.glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/01_marine_maid/01_marine_maid.glb",
+    "sheet": "characters/01_marine_maid/01_marine_maid_sheet.png",
+    "bytes": 1072180,
+    "revision": 3,
+    "costume_source": "Momoi (Maid).glb",
+    "triangles": 7985,
+    "head_fit": {
+      "neck_top": 0.6004495435388466,
+      "chin_target": 0.5874495435388466,
+      "vertical_adjustment": -0.013000000000000012
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    },
+    "sha256": "d685c568685cb96d1c3ff8094276cce887cf09d394b575d8ca884930fce65622"
+  },
+  {
+    "id": 2,
+    "slug": "02_azure_reaper",
+    "name": "Viola",
+    "name_ko": "비올라",
+    "tagline": "Blue rose · crescent scythe",
+    "palette": [
+      "#44336f",
+      "#293d80",
+      "#467bdb",
+      "#c6bcff"
+    ],
+    "design": "보라 머리와 한쪽의 커다란 파란 장미, 파랑·보라 짧은 치마, 진파랑 사이하이. 달 모양 낫과 비대칭 어깨 망토.",
+    "source_parts": [
+      "Haruka (Dress).glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/02_azure_reaper/02_azure_reaper.glb",
+    "sheet": "characters/02_azure_reaper/02_azure_reaper_sheet.png",
+    "bytes": 1788552,
+    "revision": 3,
+    "costume_source": "Haruka (Dress).glb",
+    "triangles": 18709,
+    "head_fit": {
+      "neck_top": 0.6781693423374565,
+      "chin_target": 0.6419243574275919,
+      "vertical_adjustment": -0.007999999999999896
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    },
+    "sha256": "c20c2c9a195bac1adb45b026778ee6a566de9a920d8d30e1cc9d2320e8ffbc0c"
+  },
+  {
+    "id": 3,
+    "slug": "03_sky_cardigan",
+    "name": "Sora",
+    "name_ko": "소라",
+    "tagline": "Azure waves · scarlet tartan",
+    "palette": [
+      "#8f919b",
+      "#20212b",
+      "#ac334c",
+      "#9dcef0"
+    ],
+    "design": "첨부 이미지에 맞춘 하늘색 긴 레이어드 웨이브와 뾰족한 중앙 앞머리, 한쪽 파란 꽃과 작은 땋은 머리. 검정 테두리의 회색 블레이저, 흰 셔츠, 빨강·검정 체크 넥타이와 플리츠 스커트, 맨다리.",
+    "source_parts": [
+      "Serika.glb",
+      "Azusa (Swimsuit).glb",
+      "Nonomi.glb",
+      "Miyo.glb",
+      "Hina (Swimsuit).glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/03_sky_cardigan/03_sky_cardigan.glb",
+    "sheet": "characters/03_sky_cardigan/03_sky_cardigan_sheet.png",
+    "bytes": 1525380,
+    "sha256": "ab554c38a004ebb70bd85c83a609b703def2cb24832df5fdca68f363952069ec",
+    "revision": 3,
+    "costume_source": "Serika.glb",
+    "triangles": 10181,
+    "head_fit": {
+      "neck_top": 0.5934299159196788,
+      "chin_target": 0.5804299159196787,
+      "vertical_adjustment": -0.04529382058301401
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    }
+  },
+  {
+    "id": 4,
+    "slug": "04_tidal_dress",
+    "name": "Elise",
+    "name_ko": "엘리제",
+    "tagline": "Tidal silk · sapphire pendant",
+    "palette": [
+      "#fbfcff",
+      "#3d72b2",
+      "#93c1e2",
+      "#f4d58d"
+    ],
+    "design": "금발 긴 생머리, 흰색·파랑 원피스와 흰 팬티스타킹. 겹쳐진 시폰 밑단과 투명 레이스, 가슴 장식과 허리 리본.",
+    "source_parts": [
+      "Sena (Casual).glb",
+      "Shokuhou Misaki.glb",
+      "Seia.glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/04_tidal_dress/04_tidal_dress.glb",
+    "sheet": "characters/04_tidal_dress/04_tidal_dress_sheet.png",
+    "bytes": 1656104,
+    "revision": 3,
+    "costume_source": "Sena (Casual).glb",
+    "triangles": 9689,
+    "head_fit": {
+      "neck_top": 0.6769838390760666,
+      "chin_target": 0.6405448184145025,
+      "vertical_adjustment": -0.010794871567697983
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    },
+    "sha256": "4492f0b935464cb2edca039dfadf292063c19ad904961c6ff7ac654d78ee69bc"
+  },
+  {
+    "id": 5,
+    "slug": "05_rosy_blazer",
+    "name": "Rina",
+    "name_ko": "리나",
+    "tagline": "Rose academy · ribbon tie",
+    "palette": [
+      "#64465d",
+      "#f7eff3",
+      "#d697b4",
+      "#344c68"
+    ],
+    "design": "연분홍 긴 생머리와 한쪽 리본 묶음, 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.",
+    "source_parts": [
+      "Reisa.glb",
+      "Miyako.glb",
+      "Koharu.glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/05_rosy_blazer/05_rosy_blazer.glb",
+    "sheet": "characters/05_rosy_blazer/05_rosy_blazer_sheet.png",
+    "bytes": 1522832,
+    "revision": 3,
+    "costume_source": "Reisa.glb",
+    "triangles": 8057,
+    "head_fit": {
+      "neck_top": 0.6146595444653316,
+      "chin_target": 0.6016595444653315,
+      "vertical_adjustment": -0.050365108265379765
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    },
+    "sha256": "b8a5361f8403f8f81697bdb687e98190ebe1cb3b1fa6c8a2f000be54600b0510"
+  },
+  {
+    "id": 6,
+    "slug": "06_clover_sprite",
+    "name": "Fennel",
+    "name_ko": "페넬",
+    "tagline": "Wingless sprite · clover wand",
+    "palette": [
+      "#f5fff4",
+      "#a4cb74",
+      "#537f53",
+      "#efe2a3"
+    ],
+    "design": "흰색 짧은 머리, 날개 없는 요정. 연두·흰색 호박팬츠와 잎사귀 칼라, 맨다리·맨발. 클로버 지팡이와 이슬 방울 장식.",
+    "source_parts": [
+      "Ibuki.glb",
+      "Erika.glb",
+      "Natsu.glb",
+      "Hina (Swimsuit).glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/06_clover_sprite/06_clover_sprite.glb",
+    "sheet": "characters/06_clover_sprite/06_clover_sprite_sheet.png",
+    "bytes": 1463104,
+    "revision": 3,
+    "costume_source": "Ibuki.glb",
+    "triangles": 7150,
+    "head_fit": {
+      "neck_top": 0.6196845825326434,
+      "chin_target": 0.6066845825326433,
+      "vertical_adjustment": 0.025301215881915917
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    },
+    "sha256": "c19c6b0a1d6621b8009f39a7f40106166a118f9199ededd2763f86a576f0199f"
+  },
+  {
+    "id": 7,
+    "slug": "07_neon_cat",
+    "name": "Momo",
+    "name_ko": "모모",
+    "tagline": "City cat · cropped camisole",
+    "palette": [
+      "#fff5fa",
+      "#ed98bd",
+      "#242335",
+      "#a48dce"
+    ],
+    "design": "분홍 고양이 귀와 머리, 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.",
+    "source_parts": [
+      "Saori (Swimsuit).glb",
+      "Kazusa.glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/07_neon_cat/07_neon_cat.glb",
+    "sheet": "characters/07_neon_cat/07_neon_cat_sheet.png",
+    "bytes": 1615952,
+    "revision": 3,
+    "costume_source": "Saori (Swimsuit).glb",
+    "triangles": 8807,
+    "head_fit": {
+      "neck_top": 0.6775452394678972,
+      "chin_target": 0.6422105381736589,
+      "vertical_adjustment": -0.023924141543428257
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    },
+    "sha256": "7a8fcafd79f0fc8fd34f6bc859e4c62020cf0dd46b46054ec098a98d5e1e82a0"
+  },
+  {
+    "id": 8,
+    "slug": "08_carmine_doll",
+    "name": "Rosette",
+    "name_ko": "로제트",
+    "tagline": "Ribbon doll · winding key",
+    "palette": [
+      "#ca3550",
+      "#fff5ef",
+      "#f165ac",
+      "#d2af67"
+    ],
+    "design": "선명한 분홍 롤 트윈테일, 빨강·흰색 인형 드레스와 흰 팬티스타킹. 이중 프릴, 레이스 리본과 등 뒤 작은 태엽 장식.",
+    "source_parts": [
+      "Reisa (Magical).glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/08_carmine_doll/08_carmine_doll.glb",
+    "sheet": "characters/08_carmine_doll/08_carmine_doll_sheet.png",
+    "bytes": 2125312,
+    "revision": 3,
+    "costume_source": "Reisa (Magical).glb",
+    "triangles": 15192,
+    "head_fit": {
+      "neck_top": 0.6781694122613314,
+      "chin_target": 0.642197184187356,
+      "vertical_adjustment": -0.008000000000000007
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Cafe_Reaction"
+    },
+    "sha256": "ce076f36db443b735527ac12fe5a9b681e92e506b252be6b94696565275a2d46"
+  },
+  {
+    "id": 9,
+    "slug": "09_crimson_qipao",
+    "name": "Meilin",
+    "name_ko": "메이린",
+    "tagline": "Scarlet peony · folding fan",
+    "palette": [
+      "#b52139",
+      "#e7585c",
+      "#e3b764",
+      "#35272c"
+    ],
+    "design": "검갈색 트윈테일, 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리. 금색 매듭과 모란 무늬, 접이식 부채.",
+    "source_parts": [
+      "Kisaki.glb",
+      "Serika (Swimsuit).glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/09_crimson_qipao/09_crimson_qipao.glb",
+    "sheet": "characters/09_crimson_qipao/09_crimson_qipao_sheet.png",
+    "bytes": 2311468,
+    "revision": 3,
+    "costume_source": "Kisaki.glb",
+    "triangles": 9134,
+    "head_fit": {
+      "neck_top": 0.6405513107998528,
+      "chin_target": 0.6056359936876078,
+      "vertical_adjustment": -0.007999999999999896
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Cafe_Reaction"
+    },
+    "sha256": "44f8c03d86f86ca3caf8f9362fed06890c00139bf4e3f6b0a64027a67c0a8956"
+  },
+  {
+    "id": 10,
+    "slug": "10_snow_buns",
+    "name": "Nevia",
+    "name_ko": "네비아",
+    "tagline": "Snow cloud · fur shawl",
+    "palette": [
+      "#fbfbff",
+      "#dce0ef",
+      "#b7bfda",
+      "#f1dcea"
+    ],
+    "design": "흰색 풍성한 긴 머리와 양쪽 번, 짧고 부드러운 흰 옷, 흰 팬티스타킹. 구름 모양 퍼 숄, 겹친 드레스 주름과 금빛 장식.",
+    "source_parts": [
+      "Mutsuki (Dress).glb",
+      "Kirara.glb",
+      "Seia.glb"
+    ],
+    "animations": [
+      "Idle",
+      "Walk",
+      "Attack",
+      "Victory"
+    ],
+    "glb": "characters/10_snow_buns/10_snow_buns.glb",
+    "sheet": "characters/10_snow_buns/10_snow_buns_sheet.png",
+    "bytes": 2253628,
+    "revision": 3,
+    "costume_source": "Mutsuki (Dress).glb",
+    "triangles": 12086,
+    "head_fit": {
+      "neck_top": 0.6435158775564155,
+      "chin_target": 0.608959861781205,
+      "vertical_adjustment": -0.01311016688367661
+    },
+    "native_clips": {
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Cafe_Reaction"
+    },
+    "sha256": "d6bc600cfe70da870e9153f645a58fcd9b6ed0bbfab79baf91dd2a91f5d78d1e"
+  }
+]

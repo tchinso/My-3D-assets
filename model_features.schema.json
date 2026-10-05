@@ -1,0 +1,684 @@
+{
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "analyzed_on": {
+      "type": "string",
+      "format": "date"
+    },
+    "model_count": {
+      "const": 10
+    },
+    "classification_guide": {
+      "type": "object",
+      "properties": {
+        "appearance": {
+          "type": "string"
+        },
+        "height": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "legwear": {
+          "type": "string"
+        },
+        "provenance": {
+          "type": "string"
+        },
+        "animations": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "appearance",
+        "height",
+        "body",
+        "legwear",
+        "provenance",
+        "animations"
+      ],
+      "additionalProperties": false
+    },
+    "source_catalog": {
+      "$ref": "#/$defs/source_catalog"
+    },
+    "donors": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "pattern": "\\.glb$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/donor"
+      }
+    },
+    "models": {
+      "type": "object",
+      "minProperties": 10,
+      "maxProperties": 10,
+      "propertyNames": {
+        "pattern": "^characters/.+\\.glb$"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/model"
+      }
+    }
+  },
+  "required": [
+    "schema_version",
+    "analyzed_on",
+    "model_count",
+    "classification_guide",
+    "source_catalog",
+    "donors",
+    "models"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "My-3D-assets generated SD character appearance catalog",
+  "$defs": {
+    "strings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "hair": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "$ref": "#/$defs/strings"
+        },
+        "color_hex": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}$"
+        },
+        "length": {
+          "enum": [
+            "짧은 머리",
+            "긴 머리",
+            "매우 긴 머리"
+          ]
+        },
+        "styles": {
+          "$ref": "#/$defs/strings"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "colors",
+        "color_hex",
+        "length",
+        "styles",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "outfit": {
+      "type": "object",
+      "properties": {
+        "styles": {
+          "$ref": "#/$defs/strings"
+        },
+        "colors": {
+          "$ref": "#/$defs/strings"
+        },
+        "description": {
+          "type": "string"
+        },
+        "legwear": {
+          "$ref": "#/$defs/strings"
+        },
+        "footwear": {
+          "$ref": "#/$defs/strings"
+        }
+      },
+      "required": [
+        "styles",
+        "colors",
+        "description",
+        "legwear",
+        "footwear"
+      ],
+      "additionalProperties": false
+    },
+    "body": {
+      "type": "object",
+      "properties": {
+        "build": {
+          "type": "null"
+        },
+        "proportions": {
+          "const": "SD"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "build",
+        "proportions",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "rig": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "skin_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "joint_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "up_axis": {
+          "const": "+Y"
+        },
+        "front_axis": {
+          "const": "+Z"
+        },
+        "physical_height_inferred": {
+          "const": false
+        }
+      },
+      "required": [
+        "name",
+        "skin_count",
+        "joint_count",
+        "up_axis",
+        "front_axis",
+        "physical_height_inferred"
+      ],
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "character": {
+          "type": "string"
+        },
+        "name_ko": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "filename": {
+          "type": "string",
+          "pattern": "\\.glb$"
+        },
+        "glb": {
+          "type": "string",
+          "pattern": "^characters/.+\\.glb$"
+        },
+        "sheet": {
+          "type": "string",
+          "pattern": "^characters/.+_sheet\\.png$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "variants": {
+          "$ref": "#/$defs/strings"
+        },
+        "height": {
+          "type": "null"
+        },
+        "body": {
+          "$ref": "#/$defs/body"
+        },
+        "hair": {
+          "$ref": "#/$defs/hair"
+        },
+        "outfit": {
+          "$ref": "#/$defs/outfit"
+        },
+        "features": {
+          "$ref": "#/$defs/strings"
+        },
+        "tags": {
+          "$ref": "#/$defs/strings"
+        },
+        "palette": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}$"
+          }
+        },
+        "design_brief": {
+          "type": "string"
+        },
+        "weapon": {
+          "type": "string"
+        },
+        "animations": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "Idle",
+              "Walk",
+              "Attack",
+              "Victory"
+            ]
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "animation_duration_seconds": {
+          "type": "object",
+          "properties": {
+            "Idle": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "Walk": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "Attack": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "Victory": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "Idle",
+            "Walk",
+            "Attack",
+            "Victory"
+          ],
+          "additionalProperties": false
+        },
+        "native_source_clips": {
+          "type": "object",
+          "properties": {
+            "Idle": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Walk": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Victory": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "Idle",
+            "Walk",
+            "Victory"
+          ],
+          "additionalProperties": false
+        },
+        "attack_motion": {
+          "const": "custom skeletal animation"
+        },
+        "build_revision": {
+          "type": "integer",
+          "minimum": 2
+        },
+        "head_fit": {
+          "type": "object",
+          "properties": {
+            "neck_top": {
+              "type": "number"
+            },
+            "chin_target": {
+              "type": "number"
+            },
+            "vertical_adjustment": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "neck_top",
+            "chin_target",
+            "vertical_adjustment"
+          ],
+          "additionalProperties": false
+        },
+        "rig": {
+          "$ref": "#/$defs/rig"
+        },
+        "mesh_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "triangle_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_parts": {
+          "$ref": "#/$defs/strings"
+        },
+        "source_roles": {
+          "type": "object",
+          "properties": {
+            "costume_and_rig": {
+              "type": "string",
+              "pattern": "\\.glb$"
+            },
+            "hair": {
+              "type": "string",
+              "pattern": "\\.glb$"
+            },
+            "back_hair": {
+              "type": "string",
+              "pattern": "\\.glb$"
+            },
+            "face": {
+              "type": "string",
+              "pattern": "\\.glb$"
+            },
+            "bare_legs_and_feet": {
+              "type": "string",
+              "pattern": "\\.glb$"
+            }
+          },
+          "required": [
+            "costume_and_rig",
+            "hair",
+            "face"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": "object",
+          "properties": {
+            "manifest": {
+              "const": "characters/manifest.json"
+            },
+            "builder": {
+              "const": "tools/build_characters.py"
+            },
+            "character_sheet": {
+              "type": "string"
+            },
+            "appearance_method": {
+              "type": "string"
+            },
+            "height_method": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "manifest",
+            "builder",
+            "character_sheet",
+            "appearance_method",
+            "height_method"
+          ],
+          "additionalProperties": false
+        },
+        "review_notes": {
+          "$ref": "#/$defs/strings"
+        }
+      },
+      "required": [
+        "id",
+        "character",
+        "name_ko",
+        "slug",
+        "filename",
+        "glb",
+        "sheet",
+        "bytes",
+        "sha256",
+        "variants",
+        "height",
+        "body",
+        "hair",
+        "outfit",
+        "features",
+        "tags",
+        "palette",
+        "design_brief",
+        "weapon",
+        "animations",
+        "animation_duration_seconds",
+        "native_source_clips",
+        "attack_motion",
+        "build_revision",
+        "head_fit",
+        "rig",
+        "mesh_count",
+        "triangle_count",
+        "source_parts",
+        "source_roles",
+        "evidence",
+        "review_notes"
+      ],
+      "additionalProperties": false
+    },
+    "donor_hair": {
+      "type": "object",
+      "properties": {
+        "colors": {
+          "$ref": "#/$defs/strings"
+        },
+        "length": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "styles": {
+          "$ref": "#/$defs/strings"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "colors",
+        "length",
+        "styles",
+        "description"
+      ],
+      "additionalProperties": false
+    },
+    "donor_outfit": {
+      "type": "object",
+      "properties": {
+        "styles": {
+          "$ref": "#/$defs/strings"
+        },
+        "colors": {
+          "$ref": "#/$defs/strings"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "legwear": {
+          "$ref": "#/$defs/strings"
+        },
+        "footwear": {
+          "$ref": "#/$defs/strings"
+        }
+      },
+      "required": [
+        "styles",
+        "colors",
+        "description",
+        "legwear",
+        "footwear"
+      ],
+      "additionalProperties": false
+    },
+    "donor": {
+      "type": "object",
+      "properties": {
+        "character": {
+          "type": "string"
+        },
+        "source_timestamp": {
+          "type": "integer"
+        },
+        "original_hair": {
+          "$ref": "#/$defs/donor_hair"
+        },
+        "original_outfit": {
+          "$ref": "#/$defs/donor_outfit"
+        },
+        "original_features": {
+          "$ref": "#/$defs/strings"
+        },
+        "source_confidence": {
+          "type": "object",
+          "properties": {
+            "hair": {
+              "enum": [
+                "높음",
+                "보통",
+                "낮음",
+                "미확인"
+              ]
+            },
+            "outfit": {
+              "enum": [
+                "높음",
+                "보통",
+                "낮음",
+                "미확인"
+              ]
+            },
+            "features": {
+              "enum": [
+                "높음",
+                "보통",
+                "낮음",
+                "미확인"
+              ]
+            }
+          },
+          "required": [
+            "hair",
+            "outfit",
+            "features"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": "object",
+          "properties": {
+            "local_glb": {
+              "type": "string"
+            },
+            "preview_front": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "preview_back": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "local_glb",
+            "preview_front",
+            "preview_back"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "character",
+        "source_timestamp",
+        "original_hair",
+        "original_outfit",
+        "original_features",
+        "source_confidence",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "source_catalog": {
+      "type": "object",
+      "properties": {
+        "root": {
+          "type": "string"
+        },
+        "inspected_files": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "models.json",
+              "model_features.json",
+              "model_features.schema.json"
+            ]
+          },
+          "minItems": 3,
+          "maxItems": 3,
+          "uniqueItems": true
+        },
+        "catalog_model_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "timestamp_inventory_count": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "source_schema_title": {
+          "type": "string"
+        },
+        "source_schema_uri": {
+          "type": "string"
+        },
+        "donor_height_policy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "root",
+        "inspected_files",
+        "catalog_model_count",
+        "timestamp_inventory_count",
+        "source_schema_title",
+        "source_schema_uri",
+        "donor_height_policy"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

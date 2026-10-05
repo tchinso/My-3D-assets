@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Character Collection · My 3D Assets</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
+</head>
+<body>
+  <aside>
+    <div class="brand"><span class="brand-mark">M<span>3D</span></span><div><strong>캐릭터 컬렉션</strong><small>MY 3D ASSETS / 10 DESIGNS</small></div></div>
+    <p class="sidebar-caption">캐릭터를 선택하고 움직임을 확인하세요.</p>
+    <nav id="characters" aria-label="캐릭터 목록"></nav>
+    <a class="lineup-link" href="../previews/lineup.png" target="_blank">전체 캐릭터 시트 ↗</a>
+  </aside>
+  <main>
+    <header>
+      <div><p id="number">CHARACTER / 01</p><h1 id="name">캐릭터 불러오는 중</h1><p id="tagline"></p></div>
+      <div class="actions"><a id="sheet" target="_blank">시트 PNG ↗</a><a id="download" download>GLB 다운로드 ↓</a></div>
+    </header>
+    <section class="stage" id="stage" aria-label="3D 캐릭터 미리보기">
+      <canvas id="canvas"></canvas>
+      <div class="stage-top"><span id="status">모델을 불러오는 중</span><div><button id="refresh">모델 새로고침</button><button id="reset">뷰 초기화</button><button id="background">배경 변경</button><button id="capture">PNG 캡처</button></div></div>
+      <div class="stage-bottom"><div id="palette"></div><p>드래그: 회전 · 휠: 확대 · 우클릭: 이동</p></div>
+    </section>
+    <section class="motion-panel">
+      <div class="motion-title"><strong>움직임</strong><span id="clip-info">4 ANIMATIONS</span></div>
+      <div id="clips" role="group" aria-label="애니메이션 선택"></div>
+      <div class="playback"><button id="play" aria-label="일시 정지">Ⅱ</button><input id="timeline" aria-label="애니메이션 시간" type="range" min="0" max="1" step="0.001" value="0"><span id="time">0.00 / 0.00s</span><select id="speed" aria-label="재생 속도"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="1.5">1.5×</option></select></div>
+    </section>
+    <footer><span id="name-ko"></span><span>실제 GLB · 리깅 + 애니메이션 포함</span></footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

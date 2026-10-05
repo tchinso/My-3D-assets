@@ -1,0 +1,132 @@
+[
+  {
+    "slug": "06_clover_sprite",
+    "head_fit": {
+      "neck_top": 0.6196845825326434,
+      "chin_target": 0.6066845825326433,
+      "vertical_adjustment": 0.025301215881915917
+    },
+    "samples": [
+      {
+        "clip": "Rest",
+        "time": 0,
+        "chin_neck_axis_overlap": 0.013
+      },
+      {
+        "clip": "Idle",
+        "time": 0.0,
+        "chin_neck_axis_overlap": 0.013008
+      },
+      {
+        "clip": "Idle",
+        "time": 1.0,
+        "chin_neck_axis_overlap": 0.015453
+      },
+      {
+        "clip": "Idle",
+        "time": 2.0,
+        "chin_neck_axis_overlap": 0.013008
+      },
+      {
+        "clip": "Idle",
+        "time": 3.0,
+        "chin_neck_axis_overlap": 0.015452
+      },
+      {
+        "clip": "Idle",
+        "time": 4.0,
+        "chin_neck_axis_overlap": 0.013008
+      },
+      {
+        "clip": "Walk",
+        "time": 0.0,
+        "chin_neck_axis_overlap": 0.019648
+      },
+      {
+        "clip": "Walk",
+        "time": 0.3333,
+        "chin_neck_axis_overlap": 0.017085
+      },
+      {
+        "clip": "Walk",
+        "time": 0.6667,
+        "chin_neck_axis_overlap": 0.019659
+      },
+      {
+        "clip": "Walk",
+        "time": 1.0,
+        "chin_neck_axis_overlap": 0.017092
+      },
+      {
+        "clip": "Walk",
+        "time": 1.3333,
+        "chin_neck_axis_overlap": 0.019648
+      }
+    ]
+  },
+  {
+    "slug": "09_crimson_qipao",
+    "head_fit": {
+      "neck_top": 0.6405513107998528,
+      "chin_target": 0.6056359936876078,
+      "vertical_adjustment": -0.007999999999999896
+    },
+    "samples": [
+      {
+        "clip": "Rest",
+        "time": 0,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Idle",
+        "time": 0.0,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Idle",
+        "time": 1.0,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Idle",
+        "time": 2.0,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Idle",
+        "time": 3.0,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Idle",
+        "time": 4.0,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Walk",
+        "time": 0.0,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Walk",
+        "time": 1.5833,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Walk",
+        "time": 3.1667,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Walk",
+        "time": 4.75,
+        "chin_neck_axis_overlap": 0.034915
+      },
+      {
+        "clip": "Walk",
+        "time": 6.3333,
+        "chin_neck_axis_overlap": 0.034915
+      }
+    ]
+  }
+]

@@ -1,0 +1,2489 @@
+{
+  "schema_version": "1.0",
+  "analyzed_on": "2026-10-06",
+  "model_count": 10,
+  "classification_guide": {
+    "appearance": "실제 원본 의상·머리·얼굴의 조합과 색상 편집 후 최종 외형을 기록; design_brief는 제작 목표이며 구체적 최종 파츠는 outfit·features에 기록",
+    "height": "전체 캐릭터는 SD 비율. height는 null이며 실제 신장 수치를 제공하지 않음",
+    "body": "의상 원본별 SD 골격과 메시를 사용하며 실제 인물의 체형 분류를 추정하지 않음",
+    "legwear": "팬티스타킹·사이하이·맨다리를 개별 캐릭터별로 명시함",
+    "provenance": "donors는 사용한 원본 항목만 간결하게 보존하고 최종 모델의 외형과 별도로 기록함",
+    "animations": "Idle·Walk·Victory는 의상 원본 모션을 사용하고 Attack은 별도 제작; Idle·Walk는 제자리 반복, Attack·Victory는 기본 자세로 복귀"
+  },
+  "source_catalog": {
+    "root": "C:\\Codex\\BlueArchiveGLB",
+    "inspected_files": [
+      "models.json",
+      "model_features.json",
+      "model_features.schema.json"
+    ],
+    "catalog_model_count": 289,
+    "timestamp_inventory_count": 295,
+    "source_schema_title": "Blue Archive local GLB appearance catalog",
+    "source_schema_uri": "https://json-schema.org/draft/2020-12/schema",
+    "donor_height_policy": "원본의 실제 프로필 키는 최종 캐릭터에 복사하거나 추정하지 않음"
+  },
+  "donors": {
+    "Azusa (Swimsuit).glb": {
+      "character": "Azusa",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "은백색"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "웨이브",
+          "양갈래 묶음",
+          "앞머리"
+        ],
+        "description": "허리 아래까지 내려오는 은백색 머리와 양옆 꽃 장식"
+      },
+      "original_outfit": {
+        "styles": [
+          "수영복",
+          "비치웨어"
+        ],
+        "colors": [
+          "연보라색",
+          "분홍색",
+          "민트색",
+          "흰색"
+        ],
+        "description": "분홍·보라색 프릴 수영복과 뒤쪽으로 늘어지는 민트색 얇은 가운",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "남색 끈 샌들"
+        ]
+      },
+      "original_features": [
+        "보라색 눈",
+        "꽃 머리 장식",
+        "금색 원형·가지형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Azusa (Swimsuit).glb",
+        "preview_front": "analysis/previews/026_front.png",
+        "preview_back": "analysis/previews/026_back.png"
+      }
+    },
+    "Erika.glb": {
+      "character": "Erika",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "은백색"
+        ],
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리",
+          "삐친 머리"
+        ],
+        "description": "목 위의 은백색 짧은 머리와 바깥쪽으로 뻗는 옆머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "검은색",
+          "빨간색",
+          "흰색"
+        ],
+        "description": "붉은 넥타이의 검은색 반소매 교복과 짧은 치마, 허리에 묶은 긴 재킷과 검은 장갑",
+        "legwear": [
+          "흰색 니삭스에 붉은 선"
+        ],
+        "footwear": [
+          "검은색 구두"
+        ]
+      },
+      "original_features": [
+        "파란색 눈",
+        "머리 양옆의 검은 뿔 모양 장식",
+        "검은색 긴 화살촉 꼬리",
+        "회색 원형·삼각형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Erika.glb",
+        "preview_front": "analysis/previews/042_front.png",
+        "preview_back": "analysis/previews/042_back.png"
+      }
+    },
+    "Haruka (Dress).glb": {
+      "character": "Haruka",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "보라색"
+        ],
+        "length": "중간 길이",
+        "styles": [
+          "앞머리",
+          "생머리",
+          "부분 묶음"
+        ],
+        "description": "어깨 아래까지 내려오는 보라색 머리와 뒤쪽 큰 검은 리본"
+      },
+      "original_outfit": {
+        "styles": [
+          "드레스"
+        ],
+        "colors": [
+          "보라색",
+          "검은색"
+        ],
+        "description": "짧은 보라색 드레스와 어깨를 감싸는 보라색 케이프 장식",
+        "legwear": [
+          "회갈색 반투명 타이츠"
+        ],
+        "footwear": [
+          "검은색 스트랩 구두"
+        ]
+      },
+      "original_features": [
+        "보라색 눈",
+        "흰색 작은 머리핀",
+        "보라색 꺾인 선 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Haruka (Dress).glb",
+        "preview_front": "analysis/previews/054_front.png",
+        "preview_back": "analysis/previews/054_back.png"
+      }
+    },
+    "Hatsune Miku.glb": {
+      "character": "Hatsune Miku",
+      "source_timestamp": 1791005618,
+      "original_hair": {
+        "colors": [
+          "청록색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "트윈테일",
+          "앞머리",
+          "웨이브"
+        ],
+        "description": "무릎 아래로 길게 내려오는 청록색 트윈테일"
+      },
+      "original_outfit": {
+        "styles": [
+          "아이돌 의상",
+          "세일러복풍"
+        ],
+        "colors": [
+          "흰색",
+          "남색",
+          "청록색"
+        ],
+        "description": "흰색 민소매 세일러 상의와 남색 코르셋형 허리 장식, 겹프릴 짧은 치마",
+        "legwear": [
+          "흰색 짧은 양말",
+          "맨다리"
+        ],
+        "footwear": [
+          "흰색 구두"
+        ]
+      },
+      "original_features": [
+        "기계형 헤드폰과 흰 리본",
+        "손목의 흰 프릴",
+        "허리의 다색 장식"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Hatsune Miku.glb",
+        "preview_front": "analysis/previews/063_front.png",
+        "preview_back": "analysis/previews/063_back.png"
+      }
+    },
+    "Hina (Swimsuit).glb": {
+      "character": "Hina",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "은백색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "웨이브",
+          "앞머리",
+          "삐친 머리"
+        ],
+        "description": "무릎 아래까지 물결치며 내려오는 은백색 머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "수영복",
+          "학교 수영복"
+        ],
+        "colors": [
+          "남색",
+          "흰색"
+        ],
+        "description": "가슴에 흰 이름표가 붙은 남색 원피스 수영복",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "남색 끈 샌들"
+        ]
+      },
+      "original_features": [
+        "검은 뿔",
+        "보라색 박쥐 날개",
+        "보라색 눈",
+        "붉은 머리핀",
+        "검정·보라색 왕관형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Hina (Swimsuit).glb",
+        "preview_front": "analysis/previews/072_front.png",
+        "preview_back": "analysis/previews/072_back.png"
+      }
+    },
+    "Ibuki.glb": {
+      "character": "Ibuki",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "금발"
+        ],
+        "length": "중간 길이",
+        "styles": [
+          "트윈테일",
+          "앞머리"
+        ],
+        "description": "어깨 아래까지 내려오는 금발 트윈테일"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "군복풍"
+        ],
+        "colors": [
+          "검은색",
+          "남색",
+          "빨간색",
+          "흰색"
+        ],
+        "description": "남색 줄무늬 교복과 흰색 프릴 반바지, 붉은 안감의 큰 검은 코트와 제모",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "노란색 리본 부츠"
+        ]
+      },
+      "original_features": [
+        "노란색 눈",
+        "모자의 분홍색 꽃 장식",
+        "곰 모양 작은 크로스백",
+        "주황색 별·원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Ibuki.glb",
+        "preview_front": "analysis/previews/081_front.png",
+        "preview_back": "analysis/previews/081_back.png"
+      }
+    },
+    "Kazusa.glb": {
+      "character": "Kazusa",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "검정"
+        ],
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리"
+        ],
+        "description": "턱 부근의 검은 단발에 작은 머리핀"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "후드티"
+        ],
+        "colors": [
+          "검정",
+          "하늘색",
+          "분홍색"
+        ],
+        "description": "검은 후드 상의와 세일러 칼라, 분홍 리본, 흰색 선이 있는 검은 치마",
+        "legwear": [
+          "짙은 갈색 전장 다리 덮개"
+        ],
+        "footwear": [
+          "청록색 운동화"
+        ]
+      },
+      "original_features": [
+        "검은 고양이 귀",
+        "분홍색 눈 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Kazusa.glb",
+        "preview_front": "analysis/previews/109_front.png",
+        "preview_back": "analysis/previews/109_back.png"
+      }
+    },
+    "Kirara.glb": {
+      "character": "Kirara",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "분홍색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "양옆 만두머리",
+          "웨이브",
+          "앞머리"
+        ],
+        "description": "양옆으로 둥글게 묶고 남은 긴 머리가 물결지게 내려옴"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "흰색",
+          "검정",
+          "빨강"
+        ],
+        "description": "흰색 반소매 셔츠와 빨간 리본, 검은 민소매 원피스형 교복",
+        "legwear": [
+          "흰색 짧은 양말",
+          "검은색 허벅지 띠"
+        ],
+        "footwear": [
+          "검은색 구두"
+        ]
+      },
+      "original_features": [
+        "작은 검은 뿔",
+        "검은 목 장식",
+        "금색 팔찌",
+        "분홍색 각진 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Kirara.glb",
+        "preview_front": "analysis/previews/118_front.png",
+        "preview_back": "analysis/previews/118_back.png"
+      }
+    },
+    "Kisaki.glb": {
+      "character": "Kisaki",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "짙은 보라색"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "양옆 만두머리",
+          "앞머리"
+        ],
+        "description": "양옆의 둥근 묶음에서 가는 긴 머리 두 줄이 내려옴"
+      },
+      "original_outfit": {
+        "styles": [
+          "치파오",
+          "긴 재킷"
+        ],
+        "colors": [
+          "짙은 남색",
+          "회색",
+          "금색"
+        ],
+        "description": "금색 용무늬의 짧은 치파오와 회색 줄무늬 긴 재킷",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "검은색 짧은 부츠"
+        ]
+      },
+      "original_features": [
+        "꽃 머리 장식",
+        "회색 용 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Kisaki.glb",
+        "preview_front": "analysis/previews/122_front.png",
+        "preview_back": "analysis/previews/122_back.png"
+      }
+    },
+    "Koharu.glb": {
+      "character": "Koharu",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "분홍색"
+        ],
+        "length": "중간 길이",
+        "styles": [
+          "양갈래 묶음",
+          "앞머리"
+        ],
+        "description": "검은 모자 아래로 양갈래 분홍색 머리가 내려옴"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "검정",
+          "흰색",
+          "분홍색"
+        ],
+        "description": "흰색 세일러 칼라와 분홍 넥타이가 있는 검은 교복, 분홍 체크 치마",
+        "legwear": [
+          "흰색 니삭스"
+        ],
+        "footwear": [
+          "검은색 구두"
+        ]
+      },
+      "original_features": [
+        "검은색 베레모",
+        "머리 양옆의 검은 날개",
+        "작은 검은 등 날개",
+        "빨간색 동심원 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Koharu.glb",
+        "preview_front": "analysis/previews/124_front.png",
+        "preview_back": "analysis/previews/124_back.png"
+      }
+    },
+    "Miyako.glb": {
+      "character": "Miyako",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "흰색",
+          "회색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "높은 옆 포니테일",
+          "생머리",
+          "앞머리"
+        ],
+        "description": "긴 회색 뒷머리와 한쪽의 높게 묶은 옆머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "군용 전술복",
+          "교복"
+        ],
+        "colors": [
+          "남색",
+          "흰색",
+          "검정"
+        ],
+        "description": "남색 세일러 교복 위에 검은 전술 장비 조끼와 허리 장비",
+        "legwear": [
+          "검은색 긴 양말",
+          "검은색 무릎 보호대"
+        ],
+        "footwear": [
+          "검은색 짧은 부츠"
+        ]
+      },
+      "original_features": [
+        "흰색 토끼 귀 머리띠",
+        "검은색 장갑",
+        "파란색 궤도 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Miyako.glb",
+        "preview_front": "analysis/previews/165_front.png",
+        "preview_back": "analysis/previews/165_back.png"
+      }
+    },
+    "Miyo.glb": {
+      "character": "Miyo",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "회색",
+          "베이지"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "웨이브",
+          "양옆 땋은 머리",
+          "앞머리"
+        ],
+        "description": "옅은 회베이지색 머리의 옆부분을 땋고 뒤로 길게 내림"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "짙은 녹색",
+          "흰색",
+          "회색"
+        ],
+        "description": "짙은 녹색 재킷과 검은 목 리본, 회색 체크 주름치마",
+        "legwear": [
+          "흰색 니삭스"
+        ],
+        "footwear": [
+          "갈색 구두"
+        ]
+      },
+      "original_features": [
+        "연두색 꽃과 잎 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Miyo.glb",
+        "preview_front": "analysis/previews/166_front.png",
+        "preview_back": "analysis/previews/166_back.png"
+      }
+    },
+    "Momoi (Maid).glb": {
+      "character": "Momoi",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "금발"
+        ],
+        "length": "중간 길이",
+        "styles": [
+          "짧은 트윈테일",
+          "앞머리"
+        ],
+        "description": "금발을 양옆으로 짧게 묶음"
+      },
+      "original_outfit": {
+        "styles": [
+          "메이드복"
+        ],
+        "colors": [
+          "검정",
+          "흰색",
+          "하늘색"
+        ],
+        "description": "검은 메이드 원피스와 흰색 앞치마, 하늘색 목 리본",
+        "legwear": [
+          "흰색 긴 양말"
+        ],
+        "footwear": [
+          "검은색 구두"
+        ]
+      },
+      "original_features": [
+        "고양이 귀 모양 헤드폰",
+        "흰색 메이드 머리띠",
+        "분홍색 눈 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Momoi (Maid).glb",
+        "preview_front": "analysis/previews/173_front.png",
+        "preview_back": "analysis/previews/173_back.png"
+      }
+    },
+    "Mutsuki (Dress).glb": {
+      "character": "Mutsuki",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "흰색",
+          "회색"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "옆 포니테일",
+          "웨이브",
+          "앞머리"
+        ],
+        "description": "흰회색 긴 뒷머리와 한쪽의 높게 묶은 물결진 옆머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "드레스",
+          "털 볼레로"
+        ],
+        "colors": [
+          "자주색",
+          "흰색"
+        ],
+        "description": "자주색 짧은 프릴 드레스와 흰색 털 볼레로",
+        "legwear": [
+          "검은색 망사 타이츠"
+        ],
+        "footwear": [
+          "검은색 스트랩 구두"
+        ]
+      },
+      "original_features": [
+        "검은 머리 리본",
+        "금색 팔찌",
+        "붉은색 각진 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Mutsuki (Dress).glb",
+        "preview_front": "analysis/previews/175_front.png",
+        "preview_back": "analysis/previews/175_back.png"
+      }
+    },
+    "Natsu.glb": {
+      "character": "Natsu",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "분홍색"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "트윈테일",
+          "웨이브",
+          "앞머리"
+        ],
+        "description": "분홍색 머리를 양옆으로 길게 묶음"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "흰색",
+          "남색",
+          "빨강"
+        ],
+        "description": "흰색 세일러 상의와 빨간 리본, 짧은 남색 주름치마",
+        "legwear": [
+          "남색 타이하이 양말"
+        ],
+        "footwear": [
+          "흰색과 검은색 구두"
+        ]
+      },
+      "original_features": [
+        "흰색 직사각형 머리 장식",
+        "연분홍색 이중 고리 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Natsu.glb",
+        "preview_front": "analysis/previews/185_front.png",
+        "preview_back": "analysis/previews/185_back.png"
+      }
+    },
+    "Nonomi.glb": {
+      "character": "Nonomi",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "연한 금발"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "생머리",
+          "부분 묶음",
+          "작은 옆머리 경단"
+        ],
+        "description": "연한 금발, 매우 긴 머리, 생머리·부분 묶음·작은 옆머리 경단"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "카디건"
+        ],
+        "colors": [
+          "연노랑",
+          "흰색",
+          "검정"
+        ],
+        "description": "흰 블라우스와 검은 체크 주름치마, 연노란 긴 카디건",
+        "legwear": [
+          "검은색 짧은 양말"
+        ],
+        "footwear": [
+          "청록색 운동화"
+        ]
+      },
+      "original_features": [
+        "초록색 눈",
+        "초록색 이중 원형 헤일로",
+        "목걸이형 카드"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Nonomi.glb",
+        "preview_front": "analysis/previews/196_front.png",
+        "preview_back": "analysis/previews/196_back.png"
+      }
+    },
+    "Reisa (Magical).glb": {
+      "character": "Reisa",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "연한 파랑",
+          "분홍"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "트윈테일",
+          "굵은 드릴 컬",
+          "앞머리"
+        ],
+        "description": "연한 파랑|분홍, 매우 긴 머리, 트윈테일·굵은 드릴 컬·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "마법소녀복"
+        ],
+        "colors": [
+          "보라",
+          "흰색"
+        ],
+        "description": "흰 프릴과 보라 리본이 달린 마법소녀 드레스",
+        "legwear": [
+          "흰색과 보라색 줄무늬 긴 양말"
+        ],
+        "footwear": [
+          "보라색 부츠"
+        ]
+      },
+      "original_features": [
+        "별 머리장식",
+        "흰색 뿔 모양 머리장식",
+        "분홍색 꽃 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Reisa (Magical).glb",
+        "preview_front": "analysis/previews/204_front.png",
+        "preview_back": "analysis/previews/204_back.png"
+      }
+    },
+    "Reisa.glb": {
+      "character": "Reisa",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "연한 파랑",
+          "분홍"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "트윈테일",
+          "곱슬머리",
+          "앞머리"
+        ],
+        "description": "연한 파랑|분홍, 긴 머리, 트윈테일·곱슬머리·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "남색",
+          "회색",
+          "흰색"
+        ],
+        "description": "남색 재킷과 흰 블라우스, 회색 주름치마",
+        "legwear": [
+          "분홍색 짧은 양말"
+        ],
+        "footwear": [
+          "분홍·하늘색 운동화"
+        ]
+      },
+      "original_features": [
+        "분홍색 작은 가방",
+        "머리핀",
+        "분홍색 꽃 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Reisa.glb",
+        "preview_front": "analysis/previews/205_front.png",
+        "preview_back": "analysis/previews/205_back.png"
+      }
+    },
+    "Saori (Swimsuit).glb": {
+      "character": "Saori",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "짙은 남색"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "포니테일",
+          "앞머리"
+        ],
+        "description": "짙은 남색, 긴 머리, 포니테일·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "수영복",
+          "캐주얼"
+        ],
+        "colors": [
+          "검정",
+          "연한 민트",
+          "회청색"
+        ],
+        "description": "검은 수영 상의와 연한 민트색 열린 재킷, 회청색 데님 반바지",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "검은색 샌들"
+        ]
+      },
+      "original_features": [
+        "흰색 야구모자",
+        "목에 건 헤드폰",
+        "파란색 별 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Saori (Swimsuit).glb",
+        "preview_front": "analysis/previews/220_front.png",
+        "preview_back": "analysis/previews/220_back.png"
+      }
+    },
+    "Seia.glb": {
+      "character": "Seia",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "연한 금발"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "생머리",
+          "앞머리"
+        ],
+        "description": "연한 금발, 매우 긴 머리, 생머리·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "원피스"
+        ],
+        "colors": [
+          "흰색",
+          "주황",
+          "금색"
+        ],
+        "description": "주황색 테두리와 넓은 소매가 있는 흰색 짧은 원피스",
+        "legwear": [
+          "흰색 긴 양말"
+        ],
+        "footwear": [
+          "흰색 구두"
+        ]
+      },
+      "original_features": [
+        "길고 뾰족한 귀",
+        "금색·흰색 말린 꼬리",
+        "금색 왕관 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Seia.glb",
+        "preview_front": "analysis/previews/227_front.png",
+        "preview_back": "analysis/previews/227_back.png"
+      }
+    },
+    "Sena (Casual).glb": {
+      "character": "Sena",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "회백색"
+        ],
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리"
+        ],
+        "description": "회백색, 짧은 머리, 단발·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "캐주얼",
+          "여름 원피스"
+        ],
+        "colors": [
+          "흰색",
+          "연한 파랑"
+        ],
+        "description": "연한 파란색 리본과 흰 레이스가 있는 민소매 여름 원피스",
+        "legwear": [
+          "흰색 짧은 양말"
+        ],
+        "footwear": [
+          "흰색 구두"
+        ]
+      },
+      "original_features": [
+        "넓은 흰색 레이스 챙모자",
+        "갈색 뿔",
+        "금색 눈",
+        "검은색 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Sena (Casual).glb",
+        "preview_front": "analysis/previews/228_front.png",
+        "preview_back": "analysis/previews/228_back.png"
+      }
+    },
+    "Serika (Swimsuit).glb": {
+      "character": "Serika",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "짙은 남색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "트윈테일",
+          "앞머리"
+        ],
+        "description": "짙은 남색, 매우 긴 머리, 트윈테일·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "수영복",
+          "비키니"
+        ],
+        "colors": [
+          "남색",
+          "흰색"
+        ],
+        "description": "흰 프릴 테두리가 있는 짙은 남색 오프숄더 비키니",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "청록색 샌들"
+        ]
+      },
+      "original_features": [
+        "고양이 귀",
+        "청록색 머리끈",
+        "분홍색 이중 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Serika (Swimsuit).glb",
+        "preview_front": "analysis/previews/231_front.png",
+        "preview_back": "analysis/previews/231_back.png"
+      }
+    },
+    "Serika.glb": {
+      "character": "Serika",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "짙은 남색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "트윈테일",
+          "앞머리"
+        ],
+        "description": "짙은 남색, 매우 긴 머리, 트윈테일·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "남색",
+          "흰색",
+          "청록"
+        ],
+        "description": "남색 재킷과 흰 셔츠, 청록색 넥타이와 검은 체크치마",
+        "legwear": [
+          "검은색 짧은 양말",
+          "한쪽 검은색 무릎 보호대"
+        ],
+        "footwear": [
+          "녹색 포인트 운동화"
+        ]
+      },
+      "original_features": [
+        "고양이 귀",
+        "청록색 머리 리본",
+        "분홍색 이중 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Serika.glb",
+        "preview_front": "analysis/previews/232_front.png",
+        "preview_back": "analysis/previews/232_back.png"
+      }
+    },
+    "Shokuhou Misaki.glb": {
+      "character": "Shokuhou Misaki",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "금발"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "생머리",
+          "앞머리"
+        ],
+        "description": "금발, 매우 긴 머리, 생머리·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "베이지",
+          "흰색",
+          "회색"
+        ],
+        "description": "베이지색 조끼와 흰 민소매 블라우스, 회색 주름치마",
+        "legwear": [
+          "흰색 니하이 양말",
+          "검은색 허벅지 밴드"
+        ],
+        "footwear": [
+          "갈색 구두"
+        ]
+      },
+      "original_features": [
+        "긴 흰 장갑",
+        "금색 눈",
+        "분홍색 별 모양 헤일로",
+        "검은 휴대용 장비"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Shokuhou Misaki.glb",
+        "preview_front": "analysis/previews/244_front.png",
+        "preview_back": "analysis/previews/244_back.png"
+      }
+    }
+  },
+  "models": {
+    "characters/01_marine_maid/01_marine_maid.glb": {
+      "id": 1,
+      "character": "Marin",
+      "name_ko": "마린",
+      "slug": "01_marine_maid",
+      "filename": "01_marine_maid.glb",
+      "glb": "characters/01_marine_maid/01_marine_maid.glb",
+      "sheet": "characters/01_marine_maid/01_marine_maid_sheet.png",
+      "bytes": 1072180,
+      "sha256": "d685c568685cb96d1c3ff8094276cce887cf09d394b575d8ca884930fce65622",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "분홍색"
+        ],
+        "color_hex": "#ed9bc2",
+        "length": "매우 긴 머리",
+        "styles": [
+          "트윈테일",
+          "생머리",
+          "앞머리"
+        ],
+        "description": "양옆으로 길게 내려오는 분홍색 트윈테일과 주름진 메이드 헤드밴드"
+      },
+      "outfit": {
+        "styles": [
+          "메이드복"
+        ],
+        "colors": [
+          "흰색",
+          "남색"
+        ],
+        "description": "Momoi (Maid)의 실제 짧은 메이드 드레스와 앞치마·프릴·리본을 흰색과 남색으로 편집",
+        "legwear": [
+          "흰색 팬티스타킹"
+        ],
+        "footwear": [
+          "원본 메이드 구두"
+        ]
+      },
+      "features": [
+        "주름진 메이드 헤드밴드",
+        "앞치마와 원본 프릴",
+        "차 숟가락 모티프 레이피어"
+      ],
+      "tags": [
+        "SD",
+        "분홍색",
+        "트윈테일",
+        "생머리",
+        "앞머리",
+        "메이드복",
+        "흰색 팬티스타킹"
+      ],
+      "palette": [
+        "#f7f6ff",
+        "#192944",
+        "#ed9bc2",
+        "#9ec9e9"
+      ],
+      "design_brief": "분홍 트윈테일, 흰색·남색 메이드 드레스, 흰 팬티스타킹. 물결 프릴 앞치마와 진주 브로치, 차 숟가락 모양 레이피어.",
+      "weapon": "숟가락 모양 가드가 있는 리본 레이피어",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 2.0,
+        "Walk": 1.2000000476837158,
+        "Attack": 1.600000023841858,
+        "Victory": 3.0
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6004495435388466,
+        "chin_target": 0.5874495435388466,
+        "vertical_adjustment": -0.013000000000000012
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 213,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 9,
+      "triangle_count": 7985,
+      "source_parts": [
+        "Momoi (Maid).glb",
+        "Hatsune Miku.glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Momoi (Maid).glb",
+        "hair": "Hatsune Miku.glb",
+        "face": "Momoi (Maid).glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/01_marine_maid/01_marine_maid_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/02_azure_reaper/02_azure_reaper.glb": {
+      "id": 2,
+      "character": "Viola",
+      "name_ko": "비올라",
+      "slug": "02_azure_reaper",
+      "filename": "02_azure_reaper.glb",
+      "glb": "characters/02_azure_reaper/02_azure_reaper.glb",
+      "sheet": "characters/02_azure_reaper/02_azure_reaper_sheet.png",
+      "bytes": 1788552,
+      "sha256": "c20c2c9a195bac1adb45b026778ee6a566de9a920d8d30e1cc9d2320e8ffbc0c",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "보라색"
+        ],
+        "color_hex": "#8571c1",
+        "length": "긴 머리",
+        "styles": [
+          "생머리",
+          "부분 묶음",
+          "앞머리"
+        ],
+        "description": "보라색 긴 뒷머리와 한쪽 머리 옆의 커다란 파란 장미"
+      },
+      "outfit": {
+        "styles": [
+          "사신풍 의상",
+          "짧은 드레스",
+          "숄"
+        ],
+        "colors": [
+          "보라색",
+          "파란색",
+          "진파랑"
+        ],
+        "description": "Haruka (Dress)의 짧은 드레스와 비치는 어깨 숄을 파란색·보라색으로 편집하고 원본 옷 주름을 유지",
+        "legwear": [
+          "허벅지 중간까지 오는 진파랑 사이하이",
+          "스타킹 위로 보이는 맨 허벅지"
+        ],
+        "footwear": [
+          "원본 스트랩 구두"
+        ]
+      },
+      "features": [
+        "한쪽의 큰 파란 장미",
+        "비치는 숄",
+        "초승달 모양 낫"
+      ],
+      "tags": [
+        "SD",
+        "보라색",
+        "생머리",
+        "부분 묶음",
+        "앞머리",
+        "사신풍 의상",
+        "짧은 드레스",
+        "숄",
+        "허벅지 중간까지 오는 진파랑 사이하이",
+        "스타킹 위로 보이는 맨 허벅지"
+      ],
+      "palette": [
+        "#44336f",
+        "#293d80",
+        "#467bdb",
+        "#c6bcff"
+      ],
+      "design_brief": "보라 머리와 한쪽의 커다란 파란 장미, 파랑·보라 짧은 치마, 진파랑 사이하이. 달 모양 낫과 비대칭 어깨 망토.",
+      "weapon": "진한 손잡이와 파란 척추 장식이 있는 초승달 낫",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 4.0,
+        "Walk": 2.4000000953674316,
+        "Attack": 1.600000023841858,
+        "Victory": 3.000000238418579
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6781693423374565,
+        "chin_target": 0.6419243574275919,
+        "vertical_adjustment": -0.007999999999999896
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 125,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 35,
+      "triangle_count": 18709,
+      "source_parts": [
+        "Haruka (Dress).glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Haruka (Dress).glb",
+        "hair": "Haruka (Dress).glb",
+        "face": "Haruka (Dress).glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/02_azure_reaper/02_azure_reaper_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/03_sky_cardigan/03_sky_cardigan.glb": {
+      "id": 3,
+      "character": "Sora",
+      "name_ko": "소라",
+      "slug": "03_sky_cardigan",
+      "filename": "03_sky_cardigan.glb",
+      "glb": "characters/03_sky_cardigan/03_sky_cardigan.glb",
+      "sheet": "characters/03_sky_cardigan/03_sky_cardigan_sheet.png",
+      "bytes": 1525380,
+      "sha256": "ab554c38a004ebb70bd85c83a609b703def2cb24832df5fdca68f363952069ec",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "하늘색"
+        ],
+        "color_hex": "#9dcef0",
+        "length": "매우 긴 머리",
+        "styles": [
+          "레이어드 웨이브",
+          "중앙의 뾰족한 앞머리",
+          "한쪽 작은 땋은 머리"
+        ],
+        "description": "Azusa (Swimsuit)의 뾰족한 중앙 앞머리·얼굴 옆 머리와 Miyo의 묶이지 않은 긴 레이어드 웨이브를 조합해 하늘색으로 편집. 작은 옆 땋은 머리와 파란 꽃"
+      },
+      "outfit": {
+        "styles": [
+          "블레이저",
+          "블라우스",
+          "타탄 주름치마"
+        ],
+        "colors": [
+          "회색",
+          "검은색",
+          "흰색",
+          "빨간색"
+        ],
+        "description": "Serika의 실제 허리가 들어간 블레이저를 회색으로 편집하고 라펠·주머니·소매에 검은 파이핑을 적용. 흰 칼라 블라우스, 빨강·검정 타탄 긴 넥타이와 주름치마",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "원본 운동화"
+        ]
+      },
+      "features": [
+        "중앙의 뾰족한 앞머리",
+        "분리된 얼굴 옆 머리",
+        "파란 머리 꽃",
+        "작은 옆 땋은 머리",
+        "검은 블레이저 파이핑",
+        "빨강·검정 타탄 넥타이와 치마"
+      ],
+      "tags": [
+        "SD",
+        "하늘색",
+        "레이어드 웨이브",
+        "중앙의 뾰족한 앞머리",
+        "한쪽 작은 땋은 머리",
+        "블레이저",
+        "블라우스",
+        "타탄 주름치마",
+        "맨다리"
+      ],
+      "palette": [
+        "#8f919b",
+        "#20212b",
+        "#ac334c",
+        "#9dcef0"
+      ],
+      "design_brief": "첨부 이미지에 맞춘 하늘색 긴 레이어드 웨이브와 뾰족한 중앙 앞머리, 한쪽 파란 꽃과 작은 땋은 머리. 검정 테두리의 회색 블레이저, 흰 셔츠, 빨강·검정 체크 넥타이와 플리츠 스커트, 맨다리.",
+      "weapon": "하늘색 참과 작은 금색 손잡이",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 1.6666667461395264,
+        "Walk": 1.3333333730697632,
+        "Attack": 1.600000023841858,
+        "Victory": 3.2333335876464844
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.5934299159196788,
+        "chin_target": 0.5804299159196787,
+        "vertical_adjustment": -0.04529382058301401
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 300,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 100,
+      "triangle_count": 10181,
+      "source_parts": [
+        "Serika.glb",
+        "Azusa (Swimsuit).glb",
+        "Nonomi.glb",
+        "Miyo.glb",
+        "Hina (Swimsuit).glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Serika.glb",
+        "hair": "Azusa (Swimsuit).glb",
+        "face": "Nonomi.glb",
+        "back_hair": "Miyo.glb",
+        "bare_legs_and_feet": "Hina (Swimsuit).glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/03_sky_cardigan/03_sky_cardigan_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/04_tidal_dress/04_tidal_dress.glb": {
+      "id": 4,
+      "character": "Elise",
+      "name_ko": "엘리제",
+      "slug": "04_tidal_dress",
+      "filename": "04_tidal_dress.glb",
+      "glb": "characters/04_tidal_dress/04_tidal_dress.glb",
+      "sheet": "characters/04_tidal_dress/04_tidal_dress_sheet.png",
+      "bytes": 1656104,
+      "sha256": "4492f0b935464cb2edca039dfadf292063c19ad904961c6ff7ac654d78ee69bc",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "금발"
+        ],
+        "color_hex": "#f4d58d",
+        "length": "긴 머리",
+        "styles": [
+          "생머리",
+          "앞머리"
+        ],
+        "description": "양옆과 등으로 곧게 내려오는 금발 긴 생머리"
+      },
+      "outfit": {
+        "styles": [
+          "원피스",
+          "드레스"
+        ],
+        "colors": [
+          "흰색",
+          "파란색"
+        ],
+        "description": "Sena (Casual)의 흰색·파란색 민소매 여름 원피스, 허리 리본과 반투명 레이스 밑단을 유지",
+        "legwear": [
+          "흰색 팬티스타킹"
+        ],
+        "footwear": [
+          "원본 흰색 구두"
+        ]
+      },
+      "features": [
+        "흐르는 원피스 치마",
+        "반투명 레이스와 겹친 밑단",
+        "파란 허리 리본",
+        "푸른 손 참"
+      ],
+      "tags": [
+        "SD",
+        "금발",
+        "생머리",
+        "앞머리",
+        "원피스",
+        "드레스",
+        "흰색 팬티스타킹"
+      ],
+      "palette": [
+        "#fbfcff",
+        "#3d72b2",
+        "#93c1e2",
+        "#f4d58d"
+      ],
+      "design_brief": "금발 긴 생머리, 흰색·파랑 원피스와 흰 팬티스타킹. 겹쳐진 시폰 밑단과 투명 레이스, 가슴 장식과 허리 리본.",
+      "weapon": "푸른 보석 모티프 손 참",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 4.6666669845581055,
+        "Walk": 2.6666667461395264,
+        "Attack": 1.600000023841858,
+        "Victory": 3.000000238418579
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6769838390760666,
+        "chin_target": 0.6405448184145025,
+        "vertical_adjustment": -0.010794871567697983
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 307,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 10,
+      "triangle_count": 9689,
+      "source_parts": [
+        "Sena (Casual).glb",
+        "Shokuhou Misaki.glb",
+        "Seia.glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Sena (Casual).glb",
+        "hair": "Shokuhou Misaki.glb",
+        "face": "Seia.glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/04_tidal_dress/04_tidal_dress_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/05_rosy_blazer/05_rosy_blazer.glb": {
+      "id": 5,
+      "character": "Rina",
+      "name_ko": "리나",
+      "slug": "05_rosy_blazer",
+      "filename": "05_rosy_blazer.glb",
+      "glb": "characters/05_rosy_blazer/05_rosy_blazer.glb",
+      "sheet": "characters/05_rosy_blazer/05_rosy_blazer_sheet.png",
+      "bytes": 1522832,
+      "sha256": "b8a5361f8403f8f81697bdb687e98190ebe1cb3b1fa6c8a2f000be54600b0510",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "연한 분홍색"
+        ],
+        "color_hex": "#f2bdcf",
+        "length": "긴 머리",
+        "styles": [
+          "생머리",
+          "한쪽 높은 포니테일",
+          "앞머리"
+        ],
+        "description": "연분홍색 긴 뒷머리와 한쪽에 묶어 포인트를 준 옆머리, 분홍색 리본"
+      },
+      "outfit": {
+        "styles": [
+          "블레이저",
+          "교복",
+          "주름치마"
+        ],
+        "colors": [
+          "장미색",
+          "흰색",
+          "회색"
+        ],
+        "description": "Reisa의 실제 교복 재킷·라펠·블라우스와 짧은 주름치마를 장미색 교복으로 편집",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "원본 분홍색·하늘색 운동화"
+        ]
+      },
+      "features": [
+        "한쪽 머리 리본",
+        "블레이저 라펠과 단추",
+        "원본 주름치마",
+        "작은 손 참"
+      ],
+      "tags": [
+        "SD",
+        "연한 분홍색",
+        "생머리",
+        "한쪽 높은 포니테일",
+        "앞머리",
+        "블레이저",
+        "교복",
+        "주름치마",
+        "맨다리"
+      ],
+      "palette": [
+        "#64465d",
+        "#f7eff3",
+        "#d697b4",
+        "#344c68"
+      ],
+      "design_brief": "연분홍 긴 생머리와 한쪽 리본 묶음, 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.",
+      "weapon": "책갈피 모티프의 작은 손 참",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 5.000000476837158,
+        "Walk": 1.3333334922790527,
+        "Attack": 1.600000023841858,
+        "Victory": 3.000000238418579
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6146595444653316,
+        "chin_target": 0.6016595444653315,
+        "vertical_adjustment": -0.050365108265379765
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 256,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 14,
+      "triangle_count": 8057,
+      "source_parts": [
+        "Reisa.glb",
+        "Miyako.glb",
+        "Koharu.glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Reisa.glb",
+        "hair": "Miyako.glb",
+        "face": "Koharu.glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/05_rosy_blazer/05_rosy_blazer_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/06_clover_sprite/06_clover_sprite.glb": {
+      "id": 6,
+      "character": "Fennel",
+      "name_ko": "페넬",
+      "slug": "06_clover_sprite",
+      "filename": "06_clover_sprite.glb",
+      "glb": "characters/06_clover_sprite/06_clover_sprite.glb",
+      "sheet": "characters/06_clover_sprite/06_clover_sprite_sheet.png",
+      "bytes": 1463104,
+      "sha256": "c19c6b0a1d6621b8009f39a7f40106166a118f9199ededd2763f86a576f0199f",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "흰색"
+        ],
+        "color_hex": "#f5fff5",
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리",
+          "삐친 머리"
+        ],
+        "description": "바깥쪽으로 끝이 뻗치는 흰색 짧은 머리"
+      },
+      "outfit": {
+        "styles": [
+          "날개 없는 요정풍",
+          "호박팬츠"
+        ],
+        "colors": [
+          "연두색",
+          "흰색",
+          "녹색"
+        ],
+        "description": "Ibuki의 실제 프릴 호박팬츠와 상의를 흰색·연두색으로 편집하고 긴 코트·날개·부츠를 제거",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "맨발",
+          "원본 해부학 발 메시"
+        ]
+      },
+      "features": [
+        "날개 없음",
+        "잎사귀 칼라",
+        "원본 프릴 호박팬츠",
+        "클로버 지팡이"
+      ],
+      "tags": [
+        "SD",
+        "흰색",
+        "단발",
+        "앞머리",
+        "삐친 머리",
+        "날개 없는 요정풍",
+        "호박팬츠",
+        "맨다리"
+      ],
+      "palette": [
+        "#f5fff4",
+        "#a4cb74",
+        "#537f53",
+        "#efe2a3"
+      ],
+      "design_brief": "흰색 짧은 머리, 날개 없는 요정. 연두·흰색 호박팬츠와 잎사귀 칼라, 맨다리·맨발. 클로버 지팡이와 이슬 방울 장식.",
+      "weapon": "세 장의 클로버 잎이 달린 지팡이",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 4.0,
+        "Walk": 1.3333333730697632,
+        "Attack": 1.600000023841858,
+        "Victory": 3.000000238418579
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6196845825326434,
+        "chin_target": 0.6066845825326433,
+        "vertical_adjustment": 0.025301215881915917
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 289,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 19,
+      "triangle_count": 7150,
+      "source_parts": [
+        "Ibuki.glb",
+        "Erika.glb",
+        "Natsu.glb",
+        "Hina (Swimsuit).glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Ibuki.glb",
+        "hair": "Erika.glb",
+        "face": "Natsu.glb",
+        "bare_legs_and_feet": "Hina (Swimsuit).glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/06_clover_sprite/06_clover_sprite_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/07_neon_cat/07_neon_cat.glb": {
+      "id": 7,
+      "character": "Momo",
+      "name_ko": "모모",
+      "slug": "07_neon_cat",
+      "filename": "07_neon_cat.glb",
+      "glb": "characters/07_neon_cat/07_neon_cat.glb",
+      "sheet": "characters/07_neon_cat/07_neon_cat_sheet.png",
+      "bytes": 1615952,
+      "sha256": "7a8fcafd79f0fc8fd34f6bc859e4c62020cf0dd46b46054ec098a98d5e1e82a0",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "분홍색"
+        ],
+        "color_hex": "#ee91b9",
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리"
+        ],
+        "description": "분홍색 단발과 위로 쫑긋한 분홍색 고양이 귀"
+      },
+      "outfit": {
+        "styles": [
+          "현대 캐주얼",
+          "크롭 재킷",
+          "반바지"
+        ],
+        "colors": [
+          "흰색",
+          "분홍색",
+          "검은색"
+        ],
+        "description": "Saori (Swimsuit)의 짧은 재킷·크롭 상의와 반바지를 흰색·분홍색 계열로 편집하고 배꼽 부분을 노출",
+        "legwear": [
+          "검은색 팬티스타킹"
+        ],
+        "footwear": [
+          "원본 캐주얼 신발"
+        ]
+      },
+      "features": [
+        "뾰족한 고양이 귀",
+        "노출된 배꼽",
+        "휘어진 분홍색 고양이 꼬리",
+        "원본 재킷 봉제선"
+      ],
+      "tags": [
+        "SD",
+        "분홍색",
+        "단발",
+        "앞머리",
+        "현대 캐주얼",
+        "크롭 재킷",
+        "반바지",
+        "검은색 팬티스타킹"
+      ],
+      "palette": [
+        "#fff5fa",
+        "#ed98bd",
+        "#242335",
+        "#a48dce"
+      ],
+      "design_brief": "분홍 고양이 귀와 머리, 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.",
+      "weapon": "별도 무기 없이 주먹 공격",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 4.0,
+        "Walk": 7.200000286102295,
+        "Attack": 1.600000023841858,
+        "Victory": 3.000000238418579
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6775452394678972,
+        "chin_target": 0.6422105381736589,
+        "vertical_adjustment": -0.023924141543428257
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 167,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 12,
+      "triangle_count": 8807,
+      "source_parts": [
+        "Saori (Swimsuit).glb",
+        "Kazusa.glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Saori (Swimsuit).glb",
+        "hair": "Kazusa.glb",
+        "face": "Kazusa.glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/07_neon_cat/07_neon_cat_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/08_carmine_doll/08_carmine_doll.glb": {
+      "id": 8,
+      "character": "Rosette",
+      "name_ko": "로제트",
+      "slug": "08_carmine_doll",
+      "filename": "08_carmine_doll.glb",
+      "glb": "characters/08_carmine_doll/08_carmine_doll.glb",
+      "sheet": "characters/08_carmine_doll/08_carmine_doll_sheet.png",
+      "bytes": 2125312,
+      "sha256": "ce076f36db443b735527ac12fe5a9b681e92e506b252be6b94696565275a2d46",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "선명한 분홍색"
+        ],
+        "color_hex": "#f165ac",
+        "length": "긴 머리",
+        "styles": [
+          "롤 트윈테일",
+          "굵은 드릴 컬",
+          "앞머리"
+        ],
+        "description": "선명한 분홍색 머리를 양옆의 굵은 롤 트윈테일로 묶은 형태"
+      },
+      "outfit": {
+        "styles": [
+          "인형 드레스",
+          "프릴 의상"
+        ],
+        "colors": [
+          "빨간색",
+          "흰색",
+          "분홍색"
+        ],
+        "description": "Reisa (Magical)의 원래 리본·레이스·프릴 드레스를 빨간색·흰색으로 편집하고 실제 드릴 트윈테일을 유지",
+        "legwear": [
+          "흰색 팬티스타킹"
+        ],
+        "footwear": [
+          "원본 리본 구두"
+        ]
+      },
+      "features": [
+        "굵은 드릴 트윈테일",
+        "원본 프릴과 레이스",
+        "큰 리본",
+        "등 뒤 작은 태엽"
+      ],
+      "tags": [
+        "SD",
+        "선명한 분홍색",
+        "롤 트윈테일",
+        "굵은 드릴 컬",
+        "앞머리",
+        "인형 드레스",
+        "프릴 의상",
+        "흰색 팬티스타킹"
+      ],
+      "palette": [
+        "#ca3550",
+        "#fff5ef",
+        "#f165ac",
+        "#d2af67"
+      ],
+      "design_brief": "선명한 분홍 롤 트윈테일, 빨강·흰색 인형 드레스와 흰 팬티스타킹. 이중 프릴, 레이스 리본과 등 뒤 작은 태엽 장식.",
+      "weapon": "작은 흰색 인형 참",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 4.0,
+        "Walk": 1.3333333730697632,
+        "Attack": 1.600000023841858,
+        "Victory": 8.866666793823242
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Cafe_Reaction"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6781694122613314,
+        "chin_target": 0.642197184187356,
+        "vertical_adjustment": -0.008000000000000007
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 140,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 12,
+      "triangle_count": 15192,
+      "source_parts": [
+        "Reisa (Magical).glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Reisa (Magical).glb",
+        "hair": "Reisa (Magical).glb",
+        "face": "Reisa (Magical).glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/08_carmine_doll/08_carmine_doll_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/09_crimson_qipao/09_crimson_qipao.glb": {
+      "id": 9,
+      "character": "Meilin",
+      "name_ko": "메이린",
+      "slug": "09_crimson_qipao",
+      "filename": "09_crimson_qipao.glb",
+      "glb": "characters/09_crimson_qipao/09_crimson_qipao.glb",
+      "sheet": "characters/09_crimson_qipao/09_crimson_qipao_sheet.png",
+      "bytes": 2311468,
+      "sha256": "44f8c03d86f86ca3caf8f9362fed06890c00139bf4e3f6b0a64027a67c0a8956",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "검은색에 가까운 갈색"
+        ],
+        "color_hex": "#35272c",
+        "length": "매우 긴 머리",
+        "styles": [
+          "트윈테일",
+          "생머리",
+          "앞머리"
+        ],
+        "description": "검갈색으로 바꾼 긴 트윈테일, 동물 귀는 제거하고 금색 매듭 리본을 추가"
+      },
+      "outfit": {
+        "styles": [
+          "치파오",
+          "중국 전통풍",
+          "짧은 치마"
+        ],
+        "colors": [
+          "빨간색",
+          "금색"
+        ],
+        "description": "Kisaki의 긴 겉옷을 제거한 실제 짧은 치파오. 양쪽 옆트임과 등 트임, 높은 칼라·금색 용무늬를 유지하고 빨간색으로 편집",
+        "legwear": [
+          "맨다리",
+          "양쪽 치마 옆트임으로 드러나는 다리"
+        ],
+        "footwear": [
+          "원본 굽 있는 구두"
+        ]
+      },
+      "features": [
+        "양쪽 옆트임",
+        "등 트임",
+        "금색 용무늬와 매듭",
+        "금색 트윈테일 리본",
+        "빨간 접이식 부채"
+      ],
+      "tags": [
+        "SD",
+        "검은색에 가까운 갈색",
+        "트윈테일",
+        "생머리",
+        "앞머리",
+        "치파오",
+        "중국 전통풍",
+        "짧은 치마",
+        "맨다리",
+        "양쪽 치마 옆트임으로 드러나는 다리"
+      ],
+      "palette": [
+        "#b52139",
+        "#e7585c",
+        "#e3b764",
+        "#35272c"
+      ],
+      "design_brief": "검갈색 트윈테일, 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리. 금색 매듭과 모란 무늬, 접이식 부채.",
+      "weapon": "금색 부챗살이 있는 펼친 빨간 부채",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 4.0,
+        "Walk": 6.333333492279053,
+        "Attack": 1.600000023841858,
+        "Victory": 9.333333969116211
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Cafe_Reaction"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6405513107998528,
+        "chin_target": 0.6056359936876078,
+        "vertical_adjustment": -0.007999999999999896
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 182,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 28,
+      "triangle_count": 9134,
+      "source_parts": [
+        "Kisaki.glb",
+        "Serika (Swimsuit).glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Kisaki.glb",
+        "hair": "Serika (Swimsuit).glb",
+        "face": "Kisaki.glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/09_crimson_qipao/09_crimson_qipao_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    },
+    "characters/10_snow_buns/10_snow_buns.glb": {
+      "id": 10,
+      "character": "Nevia",
+      "name_ko": "네비아",
+      "slug": "10_snow_buns",
+      "filename": "10_snow_buns.glb",
+      "glb": "characters/10_snow_buns/10_snow_buns.glb",
+      "sheet": "characters/10_snow_buns/10_snow_buns_sheet.png",
+      "bytes": 2253628,
+      "sha256": "d6bc600cfe70da870e9153f645a58fcd9b6ed0bbfab79baf91dd2a91f5d78d1e",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "흰색"
+        ],
+        "color_hex": "#f3f3fc",
+        "length": "긴 머리",
+        "styles": [
+          "풍성한 웨이브",
+          "양쪽 번",
+          "앞머리"
+        ],
+        "description": "흰색으로 바꾼 풍성한 긴 웨이브와 머리 양끝의 둥근 번"
+      },
+      "outfit": {
+        "styles": [
+          "짧은 드레스",
+          "퍼 볼레로"
+        ],
+        "colors": [
+          "흰색",
+          "아주 연한 보라색"
+        ],
+        "description": "Mutsuki (Dress)의 실제 짧은 프릴 드레스와 풍성한 퍼 볼레로를 흰색으로 편집하며 옷 주름과 털 가장자리를 유지",
+        "legwear": [
+          "흰색 팬티스타킹"
+        ],
+        "footwear": [
+          "원본 스트랩 구두"
+        ]
+      },
+      "features": [
+        "양끝의 번",
+        "풍성한 퍼 칼라",
+        "원본 프릴 치맛단",
+        "흰색 손 참"
+      ],
+      "tags": [
+        "SD",
+        "흰색",
+        "풍성한 웨이브",
+        "양쪽 번",
+        "앞머리",
+        "짧은 드레스",
+        "퍼 볼레로",
+        "흰색 팬티스타킹"
+      ],
+      "palette": [
+        "#fbfbff",
+        "#dce0ef",
+        "#b7bfda",
+        "#f1dcea"
+      ],
+      "design_brief": "흰색 풍성한 긴 머리와 양쪽 번, 짧고 부드러운 흰 옷, 흰 팬티스타킹. 구름 모양 퍼 숄, 겹친 드레스 주름과 금빛 장식.",
+      "weapon": "작은 구름색 참",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Attack",
+        "Victory"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 10.333333969116211,
+        "Walk": 1.3333333730697632,
+        "Attack": 1.600000023841858,
+        "Victory": 6.833333492279053
+      },
+      "native_source_clips": {
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Cafe_Reaction"
+      },
+      "attack_motion": "custom skeletal animation",
+      "build_revision": 3,
+      "head_fit": {
+        "neck_top": 0.6435158775564155,
+        "chin_target": 0.608959861781205,
+        "vertical_adjustment": -0.01311016688367661
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 283,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 9,
+      "triangle_count": 12086,
+      "source_parts": [
+        "Mutsuki (Dress).glb",
+        "Kirara.glb",
+        "Seia.glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Mutsuki (Dress).glb",
+        "hair": "Kirara.glb",
+        "face": "Seia.glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/10_snow_buns/10_snow_buns_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+      ]
+    }
+  }
+}
