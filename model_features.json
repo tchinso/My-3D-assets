@@ -8,7 +8,7 @@
     "body": "의상 원본별 SD 골격과 메시를 사용하며 실제 인물의 체형 분류를 추정하지 않음",
     "legwear": "팬티스타킹·사이하이·맨다리를 개별 캐릭터별로 명시함",
     "provenance": "donors는 사용한 원본 항목만 간결하게 보존하고 최종 모델의 외형과 별도로 기록함",
-    "animations": "Idle·Walk·Victory는 의상 원본 모션을 사용하고 Attack은 별도 제작; Idle·Walk는 제자리 반복, Attack·Victory는 기본 자세로 복귀"
+    "animations": "Idle·Walk·Run은 제자리 반복. Run은 걷기 배속이 아닌 독립된 달리기. Attack·Defend·Victory는 1회 재생 후 복귀, Lose는 패배 자세를 유지. Idle·Walk·Victory는 원본 모션을 활용"
   },
   "source_catalog": {
     "root": "C:\\Codex\\BlueArchiveGLB",
@@ -1197,8 +1197,8 @@
       "filename": "01_marine_maid.glb",
       "glb": "characters/01_marine_maid/01_marine_maid.glb",
       "sheet": "characters/01_marine_maid/01_marine_maid_sheet.png",
-      "bytes": 1072180,
-      "sha256": "d685c568685cb96d1c3ff8094276cce887cf09d394b575d8ca884930fce65622",
+      "bytes": 1164580,
+      "sha256": "1c00dd750d33d15fd27f72e9211a50c5eec35975674ee0dfa66a1528f912876f",
       "variants": [],
       "height": null,
       "body": {
@@ -1260,14 +1260,20 @@
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 2.0,
         "Walk": 1.2000000476837158,
-        "Attack": 1.600000023841858,
-        "Victory": 3.0
+        "Run": 0.800000011920929,
+        "Attack": 1.5499999523162842,
+        "Defend": 1.7999999523162842,
+        "Victory": 3.0,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -1275,7 +1281,17 @@
         "Victory": "Victory_Start"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Ribbon rapier: measured fencing lunge and recovery",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6004495435388466,
         "chin_target": 0.5874495435388466,
@@ -1310,7 +1326,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/02_azure_reaper/02_azure_reaper.glb": {
@@ -1321,8 +1337,8 @@
       "filename": "02_azure_reaper.glb",
       "glb": "characters/02_azure_reaper/02_azure_reaper.glb",
       "sheet": "characters/02_azure_reaper/02_azure_reaper_sheet.png",
-      "bytes": 1788552,
-      "sha256": "c20c2c9a195bac1adb45b026778ee6a566de9a920d8d30e1cc9d2320e8ffbc0c",
+      "bytes": 1899416,
+      "sha256": "eb54cdc8728ee345b4561a337eab319ddf05e380950133a15124e284019b88e1",
       "variants": [],
       "height": null,
       "body": {
@@ -1391,14 +1407,20 @@
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 4.0,
         "Walk": 2.4000000953674316,
-        "Attack": 1.600000023841858,
-        "Victory": 3.000000238418579
+        "Run": 0.800000011920929,
+        "Attack": 1.9500000476837158,
+        "Defend": 1.7999999523162842,
+        "Victory": 3.000000238418579,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -1406,7 +1428,17 @@
         "Victory": "Victory_Start"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Crescent scythe: two-handed overhead reaping cut with inner edge leading",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6781693423374565,
         "chin_target": 0.6419243574275919,
@@ -1440,7 +1472,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/03_sky_cardigan/03_sky_cardigan.glb": {
@@ -1451,8 +1483,8 @@
       "filename": "03_sky_cardigan.glb",
       "glb": "characters/03_sky_cardigan/03_sky_cardigan.glb",
       "sheet": "characters/03_sky_cardigan/03_sky_cardigan_sheet.png",
-      "bytes": 1525380,
-      "sha256": "ab554c38a004ebb70bd85c83a609b703def2cb24832df5fdca68f363952069ec",
+      "bytes": 1606896,
+      "sha256": "2d31df250019d1ba56df2afcea7e9391121bb55e1930af2ca8bfcffae3f66a93",
       "variants": [],
       "height": null,
       "body": {
@@ -1523,14 +1555,20 @@
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 1.6666667461395264,
         "Walk": 1.3333333730697632,
-        "Attack": 1.600000023841858,
-        "Victory": 3.2333335876464844
+        "Run": 0.800000011920929,
+        "Attack": 1.75,
+        "Defend": 1.7999999523162842,
+        "Victory": 3.2333335876464844,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -1538,7 +1576,17 @@
         "Victory": "Victory_Start"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Azure wave: wide lateral trace followed by a flowing palm release",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.5934299159196788,
         "chin_target": 0.5804299159196787,
@@ -1578,7 +1626,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/04_tidal_dress/04_tidal_dress.glb": {
@@ -1589,8 +1637,8 @@
       "filename": "04_tidal_dress.glb",
       "glb": "characters/04_tidal_dress/04_tidal_dress.glb",
       "sheet": "characters/04_tidal_dress/04_tidal_dress_sheet.png",
-      "bytes": 1656104,
-      "sha256": "4492f0b935464cb2edca039dfadf292063c19ad904961c6ff7ac654d78ee69bc",
+      "bytes": 1726092,
+      "sha256": "323a7f0e8df4125b1c9d139c44ca652a078bf2630dc92c2f06fcdeebc84e6922",
       "variants": [],
       "height": null,
       "body": {
@@ -1653,14 +1701,20 @@
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 4.6666669845581055,
         "Walk": 2.6666667461395264,
-        "Attack": 1.600000023841858,
-        "Victory": 3.000000238418579
+        "Run": 0.800000011920929,
+        "Attack": 2.0999999046325684,
+        "Defend": 1.7999999523162842,
+        "Victory": 3.000000238418579,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -1668,7 +1722,17 @@
         "Victory": "Victory_Start"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Tidal arc: overhead summoning circle and descending charm release",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6769838390760666,
         "chin_target": 0.6405448184145025,
@@ -1704,7 +1768,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/05_rosy_blazer/05_rosy_blazer.glb": {
@@ -1715,14 +1779,14 @@
       "filename": "05_rosy_blazer.glb",
       "glb": "characters/05_rosy_blazer/05_rosy_blazer.glb",
       "sheet": "characters/05_rosy_blazer/05_rosy_blazer_sheet.png",
-      "bytes": 1522832,
-      "sha256": "b8a5361f8403f8f81697bdb687e98190ebe1cb3b1fa6c8a2f000be54600b0510",
+      "bytes": 1579476,
+      "sha256": "d6380f05a7fb9e074fe11b8595791272393c8d6bb3f3f0c3cb521dbd01c6913b",
       "variants": [],
       "height": null,
       "body": {
         "build": null,
         "proportions": "SD",
-        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+        "description": "원본 SD 머리 크기와 골격을 유지하고 몸통·허리·팔다리·의상 메시의 단면을 슬림하게 조정"
       },
       "hair": {
         "colors": [
@@ -1748,7 +1812,7 @@
           "흰색",
           "회색"
         ],
-        "description": "Reisa의 실제 교복 재킷·라펠·블라우스와 짧은 주름치마를 장미색 교복으로 편집",
+        "description": "Reisa의 실제 교복 재킷·라펠·블라우스와 짧은 주름치마를 장미색으로 편집. 골격을 유지하며 몸통·소매·치마·다리의 단면을 슬림하게 조정",
         "legwear": [
           "맨다리"
         ],
@@ -1779,19 +1843,25 @@
         "#d697b4",
         "#344c68"
       ],
-      "design_brief": "연분홍 긴 생머리와 한쪽 리본 묶음, 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.",
+      "design_brief": "연분홍 긴 생머리와 한쪽 리본 묶음, 슬림한 몸통·소매·다리와 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.",
       "weapon": "책갈피 모티프의 작은 손 참",
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 5.000000476837158,
         "Walk": 1.3333334922790527,
+        "Run": 0.800000011920929,
         "Attack": 1.600000023841858,
-        "Victory": 3.000000238418579
+        "Defend": 1.7999999523162842,
+        "Victory": 3.000000238418579,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -1799,7 +1869,17 @@
         "Victory": "Victory_Start"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Rose pulse: two compact forward casts with a guarded free hand",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6146595444653316,
         "chin_target": 0.6016595444653315,
@@ -1835,7 +1915,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/06_clover_sprite/06_clover_sprite.glb": {
@@ -1846,8 +1926,8 @@
       "filename": "06_clover_sprite.glb",
       "glb": "characters/06_clover_sprite/06_clover_sprite.glb",
       "sheet": "characters/06_clover_sprite/06_clover_sprite_sheet.png",
-      "bytes": 1463104,
-      "sha256": "c19c6b0a1d6621b8009f39a7f40106166a118f9199ededd2763f86a576f0199f",
+      "bytes": 1552220,
+      "sha256": "bf628cea3e49e82eb80a0bcf91d85067f8f181de1f97282ff4299a8487480fb9",
       "variants": [],
       "height": null,
       "body": {
@@ -1914,14 +1994,20 @@
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 4.0,
         "Walk": 1.3333333730697632,
-        "Attack": 1.600000023841858,
-        "Victory": 3.000000238418579
+        "Run": 0.800000011920929,
+        "Attack": 1.850000023841858,
+        "Defend": 1.7999999523162842,
+        "Victory": 3.000000238418579,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -1929,7 +2015,17 @@
         "Victory": "Victory_Start"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Clover bloom: rising wand spiral and a small outward seed flick",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6196845825326434,
         "chin_target": 0.6066845825326433,
@@ -1967,7 +2063,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/07_neon_cat/07_neon_cat.glb": {
@@ -1978,8 +2074,8 @@
       "filename": "07_neon_cat.glb",
       "glb": "characters/07_neon_cat/07_neon_cat.glb",
       "sheet": "characters/07_neon_cat/07_neon_cat_sheet.png",
-      "bytes": 1615952,
-      "sha256": "7a8fcafd79f0fc8fd34f6bc859e4c62020cf0dd46b46054ec098a98d5e1e82a0",
+      "bytes": 2201352,
+      "sha256": "82400260db4b4b993128bb08c4a2de045c5e22d66f132da34987ee4e64093d6e",
       "variants": [],
       "height": null,
       "body": {
@@ -1991,13 +2087,14 @@
         "colors": [
           "분홍색"
         ],
-        "color_hex": "#ee91b9",
-        "length": "짧은 머리",
+        "color_hex": "#f4b5d0",
+        "length": "매우 긴 머리",
         "styles": [
-          "단발",
-          "앞머리"
+          "레이어드 웨이브",
+          "앞머리",
+          "양쪽 땋은 번"
         ],
-        "description": "분홍색 단발과 위로 쫑긋한 분홍색 고양이 귀"
+        "description": "참고 이미지의 긴 분홍 레이어드 머리와 얼굴을 감싸는 앞머리, 양쪽 땋은 번을 원본 머리 파츠 조합과 수정으로 표현. 분홍색 고양이 귀 유지"
       },
       "outfit": {
         "styles": [
@@ -2020,6 +2117,9 @@
       },
       "features": [
         "뾰족한 고양이 귀",
+        "긴 분홍 레이어드 머리",
+        "양쪽 땋은 번",
+        "부드러운 얼굴",
         "노출된 배꼽",
         "휘어진 분홍색 고양이 꼬리",
         "원본 재킷 봉제선"
@@ -2027,8 +2127,9 @@
       "tags": [
         "SD",
         "분홍색",
-        "단발",
+        "레이어드 웨이브",
         "앞머리",
+        "양쪽 땋은 번",
         "현대 캐주얼",
         "크롭 재킷",
         "반바지",
@@ -2040,19 +2141,25 @@
         "#242335",
         "#a48dce"
       ],
-      "design_brief": "분홍 고양이 귀와 머리, 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.",
+      "design_brief": "참고 이미지의 분홍 긴 레이어드 머리와 부드러운 앞머리, 양옆 땋은 번, 고양이 귀와 밝은 연보라 눈. 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.",
       "weapon": "별도 무기 없이 주먹 공격",
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 4.0,
         "Walk": 7.200000286102295,
-        "Attack": 1.600000023841858,
-        "Victory": 3.000000238418579
+        "Run": 0.800000011920929,
+        "Attack": 1.5,
+        "Defend": 1.7999999523162842,
+        "Victory": 3.000000238418579,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -2060,30 +2167,44 @@
         "Victory": "Victory_Start"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Cat pounce: lead paw jab followed by a rear paw cross",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6775452394678972,
         "chin_target": 0.6422105381736589,
-        "vertical_adjustment": -0.023924141543428257
+        "vertical_adjustment": -0.024995611800399442
       },
       "rig": {
         "name": "Unified SD character rig",
         "skin_count": 1,
-        "joint_count": 167,
+        "joint_count": 258,
         "up_axis": "+Y",
         "front_axis": "+Z",
         "physical_height_inferred": false
       },
-      "mesh_count": 12,
-      "triangle_count": 8807,
+      "mesh_count": 28,
+      "triangle_count": 17874,
       "source_parts": [
         "Saori (Swimsuit).glb",
+        "Miyo.glb",
+        "Kirara.glb",
         "Kazusa.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Saori (Swimsuit).glb",
-        "hair": "Kazusa.glb",
-        "face": "Kazusa.glb"
+        "hair": "Miyo.glb",
+        "face": "Miyo.glb",
+        "back_hair": "Kirara.glb",
+        "ears": "Kazusa.glb"
       },
       "evidence": {
         "manifest": "characters/manifest.json",
@@ -2095,7 +2216,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/08_carmine_doll/08_carmine_doll.glb": {
@@ -2106,8 +2227,8 @@
       "filename": "08_carmine_doll.glb",
       "glb": "characters/08_carmine_doll/08_carmine_doll.glb",
       "sheet": "characters/08_carmine_doll/08_carmine_doll_sheet.png",
-      "bytes": 2125312,
-      "sha256": "ce076f36db443b735527ac12fe5a9b681e92e506b252be6b94696565275a2d46",
+      "bytes": 2199540,
+      "sha256": "0e27bb33d3f852d4780e56b538c6e96fcddb2def584e5ea5856d0c91d58b99b8",
       "variants": [],
       "height": null,
       "body": {
@@ -2173,14 +2294,20 @@
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 4.0,
         "Walk": 1.3333333730697632,
-        "Attack": 1.600000023841858,
-        "Victory": 8.866666793823242
+        "Run": 0.800000011920929,
+        "Attack": 1.7999999523162842,
+        "Defend": 1.7999999523162842,
+        "Victory": 8.866666793823242,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -2188,7 +2315,17 @@
         "Victory": "Cafe_Reaction"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Clockwork doll: alternating angular hand strikes with a ticking head",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6781694122613314,
         "chin_target": 0.642197184187356,
@@ -2222,7 +2359,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/09_crimson_qipao/09_crimson_qipao.glb": {
@@ -2233,8 +2370,8 @@
       "filename": "09_crimson_qipao.glb",
       "glb": "characters/09_crimson_qipao/09_crimson_qipao.glb",
       "sheet": "characters/09_crimson_qipao/09_crimson_qipao_sheet.png",
-      "bytes": 2311468,
-      "sha256": "44f8c03d86f86ca3caf8f9362fed06890c00139bf4e3f6b0a64027a67c0a8956",
+      "bytes": 2659944,
+      "sha256": "91c3bd418b5e5bf54ccea9d3f7de0f7cb5a7912d8866b39280b00511058aa01c",
       "variants": [],
       "height": null,
       "body": {
@@ -2253,7 +2390,7 @@
           "생머리",
           "앞머리"
         ],
-        "description": "검갈색으로 바꾼 긴 트윈테일, 동물 귀는 제거하고 금색 매듭 리본을 추가"
+        "description": "참고 이미지처럼 아래까지 충분한 볼륨이 이어지는 검갈색 긴 트윈테일과 앞머리. 묶는 부분에 빨강 리본과 금색 장식 추가"
       },
       "outfit": {
         "styles": [
@@ -2278,7 +2415,8 @@
         "양쪽 옆트임",
         "등 트임",
         "금색 용무늬와 매듭",
-        "금색 트윈테일 리본",
+        "풍성한 긴 트윈테일",
+        "빨강·금색 머리묶음 장식",
         "빨간 접이식 부채"
       ],
       "tags": [
@@ -2299,19 +2437,25 @@
         "#e3b764",
         "#35272c"
       ],
-      "design_brief": "검갈색 트윈테일, 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리. 금색 매듭과 모란 무늬, 접이식 부채.",
+      "design_brief": "참고 이미지처럼 굵고 긴 검갈색 트윈테일과 양쪽 묶음의 붉은 꽃리본·금색 장식. 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리, 금색 매듭과 모란 무늬, 접이식 부채.",
       "weapon": "금색 부챗살이 있는 펼친 빨간 부채",
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 4.0,
         "Walk": 6.333333492279053,
-        "Attack": 1.600000023841858,
-        "Victory": 9.333333969116211
+        "Run": 0.800000011920929,
+        "Attack": 1.850000023841858,
+        "Defend": 1.7999999523162842,
+        "Victory": 9.333333969116211,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -2319,7 +2463,17 @@
         "Victory": "Cafe_Reaction"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Peony fan: cross-body fan slice and outward wrist flourish",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6405513107998528,
         "chin_target": 0.6056359936876078,
@@ -2333,8 +2487,8 @@
         "front_axis": "+Z",
         "physical_height_inferred": false
       },
-      "mesh_count": 28,
-      "triangle_count": 9134,
+      "mesh_count": 54,
+      "triangle_count": 13994,
       "source_parts": [
         "Kisaki.glb",
         "Serika (Swimsuit).glb"
@@ -2354,7 +2508,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/10_snow_buns/10_snow_buns.glb": {
@@ -2365,8 +2519,8 @@
       "filename": "10_snow_buns.glb",
       "glb": "characters/10_snow_buns/10_snow_buns.glb",
       "sheet": "characters/10_snow_buns/10_snow_buns_sheet.png",
-      "bytes": 2253628,
-      "sha256": "d6bc600cfe70da870e9153f645a58fcd9b6ed0bbfab79baf91dd2a91f5d78d1e",
+      "bytes": 2324820,
+      "sha256": "3cbbabd2995752228486e00129e91f032ae248c1b6a55d4a7b88d5b409e8e32e",
       "variants": [],
       "height": null,
       "body": {
@@ -2431,14 +2585,20 @@
       "animations": [
         "Idle",
         "Walk",
+        "Run",
         "Attack",
-        "Victory"
+        "Defend",
+        "Victory",
+        "Lose"
       ],
       "animation_duration_seconds": {
         "Idle": 10.333333969116211,
         "Walk": 1.3333333730697632,
-        "Attack": 1.600000023841858,
-        "Victory": 6.833333492279053
+        "Run": 0.800000011920929,
+        "Attack": 2.200000047683716,
+        "Defend": 1.7999999523162842,
+        "Victory": 6.833333492279053,
+        "Lose": 2.4000000953674316
       },
       "native_source_clips": {
         "Idle": "Cafe_Idle",
@@ -2446,7 +2606,17 @@
         "Victory": "Cafe_Reaction"
       },
       "attack_motion": "custom skeletal animation",
-      "build_revision": 3,
+      "attack_description": "Snow crystal: gather with both hands, raise, then release symmetrically",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 4,
       "head_fit": {
         "neck_top": 0.6435158775564155,
         "chin_target": 0.608959861781205,
@@ -2482,7 +2652,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"
+        "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     }
   }

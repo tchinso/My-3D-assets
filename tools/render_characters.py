@@ -23,6 +23,9 @@ LINE = "#DCE3EB"
 RENDER_BG = (0.953, 0.961, 0.973, 1)
 FONT_PATHS = [Path("C:/Windows/Fonts/malgun.ttf"), Path("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")]
 BOLD_PATHS = [Path("C:/Windows/Fonts/malgunbd.ttf"), Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")]
+MOTION_TIMES = {"Idle": 0.2, "Walk": 0.25, "Run": 0.22, "Attack": 0.57,
+                "Defend": 0.5, "Victory": 0.65, "Lose": 0.9}
+LOOP_MOTIONS = {"Idle", "Walk", "Run"}
 
 
 def font(size, bold=False):
@@ -103,7 +106,8 @@ def glb_path(root, entry):
 
 
 def clip_name(glb, wanted):
-    return next((name for name in glb.animations if wanted.lower() in name.lower()), None)
+    exact = next((name for name in glb.animations if wanted.lower() == name.lower()), None)
+    return exact or next((name for name in glb.animations if wanted.lower() in name.lower()), None)
 
 
 def pose_meshes(glb, wanted, fraction=0.28):
@@ -138,14 +142,13 @@ def draw_motion_studies(canvas, glb, pose_renderer):
     draw = ImageDraw.Draw(canvas)
     draw.rectangle((950, 1340, 2340, 1742), fill=PAPER)
     heading(draw, "MOTION STUDIES", (960, 1343), 24)
-    motion_times = {"Idle": 0.2, "Walk": 0.25, "Attack": 0.57, "Victory": 0.65}
-    for index, (motion, fraction) in enumerate(motion_times.items()):
-        x = 961+index*343
-        draw.rounded_rectangle((x, 1390, x+318, 1727), radius=20, fill="#E8EDF3")
+    for index, (motion, fraction) in enumerate(MOTION_TIMES.items()):
+        x = 960+index*197
+        draw.rounded_rectangle((x, 1390, x+187, 1727), radius=16, fill="#E8EDF3")
         pose = pose_meshes(glb, motion, fraction)
         image = pose_renderer.render(glb, pose, angle=24, background=RENDER_BG, padding=1.10)
-        canvas.paste(image, (x+34, 1400))
-        draw.text((x+22, 1693), motion.upper(), font=font(19, True), fill=INK)
+        canvas.paste(image, (x+(187-image.width)//2, 1400))
+        draw.text((x+13, 1693), motion.upper(), font=font(17, True), fill=INK)
 
 
 def refresh_sheet_motions(entry, glb, pose_renderer):
@@ -211,7 +214,8 @@ def contact_sheet(entries, glbs, renderer, output, motion=None, fraction=0.3):
     draw = ImageDraw.Draw(canvas)
     title = f"{motion.upper()} / MOTION STUDY" if motion else "CHARACTER COLLECTION"
     heading(draw, title, (54, 36), 48)
-    subtitle = "Poses evaluated from the exported GLB animation tracks" if motion else "10 designs / 4 animation clips each"
+    subtitle = ("Poses evaluated from the exported GLB animation tracks" if motion else
+                f"{len(entries)} designs / {len(MOTION_TIMES)} animation clips each")
     draw.text((56, 109), subtitle, font=font(25), fill=MUTED)
     for index, (entry, glb) in enumerate(zip(entries, glbs)):
         x, y = 48+(index%5)*468, 173+(index//5)*794
@@ -229,11 +233,11 @@ def contact_sheet(entries, glbs, renderer, output, motion=None, fraction=0.3):
     canvas.save(output, optimize=True)
 
 
-def animation_grid(entries, glbs, renderer, output):
-    # One compact GIF presents all ten actual skeletons through their three clips.
+def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12):
+    # Show every exported clip, preserving one-shot terminal frames and run timing.
     frames = []
-    motions = ["Walk", "Attack", "Victory"]
-    frame_count = 12
+    durations = []
+    motions = list(MOTION_TIMES) if motions is None else list(motions)
     for motion in motions:
         motion_bounds = []
         for glb in glbs:
@@ -251,12 +255,12 @@ def animation_grid(entries, glbs, renderer, output):
             canvas = Image.new("RGB", (1200, 840), PAPER)
             draw = ImageDraw.Draw(canvas)
             heading(draw, f"{motion.upper()} / CHARACTER COLLECTION", (22, 13), 25)
-            draw.text((1075, 15), f"{frame+1:02d} / 12", font=font(17), fill=MUTED)
+            draw.text((1075, 15), f"{frame+1:02d} / {frame_count}", font=font(17), fill=MUTED)
             for index, (entry, glb) in enumerate(zip(entries, glbs)):
                 x, y = 12+(index%5)*238, 58+(index//5)*383
                 clip = clip_name(glb, motion)
                 duration = glb.duration(clip)
-                time = duration*frame/(frame_count-1) if motion != "Walk" else duration*frame/frame_count
+                time = duration*frame/frame_count if motion in LOOP_MOTIONS else duration*frame/(frame_count-1)
                 mesh = glb.meshes(clip, time) if clip else glb.meshes()
                 # A frame-independent camera prevents the model from changing scale.
                 bounds = motion_bounds[index]
@@ -265,9 +269,13 @@ def animation_grid(entries, glbs, renderer, output):
                 label = f"{int(entry['id']):02d} {entry.get('name', entry['slug'])}"
                 draw.text((x+7, y+336), label, font=fit_font(draw, label, 17, 220, True), fill=INK)
             frames.append(canvas.quantize(colors=128))
-    durations = [100]*len(frames)
-    for end in [frame_count-1, frame_count*2-1, frame_count*3-1]:
-        durations[end] = 500
+        # Characters have different clip lengths; the median presents each study
+        # at its authored pace while keeping all ten phases aligned for comparison.
+        milliseconds = int(np.median([glb.duration(clip_name(glb, motion)) for glb in glbs])*1000)
+        frame_ms = max(30, round(milliseconds/frame_count/10)*10)
+        durations.extend([frame_ms]*frame_count)
+        if len(motions) > 1 or motion not in LOOP_MOTIONS:
+            durations[-1] = max(500, frame_ms)
     frames[0].save(output, save_all=True, append_images=frames[1:], duration=durations,
                    loop=0, disposal=2, optimize=False)
 
@@ -307,7 +315,7 @@ def main():
     previews = root/"previews"
     previews.mkdir(exist_ok=True)
     hero = None if args.refresh_motions else Renderer(500, 900)
-    pose = Renderer(250, 280, hero.ctx) if hero else Renderer(250, 280)
+    pose = Renderer(172, 280, hero.ctx) if hero else Renderer(172, 280)
     contact, gif = Renderer(390, 590, pose.ctx), Renderer(226, 328, pose.ctx)
     renderers = ([hero] if hero else [])+[pose, contact, gif]
     try:
@@ -320,10 +328,11 @@ def main():
                 print(f"Sheet: {output.relative_to(root)}", flush=True)
         if not args.refresh_motions:
             contact_sheet(entries, glbs, contact, previews/"lineup.png")
-        for motion, fraction in [("Walk", 0.25), ("Attack", 0.57), ("Victory", 0.65)]:
+        for motion, fraction in MOTION_TIMES.items():
             contact_sheet(entries, glbs, contact, previews/f"{motion.lower()}_poses.png", motion, fraction)
         if not args.skip_gif:
             animation_grid(entries, glbs, gif, previews/"motion_grid.gif")
+            animation_grid(entries, glbs, gif, previews/"run_grid.gif", motions=["Run"], frame_count=24)
         print(f"Previews: {previews}", flush=True)
     finally:
         for renderer in reversed(renderers):

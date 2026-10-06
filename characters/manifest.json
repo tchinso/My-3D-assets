@@ -16,16 +16,25 @@
       "Momoi (Maid).glb",
       "Hatsune Miku.glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Momoi (Maid).glb",
+      "hair": "Hatsune Miku.glb",
+      "face": "Momoi (Maid).glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/01_marine_maid/01_marine_maid.glb",
     "sheet": "characters/01_marine_maid/01_marine_maid_sheet.png",
-    "bytes": 1072180,
-    "revision": 3,
+    "bytes": 1164580,
+    "sha256": "1c00dd750d33d15fd27f72e9211a50c5eec35975674ee0dfa66a1528f912876f",
+    "revision": 4,
     "costume_source": "Momoi (Maid).glb",
     "triangles": 7985,
     "head_fit": {
@@ -33,12 +42,12 @@
       "chin_target": 0.5874495435388466,
       "vertical_adjustment": -0.013000000000000012
     },
+    "appearance_fit": {},
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Victory_Start"
-    },
-    "sha256": "d685c568685cb96d1c3ff8094276cce887cf09d394b575d8ca884930fce65622"
+    }
   },
   {
     "id": 2,
@@ -56,16 +65,25 @@
     "source_parts": [
       "Haruka (Dress).glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Haruka (Dress).glb",
+      "hair": "Haruka (Dress).glb",
+      "face": "Haruka (Dress).glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/02_azure_reaper/02_azure_reaper.glb",
     "sheet": "characters/02_azure_reaper/02_azure_reaper_sheet.png",
-    "bytes": 1788552,
-    "revision": 3,
+    "bytes": 1899416,
+    "sha256": "eb54cdc8728ee345b4561a337eab319ddf05e380950133a15124e284019b88e1",
+    "revision": 4,
     "costume_source": "Haruka (Dress).glb",
     "triangles": 18709,
     "head_fit": {
@@ -73,12 +91,12 @@
       "chin_target": 0.6419243574275919,
       "vertical_adjustment": -0.007999999999999896
     },
+    "appearance_fit": {},
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Victory_Start"
-    },
-    "sha256": "c20c2c9a195bac1adb45b026778ee6a566de9a920d8d30e1cc9d2320e8ffbc0c"
+    }
   },
   {
     "id": 3,
@@ -100,17 +118,27 @@
       "Miyo.glb",
       "Hina (Swimsuit).glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Serika.glb",
+      "hair": "Azusa (Swimsuit).glb",
+      "face": "Nonomi.glb",
+      "back_hair": "Miyo.glb",
+      "bare_legs_and_feet": "Hina (Swimsuit).glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/03_sky_cardigan/03_sky_cardigan.glb",
     "sheet": "characters/03_sky_cardigan/03_sky_cardigan_sheet.png",
-    "bytes": 1525380,
-    "sha256": "ab554c38a004ebb70bd85c83a609b703def2cb24832df5fdca68f363952069ec",
-    "revision": 3,
+    "bytes": 1606896,
+    "sha256": "2d31df250019d1ba56df2afcea7e9391121bb55e1930af2ca8bfcffae3f66a93",
+    "revision": 4,
     "costume_source": "Serika.glb",
     "triangles": 10181,
     "head_fit": {
@@ -118,6 +146,7 @@
       "chin_target": 0.5804299159196787,
       "vertical_adjustment": -0.04529382058301401
     },
+    "appearance_fit": {},
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
@@ -142,16 +171,25 @@
       "Shokuhou Misaki.glb",
       "Seia.glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Sena (Casual).glb",
+      "hair": "Shokuhou Misaki.glb",
+      "face": "Seia.glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/04_tidal_dress/04_tidal_dress.glb",
     "sheet": "characters/04_tidal_dress/04_tidal_dress_sheet.png",
-    "bytes": 1656104,
-    "revision": 3,
+    "bytes": 1726092,
+    "sha256": "323a7f0e8df4125b1c9d139c44ca652a078bf2630dc92c2f06fcdeebc84e6922",
+    "revision": 4,
     "costume_source": "Sena (Casual).glb",
     "triangles": 9689,
     "head_fit": {
@@ -159,12 +197,12 @@
       "chin_target": 0.6405448184145025,
       "vertical_adjustment": -0.010794871567697983
     },
+    "appearance_fit": {},
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Victory_Start"
-    },
-    "sha256": "4492f0b935464cb2edca039dfadf292063c19ad904961c6ff7ac654d78ee69bc"
+    }
   },
   {
     "id": 5,
@@ -178,22 +216,31 @@
       "#d697b4",
       "#344c68"
     ],
-    "design": "연분홍 긴 생머리와 한쪽 리본 묶음, 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.",
+    "design": "연분홍 긴 생머리와 한쪽 리본 묶음, 슬림한 몸통·소매·다리와 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.",
     "source_parts": [
       "Reisa.glb",
       "Miyako.glb",
       "Koharu.glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Reisa.glb",
+      "hair": "Miyako.glb",
+      "face": "Koharu.glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/05_rosy_blazer/05_rosy_blazer.glb",
     "sheet": "characters/05_rosy_blazer/05_rosy_blazer_sheet.png",
-    "bytes": 1522832,
-    "revision": 3,
+    "bytes": 1579476,
+    "sha256": "d6380f05a7fb9e074fe11b8595791272393c8d6bb3f3f0c3cb521dbd01c6913b",
+    "revision": 4,
     "costume_source": "Reisa.glb",
     "triangles": 8057,
     "head_fit": {
@@ -201,12 +248,22 @@
       "chin_target": 0.6016595444653315,
       "vertical_adjustment": -0.050365108265379765
     },
+    "appearance_fit": {
+      "body": {
+        "method": "Torso/skirt tailoring and limb cross-section fit around unchanged donor bone axes",
+        "torso_width_scale": 0.8,
+        "torso_depth_scale": 0.86,
+        "arm_cross_section_scale": 0.83,
+        "leg_cross_section_scale": 0.82,
+        "head_scale": 1.0,
+        "joint_pivots": "unchanged"
+      }
+    },
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Victory_Start"
-    },
-    "sha256": "b8a5361f8403f8f81697bdb687e98190ebe1cb3b1fa6c8a2f000be54600b0510"
+    }
   },
   {
     "id": 6,
@@ -227,16 +284,26 @@
       "Natsu.glb",
       "Hina (Swimsuit).glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Ibuki.glb",
+      "hair": "Erika.glb",
+      "face": "Natsu.glb",
+      "bare_legs_and_feet": "Hina (Swimsuit).glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/06_clover_sprite/06_clover_sprite.glb",
     "sheet": "characters/06_clover_sprite/06_clover_sprite_sheet.png",
-    "bytes": 1463104,
-    "revision": 3,
+    "bytes": 1552220,
+    "sha256": "bf628cea3e49e82eb80a0bcf91d85067f8f181de1f97282ff4299a8487480fb9",
+    "revision": 4,
     "costume_source": "Ibuki.glb",
     "triangles": 7150,
     "head_fit": {
@@ -244,12 +311,12 @@
       "chin_target": 0.6066845825326433,
       "vertical_adjustment": 0.025301215881915917
     },
+    "appearance_fit": {},
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Victory_Start"
-    },
-    "sha256": "c19c6b0a1d6621b8009f39a7f40106166a118f9199ededd2763f86a576f0199f"
+    }
   },
   {
     "id": 7,
@@ -263,34 +330,53 @@
       "#242335",
       "#a48dce"
     ],
-    "design": "분홍 고양이 귀와 머리, 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.",
+    "design": "참고 이미지의 분홍 긴 레이어드 머리와 부드러운 앞머리, 양옆 땋은 번, 고양이 귀와 밝은 연보라 눈. 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.",
     "source_parts": [
       "Saori (Swimsuit).glb",
+      "Miyo.glb",
+      "Kirara.glb",
       "Kazusa.glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Saori (Swimsuit).glb",
+      "hair": "Miyo.glb",
+      "face": "Miyo.glb",
+      "back_hair": "Kirara.glb",
+      "ears": "Kazusa.glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/07_neon_cat/07_neon_cat.glb",
     "sheet": "characters/07_neon_cat/07_neon_cat_sheet.png",
-    "bytes": 1615952,
-    "revision": 3,
+    "bytes": 2201352,
+    "sha256": "82400260db4b4b993128bb08c4a2de045c5e22d66f132da34987ee4e64093d6e",
+    "revision": 4,
     "costume_source": "Saori (Swimsuit).glb",
-    "triangles": 8807,
+    "triangles": 17874,
     "head_fit": {
       "neck_top": 0.6775452394678972,
       "chin_target": 0.6422105381736589,
-      "vertical_adjustment": -0.023924141543428257
+      "vertical_adjustment": -0.024995611800399442
+    },
+    "appearance_fit": {
+      "face": {
+        "donor_expression": "Miyo Mouth_300 closed smile",
+        "iris_tint": "#aa91e8",
+        "painted_highlights": "preserved"
+      }
     },
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Victory_Start"
-    },
-    "sha256": "7a8fcafd79f0fc8fd34f6bc859e4c62020cf0dd46b46054ec098a98d5e1e82a0"
+    }
   },
   {
     "id": 8,
@@ -308,16 +394,25 @@
     "source_parts": [
       "Reisa (Magical).glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Reisa (Magical).glb",
+      "hair": "Reisa (Magical).glb",
+      "face": "Reisa (Magical).glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/08_carmine_doll/08_carmine_doll.glb",
     "sheet": "characters/08_carmine_doll/08_carmine_doll_sheet.png",
-    "bytes": 2125312,
-    "revision": 3,
+    "bytes": 2199540,
+    "sha256": "0e27bb33d3f852d4780e56b538c6e96fcddb2def584e5ea5856d0c91d58b99b8",
+    "revision": 4,
     "costume_source": "Reisa (Magical).glb",
     "triangles": 15192,
     "head_fit": {
@@ -325,12 +420,12 @@
       "chin_target": 0.642197184187356,
       "vertical_adjustment": -0.008000000000000007
     },
+    "appearance_fit": {},
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Cafe_Reaction"
-    },
-    "sha256": "ce076f36db443b735527ac12fe5a9b681e92e506b252be6b94696565275a2d46"
+    }
   },
   {
     "id": 9,
@@ -344,34 +439,50 @@
       "#e3b764",
       "#35272c"
     ],
-    "design": "검갈색 트윈테일, 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리. 금색 매듭과 모란 무늬, 접이식 부채.",
+    "design": "참고 이미지처럼 굵고 긴 검갈색 트윈테일과 양쪽 묶음의 붉은 꽃리본·금색 장식. 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리, 금색 매듭과 모란 무늬, 접이식 부채.",
     "source_parts": [
       "Kisaki.glb",
       "Serika (Swimsuit).glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Kisaki.glb",
+      "hair": "Serika (Swimsuit).glb",
+      "face": "Kisaki.glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/09_crimson_qipao/09_crimson_qipao.glb",
     "sheet": "characters/09_crimson_qipao/09_crimson_qipao_sheet.png",
-    "bytes": 2311468,
-    "revision": 3,
+    "bytes": 2659944,
+    "sha256": "91c3bd418b5e5bf54ccea9d3f7de0f7cb5a7912d8866b39280b00511058aa01c",
+    "revision": 4,
     "costume_source": "Kisaki.glb",
-    "triangles": 9134,
+    "triangles": 13994,
     "head_fit": {
       "neck_top": 0.6405513107998528,
       "chin_target": 0.6056359936876078,
       "vertical_adjustment": -0.007999999999999896
     },
+    "appearance_fit": {
+      "hair": {
+        "method": "Donor twin-tail cross-section fit, anchored roots and tapered ends",
+        "width_scale_max": 1.72,
+        "depth_scale_max": 1.38,
+        "length_scale": 1.0
+      }
+    },
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Cafe_Reaction"
-    },
-    "sha256": "44f8c03d86f86ca3caf8f9362fed06890c00139bf4e3f6b0a64027a67c0a8956"
+    }
   },
   {
     "id": 10,
@@ -391,16 +502,25 @@
       "Kirara.glb",
       "Seia.glb"
     ],
+    "source_roles": {
+      "costume_and_rig": "Mutsuki (Dress).glb",
+      "hair": "Kirara.glb",
+      "face": "Seia.glb"
+    },
     "animations": [
       "Idle",
       "Walk",
+      "Run",
       "Attack",
-      "Victory"
+      "Defend",
+      "Victory",
+      "Lose"
     ],
     "glb": "characters/10_snow_buns/10_snow_buns.glb",
     "sheet": "characters/10_snow_buns/10_snow_buns_sheet.png",
-    "bytes": 2253628,
-    "revision": 3,
+    "bytes": 2324820,
+    "sha256": "3cbbabd2995752228486e00129e91f032ae248c1b6a55d4a7b88d5b409e8e32e",
+    "revision": 4,
     "costume_source": "Mutsuki (Dress).glb",
     "triangles": 12086,
     "head_fit": {
@@ -408,11 +528,11 @@
       "chin_target": 0.608959861781205,
       "vertical_adjustment": -0.01311016688367661
     },
+    "appearance_fit": {},
     "native_clips": {
       "Idle": "Cafe_Idle",
       "Walk": "Cafe_Walk",
       "Victory": "Cafe_Reaction"
-    },
-    "sha256": "d6bc600cfe70da870e9153f645a58fcd9b6ed0bbfab79baf91dd2a91f5d78d1e"
+    }
   }
 ]

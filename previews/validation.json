@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-10-05T15:44:42.391197+00:00",
+  "generated_utc": "2026-10-06T08:54:30.746803+00:00",
   "root": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets",
-  "scope": "GLB structure, accessor safety, skin bind/weights, clip motion/loops and PNG sheets",
+  "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks and PNG sheets",
   "errors": [],
   "warnings": [],
   "characters": [
@@ -11,12 +11,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1072180,
+        "bytes": 1164580,
         "nodes": 222,
         "meshes": 9,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 451,
+        "accessors": 545,
         "skin_bind_residuals": [
           9.315243199026213e-08
         ],
@@ -76,13 +76,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.2730997277238768
         },
+        "Run": {
+          "channels": 37,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.2110789058141013,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.11623144376837462,
+              "mean_outward_upperarm_ratio": 0.11125497971409717,
+              "min_elbow_flex_degrees": 92.86896898182637,
+              "max_elbow_flex_degrees": 105.03039312833462,
+              "min_elbow_drop_upperarm_ratio": 0.7996306400718213
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.07677023071182196,
+              "mean_outward_upperarm_ratio": 0.07255597355066983,
+              "min_elbow_flex_degrees": 101.52271228435227,
+              "max_elbow_flex_degrees": 104.1564433727133,
+              "min_elbow_drop_upperarm_ratio": 0.8599839257123358
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2771264561527517,
+          "walk_normalized_phase_rms_difference": 0.09213997148646337
+        },
         "Attack": {
           "channels": 27,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 1.5499999523162842,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.6586205867306522
+          "sampled_geometry_max_displacement": 0.6586205867306522,
+          "anatomical_motion_fingerprint": "c4536e6109ed94a44371529b70801b7fe24139c791a2b7bf9a2544bd313ff734"
+        },
+        "Defend": {
+          "channels": 27,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.4884921673915375
         },
         "Victory": {
           "channels": 112,
@@ -91,6 +128,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.9511156426582671
+        },
+        "Lose": {
+          "channels": 27,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.501246826874097,
+          "terminal_pose_displacement": 0.501246826874097,
+          "terminal_pose_hold_max_error": 2.2184325092919967e-08
         }
       },
       "status": "passed",
@@ -104,12 +151,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1788552,
+        "bytes": 1899416,
         "nodes": 160,
         "meshes": 35,
         "skins": 1,
         "embedded_images": 9,
-        "accessors": 640,
+        "accessors": 744,
         "skin_bind_residuals": [
           3.864936670705532e-08
         ],
@@ -177,13 +224,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.37917398207527264
         },
+        "Run": {
+          "channels": 37,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.23184057986185394,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.11653220319904864,
+              "mean_outward_upperarm_ratio": 0.11156356164098748,
+              "min_elbow_flex_degrees": 92.84910049573088,
+              "max_elbow_flex_degrees": 105.46568870262287,
+              "min_elbow_drop_upperarm_ratio": 0.7732754622832825
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.07094442353970129,
+              "mean_outward_upperarm_ratio": 0.06640098390781869,
+              "min_elbow_flex_degrees": 98.25442203675914,
+              "max_elbow_flex_degrees": 102.29567339592282,
+              "min_elbow_drop_upperarm_ratio": 0.858025029600016
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.4550715344819145,
+          "walk_normalized_phase_rms_difference": 0.10388444543425661
+        },
         "Attack": {
           "channels": 37,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 1.9500000476837158,
           "moving_channels": 37,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 1.0429984942238615
+          "sampled_geometry_max_displacement": 0.8546224451032614,
+          "anatomical_motion_fingerprint": "2a3216d909c658f60d8fc5454e111db7bb284c717aa674fede547700e99e0598"
+        },
+        "Defend": {
+          "channels": 37,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.6071241368293813
         },
         "Victory": {
           "channels": 123,
@@ -192,6 +276,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 1.0857058119176695
+        },
+        "Lose": {
+          "channels": 27,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.4083221498832275,
+          "terminal_pose_displacement": 0.4083221498832275,
+          "terminal_pose_hold_max_error": 3.840028741566517e-08
         }
       },
       "status": "passed",
@@ -205,12 +299,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1525380,
+        "bytes": 1606896,
         "nodes": 400,
         "meshes": 100,
         "skins": 1,
         "embedded_images": 9,
-        "accessors": 937,
+        "accessors": 1015,
         "skin_bind_residuals": [
           3.923752200929442e-08
         ],
@@ -278,13 +372,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.36032832280930377
         },
+        "Run": {
+          "channels": 37,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.22868048140111405,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.11461773510283738,
+              "mean_outward_upperarm_ratio": 0.11022219998532888,
+              "min_elbow_flex_degrees": 91.23518687259904,
+              "max_elbow_flex_degrees": 102.32330855804453,
+              "min_elbow_drop_upperarm_ratio": 0.8105457625629536
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.07512099588366124,
+              "mean_outward_upperarm_ratio": 0.07120371916082119,
+              "min_elbow_flex_degrees": 100.5533617416687,
+              "max_elbow_flex_degrees": 103.35665640876806,
+              "min_elbow_drop_upperarm_ratio": 0.8735353026099626
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2657518757777377,
+          "walk_normalized_phase_rms_difference": 0.07970783726220584
+        },
         "Attack": {
           "channels": 27,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 1.75,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.37940158036341703
+          "sampled_geometry_max_displacement": 0.45283991850014366,
+          "anatomical_motion_fingerprint": "69beddf3e3a02ef19a66713b199d9c5b2909c00d89b19eb0b6a0bf61b5f43f14"
+        },
+        "Defend": {
+          "channels": 27,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3183345733113075
         },
         "Victory": {
           "channels": 84,
@@ -293,6 +424,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 1.1920928955078125e-07,
           "sampled_geometry_max_displacement": 0.5323590582893569
+        },
+        "Lose": {
+          "channels": 27,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.32156704988507945,
+          "terminal_pose_displacement": 0.3215670430483737,
+          "terminal_pose_hold_max_error": 2.697329902631432e-08
         }
       },
       "status": "passed",
@@ -306,12 +447,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1656104,
+        "bytes": 1726092,
         "nodes": 317,
         "meshes": 10,
         "skins": 1,
         "embedded_images": 8,
-        "accessors": 592,
+        "accessors": 652,
         "skin_bind_residuals": [
           5.899811217346951e-08
         ],
@@ -375,13 +516,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.32711089062707266
         },
+        "Run": {
+          "channels": 33,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.21145477994796316,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.1345660231131805,
+              "mean_outward_upperarm_ratio": 0.130492358774689,
+              "min_elbow_flex_degrees": 96.394950560498,
+              "max_elbow_flex_degrees": 108.63675854441368,
+              "min_elbow_drop_upperarm_ratio": 0.8455963882908808
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.058427392106819256,
+              "mean_outward_upperarm_ratio": 0.05359458496852306,
+              "min_elbow_flex_degrees": 104.02778492355405,
+              "max_elbow_flex_degrees": 107.75542831858263,
+              "min_elbow_drop_upperarm_ratio": 0.9230299592302648
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2799170706898487,
+          "walk_normalized_phase_rms_difference": 0.08623941599356584
+        },
         "Attack": {
           "channels": 25,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 2.0999999046325684,
           "moving_channels": 25,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3625175370006944
+          "sampled_geometry_max_displacement": 0.38075349663867486,
+          "anatomical_motion_fingerprint": "d6ca35cb215419d569cdcf048c6802a28c353344b72d2f06aee791a89448dc5a"
+        },
+        "Defend": {
+          "channels": 25,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.29743917952955506
         },
         "Victory": {
           "channels": 155,
@@ -390,6 +568,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.5132024933254943
+        },
+        "Lose": {
+          "channels": 25,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3234437722656998,
+          "terminal_pose_displacement": 0.3234437722656998,
+          "terminal_pose_hold_max_error": 2.8989117513768026e-08
         }
       },
       "status": "passed",
@@ -403,12 +591,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1522832,
+        "bytes": 1579476,
         "nodes": 270,
         "meshes": 14,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 608,
+        "accessors": 660,
         "skin_bind_residuals": [
           4.0762627051549316e-08
         ],
@@ -466,7 +654,35 @@
           "moving_channels": 98,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3941993328762363
+          "sampled_geometry_max_displacement": 0.39207887800844005
+        },
+        "Run": {
+          "channels": 29,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.22778956125634645,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.11308944603808627,
+              "mean_outward_upperarm_ratio": 0.11043206040667315,
+              "min_elbow_flex_degrees": 98.89489263704843,
+              "max_elbow_flex_degrees": 108.18560311696793,
+              "min_elbow_drop_upperarm_ratio": 0.7751003895619337
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.07512097775331913,
+              "mean_outward_upperarm_ratio": 0.07101688728219024,
+              "min_elbow_flex_degrees": 99.61401062575479,
+              "max_elbow_flex_degrees": 103.35666532819474,
+              "min_elbow_drop_upperarm_ratio": 0.8735352620223243
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2889471946368055,
+          "walk_normalized_phase_rms_difference": 0.09155742029431976
         },
         "Attack": {
           "channels": 23,
@@ -474,7 +690,16 @@
           "moving_channels": 23,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3607321890901454
+          "sampled_geometry_max_displacement": 0.3440243685755953,
+          "anatomical_motion_fingerprint": "6164930a36ebbfeafafa0eec51fd48f07d8d2e47421eab9a8e7847f347690b55"
+        },
+        "Defend": {
+          "channels": 23,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 23,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3060086070139506
         },
         "Victory": {
           "channels": 144,
@@ -482,7 +707,17 @@
           "moving_channels": 144,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.46525745854067485
+          "sampled_geometry_max_displacement": 0.4626609104745484
+        },
+        "Lose": {
+          "channels": 23,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 23,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3458621207500388,
+          "terminal_pose_displacement": 0.3458621154393013,
+          "terminal_pose_hold_max_error": 2.5895132456581623e-08
         }
       },
       "status": "passed",
@@ -496,12 +731,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1463104,
+        "bytes": 1552220,
         "nodes": 308,
         "meshes": 19,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 670,
+        "accessors": 756,
         "skin_bind_residuals": [
           4.1071835488182273e-08
         ],
@@ -561,13 +796,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.3889805615822826
         },
+        "Run": {
+          "channels": 33,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.21030285941348778,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.14567938016956447,
+              "mean_outward_upperarm_ratio": 0.14249666563035548,
+              "min_elbow_flex_degrees": 93.12314766550668,
+              "max_elbow_flex_degrees": 102.75682549660615,
+              "min_elbow_drop_upperarm_ratio": 0.9032398927692968
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.06648115510705178,
+              "mean_outward_upperarm_ratio": 0.06470070152618718,
+              "min_elbow_flex_degrees": 99.88891752986112,
+              "max_elbow_flex_degrees": 102.36681292882456,
+              "min_elbow_drop_upperarm_ratio": 0.9192898098203529
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2713775922261819,
+          "walk_normalized_phase_rms_difference": 0.0956446757896652
+        },
         "Attack": {
           "channels": 25,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 1.850000023841858,
           "moving_channels": 25,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.46303347075552326
+          "sampled_geometry_max_displacement": 0.5085002589493345,
+          "anatomical_motion_fingerprint": "7bb65c6c9a5be1f3a077dd7d44f50596e5b08c5cfaf5d20836f6d71e0cec0dbc"
+        },
+        "Defend": {
+          "channels": 25,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.32042718810538384
         },
         "Victory": {
           "channels": 163,
@@ -576,6 +848,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.8747178601686275
+        },
+        "Lose": {
+          "channels": 25,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.5234726526570674,
+          "terminal_pose_displacement": 0.5234726526570674,
+          "terminal_pose_hold_max_error": 2.9017217763451754e-08
         }
       },
       "status": "passed",
@@ -589,20 +871,28 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1615952,
-        "nodes": 179,
-        "meshes": 12,
+        "bytes": 2201352,
+        "nodes": 286,
+        "meshes": 28,
         "skins": 1,
-        "embedded_images": 8,
-        "accessors": 520,
+        "embedded_images": 10,
+        "accessors": 706,
         "skin_bind_residuals": [
-          3.8651646772080994e-08
+          3.9798253855092004e-08
         ],
-        "vertex_records": 7670,
-        "triangles": 8807,
+        "vertex_records": 13124,
+        "triangles": 17874,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
           [
             512,
             512
@@ -616,12 +906,12 @@
             256
           ],
           [
-            128,
-            128
-          ],
-          [
             256,
             256
+          ],
+          [
+            128,
+            128
           ],
           [
             512,
@@ -648,7 +938,7 @@
           "moving_channels": 87,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.026324428824454803
+          "sampled_geometry_max_displacement": 0.023291543499335713
         },
         "Walk": {
           "channels": 119,
@@ -658,13 +948,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.37228270609660846
         },
+        "Run": {
+          "channels": 37,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.22494003178567784,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.1267985423627543,
+              "mean_outward_upperarm_ratio": 0.12441964531014725,
+              "min_elbow_flex_degrees": 91.29938948209623,
+              "max_elbow_flex_degrees": 103.00347577922618,
+              "min_elbow_drop_upperarm_ratio": 0.8400055710848734
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.12560264398631818,
+              "mean_outward_upperarm_ratio": 0.12351535459167977,
+              "min_elbow_flex_degrees": 92.19453801394418,
+              "max_elbow_flex_degrees": 103.66276418891132,
+              "min_elbow_drop_upperarm_ratio": 0.8357173967042226
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2923816074008498,
+          "walk_normalized_phase_rms_difference": 0.05206087154123749
+        },
         "Attack": {
-          "channels": 35,
-          "duration_seconds": 1.600000023841858,
-          "moving_channels": 35,
+          "channels": 37,
+          "duration_seconds": 1.5,
+          "moving_channels": 37,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4678021095676587
+          "sampled_geometry_max_displacement": 0.46434013325519036,
+          "anatomical_motion_fingerprint": "b055dd047b59d74f473babbbbb5241b8056fafe724d6fad1c54fe673dbe7254b"
+        },
+        "Defend": {
+          "channels": 37,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3597370108337903
         },
         "Victory": {
           "channels": 112,
@@ -673,6 +1000,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.3107659122056098
+        },
+        "Lose": {
+          "channels": 37,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3722607484587169,
+          "terminal_pose_displacement": 0.37226074358130573,
+          "terminal_pose_hold_max_error": 2.1966210535566555e-08
         }
       },
       "status": "passed",
@@ -686,12 +1023,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2125312,
+        "bytes": 2199540,
         "nodes": 152,
         "meshes": 12,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 557,
+        "accessors": 625,
         "skin_bind_residuals": [
           5.2564138375288394e-08
         ],
@@ -751,13 +1088,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.38210759167609654
         },
+        "Run": {
+          "channels": 37,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.2129273553618046,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.1296628450300953,
+              "mean_outward_upperarm_ratio": 0.12842972108283335,
+              "min_elbow_flex_degrees": 94.29369034498656,
+              "max_elbow_flex_degrees": 104.68684502145746,
+              "min_elbow_drop_upperarm_ratio": 0.844215899597606
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.06293686801198141,
+              "mean_outward_upperarm_ratio": 0.05990941330612105,
+              "min_elbow_flex_degrees": 99.95282482317259,
+              "max_elbow_flex_degrees": 103.15242940542261,
+              "min_elbow_drop_upperarm_ratio": 0.9191819104371854
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.22228778450592243,
+          "walk_normalized_phase_rms_difference": 0.06476893669615456
+        },
         "Attack": {
           "channels": 27,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 1.7999999523162842,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3657687445427587
+          "sampled_geometry_max_displacement": 0.34023593152995935,
+          "anatomical_motion_fingerprint": "513d50ab94e6dd1fe9268efdc472c48484d69a5a6752a8b0691f85297147e550"
+        },
+        "Defend": {
+          "channels": 27,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.2808492924014916
         },
         "Victory": {
           "channels": 141,
@@ -766,6 +1140,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.7382684360871433
+        },
+        "Lose": {
+          "channels": 27,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.46158428902748433,
+          "terminal_pose_displacement": 0.46158428010110425,
+          "terminal_pose_hold_max_error": 3.913690968402988e-08
         }
       },
       "status": "passed",
@@ -779,17 +1163,17 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2311468,
-        "nodes": 210,
-        "meshes": 28,
+        "bytes": 2659944,
+        "nodes": 236,
+        "meshes": 54,
         "skins": 1,
         "embedded_images": 8,
-        "accessors": 690,
+        "accessors": 940,
         "skin_bind_residuals": [
           3.7264980758298335e-08
         ],
-        "vertex_records": 6152,
-        "triangles": 9134,
+        "vertex_records": 9032,
+        "triangles": 13994,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -848,13 +1232,50 @@
           "max_quaternion_error": 1.1920928955078125e-07,
           "sampled_geometry_max_displacement": 0.3501585632098871
         },
+        "Run": {
+          "channels": 37,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.2200509302749238,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.1310903420939197,
+              "mean_outward_upperarm_ratio": 0.1302066214911292,
+              "min_elbow_flex_degrees": 91.73821122748402,
+              "max_elbow_flex_degrees": 102.37377140445986,
+              "min_elbow_drop_upperarm_ratio": 0.8499921253134318
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.07482485732423637,
+              "mean_outward_upperarm_ratio": 0.07288681615592624,
+              "min_elbow_flex_degrees": 100.7342867659776,
+              "max_elbow_flex_degrees": 102.24819036642954,
+              "min_elbow_drop_upperarm_ratio": 0.8923139073848356
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.38812172761034275,
+          "walk_normalized_phase_rms_difference": 0.08519015219757291
+        },
         "Attack": {
           "channels": 27,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 1.850000023841858,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.38270801192525356
+          "sampled_geometry_max_displacement": 0.38270801192525356,
+          "anatomical_motion_fingerprint": "356fe0f5bf4d53dcce09c187568c10c10e2882e908182defd41b53c02d5fdad1"
+        },
+        "Defend": {
+          "channels": 27,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.35643733213183365
         },
         "Victory": {
           "channels": 157,
@@ -863,6 +1284,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.6371325821360978
+        },
+        "Lose": {
+          "channels": 27,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.35139907800983616,
+          "terminal_pose_displacement": 0.3513990737550647,
+          "terminal_pose_hold_max_error": 3.580691301183033e-08
         }
       },
       "status": "passed",
@@ -876,14 +1307,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2253628,
+        "bytes": 2324820,
         "nodes": 292,
         "meshes": 9,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 552,
+        "accessors": 612,
         "skin_bind_residuals": [
-          9.622692442867731e-08
+          1.077301681196019e-07
         ],
         "vertex_records": 9140,
         "triangles": 12086,
@@ -941,13 +1372,50 @@
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.28713652589302757
         },
+        "Run": {
+          "channels": 33,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.21449654319534012,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.12308547509180048,
+              "mean_outward_upperarm_ratio": 0.1208856197155703,
+              "min_elbow_flex_degrees": 96.77105394840325,
+              "max_elbow_flex_degrees": 106.64590190065158,
+              "min_elbow_drop_upperarm_ratio": 0.8207951406344419
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.06663075603320502,
+              "mean_outward_upperarm_ratio": 0.06296189040878783,
+              "min_elbow_flex_degrees": 97.25447056218024,
+              "max_elbow_flex_degrees": 102.31434173734951,
+              "min_elbow_drop_upperarm_ratio": 0.9190013073616375
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2788981789096181,
+          "walk_normalized_phase_rms_difference": 0.07427468161680378
+        },
         "Attack": {
           "channels": 25,
-          "duration_seconds": 1.600000023841858,
+          "duration_seconds": 2.200000047683716,
+          "moving_channels": 24,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.33990329776292566,
+          "anatomical_motion_fingerprint": "36c7be44a16f553365e33b4b08ef529570333f30652e98da5a0fcbf261716cc6"
+        },
+        "Defend": {
+          "channels": 25,
+          "duration_seconds": 1.7999999523162842,
           "moving_channels": 25,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.35156409768291497
+          "sampled_geometry_max_displacement": 0.303243337367505
         },
         "Victory": {
           "channels": 148,
@@ -956,6 +1424,16 @@
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.564269974732646
+        },
+        "Lose": {
+          "channels": 25,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.30366088638843564,
+          "terminal_pose_displacement": 0.3036608788848725,
+          "terminal_pose_hold_max_error": 4.1905517429782565e-08
         }
       },
       "status": "passed",

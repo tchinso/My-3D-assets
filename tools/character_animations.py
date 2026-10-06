@@ -1,7 +1,8 @@
 """Procedural, portable glTF character animations (NumPy is the only dependency).
 
 ``add_animations(doc, append_accessor, character_id, attack_style='magic')``
-replaces ``doc['animations']`` with Idle, Walk, Attack and Victory. The callback
+replaces ``doc['animations']`` with Idle, Walk, Run, Attack, Defend, Victory and
+Lose. The callback
 must append the supplied NumPy array to the GLB buffer and return its accessor
 index: ``append_accessor(array, gltf_type, component_type=5126)``. Floats are
 little-endian float32; animation time accessors need their usual min/max values.
@@ -14,7 +15,8 @@ skeletons are excluded. Named Bip001 joints and their skeleton root are used;
 custom HairAccessory nodes below the same skeleton are also supported. Rotations
 are relative to the actual rest hierarchy and use anatomical world axes. Walk
 uses two-bone leg IK, toe-off and counter-swinging arms. All clips are in place.
-Idle/Walk have identical first/last keys; Attack/Victory return to the rest pose.
+Idle/Walk/Run have identical first/last keys; Attack/Defend/Victory return to the
+rest pose. Lose settles into and holds a defeated pose until its final key.
 
 No filesystem access or mutation occurs on import. Source visibility/expression
 tracks are discarded and no scale, morph, material or visibility is animated.
@@ -165,6 +167,11 @@ class _Rig:
                 visit(i)
         if len(self.order) != count:
             raise ValueError('Character node hierarchy must be an acyclic tree.')
+        depths = np.zeros(count, dtype=int)
+        for i in self.order:
+            if self.parent[i] >= 0:
+                depths[i] = depths[self.parent[i]]+1
+        self.levels = [np.flatnonzero(depths == depth) for depth in range(int(depths.max())+1)]
         self.t, self.q, self.s = map(np.stack, zip(*(_trs(n) for n in self.nodes)))
         self.skin = _body_skin(doc)
         joints = set(doc['skins'][self.skin].get('joints', []))
@@ -235,19 +242,29 @@ class _Rig:
         self.height = max(.1, (np.dot(self.pos[head], self.up)-floor)*1.16)
 
     def world(self, rotations, translations):
-        matrices = np.empty((len(self.nodes), 4, 4))
+        # IK evaluates this hierarchy repeatedly. Batch siblings at each tree
+        # depth so seven clips remain practical for rigs with many cloth bones.
+        x, y, z, w = rotations.T
+        basis = np.stack((
+            1-2*(y*y+z*z), 2*(x*y-z*w), 2*(x*z+y*w),
+            2*(x*y+z*w), 1-2*(x*x+z*z), 2*(y*z-x*w),
+            2*(x*z-y*w), 2*(y*z+x*w), 1-2*(x*x+y*y),
+        ), axis=1).reshape(-1, 3, 3)
+        local = np.broadcast_to(np.eye(4), (len(self.nodes), 4, 4)).copy()
+        local[:, :3, :3] = basis*self.s[:, None, :]
+        local[:, :3, 3] = translations
+        matrices = np.empty_like(local)
         quaternions = np.empty_like(rotations)
-        for i in self.order:
-            local = np.eye(4)
-            local[:3, :3] = _qmatrix(rotations[i]) * self.s[i]
-            local[:3, 3] = translations[i]
-            parent = self.parent[i]
-            if parent >= 0:
-                matrices[i] = matrices[parent] @ local
-                quaternions[i] = _qnorm(_qmul(quaternions[parent], rotations[i]))
-            else:
-                matrices[i] = local
-                quaternions[i] = rotations[i]
+        roots = self.levels[0]
+        matrices[roots], quaternions[roots] = local[roots], rotations[roots]
+        for level in self.levels[1:]:
+            parents = self.parent[level]
+            matrices[level] = matrices[parents] @ local[level]
+            a, b = quaternions[parents], rotations[level]
+            values = np.empty_like(a)
+            values[:, :3] = a[:, 3, None]*b[:, :3]+b[:, 3, None]*a[:, :3]+np.cross(a[:, :3], b[:, :3])
+            values[:, 3] = a[:, 3]*b[:, 3]-np.sum(a[:, :3]*b[:, :3], axis=1)
+            quaternions[level] = values/np.maximum(np.linalg.norm(values, axis=1, keepdims=True), _EPS)
         return matrices, quaternions
 
     def pose(self, changes, displacement=None):
@@ -327,6 +344,52 @@ class _Rig:
         # rotation about anatomical right points the toes toward the floor.
         desired_q = _qmul(_axisq(self.right, pitch), self.rest_world_q[foot])
         rotations[foot] = _qnorm(_qmul(_qinv(world_q[self.parent[foot]]), desired_q))
+
+    def run_leg_ik(self, rotations, translations, side, cycle):
+        """A running stride with 36% stance, heel recovery and an aerial phase.
+
+        Feet travel further than in Walk, fold up behind the hips and drive the
+        knees forward. The opposite legs' short contact windows never overlap.
+        This is a separate pose trajectory; no walking keys are time-scaled.
+        """
+        foot = self.bones.get(f'Bip001 {side} Foot')
+        if foot is None:
+            return
+        cycle %= 1.
+        duty = .36
+        stride = self.height*.145
+        if cycle < duty:
+            stance = cycle/duty
+            travel = stride*(1-2*stance)
+            lift = 0.
+            pitch = 29*max(0., (stance-.55)/.45)**2
+            toe = self.bones.get(f'Bip001 {side} Toe0')
+            roll = np.zeros(3)
+            if toe is not None and pitch > 0:
+                offset = self.pos[toe]-self.pos[foot]
+                roll = offset-_qrot(_axisq(self.right, pitch), offset)
+                roll += self.up*(self.height*.003*pitch/29)
+        else:
+            swing = (cycle-duty)/(1-duty)
+            travel, lift, pitch = _motion_path(swing, [
+                (0, [-stride, 0, 29]),
+                (.22, [-stride*.80, self.height*.085, 35]),
+                (.52, [stride*.20, self.height*.110, -13]),
+                (.78, [stride*.91, self.height*.048, -16]),
+                (1, [stride, 0, 0]),
+            ])
+            roll = np.zeros(3)
+            toe = self.bones.get(f'Bip001 {side} Toe0')
+            if toe is not None and swing < .22:
+                # Carry the late-stance toe pivot into the first swing key;
+                # removing it at toe-off would teleport the ankle downward.
+                offset = self.pos[toe]-self.pos[foot]
+                weight = 1-swing/.22
+                weight = weight*weight*(3-2*weight)
+                roll = (offset-_qrot(_axisq(self.right, 29), offset)
+                        +self.up*(self.height*.003))*weight
+        target = self.pos[foot]+self.forward*travel+self.up*lift+roll
+        self.leg_target(rotations, translations, side, target, pitch)
 
     def palm_offset(self, side='R'):
         """Rest-world offset from wrist to grip, halfway toward the knuckles."""
@@ -463,7 +526,118 @@ def _fist_rotation(rig, side):
     return _matrixq(desired @ bind.T)
 
 
-def _weapon_attack_pose(rig, u, kind):
+_ATTACK_ACTIONS = {
+    1: 'Ribbon rapier: measured fencing lunge and recovery',
+    2: 'Crescent scythe: two-handed overhead reaping cut with inner edge leading',
+    3: 'Azure wave: wide lateral trace followed by a flowing palm release',
+    4: 'Tidal arc: overhead summoning circle and descending charm release',
+    5: 'Rose pulse: two compact forward casts with a guarded free hand',
+    6: 'Clover bloom: rising wand spiral and a small outward seed flick',
+    7: 'Cat pounce: lead paw jab followed by a rear paw cross',
+    8: 'Clockwork doll: alternating angular hand strikes with a ticking head',
+    9: 'Peony fan: cross-body fan slice and outward wrist flourish',
+    10: 'Snow crystal: gather with both hands, raise, then release symmetrically',
+}
+_ATTACK_DURATIONS = {1: 1.55, 2: 1.95, 3: 1.75, 4: 2.10, 5: 1.60,
+                     6: 1.85, 7: 1.50, 8: 1.80, 9: 1.85, 10: 2.20}
+
+
+def _attack_personality(number, kind):
+    """Independent hand/torso paths for characters sharing the same charm prop."""
+    upright = [(0, [0, 1, 0]), (1, [0, 1, 0])]
+    front = [(0, [0, 0, 1]), (1, [0, 0, 1])]
+    recipe = {}
+    if kind == 'charm' and number == 3:
+        recipe = dict(
+            grip=[(0, [-.12, -.13, .08]), (.26, [-.25, -.025, .065]),
+                  (.44, [-.16, -.055, .21]), (.62, [.09, -.065, .23]),
+                  (.79, [.02, -.12, .13]), (1, [-.12, -.13, .08])],
+            shaft=[(0, [0, 1, 0]), (.26, [-.55, .82, .15]),
+                   (.62, [.60, .55, .58]), (1, [0, 1, 0])],
+            left=[(0, [.13, -.15, .08]), (.26, [.18, -.09, -.02]),
+                  (.48, [.21, -.035, .12]), (.67, [.05, -.10, .22]), (1, [.13, -.15, .08])],
+            torso=[(0, [0, 0, 0]), (.26, [-18, -3, -.012]),
+                   (.62, [20, 6, .018]), (1, [0, 0, 0])], step=.04)
+    elif kind == 'charm' and number == 4:
+        recipe = dict(
+            grip=[(0, [-.12, -.14, .08]), (.24, [-.17, .07, .08]),
+                  (.40, [-.08, .19, .08]), (.60, [-.11, .015, .25]),
+                  (.73, [-.11, -.045, .23]), (1, [-.12, -.14, .08])],
+            shaft=[(0, [0, 1, 0]), (.40, [-.30, .94, 0]),
+                   (.60, [0, .33, .94]), (1, [0, 1, 0])],
+            left=[(0, [.13, -.15, .08]), (.28, [.035, -.105, .14]),
+                  (.44, [.10, -.015, .16]), (.65, [.15, -.09, .22]), (1, [.13, -.15, .08])],
+            torso=[(0, [0, 0, 0]), (.40, [-6, -11, 0]),
+                   (.65, [7, 8, 0]), (1, [0, 0, 0])], step=.025)
+    elif kind == 'charm' and number == 5:
+        recipe = dict(
+            grip=[(0, [-.12, -.13, .08]), (.24, [-.11, -.07, .12]),
+                  (.43, [-.07, -.065, .27]), (.53, [-.11, -.07, .13]),
+                  (.67, [-.07, -.065, .27]), (.77, [-.11, -.07, .13]), (1, [-.12, -.13, .08])],
+            shaft=[(0, [0, 1, 0]), (.24, [0, .96, .28]),
+                   (.43, [0, .22, .98]), (.53, [0, .92, .40]),
+                   (.67, [0, .22, .98]), (1, [0, 1, 0])],
+            left=[(0, [.13, -.15, .08]), (.24, [.06, -.09, .16]),
+                  (.67, [.08, -.045, .16]), (1, [.13, -.15, .08])],
+            torso=[(0, [0, 0, 0]), (.24, [-9, -3, 0]),
+                   (.43, [8, 7, .006]), (.53, [-4, 0, 0]),
+                   (.67, [8, 7, .006]), (1, [0, 0, 0])], step=.035)
+    elif kind == 'wand':
+        recipe = dict(
+            grip=[(0, [-.12, -.15, .08]), (.23, [-.20, .005, .07]),
+                  (.38, [-.08, .12, .09]), (.53, [.025, .015, .22]),
+                  (.70, [-.09, -.03, .22]), (1, [-.12, -.15, .08])],
+            shaft=[(0, [0, 1, 0]), (.23, [-.65, .76, 0]),
+                   (.38, [.48, .88, .04]), (.53, [.30, .40, .86]),
+                   (.70, [-.18, .53, .83]), (1, [0, 1, 0])],
+            left=[(0, [.13, -.15, .08]), (.28, [.19, -.06, .03]),
+                  (.53, [.11, -.045, .19]), (.73, [.15, -.12, .11]), (1, [.13, -.15, .08])],
+            torso=[(0, [0, 0, 0]), (.23, [-12, -6, -.009]),
+                   (.53, [13, 5, .009]), (.70, [-4, 3, 0]), (1, [0, 0, 0])], step=.035)
+    elif kind == 'punch' and number == 7:
+        recipe = dict(
+            grip=[(0, [-.11, -.035, .11]), (.22, [-.13, -.025, .075]),
+                  (.35, [-.20, -.015, -.015]), (.51, [.015, -.035, .295]),
+                  (.56, [.015, -.035, .295]), (.75, [-.11, -.035, .11]), (1, [-.11, -.035, .11])],
+            shaft=upright,
+            left=[(0, [.12, .02, .11]), (.16, [.11, .025, .13]),
+                  (.28, [.025, .015, .285]), (.35, [.025, .015, .285]),
+                  (.48, [.11, .025, .11]), (.65, [.14, .02, .12]), (1, [.12, .02, .11])],
+            torso=[(0, [0, 0, 0]), (.28, [-16, 6, -.004]),
+                   (.35, [-25, -4, -.010]), (.51, [26, 10, .013]),
+                   (.75, [-6, 0, 0]), (1, [0, 0, 0])], step=.055)
+    elif kind == 'charm' and number == 8:
+        recipe = dict(
+            grip=[(0, [-.12, -.14, .08]), (.22, [-.16, -.06, .10]),
+                  (.38, [-.16, -.06, .10]), (.51, [-.14, .035, .23]),
+                  (.62, [-.14, .035, .23]), (.73, [-.08, -.10, .14]), (1, [-.12, -.14, .08])],
+            shaft=[(0, [0, 1, 0]), (.22, [-.60, .80, 0]),
+                   (.38, [-.60, .80, 0]), (.51, [0, .70, .71]),
+                   (.62, [0, .70, .71]), (1, [0, 1, 0])],
+            left=[(0, [.13, -.15, .08]), (.22, [.15, -.025, .21]),
+                  (.38, [.15, -.025, .21]), (.51, [.15, -.13, .10]),
+                  (.62, [.15, -.13, .10]), (.75, [.025, -.025, .18]), (1, [.13, -.15, .08])],
+            torso=[(0, [0, 0, 0]), (.22, [-12, -3, -.006]),
+                   (.38, [-12, -3, -.006]), (.51, [12, 7, .006]),
+                   (.62, [12, 7, .006]), (1, [0, 0, 0])], step=.025)
+    elif kind == 'charm' and number == 10:
+        recipe = dict(
+            grip=[(0, [-.12, -.14, .08]), (.24, [-.035, -.10, .15]),
+                  (.41, [-.075, .12, .12]), (.57, [-.16, .035, .23]),
+                  (.72, [-.19, -.035, .24]), (1, [-.12, -.14, .08])],
+            shaft=[(0, [0, 1, 0]), (.41, [-.35, .94, 0]),
+                   (.72, [-.38, .40, .83]), (1, [0, 1, 0])],
+            left=[(0, [.13, -.15, .08]), (.24, [.035, -.10, .15]),
+                  (.41, [.075, .12, .12]), (.57, [.16, .035, .23]),
+                  (.72, [.19, -.035, .24]), (1, [.13, -.15, .08])],
+            torso=[(0, [0, 0, 0]), (.24, [0, 7, 0]),
+                   (.41, [0, -9, 0]), (.72, [0, 8, 0]), (1, [0, 0, 0])], step=.025)
+    if recipe:
+        recipe.setdefault('normal', front)
+    return recipe
+
+
+def _weapon_attack_pose(rig, u, kind, number=0):
     """Weapon-led IK attack: guard, wind-up, impact/hold, then recovery."""
     enter = float(np.clip(u/.12, 0, 1))
     leave = float(np.clip((1-u)/.20, 0, 1))
@@ -479,17 +653,20 @@ def _weapon_attack_pose(rig, u, kind):
             tracks.add(node)
 
     if kind == 'scythe':
-        grip_path = [(0, [-.12, -.10, .10]), (.27, [-.15, .025, -.10]),
-                     (.38, [-.13, .005, -.06]), (.57, [.12, -.075, .19]),
-                     (.64, [.12, -.075, .19]), (.91, [-.12, -.10, .10]), (1, [-.12, -.10, .10])]
-        shaft_path = [(0, [0, 1, 0]), (.28, [-.32, .91, -.25]),
-                      (.39, [-.24, .76, .60]), (.57, [.78, .12, .61]),
-                      (.64, [.78, .12, .61]), (.91, [0, 1, 0]), (1, [0, 1, 0])]
-        normal_path = [(0, [0, 0, 1]), (.28, [0, 0, 1]), (.57, [0, .65, .76]),
-                       (.64, [0, .65, .76]), (.91, [0, 0, 1]), (1, [0, 0, 1])]
-        twist = float(_motion_path(u, [(0, 0), (.30, -24), (.39, -19), (.57, 27), (.64, 27), (.92, 0), (1, 0)]))
-        lean = float(_motion_path(u, [(0, 0), (.30, -4), (.57, 9), (.64, 9), (1, 0)]))
-        shift = float(_motion_path(u, [(0, 0), (.30, -.014), (.57, .020), (.64, .020), (1, 0)]))
+        # The modeled blade extends along -bind lateral. Rotating its plane to
+        # the sagittal plane makes that extension point forward. Positive shaft
+        # pitch then drives the concave (-shaft) edge downward through the cut,
+        # instead of presenting the decorated convex spine to the target.
+        grip_path = [(0, [-.12, -.09, .10]), (.28, [-.12, .025, .045]),
+                     (.37, [-.12, .025, .045]), (.58, [-.10, -.105, .14]),
+                     (.65, [-.10, -.105, .14]), (.91, [-.12, -.09, .10]), (1, [-.12, -.09, .10])]
+        shaft_path = [(t, [0, math.cos(math.radians(pitch)), math.sin(math.radians(pitch))])
+                      for t, pitch in [(0, 8), (.28, -36), (.37, -36),
+                                       (.58, 72), (.65, 72), (.91, 8), (1, 8)]]
+        normal_path = [(0, [1, 0, 0]), (1, [1, 0, 0])]
+        twist = float(_motion_path(u, [(0, 0), (.30, -12), (.37, -12), (.58, 13), (.65, 13), (1, 0)]))
+        lean = float(_motion_path(u, [(0, 0), (.30, -7), (.58, 14), (.65, 14), (1, 0)]))
+        shift = float(_motion_path(u, [(0, 0), (.30, -.004), (.58, .006), (1, 0)]))
         step = .045
     elif kind == 'fan':
         grip_path = [(0, [-.13, -.12, .08]), (.28, [.035, -.025, .15]),
@@ -539,12 +716,24 @@ def _weapon_attack_pose(rig, u, kind):
                                      (.71, 10 if is_rapier else 7), (1, 0)]))
         shift = 0.
         step = .065 if is_rapier else .05
+    personality = _attack_personality(number, kind)
+    if personality:
+        grip_path = personality['grip']
+        shaft_path = personality['shaft']
+        normal_path = personality['normal']
+        twist, lean, shift = _motion_path(u, personality['torso'])
+        step = personality['step']
     rotate('Bip001 Pelvis', up, twist*.38)
     rotate('Bip001 Spine', up, twist*.62)
     rotate('Bip001 Spine', right, lean*.65)
     rotate('Bip001 Spine1', right, lean*.35)
     rotate('Bip001 Head', up, -twist*.55)
     rotate('Bip001 Head', right, -lean*.25)
+    if number == 8:
+        tick = float(_motion_path(u, [(0, 0), (.22, -13), (.38, -13),
+                                      (.51, 13), (.62, 13), (1, 0)]))
+        rotate('Bip001 Head', forward, tick)
+        rotate('Bip001 Spine1', forward, -tick*.22)
     advance = float(_motion_path(u, [(0, 0), (.28, .005), (.57, .024), (.71, .024), (1, 0)]))
     displacement = height*activity*(right*shift+forward*advance-up*.018)
     rotations, translations = rig.pose(changes, displacement)
@@ -584,6 +773,9 @@ def _weapon_attack_pose(rig, u, kind):
                           _slerp(_IDENTITY, _axisq(forward, -18), activity))
             if kind == 'scythe':
                 left_goal = actual_grip-_qrot(prop_delta, up)*(height*.14)
+            elif 'left' in personality:
+                relative_left = _motion_path(u, personality['left'])
+                left_goal = anchor+height*(right*relative_left[0]+up*relative_left[1]+forward*relative_left[2])
             elif kind == 'fan':
                 left_goal = anchor+height*(right*.11-up*.18+forward*.11)
             elif kind == 'rapier':
@@ -626,15 +818,200 @@ def _weapon_attack_pose(rig, u, kind):
     return rotations, translations, tracks
 
 
+def _guard_or_lose_pose(rig, u, kind, number, *, lose=False):
+    """Protected stance with recovery, or a grounded defeat that stays held."""
+    if lose:
+        progress = float(np.clip(u/.80, 0, 1))
+        activity = progress*progress*(3-2*progress)
+    else:
+        enter = float(np.clip(u/.22, 0, 1))
+        leave = float(np.clip((1-u)/.22, 0, 1))
+        activity = min(enter*enter*(3-2*enter), leave*leave*(3-2*leave))
+    right, up, forward, height = rig.right, rig.up, rig.forward, rig.height
+    changes, tracks = defaultdict(list), set()
+
+    def rotate(name, axis, degrees):
+        node = rig.bones.get(name)
+        if node is not None:
+            changes[node].append((axis, float(degrees)*activity))
+            tracks.add(node)
+
+    twist = (-6 if number % 2 else 6) if not lose else (-7 if number % 2 else 7)
+    lean = 7 if not lose else 20+(number % 3)*4
+    rotate('Bip001 Pelvis', up, twist*.45)
+    rotate('Bip001 Spine', up, twist*.55)
+    rotate('Bip001 Spine', right, lean*.65)
+    rotate('Bip001 Spine1', right, lean*.35)
+    rotate('Bip001 Head', up, -twist*.65)
+    rotate('Bip001 Head', right, -3 if not lose else 20+(8 if number == 8 else 0))
+    if lose:
+        rotate('Bip001 Head', forward, -5 if number % 2 else 5)
+    displacement = height*activity*(-up*(.092 if lose else .036)+forward*(.014 if lose else -.006))
+    rotations, translations = rig.pose(changes, displacement)
+    world, world_q = rig.world(rotations, translations)
+    shoulders = [rig.bones[f'Bip001 {s} UpperArm'] for s in ('L', 'R') if f'Bip001 {s} UpperArm' in rig.bones]
+    anchor = world[shoulders, :3, 3].mean(axis=0) if shoulders else rig.pos[rig.bones['Bip001 Spine']]
+    normal = forward
+    if lose:
+        right_relative, left_relative = [-.15, -.21, .13], [.13, -.21, .13]
+        shaft = up
+        if kind == 'rapier':
+            shaft = _unit(up*.60+forward*.80)
+            left_relative = [.04, -.10, .16]
+        elif kind == 'scythe':
+            right_relative = [-.14, -.16, .10]
+            left_relative = [.065, -.15, .14]
+        elif kind == 'fan':
+            right_relative = [-.025, .005, .13]
+            left_relative = [.075, -.12, .14]
+        elif kind == 'wand':
+            shaft = _unit(-up*.35+forward*.94)
+        elif kind == 'punch':
+            right_relative, left_relative = [-.07, -.015, .15], [.07, -.015, .15]
+        elif number == 5:
+            left_relative = [.04, .015, .13]
+        elif number in (4, 10):
+            right_relative, left_relative = [-.045, -.10, .13], [.045, -.10, .13]
+    else:
+        right_relative, left_relative = [-.065, -.065, .17], [.065, -.055, .16]
+        shaft = _unit(up*.72+forward*.69)
+        if kind == 'rapier':
+            right_relative, left_relative = [-.08, -.065, .16], [.15, -.11, .06]
+            shaft = _unit(up*.50+forward*.86)
+        elif kind == 'scythe':
+            right_relative = [-.11, -.095, .16]
+            shaft = _unit(right*.80+up*.60)
+        elif kind == 'fan':
+            right_relative, left_relative = [-.025, .025, .14], [.055, -.10, .13]
+            shaft = up
+        elif kind == 'punch':
+            right_relative, left_relative = [-.09, .025, .13], [.09, .025, .14]
+            shaft = up
+        elif kind == 'wand':
+            right_relative, left_relative = [-.10, -.02, .17], [.08, -.08, .14]
+            shaft = _unit(-right*.30+up*.92+forward*.25)
+        elif number == 8:
+            right_relative, left_relative = [-.10, -.01, .14], [.10, -.01, .14]
+        elif number == 10:
+            right_relative, left_relative = [-.075, .015, .17], [.075, .015, .17]
+    prop_delta = _slerp(_IDENTITY, _fist_rotation(rig, 'R') if kind == 'punch' else
+                        _weapon_rotation(rig, shaft, normal), activity)
+    actual_grip = None
+    for side, relative in (('R', right_relative), ('L', left_relative)):
+        hand = rig.bones.get(f'Bip001 {side} Hand')
+        if hand is None:
+            continue
+        sign = 1 if side == 'L' else -1
+        offset = rig.palm_offset(side)
+        delta = (prop_delta if side == 'R' or (kind == 'scythe' and not lose) else
+                 _slerp(_IDENTITY, _fist_rotation(rig, side), activity) if kind == 'punch' else
+                 _slerp(_IDENTITY, _axisq(forward, -sign*22), activity))
+        goal = anchor+height*(right*relative[0]+up*relative[1]+forward*relative[2])
+        if side == 'L' and kind == 'scythe' and not lose and actual_grip is not None:
+            goal = actual_grip-_qrot(prop_delta, up)*height*.14
+            rest_grip = rig.pos[hand]+offset
+            goal = rest_grip+(goal-rest_grip)*activity
+        else:
+            rest_grip = rig.pos[hand]+offset
+            goal = rest_grip+(goal-rest_grip)*activity
+        pole = anchor+height*(right*sign*.26-up*.19+forward*.025)
+        elbow = rig.bones.get(f'Bip001 {side} Forearm')
+        if elbow is not None:
+            pole = rig.pos[elbow]+(pole-rig.pos[elbow])*activity
+        rig.arm_target(rotations, translations, side, goal-_qrot(delta, offset), pole,
+                       _qmul(delta, rig.rest_world_q[hand]))
+        world, world_q = rig.world(rotations, translations)
+        actual = world[hand, :3, 3]+_qrot(delta, offset)
+        if side == 'R':
+            actual_grip = actual
+        if side == 'R' or kind == 'punch' or (kind == 'scythe' and not lose):
+            tracks.update(rig.finger_grip(rotations, translations, side,
+                                         actual-forward*height*.045 if kind == 'punch' else actual,
+                                         up if kind == 'punch' else _qrot(delta, up),
+                                         activity, closed_fist=kind == 'punch'))
+    for side, sign in (('L', 1), ('R', -1)):
+        foot = rig.bones.get(f'Bip001 {side} Foot')
+        if foot is not None:
+            pitch = 35*activity if lose and side == 'R' else 0
+            target = rig.pos[foot]+height*activity*(right*sign*.012+forward*((.052 if side == 'L' else -.048) if lose else 0))
+            toe = rig.bones.get(f'Bip001 {side} Toe0')
+            if pitch and toe is not None:
+                offset = rig.pos[toe]-rig.pos[foot]
+                target += offset-_qrot(_axisq(right, pitch), offset)+up*height*.004*activity
+            rig.leg_target(rotations, translations, side, target, pitch)
+        for part in ('UpperArm', 'Forearm', 'Hand', 'Thigh', 'Calf', 'Foot'):
+            node = rig.bones.get(f'Bip001 {side} {part}')
+            if node is not None:
+                tracks.add(node)
+    if u <= _EPS or (not lose and u >= 1-_EPS):
+        rotations, translations = rig.q.copy(), rig.t.copy()
+    return rotations, translations, tracks
+
+
+def _run_arm_pose(rig, rotations, translations, phase, kind):
+    """Tucked upper arms, low elbows and opposite forward/back wrist swings.
+
+    Imported bind arms point sideways, so pitching them around the anatomical
+    lateral axis mostly twists them. Palm/elbow IK establishes the running
+    stance directly and keeps an upright carried prop outside the torso.
+    """
+    world, _ = rig.world(rotations, translations)
+    shoulders = [rig.bones[f'Bip001 {s} UpperArm'] for s in ('L', 'R') if f'Bip001 {s} UpperArm' in rig.bones]
+    if not shoulders:
+        return set()
+    right, up, forward, height = rig.right, rig.up, rig.forward, rig.height
+    tracks = set()
+    for side, sign in (('L', 1), ('R', -1)):
+        hand = rig.bones.get(f'Bip001 {side} Hand')
+        upper = rig.bones.get(f'Bip001 {side} UpperArm')
+        fore = rig.bones.get(f'Bip001 {side} Forearm')
+        if None in (hand, upper, fore):
+            continue
+        swing = -sign*math.cos(phase)
+        thigh = rig.bones.get(f'Bip001 {side} Thigh')
+        knee = rig.bones.get(f'Bip001 {side} Calf')
+        if thigh is not None and knee is not None:
+            leg = world[knee, :3, 3]-world[thigh, :3, 3]
+            knee_drive = math.degrees(math.atan2(float(leg @ forward), float(-leg @ up)))
+            swing = -float(np.clip((knee_drive-10)/45, -1, 1))
+        shoulder = world[upper, :3, 3]
+        length1 = np.linalg.norm(rig.pos[fore]-rig.pos[upper])
+        length2 = np.linalg.norm(rig.pos[hand]-rig.pos[fore])
+        reach = math.sqrt(length1*length1+length2*length2)
+        pump = _axisq(right, -swing*27)
+        direction = _unit(_qrot(pump, -up*.63+forward*.77)+right*sign*.12)
+        grip = shoulder+direction*reach
+        pole = shoulder+_qrot(pump, height*(-up*.235-forward*.08))+right*sign*height*.025
+        offset = rig.palm_offset(side)
+        # Preserve the upright bind orientation of rigid carried props. The
+        # free hand forms a relaxed fist with forward-facing knuckles.
+        delta = (_IDENTITY if side == 'R' and kind != 'punch' else
+                 _qmul(_axisq(up, -sign*15), _fist_rotation(rig, side)))
+        rig.arm_target(rotations, translations, side, grip-_qrot(delta, offset), pole,
+                       _qmul(delta, rig.rest_world_q[hand]))
+        world, _ = rig.world(rotations, translations)
+        actual = world[hand, :3, 3]+_qrot(delta, offset)
+        fist = side == 'L' or kind == 'punch'
+        tracks.update(rig.finger_grip(rotations, translations, side,
+                                     actual-forward*height*.045 if fist else actual,
+                                     up, .90 if fist else .85, closed_fist=fist))
+        for part in ('UpperArm', 'Forearm', 'Hand'):
+            node = rig.bones.get(f'Bip001 {side} {part}')
+            if node is not None:
+                tracks.add(node)
+    return tracks
+
+
 def add_animations(doc: dict, append_accessor: Callable, character_id, attack_style='magic', *, clip_names=None) -> list:
-    """Add four animation clips and return the same list stored in the document.
+    """Add seven animation clips and return the same list stored in the document.
 
     ``attack_style`` accepts ``magic``/``cast``/``charm``, ``wand``/``staff``, ``scythe``/``sword``, ``rapier``
     (grounded thrust), ``fan`` (open-fan flourish), ``kick`` or ``melee``/``punch``.
     Unknown styles use a two-handed casting gesture.
     Every channel targets the selected body skeleton or a custom HairAccessory
     node in its hierarchy. Missing optional limb/accessory bones are skipped.
-    ``extras.loop`` marks Idle and Walk; glTF viewers choose playback looping.
+    ``extras.loop`` marks Idle, Walk and Run; glTF viewers choose playback looping.
+    Defend enters, holds and recovers. Lose holds its terminal defeated pose.
     ``clip_names`` optionally limits generation, for animation-only refreshes.
     """
     rig = _Rig(doc)
@@ -647,13 +1024,21 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
                    'charm' if style in ('magic', 'cast', 'charm') else
                    'punch' if style in ('punch', 'melee') else None)
     clips = []
-    selected = set(clip_names) if clip_names is not None else {'Idle', 'Walk', 'Attack', 'Victory'}
-    if selected - {'Idle', 'Walk', 'Attack', 'Victory'}:
+    durations = (('Idle', 3.2), ('Walk', 1.2), ('Run', .8),
+                 ('Attack', _ATTACK_DURATIONS.get(number, 1.6)),
+                 ('Defend', 1.8), ('Victory', 2.8), ('Lose', 2.4))
+    selected = set(clip_names) if clip_names is not None else {name for name, _ in durations}
+    if selected - {name for name, _ in durations}:
         raise ValueError('Unknown clip name requested.')
-    for clip_name, duration in (('Idle', 3.2), ('Walk', 1.2), ('Attack', 1.6), ('Victory', 2.8)):
+    for clip_name, duration in durations:
         if clip_name not in selected:
             continue
         times = np.linspace(0, duration, int(round(duration*30))+1, dtype=np.float64)
+        # Explicit hold-boundary keys keep interpolated playback settled from
+        # the advertised time, even when that time falls between 30 fps keys.
+        boundaries = (.80,) if clip_name == 'Lose' else (.22, .78) if clip_name == 'Defend' else ()
+        if boundaries:
+            times = np.unique(np.r_[times, np.asarray(boundaries)*duration])
         rotation_samples = defaultdict(list)
         translation_samples = []
         for frame, time in enumerate(times):
@@ -688,6 +1073,16 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
                     rotate(f'Bip001 {side} UpperArm', right, 15*sign*math.cos(phase))
                     rotate(f'Bip001 {side} Forearm', right, -6-4*max(0., -sign*math.cos(phase)))
                 displacement = up*(rig.height*(-.016+.005*(1-math.cos(phase*2))))
+            elif clip_name == 'Run':
+                rotate('Bip001 Pelvis', forward, 4.0*math.sin(phase))
+                rotate('Bip001 Pelvis', up, 5.5*math.cos(phase))
+                rotate('Bip001 Spine', up, -7.0*math.cos(phase))
+                rotate('Bip001 Spine', right, 9.0)
+                rotate('Bip001 Spine1', right, 4.5)
+                rotate('Bip001 Head', right, -7.0)
+                rotate('Bip001 Head', up, 1.5*math.cos(phase))
+                aerial_bounce = .5*(1+math.cos(4*math.pi*(u-.43)))
+                displacement = up*(rig.height*(-.026+.029*aerial_bounce))
             elif clip_name == 'Attack':
                 wind = _envelope(u, .05, .30, .58)
                 strike = _envelope(u, .30, .57, .94)
@@ -762,7 +1157,7 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
                     displacement += forward*(rig.height*.035*strike)
                 elif style in ('fan', 'flourish'):
                     displacement = np.zeros(3)
-            else:
+            elif clip_name == 'Victory':
                 cheer = _envelope(u, .06, .38, .95)
                 wave = math.sin(6*math.pi*u)*cheer
                 variant = number % 3
@@ -792,15 +1187,30 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
                         rotate(f'Bip001 {side} Forearm', right, -56*cheer)
                 rotate('Bip001 Pelvis', forward, 3*math.sin(phase)*cheer)
             for accessory_index, node in enumerate(rig.accessories):
-                amplitude = 2.8 if clip_name == 'Walk' else 1.2
-                amplitude *= 1 if clip_name in ('Idle', 'Walk') else math.sin(math.pi*u)**2
+                amplitude = 5.0 if clip_name == 'Run' else 2.8 if clip_name == 'Walk' else 1.2
+                amplitude *= 1 if clip_name in ('Idle', 'Walk', 'Run') else math.sin(math.pi*u)**2
                 rotate(node, right, amplitude*math.sin(phase+accessory_index*.7))
                 rotate(node, forward, .6*amplitude*math.sin(phase+accessory_index*1.1))
             rotations, translations = rig.pose(changes, displacement)
             if clip_name == 'Attack' and weapon_kind:
-                rotations, translations, weapon_tracks = _weapon_attack_pose(rig, u, weapon_kind)
+                rotations, translations, weapon_tracks = _weapon_attack_pose(rig, u, weapon_kind, number)
                 for node in weapon_tracks:
                     changes[node]
+            elif clip_name in ('Defend', 'Lose'):
+                rotations, translations, guard_tracks = _guard_or_lose_pose(rig, u, weapon_kind, number,
+                                                                            lose=clip_name == 'Lose')
+                for node in guard_tracks:
+                    changes[node]
+            elif clip_name == 'Run':
+                rig.run_leg_ik(rotations, translations, 'L', u)
+                rig.run_leg_ik(rotations, translations, 'R', u+.5)
+                for index in _run_arm_pose(rig, rotations, translations, phase, weapon_kind):
+                    changes[index]
+                for side in ('L', 'R'):
+                    for part in ('Thigh', 'Calf', 'Foot'):
+                        index = rig.bones.get(f'Bip001 {side} {part}')
+                        if index is not None:
+                            changes[index]
             elif clip_name == 'Walk':
                 rig.leg_ik(rotations, translations, 'L', phase)
                 rig.leg_ik(rotations, translations, 'R', phase+math.pi)
@@ -827,17 +1237,32 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
             for node in changes:
                 rotation_samples[node].append(rotations[node])
             translation_samples.append(translations[rig.root] if rig.root is not None else np.zeros(3))
-        loop = clip_name in ('Idle', 'Walk')
+        loop = clip_name in ('Idle', 'Walk', 'Run')
         clip = {'name': clip_name, 'samplers': [], 'channels': [],
                 'extras': {'loop': loop, 'inPlace': True, 'durationSeconds': duration,
                            'characterId': str(character_id), 'procedural': True}}
         if clip_name == 'Attack':
             clip['extras']['attackStyle'] = style
+            clip['extras']['action'] = _ATTACK_ACTIONS.get(number, f'{weapon_kind or style} attack')
+            clip['extras']['description'] = clip['extras']['action']
             if weapon_kind:
                 clip['extras'].update(weaponAware=True, weaponKind=weapon_kind, weaponGrip='Palm center',
                                       weaponBind={'shaftAxis': rig.up.tolist(), 'faceNormal': rig.forward.tolist()},
-                                      impactWindow=[.45, .71] if weapon_kind in ('wand', 'rapier', 'charm') else
+                                      impactWindow=[.38, .58] if weapon_kind == 'scythe' else
+                                                   [.45, .71] if weapon_kind in ('wand', 'rapier', 'charm') else
                                                    [.43, .58] if weapon_kind == 'punch' else [.39, .64])
+            if weapon_kind == 'scythe':
+                clip['extras'].update(cuttingEdgeBindDirection=(-rig.up).tolist(),
+                                      cuttingEdge='Inner concave edge', strikePlane='Overhead reaping arc')
+        elif clip_name == 'Run':
+            clip['extras'].update(gait='Run: short stance, heel recovery, knee drive and aerial phase',
+                                  dutyFactor=.36, flightPhase=True, independentOfWalk=True)
+        elif clip_name == 'Defend':
+            clip['extras'].update(action=f'{weapon_kind or "palm"} guard: enter, hold and recover',
+                                  holdWindowSeconds=[duration*.22, duration*.78])
+        elif clip_name == 'Lose':
+            clip['extras'].update(action='Grounded defeated crouch with lowered head and held finish',
+                                  terminalPoseHeld=True, holdWindowSeconds=[duration*.80, duration])
         input_accessor = append_accessor(times.astype('<f4'), 'SCALAR', 5126)
 
         def channel(node, path, samples, kind):
@@ -1228,7 +1653,7 @@ def _sanity_check():
 
     add_animations(doc, append, 'character_02', 'scythe')
     by_index = dict(arrays)
-    assert [a['name'] for a in doc['animations']] == ['Idle', 'Walk', 'Attack', 'Victory']
+    assert [a['name'] for a in doc['animations']] == ['Idle', 'Walk', 'Run', 'Attack', 'Defend', 'Victory', 'Lose']
     for animation in doc['animations']:
         assert all(c['target']['node'] not in (15, 16) for c in animation['channels'])
         for c in animation['channels']:
@@ -1239,7 +1664,22 @@ def _sanity_check():
                 assert np.allclose(np.linalg.norm(values, axis=1), 1, atol=1e-6)
             if animation['extras']['loop']:
                 assert np.array_equal(values[0], values[-1])
-    print('character_animations: four clips, normalized rotations, loop closure and skin filtering passed')
+            elif animation['name'] == 'Lose':
+                hold = int(math.ceil(.8*(len(values)-1)))
+                assert np.array_equal(values[hold:], np.broadcast_to(values[-1], values[hold:].shape))
+    walk, run = (next(a for a in doc['animations'] if a['name'] == name) for name in ('Walk', 'Run'))
+    common = 5  # The rotated fixture's left thigh is driven by both IK gaits.
+    def output(clip):
+        channel = next(c for c in clip['channels'] if c['target'] == {'node': common, 'path': 'rotation'})
+        return by_index[clip['samplers'][channel['sampler']]['output']]
+    walking, running = output(walk), output(run)
+    assert any(abs(np.dot(walking[round(u*(len(walking)-1))], running[round(u*(len(running)-1))])) < .999
+               for u in (.125, .25, .375, .5, .625, .75, .875))
+    lose = next(a for a in doc['animations'] if a['name'] == 'Lose')
+    assert any(not np.array_equal(by_index[lose['samplers'][c['sampler']]['output']][0],
+                                  by_index[lose['samplers'][c['sampler']]['output']][-1])
+               for c in lose['channels'])
+    print('character_animations: seven clips, normalized rotations, exact loops, distinct Run, held Lose and skin filtering passed')
 
 
 if __name__ == '__main__':

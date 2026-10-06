@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import base64
+import hashlib
 import io
 import json
 import math
@@ -25,7 +26,9 @@ from PIL import Image
 DTYPES = {5120: "i1", 5121: "u1", 5122: "<i2", 5123: "<u2", 5125: "<u4", 5126: "<f4"}
 SHAPES = {"SCALAR": (1, 1), "VEC2": (1, 2), "VEC3": (1, 3), "VEC4": (1, 4),
           "MAT2": (2, 2), "MAT3": (3, 3), "MAT4": (4, 4)}
-REQUIRED_CLIPS = ("Idle", "Walk", "Attack", "Victory")
+REQUIRED_CLIPS = ("Idle", "Walk", "Run", "Attack", "Defend", "Victory", "Lose")
+LOOP_CLIPS = {"Idle", "Walk", "Run"}
+POSE_FRACTIONS = (0., .125, .25, .375, .5, .625, .75, .875, 1.)
 SHEET_SIZE = (2400, 1800)
 
 
@@ -283,6 +286,121 @@ def pose_samples(samples, world):
     return np.concatenate(points) if points else np.empty((0, 3))
 
 
+def main_skin_joints(asset):
+    nodes = asset.doc.get("nodes", [])
+    scores = {}
+    for node in nodes:
+        if "skin" in node and "mesh" in node:
+            scores[node["skin"]] = scores.get(node["skin"], 0)+sum(
+                asset.doc["accessors"][primitive["attributes"]["POSITION"]]["count"]
+                for primitive in asset.doc["meshes"][node["mesh"]].get("primitives", []))
+    if not scores:
+        return []
+    return asset.doc["skins"][max(scores, key=scores.get)]["joints"]
+
+
+def anatomical_bones(asset):
+    """Named body bones, including unweighted hands below the main skin root."""
+    nodes = asset.doc.get("nodes", [])
+    joints = main_skin_joints(asset)
+    bones = {}
+    for index in joints:
+        bones.setdefault(nodes[index].get("name", ""), index)
+    parents = {child: index for index, node in enumerate(nodes) for child in node.get("children", [])}
+    root = None
+    for joint in joints:
+        ancestor = joint
+        while ancestor is not None:
+            if nodes[ancestor].get("name") == "Bip001":
+                root = ancestor
+                break
+            ancestor = parents.get(ancestor)
+        if root is not None:
+            break
+    if root is None:
+        return bones
+    pending = [root]
+    while pending:
+        index = pending.pop()
+        name = nodes[index].get("name", "")
+        if name.startswith("Bip001_Weapon"):
+            continue
+        if name == "Bip001" or name.startswith("Bip001 "):
+            bones.setdefault(name, index)
+        pending.extend(nodes[index].get("children", []))
+    return bones
+
+
+def run_arm_metrics(asset, rest_world, posed_worlds):
+    """Measure exported arm posture, independent of Euler angles or IK recipes.
+
+    Outward elbow reach is relative to upper-arm length; flexion is zero for a
+    straight arm. Rest anatomy supplies the character's lateral and up axes.
+    """
+    bones = anatomical_bones(asset)
+
+    def position(world, name):
+        if name not in bones:
+            raise ValueError(f"Run arm check requires {name}")
+        return world[bones[name]][:3, 3]
+
+    lateral = position(rest_world, "Bip001 L Thigh")-position(rest_world, "Bip001 R Thigh")
+    lateral /= max(float(np.linalg.norm(lateral)), 1e-15)
+    up = position(rest_world, "Bip001 Head")-position(rest_world, "Bip001 Pelvis")
+    up /= max(float(np.linalg.norm(up)), 1e-15)
+    result = {}
+    for side, sign in (("L", 1), ("R", -1)):
+        outward, flexion, drop = [], [], []
+        for world in posed_worlds:
+            shoulder = position(world, f"Bip001 {side} UpperArm")
+            elbow = position(world, f"Bip001 {side} Forearm")
+            wrist = position(world, f"Bip001 {side} Hand")
+            upper, fore = elbow-shoulder, wrist-elbow
+            length = float(np.linalg.norm(upper))
+            if min(length, float(np.linalg.norm(fore))) < 1e-8:
+                raise ValueError(f"Run {side} arm has a degenerate bone segment")
+            outward.append(float(np.dot(upper, lateral*sign)/length))
+            drop.append(float(-np.dot(upper, up)/length))
+            flexion.append(math.degrees(math.atan2(float(np.linalg.norm(np.cross(upper, fore))),
+                                                  float(np.dot(upper, fore)))))
+        result[side] = {"sample_count": len(posed_worlds),
+                        "max_outward_upperarm_ratio": max(outward),
+                        "mean_outward_upperarm_ratio": float(np.mean(outward)),
+                        "min_elbow_flex_degrees": min(flexion),
+                        "max_elbow_flex_degrees": max(flexion),
+                        "min_elbow_drop_upperarm_ratio": min(drop)}
+    return result
+
+
+def attack_fingerprint(asset, rest_world, posed_worlds):
+    """Compare anatomical rotation curves independently of meshes or body size.
+
+    This detects identical gestures after time normalization. It is deliberately
+    an exact duplicate check; visual review assesses the degree of individuality.
+    """
+    nodes = asset.doc.get("nodes", [])
+    joints = main_skin_joints(asset)
+    wanted = {"Bip001 Pelvis", "Bip001 Spine", "Bip001 Spine1", "Bip001 Head",
+              "Bip001 L UpperArm", "Bip001 R UpperArm", "Bip001 L Forearm",
+              "Bip001 R Forearm", "Bip001 L Thigh", "Bip001 R Thigh"}
+    named = sorted((nodes[index].get("name", ""), index) for index in joints
+                   if nodes[index].get("name", "") in wanted)
+    if len(named) < 4:
+        return None
+    signature = []
+    for _, index in named:
+        rest = rest_world[index][:3, :3]
+        rest = rest/np.maximum(np.linalg.norm(rest, axis=0), 1e-15)
+        for world in posed_worlds:
+            rotation = world[index][:3, :3]
+            rotation = rotation/np.maximum(np.linalg.norm(rotation, axis=0), 1e-15)
+            signature.extend((rotation @ rest.T).ravel())
+    # Rounded integers avoid float byte differences and signed-zero noise.
+    payload = np.rint(np.asarray(signature)*10000).astype("<i4").tobytes()
+    prefix = "|".join(name for name, _ in named).encode("utf-8")
+    return hashlib.sha256(prefix+payload).hexdigest()
+
+
 def check_asset(path, sheet_path=None, skip_sheets=False):
     report = {"glb": str(path), "sheet": str(sheet_path) if sheet_path else None,
               "errors": [], "warnings": [], "metrics": {}, "animations": {}}
@@ -428,11 +546,15 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
         require(len(names) == len(set(names)), "Animation names are repeated")
         for name in REQUIRED_CLIPS:
             require(name in names, f"Required animation {name} is missing")
+        sampled_poses = {}
         for animation in animations:
             name = animation.get("name", "<unnamed>")
             clip = {"channels": len(animation.get("channels", [])), "duration_seconds": 0.,
-                    "moving_channels": 0, "loop_endpoints_exact": name in ("Idle", "Walk")}
+                    "moving_channels": 0, "loop_endpoints_exact": name in LOOP_CLIPS}
             report["animations"][name] = clip
+            if name in REQUIRED_CLIPS:
+                require(animation.get("extras", {}).get("loop") is (name in LOOP_CLIPS),
+                        f"Animation {name} extras.loop must be {name in LOOP_CLIPS}")
             targets, maximum_quaternion_error = set(), 0.
             clip_valid = True
             try:
@@ -467,7 +589,7 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
                         moving = float(np.max(np.abs(keys-keys[0]))) > 1e-6
                     clip["moving_channels"] += int(moving)
                     clip["duration_seconds"] = max(clip["duration_seconds"], float(times[-1]))
-                    if name in ("Idle", "Walk") and not np.array_equal(keys[0], keys[-1]):
+                    if name in LOOP_CLIPS and not np.array_equal(keys[0], keys[-1]):
                         clip["loop_endpoints_exact"] = False
                         errors.append(f"Animation {name} first/last key differs for target {key}")
                 require(clip["duration_seconds"] > 0, f"Animation {name} has no positive duration")
@@ -480,12 +602,14 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
             # visibly move geometry and detects exploding/nonfinite deformations.
             if clip_valid and world and not errors:
                 try:
-                    first = pose_samples(geometry_samples, asset.animated_world(animation, 0.))
+                    worlds = [asset.animated_world(animation, clip["duration_seconds"]*fraction)
+                              for fraction in POSE_FRACTIONS]
+                    poses = [pose_samples(geometry_samples, pose_world) for pose_world in worlds]
+                    first = poses[0]
                     if not len(first):
                         raise ValueError("No visible geometry samples")
                     maximum_displacement = 0.
-                    for fraction in (.125, .25, .375, .5, .625, .75, .875):
-                        posed = pose_samples(geometry_samples, asset.animated_world(animation, clip["duration_seconds"]*fraction))
+                    for posed in poses[1:]:
                         require(np.isfinite(posed).all(), f"Animation {name} deformed positions are nonfinite")
                         maximum_displacement = max(maximum_displacement, float(np.linalg.norm(posed-first, axis=1).max()))
                     clip["sampled_geometry_max_displacement"] = maximum_displacement
@@ -493,8 +617,49 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
                     rest_span = float(np.linalg.norm(np.ptp(first, axis=0)))
                     if maximum_displacement > 3*rest_span:
                         warnings.append(f"Animation {name} displacement is larger than three character spans")
+                    if name in ("Walk", "Run"):
+                        sampled_poses[name] = np.asarray(poses)
+                    if name == "Run":
+                        clip["anatomical_arms"] = run_arm_metrics(asset, world, worlds)
+                        for side, arm in clip["anatomical_arms"].items():
+                            require(arm["mean_outward_upperarm_ratio"] <= .60,
+                                    f"Animation Run {side} elbow remains spread through the cycle "
+                                    f"(mean {arm['mean_outward_upperarm_ratio']:.3f} upper-arm lengths)")
+                            require(arm["max_outward_upperarm_ratio"] <= .75,
+                                    f"Animation Run {side} elbow spreads too far outward "
+                                    f"({arm['max_outward_upperarm_ratio']:.3f} upper-arm lengths)")
+                            require(arm["min_elbow_flex_degrees"] >= 25.,
+                                    f"Animation Run {side} elbow remains too straight "
+                                    f"({arm['min_elbow_flex_degrees']:.1f} degrees flexion)")
+                    if name == "Attack":
+                        fingerprint = attack_fingerprint(asset, world, worlds)
+                        if fingerprint:
+                            clip["anatomical_motion_fingerprint"] = fingerprint
+                        else:
+                            warnings.append("Attack duplicate-gesture check lacks four named anatomical joints")
+                    if name == "Lose":
+                        terminal = poses[-1]
+                        terminal_displacement = float(np.linalg.norm(terminal-first, axis=1).max())
+                        clip["terminal_pose_displacement"] = terminal_displacement
+                        require(terminal_displacement > rest_span*.01,
+                                "Animation Lose returns to its starting pose instead of ending defeated")
+                        end_hold = [pose_samples(geometry_samples, asset.animated_world(
+                            animation, clip["duration_seconds"]*fraction)) for fraction in (.8, .9)]
+                        hold_error = max(float(np.linalg.norm(held-terminal, axis=1).max()) for held in end_hold)
+                        clip["terminal_pose_hold_max_error"] = hold_error
+                        require(hold_error < max(rest_span*1e-5, 1e-7),
+                                "Animation Lose must hold its terminal pose through the final 20 percent")
                 except Exception as exc:
                     errors.append(f"Animation {name} deformation sampling: {exc}")
+        if {"Walk", "Run"}.issubset(sampled_poses):
+            difference = np.linalg.norm(sampled_poses["Run"]-sampled_poses["Walk"], axis=2)
+            span = max(float(np.linalg.norm(np.ptp(sampled_poses["Walk"][0], axis=0))), 1e-12)
+            run = report["animations"]["Run"]
+            run["walk_normalized_phase_max_difference"] = float(difference.max()/span)
+            run["walk_normalized_phase_rms_difference"] = float(np.sqrt(np.mean(difference**2))/span)
+            require(run["walk_normalized_phase_max_difference"] > .01 and
+                    run["walk_normalized_phase_rms_difference"] > .001,
+                    "Animation Run is indistinguishable from a time-scaled Walk at matching phases")
     if not skip_sheets:
         try:
             if sheet_path is None:
@@ -523,7 +688,7 @@ def main():
     args = parser.parse_args()
     root = args.root.resolve()
     report = {"generated_utc": datetime.now(timezone.utc).isoformat(), "root": str(root),
-              "scope": "GLB structure, accessor safety, skin bind/weights, clip motion/loops and PNG sheets",
+              "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks and PNG sheets",
               "errors": [], "warnings": [], "characters": []}
     try:
         manifest = json.loads((root/"characters"/"manifest.json").read_text(encoding="utf-8"))
@@ -550,6 +715,15 @@ def main():
                 result["errors"].append("GLB size differs from manifest bytes")
                 result["status"] = "failed"
             report["characters"].append(result)
+        attacks = {}
+        for character in report["characters"]:
+            fingerprint = character["animations"].get("Attack", {}).get("anatomical_motion_fingerprint")
+            if fingerprint:
+                if fingerprint in attacks:
+                    report["errors"].append(
+                        f"Attack gesture is duplicated between {attacks[fingerprint]} and {character['slug']}")
+                else:
+                    attacks[fingerprint] = character["slug"]
     except Exception as exc:
         report["errors"].append(f"Manifest: {exc}")
     errors = len(report["errors"])+sum(len(item["errors"]) for item in report["characters"])

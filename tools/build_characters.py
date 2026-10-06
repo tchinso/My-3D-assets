@@ -1,7 +1,7 @@
 """Build ten original SD costumes around locally supplied, rigged donor parts.
 
 Run with the bundled Python runtime. Sources are read only; generated GLBs have
-embedded PNG textures, one compatible skeleton and four named animation clips.
+embedded PNG textures, one compatible skeleton and seven named animation clips.
 """
 from __future__ import annotations
 import argparse, copy, hashlib, io, json, math, struct, sys
@@ -68,11 +68,11 @@ DESIGNS=[
  dict(id=2,slug='02_azure_reaper',name='Viola',name_ko='비올라',tagline='Blue rose · crescent scythe',hair='Haruka (Dress)',face='Haruka (Dress)',hair_color='#8571c1',palette=['#44336f','#293d80','#467bdb','#c6bcff'],style='reaper',legs='thigh',attack='scythe',design='보라 머리와 한쪽의 커다란 파란 장미, 파랑·보라 짧은 치마, 진파랑 사이하이. 달 모양 낫과 비대칭 어깨 망토.'),
  dict(id=3,slug='03_sky_cardigan',name='Sora',name_ko='소라',tagline='Azure waves · scarlet tartan',hair='Azusa (Swimsuit)',face='Nonomi',hair_color='#9dcef0',palette=['#8f919b','#20212b','#ac334c','#9dcef0'],style='reference_school',legs='bare',attack='magic',design='첨부 이미지에 맞춘 하늘색 긴 레이어드 웨이브와 뾰족한 중앙 앞머리, 한쪽 파란 꽃과 작은 땋은 머리. 검정 테두리의 회색 블레이저, 흰 셔츠, 빨강·검정 체크 넥타이와 플리츠 스커트, 맨다리.'),
  dict(id=4,slug='04_tidal_dress',name='Elise',name_ko='엘리제',tagline='Tidal silk · sapphire pendant',hair='Shokuhou Misaki',face='Seia',hair_color='#f4d58d',palette=['#fbfcff','#3d72b2','#93c1e2','#f4d58d'],style='dress',legs='white',attack='magic',design='금발 긴 생머리, 흰색·파랑 원피스와 흰 팬티스타킹. 겹쳐진 시폰 밑단과 투명 레이스, 가슴 장식과 허리 리본.'),
- dict(id=5,slug='05_rosy_blazer',name='Rina',name_ko='리나',tagline='Rose academy · ribbon tie',hair='Miyako',face='Koharu',hair_color='#f2bdcf',palette=['#64465d','#f7eff3','#d697b4','#344c68'],style='blazer',legs='bare',attack='magic',design='연분홍 긴 생머리와 한쪽 리본 묶음, 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.'),
+ dict(id=5,slug='05_rosy_blazer',name='Rina',name_ko='리나',tagline='Rose academy · ribbon tie',hair='Miyako',face='Koharu',hair_color='#f2bdcf',palette=['#64465d','#f7eff3','#d697b4','#344c68'],style='blazer',legs='bare',attack='magic',design='연분홍 긴 생머리와 한쪽 리본 묶음, 슬림한 몸통·소매·다리와 블레이저 교복, 맨다리. 넓은 라펠, 목 리본과 배지, 플리츠 스커트와 연분홍 운동화.'),
  dict(id=6,slug='06_clover_sprite',name='Fennel',name_ko='페넬',tagline='Wingless sprite · clover wand',hair='Erika',face='Natsu',hair_color='#f5fff5',palette=['#f5fff4','#a4cb74','#537f53','#efe2a3'],style='sprite',legs='bare',attack='magic',design='흰색 짧은 머리, 날개 없는 요정. 연두·흰색 호박팬츠와 잎사귀 칼라, 맨다리·맨발. 클로버 지팡이와 이슬 방울 장식.'),
- dict(id=7,slug='07_neon_cat',name='Momo',name_ko='모모',tagline='City cat · cropped camisole',hair='Kazusa',face='Kazusa',hair_color='#ee91b9',palette=['#fff5fa','#ed98bd','#242335','#a48dce'],style='cat',legs='black',attack='punch',design='분홍 고양이 귀와 머리, 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.'),
+ dict(id=7,slug='07_neon_cat',name='Momo',name_ko='모모',tagline='City cat · cropped camisole',hair='Miyo',face='Miyo',hair_color='#f4b5d0',palette=['#fff5fa','#ed98bd','#242335','#a48dce'],style='cat',legs='black',attack='punch',design='참고 이미지의 분홍 긴 레이어드 머리와 부드러운 앞머리, 양옆 땋은 번, 고양이 귀와 밝은 연보라 눈. 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.'),
  dict(id=8,slug='08_carmine_doll',name='Rosette',name_ko='로제트',tagline='Ribbon doll · winding key',hair='Reisa (Magical)',face='Reisa (Magical)',hair_color='#f165ac',palette=['#ca3550','#fff5ef','#f165ac','#d2af67'],style='doll',legs='white',attack='magic',design='선명한 분홍 롤 트윈테일, 빨강·흰색 인형 드레스와 흰 팬티스타킹. 이중 프릴, 레이스 리본과 등 뒤 작은 태엽 장식.'),
- dict(id=9,slug='09_crimson_qipao',name='Meilin',name_ko='메이린',tagline='Scarlet peony · folding fan',hair='Serika (Swimsuit)',face='Kisaki',hair_color='#35272c',palette=['#b52139','#e7585c','#e3b764','#35272c'],style='qipao',legs='bare',attack='fan',design='검갈색 트윈테일, 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리. 금색 매듭과 모란 무늬, 접이식 부채.'),
+ dict(id=9,slug='09_crimson_qipao',name='Meilin',name_ko='메이린',tagline='Scarlet peony · folding fan',hair='Serika (Swimsuit)',face='Kisaki',hair_color='#35272c',palette=['#b52139','#e7585c','#e3b764','#35272c'],style='qipao',legs='bare',attack='fan',design='참고 이미지처럼 굵고 긴 검갈색 트윈테일과 양쪽 묶음의 붉은 꽃리본·금색 장식. 옆트임이 뚜렷한 짧은 빨강 치파오와 맨다리, 금색 매듭과 모란 무늬, 접이식 부채.'),
  dict(id=10,slug='10_snow_buns',name='Nevia',name_ko='네비아',tagline='Snow cloud · fur shawl',hair='Kirara',face='Seia',hair_color='#f3f3fc',palette=['#fbfbff','#dce0ef','#b7bfda','#f1dcea'],style='snow',legs='white',attack='magic',design='흰색 풍성한 긴 머리와 양쪽 번, 짧고 부드러운 흰 옷, 흰 팬티스타킹. 구름 모양 퍼 숄, 겹친 드레스 주름과 금빛 장식.'),
 ]
 
@@ -141,6 +141,7 @@ class Builder:
         target_chin=min(reference_chin,neck_top-.005)-.008
         self.head_adjust=target_chin-(face_chin(face_source)+self.headpos[1]-face_source.world[fh][1,3])
         self.head_fit={'neck_top':neck_top,'chin_target':target_chin,'vertical_adjustment':float(self.head_adjust)}
+        self.appearance_fit={}
     def view(self,b,target=None):
         while len(self.data)%4:self.data.append(0)
         v={'buffer':0,'byteOffset':len(self.data),'byteLength':len(b)}
@@ -216,6 +217,14 @@ class Builder:
         if mode=='hair' and self.c['id']==3:
             from hair_filters import hair_indices
             idx=hair_indices(p,s.name,'back'if s.name=='Miyo'else'front')
+        if mode=='hair' and self.c['id']==7:
+            from hair_filters import hair_indices
+            selection={'Miyo':'front','Kirara':'back','Kazusa':'ears'}[s.name]
+            idx=hair_indices(p,s.name,selection,components(pos,idx))
+        if mode=='hair' and self.c['id']==9:
+            from hair_filters import thicken_twintails
+            pos=thicken_twintails(p,s.name,components(pos,idx));norm=None
+            self.appearance_fit['hair']={'method':'Donor twin-tail cross-section fit, anchored roots and tapered ends','width_scale_max':1.72,'depth_scale_max':1.38,'length_scale':1.0}
         delta=np.zeros(3)
         if mode!='skin':
             sh=next(i for i,n in enumerate(s.doc['nodes'])if n.get('name')=='Bip001 Head' and i in s.world);delta=self.headpos-s.world[sh][:3,3];delta[1]+=self.head_adjust;pos+=delta
@@ -230,7 +239,7 @@ class Builder:
                 if len(np.unique(idx[group]))<=4:keep[group]=False
             idx=idx[keep]
         if not len(idx):return
-        used=np.unique(idx);inv=np.full(len(pos),-1,int);inv[used]=np.arange(len(used));idx=inv[idx];pos=pos[used];norm=norm[used];uv=uv[used];weights=weights[used]
+        used=np.unique(idx);inv=np.full(len(pos),-1,int);inv[used]=np.arange(len(used));idx=inv[idx];pos=pos[used];norm=norm[used]if norm is not None else None;uv=uv[used];weights=weights[used]
         j=self.map_bones(p,s,delta)[used]
         if mode=='skin':
             # Remove printed swimsuit colours underneath opaque original garments.
@@ -257,10 +266,18 @@ class Builder:
             iris=(g>r*1.2)&(g>b*1.15)&(g>65)
             lum=col@np.array([.27,.57,.16])/255
             a[:,:,:3][iris]=np.clip(rgb('#e9bd6b')*(.4+.6*lum[iris,None])*255,0,255).astype('u1');im=Image.fromarray(a)
+        if mode=='face' and self.c['id']==7 and im:
+            # Miyo's eye atlas retains its painted reflections, lashes and blush.
+            # Recolour only the golden iris pigments to the reference's lilac.
+            a=np.array(im);col=a[:,:,:3].astype(float);r,g,b=col.transpose(2,0,1)
+            iris=(r>70)&(g>40)&(b<g*.78)&(g<r*.99)
+            lum=col@np.array([.27,.57,.16])/255
+            a[:,:,:3][iris]=np.clip(rgb('#aa91e8')*(.38+.72*lum[iris,None])*255,0,255).astype('u1');im=Image.fromarray(a)
         mi=self.wardrobe_material(s.name+'/'+mat['name']+'/'+mode,p,im)
         self.mesh(('Hair / ' if mode=='hair'else'Face / ')+s.name+' / '+mat['name'],pos,idx,mi,j=j,w=weights,uv=uv,norm=norm)
     def head_parts(self):
-        parts_to_import=[('hair',self.c['hair'])]+([('hair','Miyo')]if self.c['id']==3 else[])+[('face',self.c['face'])]
+        secondary={3:['Miyo'],7:['Kirara','Kazusa']}.get(self.c['id'],[])
+        parts_to_import=[('hair',self.c['hair'])]+[('hair',name)for name in secondary]+[('face',self.c['face'])]
         for mode,name in parts_to_import:
             s=self.source(name)
             parts=list(s.parts());mouth=False
@@ -271,6 +288,11 @@ class Builder:
                     if nn.startswith('mouth'):
                         if mouth:continue
                         mouth=True
+                        if self.c['id']==7:
+                            # Select Miyo's existing closed smile atlas instead
+                            # of the exported default frown; keep its UV plane.
+                            p=p.copy();p['mat']=next(m for m in s.doc['materials']if m['name'].endswith('_Mouth_300'))
+                            self.appearance_fit['face']={'donor_expression':'Miyo Mouth_300 closed smile','iris_tint':'#aa91e8','painted_highlights':'preserved'}
                     self.add_source(p,s,mode)
     def lathe(self,name,rings,mat,bones='Bip001 Spine',segments=72,pleats=0,slit=False,center=(0,.045)):
         pos=[];uv=[];idx=[]
@@ -390,6 +412,37 @@ class Builder:
         im=self.src.image(p['mat']['pbrMetallicRoughness']['baseColorTexture']['index']);a=np.array(im);lum=np.array(im.convert('L').filter(ImageFilter.GaussianBlur(3))).astype(float)/255
         a[:,:,:3]=np.clip(rgb(color)[None,None,:]*(.94+.06*lum[:,:,None])*255,0,255).astype('u1');a[:,:,3]=255
         return Image.fromarray(a)
+    def slim_body(self,p,pos):
+        """Tailor Rina around the existing rest axes, preserving animation pivots.
+
+        Torso and skirt widths are reduced in world space; arms and legs shrink
+        across their bone axes, without shortening the limbs or moving joints.
+        The neck fades back to its original fit below the unchanged SD head.
+        """
+        fitted=pos.copy();factor=np.clip((.650-pos[:,1])/.065,0,1)
+        fitted[:,0]*=1-.20*factor
+        fitted[:,2]=.038+(pos[:,2]-.038)*(1-.14*factor)
+        dominant=p['j'][np.arange(len(pos)),p['w'].argmax(1)]
+        names=np.array([p['names'][i].lower()for i in dominant])
+        def around_chain(vertices,chain,scale):
+            if not len(vertices):return
+            points=np.array([self.world[self.bone[name]][:3,3]for name in chain])
+            q=pos[vertices];nearest=np.empty_like(q);distance=np.full(len(q),np.inf)
+            for a,b in zip(points[:-1],points[1:]):
+                axis=b-a;t=np.clip((q-a)@axis/max(axis@axis,1e-12),0,1)
+                projection=a+t[:,None]*axis;d=((q-projection)**2).sum(1);use=d<distance
+                nearest[use]=projection[use];distance[use]=d[use]
+            fitted[vertices]=nearest+(q-nearest)*scale
+        for side,sign in [('L',1),('R',-1)]:
+            arm=np.array([any(t in name for t in ('upperarm','forearm','hand','finger'))for name in names])
+            arm|=(np.abs(pos[:,0])>.145)&(pos[:,1]>.395)&(pos[:,1]<.63)
+            arm&=pos[:,0]*sign>0
+            around_chain(np.flatnonzero(arm),[f'Bip001 {side} UpperArm',f'Bip001 {side} Forearm',f'Bip001 {side} Hand',f'Bip001 {side} Finger2'],.83)
+            leg=np.array([any(t in name for t in ('thigh','calf','foot','toe','knee','hip'))for name in names])
+            leg&=(pos[:,0]*sign>0)&(pos[:,1]<.43)
+            around_chain(np.flatnonzero(leg),[f'Bip001 {side} Thigh',f'Bip001 {side} Calf',f'Bip001 {side} Foot',f'Bip001 {side} Toe0'],.82)
+        self.appearance_fit['body']={'method':'Torso/skirt tailoring and limb cross-section fit around unchanged donor bone axes','torso_width_scale':.80,'torso_depth_scale':.86,'arm_cross_section_scale':.83,'leg_cross_section_scale':.82,'head_scale':1.0,'joint_pivots':'unchanged'}
+        return fitted
     def add_costume(self,p):
         if self.c['id']==3 and p['mat']['name'].endswith('_Body'):
             self.reference_uniform(p);return
@@ -456,10 +509,11 @@ class Builder:
             legtri=anatomical[keep]
         # Preserve genuine source shoes, stockings get their own material so UVs
         # shared with hands cannot accidentally turn hands into stocking fabric.
+        if cid==5:pos=self.slim_body(p,pos)
         cloth_image=self.costume_texture(p);mat=self.wardrobe_material('Source wardrobe / '+self.src.name+' / '+p['mat']['name'],p,cloth_image)
         j=self.map_bones(p,self.src,np.zeros(3))
         def emit(label,tri,material):
-            if len(tri):self.mesh(label,pos,tri,material,uv=p['uv'],norm=p['norm'],j=j,w=p['w'])
+            if len(tri):self.mesh(label,pos,tri,material,uv=p['uv'],norm=None if cid==5 else p['norm'],j=j,w=p['w'])
         emit('Tailored source garment / '+p['name'],idx[~legtri],mat)
         leg=self.c['legs'];legidx=idx[legtri]
         if leg=='thigh':
@@ -606,13 +660,42 @@ class Builder:
             for i in range(8):
                 t=math.pi*2*i/8;x=.065*math.sin(t);z=.045*math.cos(t)
                 self.patch('Pointed fairy collar leaf',[[x,.61,z],[x*1.45,.565,z*1.35],[x+.017*math.cos(t),.604,z-.015*math.sin(t)]],accent)
-        if style=='cat':self.tube('Curled cat tail',[[0,.415,-.10],[-.08,.432,-.145],[-.19,.495,-.13],[-.21,.555,-.09],[-.19,.583,-.083]],[.014,.019,.019,.017,.01],pink,'Bip001 Pelvis')
+        if style=='cat':
+            self.tube('Curled cat tail',[[0,.415,-.10],[-.08,.432,-.145],[-.19,.495,-.13],[-.21,.555,-.09],[-.19,.583,-.083]],[.014,.019,.019,.017,.01],pink,'Bip001 Pelvis')
+            # Wrap the real Kirara spiral buns with small crossing braids; the
+            # donor buns and waves remain the main silhouette.
+            kirara=self.source('Kirara');kh=next(i for i,n in enumerate(kirara.doc['nodes'])if n.get('name')=='Bip001 Head'and i in kirara.world)
+            delta=self.headpos-kirara.world[kh][:3,3];delta[1]+=self.head_adjust
+            braid=self.material('Momo woven pink hair','#e59abc');highlight=self.material('Momo braid highlights','#f7c0d8')
+            for side in [-1,1]:
+                center=np.array([side*.182,.851,-.046])+delta
+                for strand in [0,1]:
+                    pts=[]
+                    for t in np.linspace(0,2*math.pi,65):
+                        pts.append(center+[.035*math.cos(t),.036*math.sin(t),.013+.0045*math.sin(5*t+strand*math.pi)])
+                    self.tube('Momo braided side bun wrap',pts,[.0045]*len(pts),braid if strand else highlight,'Bip001 Head',8)
+                self.bow('Momo small bun ribbon',center+[0,-.035,.018],.014,accent)
         if style=='doll':
             self.tube('Winding key stem',[[0,.51,-.095],[0,.51,-.15]],[.005,.005],gold,'Bip001 Spine')
             for side in [-1,1]:
                 pts=[[side*.024+.025*math.cos(t),.526+.018*math.sin(t),-.157]for t in np.linspace(0,2*math.pi,25)];self.tube('Open winding key loop',pts,[.0035]*len(pts),gold,'Bip001 Spine')
         if style=='qipao':
-            for side in [-1,1]:self.bow('Silk twin-tail cord',(side*.153,self.headpos[1]+.20,.008),.028,gold)
+            source=self.source(c['hair']);sh=next(i for i,n in enumerate(source.doc['nodes'])if n.get('name')=='Bip001 Head'and i in source.world)
+            delta=self.headpos-source.world[sh][:3,3];delta[1]+=self.head_adjust
+            scarlet=self.material('Meilin scarlet silk hair ornament','#b8233b')
+            dark_red=self.material('Meilin ornament petal shade','#771e30')
+            for side,letter in [(1,'L'),(-1,'R')]:
+                name=f'bone_hair_ribbon_{letter}_00'
+                si=next(i for i,n in enumerate(source.doc['nodes'])if n.get('name')==name and i in source.world)
+                center=source.world[si][:3,3]+delta+[side*.022,.025,.058]
+                self.bow('Scarlet twin-tail silk ribbon',center,.046,scarlet)
+                self.bow('Twin-tail fine gold knot',center+[0,0,.005],.024,gold)
+                for k in range(5):
+                    t=k*2*math.pi/5;petal=center+[.018*math.cos(t),.018*math.sin(t),.013]
+                    self.ellipsoid('Meilin tie flower petal',petal,(.012,.014,.0045),scarlet if k%2 else dark_red,'Bip001 Head',16,8)
+                self.ellipsoid('Meilin tie flower gold center',center+[0,0,.021],(.006,.006,.0035),gold,'Bip001 Head',16,8)
+                self.tube('Meilin hanging gold hair cord',[center+[side*.018,-.015,.008],center+[side*.032,-.052,.017],center+[side*.031,-.080,.013]],[.0025,.0025,.0025],gold,'Bip001 Head',10)
+                self.ellipsoid('Meilin gold hair pendant',center+[side*.031,-.085,.013],(.007,.011,.004),gold,'Bip001 Head',16,8)
         # Kirara's actual spiral buns are retained rather than covered by spheres.
         self.accessory(style,gold,dark,accent,white)
     def rose(self,c,size,mat,leaf):
@@ -680,12 +763,16 @@ class Builder:
         from character_animations import add_animations,add_donor_animations
         add_animations(self.doc,self.acc,self.c['id'],self.c['attack'])
         native=add_donor_animations(self.doc,self.acc,self.src.doc,self.src.acc,self.source_node_map,self.c['id'],self.c['attack'])
-        source_parts=list(dict.fromkeys([self.src.name+'.glb',self.c['hair']+'.glb',self.c['face']+'.glb']+(['Miyo.glb']if self.c['id']==3 else[])+(['Hina (Swimsuit).glb']if self.c['id']in(3,6)else [])))
+        source_roles={'costume_and_rig':self.src.name+'.glb','hair':self.c['hair']+'.glb','face':self.c['face']+'.glb'}
+        if self.c['id']==3:source_roles['back_hair']='Miyo.glb'
+        if self.c['id']==7:source_roles.update(back_hair='Kirara.glb',ears='Kazusa.glb')
+        if self.c['id']in(3,6):source_roles['bare_legs_and_feet']='Hina (Swimsuit).glb'
+        source_parts=list(dict.fromkeys(source_roles.values()))
         triangles=sum(self.doc['accessors'][p['indices']]['count']//3 for m in self.doc['meshes']for p in m['primitives'])
-        self.doc['extras']={'character':self.c['name'],'design_ko':self.c['design'],'created':'2026-10-06','source_parts':source_parts,'original_work':'Actual donor garment topology, selectively repainted source atlases, original accessories, fitted chin/neck and native cloth animation','head_fit':self.head_fit,'native_clips':native,'revision':3,'triangles':triangles}
+        self.doc['extras']={'character':self.c['name'],'design_ko':self.c['design'],'created':'2026-10-06','source_parts':source_parts,'source_roles':source_roles,'original_work':'Actual donor garment topology, selectively repainted source atlases, original accessories, fitted chin/neck and native cloth animation','head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native,'revision':4,'triangles':triangles}
         self.doc['buffers']=[{'byteLength':len(self.data)}];js=json.dumps(self.doc,ensure_ascii=False,separators=(',',':')).encode();js+=b' '*((-len(js))%4);binary=bytes(self.data)+b'\0'*((-len(self.data))%4)
         out=ROOT/'characters'/self.c['slug'];out.mkdir(parents=True,exist_ok=True);path=out/(self.c['slug']+'.glb');path.write_bytes(struct.pack('<III',0x46546c67,2,12+8+len(js)+8+len(binary))+struct.pack('<II',len(js),0x4e4f534a)+js+struct.pack('<II',len(binary),0x004e4942)+binary)
-        return {'id':self.c['id'],'slug':self.c['slug'],'name':self.c['name'],'name_ko':self.c['name_ko'],'tagline':self.c['tagline'],'palette':self.c['palette'],'design':self.c['design'],'source_parts':source_parts,'animations':[a['name']for a in self.doc['animations']],'glb':str(path.relative_to(ROOT)).replace('\\','/'),'sheet':f'characters/{self.c["slug"]}/{self.c["slug"]}_sheet.png','bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'revision':3,'costume_source':self.src.name+'.glb','triangles':triangles,'head_fit':self.head_fit,'native_clips':native}
+        return {'id':self.c['id'],'slug':self.c['slug'],'name':self.c['name'],'name_ko':self.c['name_ko'],'tagline':self.c['tagline'],'palette':self.c['palette'],'design':self.c['design'],'source_parts':source_parts,'source_roles':source_roles,'animations':[a['name']for a in self.doc['animations']],'glb':str(path.relative_to(ROOT)).replace('\\','/'),'sheet':f'characters/{self.c["slug"]}/{self.c["slug"]}_sheet.png','bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'revision':4,'costume_source':self.src.name+'.glb','triangles':triangles,'head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native}
 
 def main():
     global SOURCE

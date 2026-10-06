@@ -281,12 +281,15 @@
             "enum": [
               "Idle",
               "Walk",
+              "Run",
               "Attack",
-              "Victory"
+              "Defend",
+              "Victory",
+              "Lose"
             ]
           },
-          "minItems": 4,
-          "maxItems": 4,
+          "minItems": 7,
+          "maxItems": 7,
           "uniqueItems": true
         },
         "animation_duration_seconds": {
@@ -300,11 +303,23 @@
               "type": "number",
               "exclusiveMinimum": 0
             },
+            "Run": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
             "Attack": {
               "type": "number",
               "exclusiveMinimum": 0
             },
+            "Defend": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
             "Victory": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "Lose": {
               "type": "number",
               "exclusiveMinimum": 0
             }
@@ -312,8 +327,11 @@
           "required": [
             "Idle",
             "Walk",
+            "Run",
             "Attack",
-            "Victory"
+            "Defend",
+            "Victory",
+            "Lose"
           ],
           "additionalProperties": false
         },
@@ -342,6 +360,46 @@
         },
         "attack_motion": {
           "const": "custom skeletal animation"
+        },
+        "attack_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "animation_playback": {
+          "type": "object",
+          "properties": {
+            "Idle": {
+              "const": "loop"
+            },
+            "Walk": {
+              "const": "loop"
+            },
+            "Run": {
+              "const": "loop"
+            },
+            "Attack": {
+              "const": "once"
+            },
+            "Defend": {
+              "const": "once"
+            },
+            "Victory": {
+              "const": "once"
+            },
+            "Lose": {
+              "const": "once_hold"
+            }
+          },
+          "required": [
+            "Idle",
+            "Walk",
+            "Run",
+            "Attack",
+            "Defend",
+            "Victory",
+            "Lose"
+          ],
+          "additionalProperties": false
         },
         "build_revision": {
           "type": "integer",
@@ -393,6 +451,10 @@
               "pattern": "\\.glb$"
             },
             "back_hair": {
+              "type": "string",
+              "pattern": "\\.glb$"
+            },
+            "ears": {
               "type": "string",
               "pattern": "\\.glb$"
             },
@@ -468,6 +530,8 @@
         "animation_duration_seconds",
         "native_source_clips",
         "attack_motion",
+        "attack_description",
+        "animation_playback",
         "build_revision",
         "head_fit",
         "rig",

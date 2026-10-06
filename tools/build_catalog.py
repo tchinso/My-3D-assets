@@ -21,6 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = Path("C:/Codex/BlueArchiveGLB")
 SOURCE_FILES = ("models.json", "model_features.json", "model_features.schema.json")
+CLIPS = ("Idle", "Walk", "Run", "Attack", "Defend", "Victory", "Lose")
 
 # These describe the fitted and repainted actual donor garments. Donor facts
 # are copied separately below and are never substituted for these final features.
@@ -57,7 +58,7 @@ APPEARANCE = {
     5: dict(hair_colors=["연한 분홍색"], length="긴 머리", styles=["생머리", "한쪽 높은 포니테일", "앞머리"],
             hair="연분홍색 긴 뒷머리와 한쪽에 묶어 포인트를 준 옆머리, 분홍색 리본",
             outfit_styles=["블레이저", "교복", "주름치마"], outfit_colors=["장미색", "흰색", "회색"],
-            outfit="Reisa의 실제 교복 재킷·라펠·블라우스와 짧은 주름치마를 장미색 교복으로 편집",
+            outfit="Reisa의 실제 교복 재킷·라펠·블라우스와 짧은 주름치마를 장미색으로 편집. 골격을 유지하며 몸통·소매·치마·다리의 단면을 슬림하게 조정",
             legs=["맨다리"], feet=["원본 분홍색·하늘색 운동화"],
             features=["한쪽 머리 리본", "블레이저 라펠과 단추", "원본 주름치마", "작은 손 참"],
             weapon="책갈피 모티프의 작은 손 참"),
@@ -68,12 +69,12 @@ APPEARANCE = {
             legs=["맨다리"], feet=["맨발", "원본 해부학 발 메시"],
             features=["날개 없음", "잎사귀 칼라", "원본 프릴 호박팬츠", "클로버 지팡이"],
             weapon="세 장의 클로버 잎이 달린 지팡이"),
-    7: dict(hair_colors=["분홍색"], length="짧은 머리", styles=["단발", "앞머리"],
-            hair="분홍색 단발과 위로 쫑긋한 분홍색 고양이 귀",
+    7: dict(hair_colors=["분홍색"], length="매우 긴 머리", styles=["레이어드 웨이브", "앞머리", "양쪽 땋은 번"],
+            hair="참고 이미지의 긴 분홍 레이어드 머리와 얼굴을 감싸는 앞머리, 양쪽 땋은 번을 원본 머리 파츠 조합과 수정으로 표현. 분홍색 고양이 귀 유지",
             outfit_styles=["현대 캐주얼", "크롭 재킷", "반바지"], outfit_colors=["흰색", "분홍색", "검은색"],
             outfit="Saori (Swimsuit)의 짧은 재킷·크롭 상의와 반바지를 흰색·분홍색 계열로 편집하고 배꼽 부분을 노출",
             legs=["검은색 팬티스타킹"], feet=["원본 캐주얼 신발"],
-            features=["뾰족한 고양이 귀", "노출된 배꼽", "휘어진 분홍색 고양이 꼬리", "원본 재킷 봉제선"],
+            features=["뾰족한 고양이 귀", "긴 분홍 레이어드 머리", "양쪽 땋은 번", "부드러운 얼굴", "노출된 배꼽", "휘어진 분홍색 고양이 꼬리", "원본 재킷 봉제선"],
             weapon="별도 무기 없이 주먹 공격"),
     8: dict(hair_colors=["선명한 분홍색"], length="긴 머리", styles=["롤 트윈테일", "굵은 드릴 컬", "앞머리"],
             hair="선명한 분홍색 머리를 양옆의 굵은 롤 트윈테일로 묶은 형태",
@@ -83,12 +84,12 @@ APPEARANCE = {
             features=["굵은 드릴 트윈테일", "원본 프릴과 레이스", "큰 리본", "등 뒤 작은 태엽"],
             weapon="작은 흰색 인형 참"),
     9: dict(hair_colors=["검은색에 가까운 갈색"], length="매우 긴 머리", styles=["트윈테일", "생머리", "앞머리"],
-            hair="검갈색으로 바꾼 긴 트윈테일, 동물 귀는 제거하고 금색 매듭 리본을 추가",
+            hair="참고 이미지처럼 아래까지 충분한 볼륨이 이어지는 검갈색 긴 트윈테일과 앞머리. 묶는 부분에 빨강 리본과 금색 장식 추가",
             outfit_styles=["치파오", "중국 전통풍", "짧은 치마"], outfit_colors=["빨간색", "금색"],
             outfit="Kisaki의 긴 겉옷을 제거한 실제 짧은 치파오. 양쪽 옆트임과 등 트임, 높은 칼라·금색 용무늬를 유지하고 빨간색으로 편집",
             legs=["맨다리", "양쪽 치마 옆트임으로 드러나는 다리"],
             feet=["원본 굽 있는 구두"],
-            features=["양쪽 옆트임", "등 트임", "금색 용무늬와 매듭", "금색 트윈테일 리본", "빨간 접이식 부채"],
+            features=["양쪽 옆트임", "등 트임", "금색 용무늬와 매듭", "풍성한 긴 트윈테일", "빨강·금색 머리묶음 장식", "빨간 접이식 부채"],
             weapon="금색 부챗살이 있는 펼친 빨간 부채"),
     10: dict(hair_colors=["흰색"], length="긴 머리", styles=["풍성한 웨이브", "양쪽 번", "앞머리"],
              hair="흰색으로 바꾼 풍성한 긴 웨이브와 머리 양끝의 둥근 번",
@@ -120,7 +121,7 @@ def schema_document():
     native = obj({name: {"type": "string", "minLength": 1} for name in ("Idle", "Walk", "Victory")})
     head_fit = obj({name: {"type": "number"} for name in ("neck_top", "chin_target", "vertical_adjustment")})
     source_roles = obj({role: {"type": "string", "pattern": "\\.glb$"}
-                        for role in ("costume_and_rig", "hair", "back_hair", "face", "bare_legs_and_feet")},
+                        for role in ("costume_and_rig", "hair", "back_hair", "ears", "face", "bare_legs_and_feet")},
                        ["costume_and_rig", "hair", "face"])
     model = obj({
         "id": {"type": "integer", "minimum": 1, "maximum": 10}, "character": {"type": "string"},
@@ -132,11 +133,14 @@ def schema_document():
         "hair": ref("hair"), "outfit": ref("outfit"), "features": ref("strings"), "tags": ref("strings"),
         "palette": {"type": "array", "minItems": 1, "items": {"type": "string", "pattern": "^#[0-9a-fA-F]{6}$"}},
         "design_brief": {"type": "string"}, "weapon": {"type": "string"},
-        "animations": {"type": "array", "items": {"enum": ["Idle", "Walk", "Attack", "Victory"]},
-                       "minItems": 4, "maxItems": 4, "uniqueItems": True},
+        "animations": {"type": "array", "items": {"enum": list(CLIPS)},
+                       "minItems": 7, "maxItems": 7, "uniqueItems": True},
         "animation_duration_seconds": obj({name: {"type": "number", "exclusiveMinimum": 0}
-                                             for name in ("Idle", "Walk", "Attack", "Victory")}),
+                                             for name in CLIPS}),
         "native_source_clips": native, "attack_motion": {"const": "custom skeletal animation"},
+        "attack_description": {"type": "string", "minLength": 1},
+        "animation_playback": obj({name: {"const": "loop" if name in ("Idle", "Walk", "Run") else
+                                          "once_hold" if name == "Lose" else "once"} for name in CLIPS}),
         "build_revision": {"type": "integer", "minimum": 2}, "head_fit": head_fit,
         "rig": ref("rig"), "mesh_count": {"type": "integer", "minimum": 1},
         "triangle_count": {"type": "integer", "minimum": 1},
@@ -218,8 +222,8 @@ def validate_catalog(catalog, schema, inventory):
             raise ValueError(f"Donor role mismatch: {key}")
         if not set(record["source_parts"]).issubset(catalog["donors"]):
             raise ValueError(f"Donor provenance missing: {key}")
-        if set(record["animations"]) != {"Idle", "Walk", "Attack", "Victory"}:
-            raise ValueError(f"Four named clips are required: {key}")
+        if set(record["animations"]) != set(CLIPS):
+            raise ValueError(f"Seven named clips are required: {key}")
         if record["outfit"]["legwear"] != APPEARANCE[record["id"]]["legs"]:
             raise ValueError(f"Legwear specification mismatch: {key}")
         if record["build_revision"] < 2 or set(record["native_source_clips"]) != {"Idle", "Walk", "Victory"}:
@@ -257,6 +261,7 @@ def build(source):
             if len(anatomy_donors) != 1:
                 raise ValueError(f"Character {number} must declare its one continuous bare-leg anatomy donor")
             roles["bare_legs_and_feet"] = anatomy_donors.pop()
+        roles = entry.get("source_roles", roles)
         if entry.get("costume_source") != roles["costume_and_rig"]:
             raise ValueError(f"Manifest and builder wardrobe choices differ for character {number}")
         parts = list(dict.fromkeys(entry["source_parts"]))
@@ -274,7 +279,9 @@ def build(source):
             "id": number, "character": entry["name"], "name_ko": entry["name_ko"], "slug": entry["slug"],
             "filename": glb_path.name, "glb": entry["glb"], "sheet": entry["sheet"], "bytes": size, "sha256": sha256,
             "variants": [], "height": None,
-            "body": {"build": None, "proportions": "SD", "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"},
+            "body": {"build": None, "proportions": "SD", "description":
+                     "원본 SD 머리 크기와 골격을 유지하고 몸통·허리·팔다리·의상 메시의 단면을 슬림하게 조정" if number == 5 else
+                     "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"},
             "hair": {"colors": appearance["hair_colors"], "color_hex": config["hair_color"], "length": appearance["length"],
                      "styles": appearance["styles"], "description": appearance["hair"]},
             "outfit": {"styles": appearance["outfit_styles"], "colors": appearance["outfit_colors"],
@@ -285,6 +292,10 @@ def build(source):
             "palette": list(config["palette"]), "design_brief": config["design"], "weapon": appearance["weapon"],
             "animations": [clip["name"] for clip in doc.get("animations", [])], "animation_duration_seconds": durations,
             "native_source_clips": entry["native_clips"], "attack_motion": "custom skeletal animation",
+            "attack_description": next((clip.get("extras", {}).get("description", "")
+                                         for clip in doc["animations"] if clip["name"] == "Attack"), ""),
+            "animation_playback": {name: "loop" if name in ("Idle", "Walk", "Run") else
+                                   "once_hold" if name == "Lose" else "once" for name in CLIPS},
             "build_revision": entry["revision"], "head_fit": entry["head_fit"],
             "rig": {"name": doc["skins"][0].get("name", "Unified SD character rig"), "skin_count": len(doc["skins"]),
                     "joint_count": len(doc["skins"][0]["joints"]), "up_axis": "+Y", "front_axis": "+Z", "physical_height_inferred": False},
@@ -295,7 +306,7 @@ def build(source):
                          "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"},
             "review_notes": ["원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
                              "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-                             "Idle·Walk·Victory는 의상 원본 모션, Attack은 추가 제작한 골격 모션; 실시간 옷감 물리는 포함하지 않음"],
+                             "Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"],
         }
     donors = {}
     for name in sorted(donor_names):
@@ -317,7 +328,7 @@ def build(source):
             "body": "의상 원본별 SD 골격과 메시를 사용하며 실제 인물의 체형 분류를 추정하지 않음",
             "legwear": "팬티스타킹·사이하이·맨다리를 개별 캐릭터별로 명시함",
             "provenance": "donors는 사용한 원본 항목만 간결하게 보존하고 최종 모델의 외형과 별도로 기록함",
-            "animations": "Idle·Walk·Victory는 의상 원본 모션을 사용하고 Attack은 별도 제작; Idle·Walk는 제자리 반복, Attack·Victory는 기본 자세로 복귀",
+            "animations": "Idle·Walk·Run은 제자리 반복. Run은 걷기 배속이 아닌 독립된 달리기. Attack·Defend·Victory는 1회 재생 후 복귀, Lose는 패배 자세를 유지. Idle·Walk·Victory는 원본 모션을 활용",
         },
         "source_catalog": {"root": str(source), "inspected_files": list(SOURCE_FILES),
                            "catalog_model_count": int(source_features["model_count"]), "timestamp_inventory_count": len(source_inventory),

@@ -55,7 +55,13 @@ function disposeModel(object){
 function setClip(clip){
   if(!mixer)return;
   mixer.stopAllAction();
-  if(clip){action=mixer.clipAction(clip);action.reset().setLoop(THREE.LoopRepeat,Infinity).play();}
+  if(clip){
+    const looping=['Idle','Walk','Run'].includes(clip.name);
+    action=mixer.clipAction(clip);
+    action.reset().setLoop(looping?THREE.LoopRepeat:THREE.LoopOnce,looping?Infinity:1);
+    action.clampWhenFinished=!looping;
+    action.play();
+  }
   else action=null;
   playing=true;$('play').textContent='Ⅱ';$('timeline').value=0;
   for(const button of $('clips').children)button.classList.toggle('active',button.dataset.clip===(clip?.name||'Bind pose'));
@@ -100,6 +106,7 @@ async function selectCharacter(entry,forceRefresh=false){
     const bounds=new THREE.Box3().setFromObject(model),size=bounds.getSize(new THREE.Vector3());
     bounds.getCenter(modelCenter);modelHeight=Math.max(size.y,size.x*.78,size.z,0.01);resetView();
     clips=gltf.animations;mixer=new THREE.AnimationMixer(model);
+    mixer.addEventListener('finished',()=>{playing=false;$('play').textContent='▶';});
     for(const clip of clips){
       const button=document.createElement('button');button.textContent=clip.name;button.dataset.clip=clip.name;
       button.addEventListener('click',()=>setClip(clip));$('clips').append(button);
@@ -129,10 +136,14 @@ $('capture').addEventListener('click',()=>{
   const link=document.createElement('a');link.download=`${current?.slug||'character'}_preview.png`;
   link.href=renderer.domElement.toDataURL('image/png');link.click();
 });
-$('play').addEventListener('click',()=>{playing=!playing;$('play').textContent=playing?'Ⅱ':'▶';});
+$('play').addEventListener('click',()=>{
+  if(!playing&&action&&action.time>=action.getClip().duration){action.reset().play();}
+  playing=!playing;$('play').textContent=playing?'Ⅱ':'▶';
+});
 $('timeline').addEventListener('input',()=>{
   if(!action)return;
   action.time=Number($('timeline').value)*action.getClip().duration;
+  action.paused=false;
   mixer.update(0);
   playing=false;$('play').textContent='▶';
 });
