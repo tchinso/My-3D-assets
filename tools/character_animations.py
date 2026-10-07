@@ -345,7 +345,7 @@ class _Rig:
         desired_q = _qmul(_axisq(self.right, pitch), self.rest_world_q[foot])
         rotations[foot] = _qnorm(_qmul(_qinv(world_q[self.parent[foot]]), desired_q))
 
-    def run_leg_ik(self, rotations, translations, side, cycle):
+    def run_leg_ik(self, rotations, translations, side, cycle, *, stride_scale=1., lift_scale=1.):
         """A running stride with 36% stance, heel recovery and an aerial phase.
 
         Feet travel further than in Walk, fold up behind the hips and drive the
@@ -357,7 +357,7 @@ class _Rig:
             return
         cycle %= 1.
         duty = .36
-        stride = self.height*.145
+        stride = self.height*.145*stride_scale
         if cycle < duty:
             stance = cycle/duty
             travel = stride*(1-2*stance)
@@ -373,9 +373,9 @@ class _Rig:
             swing = (cycle-duty)/(1-duty)
             travel, lift, pitch = _motion_path(swing, [
                 (0, [-stride, 0, 29]),
-                (.22, [-stride*.80, self.height*.085, 35]),
-                (.52, [stride*.20, self.height*.110, -13]),
-                (.78, [stride*.91, self.height*.048, -16]),
+                (.22, [-stride*.80, self.height*.085*lift_scale, 35]),
+                (.52, [stride*.20, self.height*.110*lift_scale, -13]),
+                (.78, [stride*.91, self.height*.048*lift_scale, -16]),
                 (1, [stride, 0, 0]),
             ])
             roll = np.zeros(3)
@@ -537,9 +537,395 @@ _ATTACK_ACTIONS = {
     8: 'Clockwork doll: alternating angular hand strikes with a ticking head',
     9: 'Peony fan: cross-body fan slice and outward wrist flourish',
     10: 'Snow crystal: gather with both hands, raise, then release symmetrically',
+    11: 'Trailblazer daggers: left diagonal cut, right return cut and crossed recovery',
+    12: 'Fox-star baton: buoyant wind-up, zigzag star trace and forward bell flick',
+    13: 'Flower witch: staff traces a summoning arc while the free hand writes a spell',
+    14: 'Rose blessing: cradle the bouquet, extend its flowers and sink into a gentle curtsy',
 }
 _ATTACK_DURATIONS = {1: 1.55, 2: 1.95, 3: 1.75, 4: 2.10, 5: 1.60,
-                     6: 1.85, 7: 1.50, 8: 1.80, 9: 1.85, 10: 2.20}
+                     6: 1.85, 7: 1.50, 8: 1.80, 9: 1.85, 10: 2.20,
+                     11: 1.90, 12: 2.05, 13: 2.45, 14: 2.55}
+
+
+_REFERENCE_STYLES = {11: 'daggers', 12: 'fox_baton', 13: 'witch_staff', 14: 'bouquet'}
+_REFERENCE_ACTIONS = {
+    11: {
+        'Idle': 'Alert trailblazer: balanced low blades, a small scouting glance and breathing',
+        'Walk': 'Light adventurer steps with outward low blades, a forward lean and scouting head turns',
+        'Run': 'Quick trailblazer sprint with both blades kept outside the body and compact knee drive',
+        'Victory': 'Confident dagger salute, a quick left-hand flourish and a satisfied nod',
+    },
+    12: {
+        'Idle': 'Cheerful fox: a swaying hip pose, shoulder-high star baton and playful head tilt',
+        'Walk': 'Buoyant fox steps with lifted toes, a swinging star baton and a jaunty free hand',
+        'Run': 'Bouncy fox dash with a high baton carry and a pumping free arm',
+        'Victory': 'Two fox-ear hand beats, a side-to-side baton cheer and a little celebratory hop',
+    },
+    13: {
+        'Idle': 'Thoughtful flower witch: upright staff, free hand over the spell book and a quiet glance',
+        'Walk': 'Measured witch steps with an upright staff, restrained foot lift and gentle cape sway',
+        'Run': 'Purposeful witch dash with a stable upright staff and a free hand protecting the hat',
+        'Victory': 'A theatrical hat-tip, an outward spell-hand flourish and a courteous bow',
+    },
+    14: {
+        'Idle': 'Poised rose princess: bouquet close to the heart, a gentle head tilt and breathing',
+        'Walk': 'Small graceful barefoot steps with the bouquet held to the heart and the gown gathered aside',
+        'Run': 'Careful princess hurry with shortened strides, bouquet protected and the gown lifted aside',
+        'Victory': 'A deep royal curtsy, a gracious bouquet presentation and a warm head tilt',
+    },
+}
+
+
+def _reference_walk_leg(rig, rotations, translations, side, phase, number):
+    """Costume-aware stride lengths and toe clearance for the four new designs."""
+    foot = rig.bones.get(f'Bip001 {side} Foot')
+    if foot is None:
+        return
+    stride, lift, toe_angle, width = {
+        11: (.062, .030, 16, .008),
+        12: (.072, .052, 20, .014),
+        13: (.042, .022, 10, .004),
+        14: (.033, .018, 7, .002),
+    }[number]
+    swing = max(0., -math.sin(phase))
+    toe_off = toe_angle*max(0., -math.sin(phase*2))**2 if math.sin(phase) >= 0 else 0.
+    pitch = toe_off-(10 if number == 12 else 6)*swing
+    target = (rig.pos[foot]+rig.forward*rig.height*stride*math.cos(phase)
+              +rig.up*rig.height*lift*swing**1.6
+              +rig.right*rig.height*width*swing*(1 if side == 'L' else -1))
+    toe = rig.bones.get(f'Bip001 {side} Toe0')
+    if toe is not None and toe_off > 0:
+        offset = rig.pos[toe]-rig.pos[foot]
+        target += offset-_qrot(_axisq(rig.right, pitch), offset)
+        target += rig.up*rig.height*.003*toe_off/max(toe_angle, 1)
+    rig.leg_target(rotations, translations, side, target, pitch)
+
+
+def _reference_character_pose(rig, u, clip_name, number):
+    """Independent whole-body performances with rigid palm-bound props.
+
+    Every prop binds upright along anatomical up with its decorated face along
+    forward. Both of Quinn's hands carry daggers; the other props use the right
+    hand. All arm trajectories use measured shoulder/elbow/palm IK. Garment
+    bones remain on the same imported skeleton and receive restrained sway.
+    """
+    right, up, forward, height = rig.right, rig.up, rig.forward, rig.height
+    loop = clip_name in ('Idle', 'Walk', 'Run')
+    if clip_name == 'Lose':
+        progress = min(u/.80, 1.)
+        activity = progress*progress*(3-2*progress)
+    elif loop:
+        activity = 1.
+    else:
+        enter, leave = min(u/.12, 1.), min((1-u)/.18, 1.)
+        activity = min(enter*enter*(3-2*enter), leave*leave*(3-2*leave))
+    phase = 2*math.pi*u
+    changes, tracks = defaultdict(list), set()
+
+    def rotate(name, axis, degrees):
+        index = rig.bones.get(name) if isinstance(name, str) else name
+        if index is not None:
+            changes[index].append((axis, float(degrees)*activity))
+            tracks.add(index)
+
+    # Grip coordinates are lateral/up/forward offsets from the shoulder midpoint.
+    # Shaft vectors use the same anatomical basis, independent of bone-local axes.
+    grip_r, grip_l = {
+        11: ([-.18, -.19, .075], [.18, -.19, .075]),
+        12: ([-.18, -.045, .12], [.13, -.20, .08]),
+        13: ([-.205, -.145, .11], [.085, -.10, .15]),
+        14: ([-.045, -.115, .16], [.16, -.22, .07]),
+    }[number]
+    grip_r, grip_l = np.array(grip_r), np.array(grip_l)
+    shaft_r = np.array([-.22, -.91, .35]) if number == 11 else np.array([0., 1., 0.])
+    shaft_l = np.array([.22, -.91, .35]) if number == 11 else np.array([0., 1., 0.])
+    normal_r = normal_l = np.array([0., 0., 1.])
+    # twist, pitch, roll, head pitch, head yaw, head roll, drop, forward travel
+    body = np.zeros(8)
+    foot_step, foot_width = 0., 0.
+    if clip_name == 'Idle':
+        breath = math.sin(phase)
+        body[1] = .9*breath
+        body[6] = -.002*breath
+        if number == 11:
+            body[4] = 5*math.sin(phase)
+            grip_r[2] += .004*breath
+            grip_l[2] -= .003*breath
+        elif number == 12:
+            body[2], body[5] = 2.3*breath, -4+2*math.sin(phase+.5)
+            grip_r[1] += .008*math.sin(phase+.35)
+            shaft_r = np.array([-.20+.08*breath, .98, .05])
+        elif number == 13:
+            body[4], body[5] = 2.2*math.sin(phase), 1.2*math.sin(phase+.4)
+            grip_l[1] += .004*breath
+        else:
+            body[3], body[5] = -1.2*breath, 3+1.2*math.sin(phase)
+            grip_r[1] += .003*breath
+    elif clip_name in ('Walk', 'Run'):
+        running = clip_name == 'Run'
+        swing, sway = math.cos(phase), math.sin(phase)
+        if number == 11:
+            body[:] = [3.8*swing, 5.5 if running else 2.2, 2.0*sway,
+                       -3 if running else -1, 3.2*swing, -.8*sway,
+                       .022-.015*(1-math.cos(phase*2)) if running else .016-.005*(1-math.cos(phase*2)), 0]
+            grip_r[2] += (.048 if running else .026)*swing
+            grip_l[2] -= (.048 if running else .026)*swing
+            shaft_r = np.array([-.28, -.90, .30])
+            shaft_l = np.array([.28, -.90, .30])
+        elif number == 12:
+            body[:] = [5*swing, 6 if running else 1.5, 4*sway, -3,
+                       2*swing, -4+3*sway, .012-.012*(1-math.cos(phase*2)), 0]
+            grip_r[1] += .018*math.sin(phase*2)
+            grip_r[2] += .034*swing
+            grip_l = np.array([.16, -.14 if running else -.18, .11-(.070 if running else .035)*swing])
+            shaft_r = np.array([-.28+.12*sway, .96, .13*swing])
+        elif number == 13:
+            body[:] = [1.8*swing, 6 if running else 1.2, 1.4*sway,
+                       -3 if running else 0, 1.2*swing, -1.2*sway,
+                       .020-.013*(1-math.cos(phase*2)) if running else .014-.003*(1-math.cos(phase*2)), 0]
+            grip_r[2] += .010*swing
+            grip_l = np.array([.16, .26, .015]) if running else grip_l+np.array([0, .003*sway, .006*swing])
+            shaft_r = np.array([-.055, .998, .018*swing])
+        else:
+            body[:] = [1.2*swing, 3 if running else -.8, 1.1*sway,
+                       -1.5, .8*swing, 3+1.2*sway,
+                       .019-.011*(1-math.cos(phase*2)) if running else .012-.0025*(1-math.cos(phase*2)), 0]
+            grip_r[1] += .003*math.cos(phase*2)
+            grip_l[1] += .045 if running else .018
+            grip_l[0] += .020
+            shaft_r = np.array([-.08, .992, .10])
+    elif clip_name == 'Attack':
+        if number == 11:
+            grip_r = _motion_path(u, [(0, [-.18, -.18, .09]), (.23, [-.21, -.045, .10]),
+                                      (.42, [-.22, -.03, .16]), (.61, [.05, -.16, .23]),
+                                      (.69, [.05, -.16, .23]), (.83, [-.16, -.10, .13]), (1, [-.18, -.18, .09])])
+            grip_l = _motion_path(u, [(0, [.18, -.18, .09]), (.23, [.20, -.035, .10]),
+                                      (.40, [-.035, -.145, .24]), (.45, [-.035, -.145, .24]),
+                                      (.60, [.16, -.08, .11]), (.78, [.11, -.12, .12]), (1, [.18, -.18, .09])])
+            shaft_r = _motion_path(u, [(0, [-.2, -.9, .3]), (.23, [-.6, .75, .28]),
+                                       (.42, [-.7, .65, .35]), (.61, [.60, -.45, .65]), (1, [-.2, -.9, .3])])
+            shaft_l = _motion_path(u, [(0, [.2, -.9, .3]), (.23, [.6, .75, .28]),
+                                       (.40, [-.65, -.35, .67]), (.60, [.25, .90, .36]), (1, [.2, -.9, .3])])
+            body = _motion_path(u, [(0, [0]*8), (.23, [-15, -3, -2, -3, 6, 0, .026, -.005]),
+                                   (.40, [-24, 8, -4, -2, 12, 0, .026, .022]),
+                                   (.61, [23, 10, 3, -2, -12, 0, .025, .028]), (1, [0]*8)])
+            foot_step, foot_width = .042, .019
+        elif number == 12:
+            grip_r = _motion_path(u, [(0, [-.18, -.045, .12]), (.22, [-.22, .08, .10]),
+                                      (.37, [-.02, .14, .14]), (.48, [-.18, .03, .21]),
+                                      (.62, [-.04, -.02, .26]), (.70, [-.04, -.02, .26]), (1, [-.18, -.045, .12])])
+            grip_l = _motion_path(u, [(0, [.13, -.18, .08]), (.22, [.15, .01, .08]),
+                                      (.42, [.18, .035, .12]), (.62, [.14, -.02, .20]), (1, [.13, -.18, .08])])
+            shaft_r = _motion_path(u, [(0, [0, 1, 0]), (.22, [-.65, .76, 0]),
+                                       (.37, [.80, .60, .10]), (.48, [-.70, .65, .28]),
+                                       (.62, [0, .30, .96]), (.70, [0, .30, .96]), (1, [0, 1, 0])])
+            body = _motion_path(u, [(0, [0]*8), (.22, [-12, -4, -5, -4, 7, -7, .008, 0]),
+                                   (.42, [8, -3, 5, -4, -5, 5, -.012, .012]),
+                                   (.62, [11, 7, -2, -2, -5, -5, .025, .020]), (1, [0]*8)])
+            foot_step, foot_width = .026, .016
+        elif number == 13:
+            grip_r = _motion_path(u, [(0, [-.205, -.145, .11]), (.23, [-.22, -.07, .10]),
+                                      (.40, [-.18, -.035, .20]), (.60, [-.16, -.105, .25]),
+                                      (.72, [-.16, -.105, .25]), (1, [-.205, -.145, .11])])
+            grip_l = _motion_path(u, [(0, [.085, -.10, .15]), (.23, [.13, -.03, .15]),
+                                      (.40, [.055, .08, .20]), (.53, [.18, .025, .22]),
+                                      (.68, [.10, -.03, .27]), (.76, [.10, -.03, .27]), (1, [.085, -.10, .15])])
+            shaft_r = _motion_path(u, [(0, [0, 1, 0]), (.23, [-.28, .95, -.12]),
+                                       (.40, [.23, .93, .27]), (.60, [-.12, .84, .53]), (1, [0, 1, 0])])
+            body = _motion_path(u, [(0, [0]*8), (.23, [-13, -5, -2, -5, 7, -3, .008, 0]),
+                                   (.40, [-3, -3, 2, -4, 2, 2, .006, .005]),
+                                   (.68, [14, 6, 0, -3, -8, 0, .018, .016]), (1, [0]*8)])
+            foot_step, foot_width = .018, .009
+        else:
+            grip_r = _motion_path(u, [(0, [-.045, -.115, .16]), (.27, [-.025, -.07, .15]),
+                                      (.48, [-.015, -.075, .24]), (.64, [-.02, -.095, .25]),
+                                      (.74, [-.025, -.10, .23]), (1, [-.045, -.115, .16])])
+            grip_l = _motion_path(u, [(0, [.16, -.22, .07]), (.27, [.025, -.13, .14]),
+                                      (.48, [.075, -.11, .23]), (.64, [.11, -.14, .21]),
+                                      (.78, [.16, -.20, .10]), (1, [.16, -.22, .07])])
+            shaft_r = _motion_path(u, [(0, [0, 1, 0]), (.27, [-.08, .99, .12]),
+                                       (.48, [0, .82, .57]), (.64, [0, .82, .57]), (1, [0, 1, 0])])
+            body = _motion_path(u, [(0, [0]*8), (.27, [-4, -4, 2, -5, 3, 5, .006, 0]),
+                                   (.48, [4, 2, -1, -1, -2, 3, .015, .006]),
+                                   (.68, [2, 11, 2, 5, -1, 5, .049, 0]), (1, [0]*8)])
+            foot_step, foot_width = .014, -.005
+    elif clip_name == 'Victory':
+        if number == 11:
+            grip_r = _motion_path(u, [(0, [-.18, -.19, .075]), (.25, [-.19, -.015, .16]),
+                                      (.41, [-.16, .015, .17]), (.65, [-.16, .015, .17]), (1, [-.18, -.19, .075])])
+            grip_l = _motion_path(u, [(0, [.18, -.19, .075]), (.25, [.20, -.17, .06]),
+                                      (.43, [.22, -.095, .14]), (.60, [.19, -.13, .08]), (1, [.18, -.19, .075])])
+            shaft_r = _motion_path(u, [(0, [-.2, -.9, .3]), (.25, [0, 1, .08]),
+                                       (.65, [.12, .98, .12]), (1, [-.2, -.9, .3])])
+            shaft_l = _motion_path(u, [(0, [.2, -.9, .3]), (.25, [.3, -.9, .3]),
+                                       (.43, [.85, .50, .15]), (.60, [.3, -.9, .3]), (1, [.2, -.9, .3])])
+            body = _motion_path(u, [(0, [0]*8), (.25, [-8, -1, -2, -5, 4, -3, .01, 0]),
+                                   (.49, [-8, -1, -2, 7, 4, -3, .01, 0]),
+                                   (.65, [-8, -1, -2, -3, 4, -3, .01, 0]), (1, [0]*8)])
+            foot_step = .012
+        elif number == 12:
+            cheer = _envelope(u, .08, .37, .91)
+            beat = math.sin(6*math.pi*u)*cheer
+            grip_r = np.array([-.18+.040*beat, .09, .12])
+            grip_l = _motion_path(u, [(0, [.13, -.20, .08]), (.24, [.15, .27, .03]),
+                                      (.40, [.18, .20, .07]), (.54, [.15, .27, .03]),
+                                      (.70, [.18, .20, .07]), (1, [.13, -.20, .08])])
+            shaft_r = np.array([.45*beat, .92, .12])
+            body = np.array([4*beat, -4*cheer, 7*beat, -5*cheer, -2*beat, -7*beat,
+                             -.017*max(0., math.sin(4*math.pi*u))*cheer, 0])
+            foot_width = .010
+        elif number == 13:
+            grip_l = _motion_path(u, [(0, [.085, -.10, .15]), (.23, [.17, .30, .025]),
+                                      (.36, [.17, .30, .025]), (.51, [.23, .01, .18]),
+                                      (.64, [.23, .01, .18]), (.77, [.08, -.09, .16]), (1, [.085, -.10, .15])])
+            grip_r = _motion_path(u, [(0, [-.205, -.145, .11]), (.23, [-.22, -.12, .10]),
+                                      (.64, [-.23, -.145, .10]), (1, [-.205, -.145, .11])])
+            shaft_r = np.array([-.07, .997, 0.])
+            body = _motion_path(u, [(0, [0]*8), (.23, [-8, -4, -3, -6, 4, -5, .008, 0]),
+                                   (.51, [8, 0, 2, -3, -4, 2, .006, 0]),
+                                   (.77, [3, 17, 0, 8, -2, 0, .025, 0]), (1, [0]*8)])
+        else:
+            grip_r = _motion_path(u, [(0, [-.045, -.115, .16]), (.22, [-.04, -.10, .16]),
+                                      (.48, [-.04, -.13, .18]), (.68, [-.025, -.08, .23]),
+                                      (.80, [-.025, -.08, .23]), (1, [-.045, -.115, .16])])
+            grip_l = _motion_path(u, [(0, [.16, -.22, .07]), (.22, [.20, -.19, .05]),
+                                      (.48, [.23, -.18, .06]), (.68, [.19, -.18, .07]), (1, [.16, -.22, .07])])
+            shaft_r = _motion_path(u, [(0, [0, 1, 0]), (.48, [-.10, .99, .05]),
+                                       (.68, [0, .91, .42]), (.80, [0, .91, .42]), (1, [0, 1, 0])])
+            body = _motion_path(u, [(0, [0]*8), (.22, [-5, 4, 3, 0, 3, 4, .020, 0]),
+                                   (.48, [-5, 17, 3, 8, 3, 5, .067, -.003]),
+                                   (.68, [4, -3, 1, -4, -2, 7, .010, 0]), (1, [0]*8)])
+            foot_step, foot_width = -.016, -.005
+    elif clip_name in ('Defend', 'Lose'):
+        losing = clip_name == 'Lose'
+        # Defend's 22%-78% hold matches the advertised clip contract exactly.
+        if not losing:
+            enter, leave = min(u/.22, 1.), min((1-u)/.22, 1.)
+            activity = min(enter*enter*(3-2*enter), leave*leave*(3-2*leave))
+        body = np.array([-5 if number % 2 else 5, 20 if losing else 7, 0,
+                         23 if losing else -3, 0, -4 if losing else 0,
+                         .064 if losing and number in (13, 14) else .082 if losing else .030, 0])
+        if number == 11:
+            grip_r, grip_l = np.array([-.07, -.02, .18]), np.array([.07, -.04, .19])
+            shaft_r, shaft_l = np.array([.55, .82, .15]), np.array([-.55, .82, .15])
+            if losing:
+                grip_r, grip_l = np.array([-.18, -.20, .14]), np.array([.18, -.20, .14])
+                shaft_r, shaft_l = np.array([-.35, -.40, .84]), np.array([.35, -.40, .84])
+        elif number == 12:
+            grip_r, grip_l = np.array([-.07, .015, .17]), np.array([.085, .015, .16])
+            shaft_r = np.array([-.30, .94, .15])
+            if losing:
+                grip_r, grip_l = np.array([-.15, -.20, .13]), np.array([.08, .005, .14])
+                shaft_r = np.array([-.25, .76, .60])
+        elif number == 13:
+            grip_r, grip_l = np.array([-.17, -.065, .20]), np.array([.065, -.035, .17])
+            shaft_r = np.array([-.25, .955, .16])
+            if losing:
+                grip_r, grip_l = np.array([-.215, -.17, .12]), np.array([.10, -.07, .16])
+                shaft_r = np.array([-.09, .995, .025])
+        else:
+            grip_r, grip_l = np.array([-.03, -.035, .17]), np.array([.035, -.085, .16])
+            shaft_r = np.array([0, .99, .14])
+            if losing:
+                grip_r, grip_l = np.array([-.035, -.145, .19]), np.array([.04, -.17, .18])
+                shaft_r = np.array([0, .94, .35])
+        foot_step, foot_width = (.026 if losing else .008), .007
+
+    twist, pitch, roll, head_pitch, head_yaw, head_roll, drop, advance = body
+    rotate('Bip001 Pelvis', up, twist*.4)
+    rotate('Bip001 Pelvis', forward, roll*.65)
+    rotate('Bip001 Spine', up, twist*.6)
+    rotate('Bip001 Spine', right, pitch*.68)
+    rotate('Bip001 Spine1', right, pitch*.32)
+    rotate('Bip001 Spine1', forward, roll*.35)
+    rotate('Bip001 Head', right, head_pitch)
+    rotate('Bip001 Head', up, head_yaw-twist*.4)
+    rotate('Bip001 Head', forward, head_roll)
+    secondary_phase = (phase if loop else 2*math.pi*.22 if clip_name == 'Defend'
+                       else 2*math.pi*min(u, .80))
+    for i, node in enumerate(rig.accessories):
+        sway = (3.2 if number == 12 else 2.1 if number == 11 else 1.3) if clip_name in ('Walk', 'Run') else .8
+        rotate(node, right, sway*math.sin(secondary_phase+i*.7))
+        rotate(node, forward, sway*.55*math.sin(secondary_phase+i*1.1))
+    displacement = height*activity*(-up*drop+forward*advance)
+    rotations, translations = rig.pose(changes, displacement)
+    world, _ = rig.world(rotations, translations)
+    shoulders = [rig.bones[f'Bip001 {s} UpperArm'] for s in ('L', 'R') if f'Bip001 {s} UpperArm' in rig.bones]
+    anchor = world[shoulders, :3, 3].mean(axis=0) if shoulders else rig.pos[rig.bones['Bip001 Spine']]
+    for side, relative, shaft_values, normal_values in (('R', grip_r, shaft_r, normal_r), ('L', grip_l, shaft_l, normal_l)):
+        hand = rig.bones.get(f'Bip001 {side} Hand')
+        if hand is None:
+            continue
+        sign = 1 if side == 'L' else -1
+        has_prop = side == 'R' or number == 11
+        shaft = _unit(right*shaft_values[0]+up*shaft_values[1]+forward*shaft_values[2], up)
+        normal = _unit(right*normal_values[0]+up*normal_values[1]+forward*normal_values[2], forward)
+        desired = _weapon_rotation(rig, shaft, normal) if has_prop else _axisq(forward, -sign*18)
+        delta = _slerp(_IDENTITY, desired, activity)
+        offset = rig.palm_offset(side)
+        rest_grip = rig.pos[hand]+offset
+        goal = anchor+height*(right*relative[0]+up*relative[1]+forward*relative[2])
+        goal = rest_grip+(goal-rest_grip)*activity
+        if clip_name == 'Run':
+            # Running elbows follow the shoulder, rather than the wide wrist
+            # carry. The outward pole used by other gestures would flare the
+            # short SD upper arms sideways even when the palms are low.
+            shoulder = world[rig.bones[f'Bip001 {side} UpperArm'], :3, 3]
+            pole = shoulder+height*(right*sign*.015-up*.20-forward*.055)
+        else:
+            pole = anchor+height*(right*sign*.29-up*.19+forward*.055)
+        elbow = rig.bones.get(f'Bip001 {side} Forearm')
+        if elbow is not None:
+            pole = rig.pos[elbow]+(pole-rig.pos[elbow])*activity
+        rig.arm_target(rotations, translations, side, goal-_qrot(delta, offset), pole,
+                       _qmul(delta, rig.rest_world_q[hand]))
+        if has_prop:
+            world, _ = rig.world(rotations, translations)
+            actual = world[hand, :3, 3]+_qrot(delta, offset)
+            tracks.update(rig.finger_grip(rotations, translations, side, actual,
+                                         _qrot(delta, up), .86*activity))
+        elif number == 12 and clip_name == 'Victory':
+            # The fox salute leaves index and little finger raised while the
+            # thumb, middle and ring fingers curl, matching her playful cue.
+            world, _ = rig.world(rotations, translations)
+            actual = world[hand, :3, 3]+_qrot(delta, offset)
+            tracks.update(rig.finger_grip(rotations, translations, side,
+                                         actual-forward*height*.045, up, .95*activity,
+                                         closed_fist=True))
+            for finger in (1, 4):
+                for suffix in ('', '1'):
+                    index = rig.bones.get(f'Bip001 {side} Finger{finger}{suffix}')
+                    if index is not None:
+                        rotations[index] = rig.q[index]
+                        tracks.add(index)
+        for part in ('UpperArm', 'Forearm', 'Hand'):
+            index = rig.bones.get(f'Bip001 {side} {part}')
+            if index is not None:
+                tracks.add(index)
+    for side, sign in (('L', 1), ('R', -1)):
+        foot = rig.bones.get(f'Bip001 {side} Foot')
+        if foot is not None:
+            if clip_name == 'Walk':
+                _reference_walk_leg(rig, rotations, translations, side, phase+(math.pi if side == 'R' else 0), number)
+            elif clip_name == 'Run':
+                # The gown's short careful run retains an aerial phase while
+                # reducing the usual stride; other designs use the full sprint.
+                if number == 14:
+                    rig.run_leg_ik(rotations, translations, side, u+(.5 if side == 'R' else 0),
+                                   stride_scale=.60, lift_scale=.64)
+                else:
+                    rig.run_leg_ik(rotations, translations, side, u+(.5 if side == 'R' else 0))
+            else:
+                target = rig.pos[foot]+height*activity*(right*sign*foot_width
+                                                       +forward*(foot_step if side == 'L' else -foot_step*.55))
+                rig.leg_target(rotations, translations, side, target)
+        for part in ('Thigh', 'Calf', 'Foot'):
+            index = rig.bones.get(f'Bip001 {side} {part}')
+            if index is not None:
+                tracks.add(index)
+    if not loop and (u <= _EPS or (clip_name != 'Lose' and u >= 1-_EPS)):
+        rotations, translations = rig.q.copy(), rig.t.copy()
+    return rotations, translations, tracks
 
 
 def _attack_personality(number, kind):
@@ -1007,6 +1393,8 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
 
     ``attack_style`` accepts ``magic``/``cast``/``charm``, ``wand``/``staff``, ``scythe``/``sword``, ``rapier``
     (grounded thrust), ``fan`` (open-fan flourish), ``kick`` or ``melee``/``punch``.
+    Characters 11-14 use ``daggers``, ``fox_baton``, ``witch_staff`` and ``bouquet``
+    with independent prop-aware Idle/Walk/Run/Attack/Defend/Victory/Lose poses.
     Unknown styles use a two-handed casting gesture.
     Every channel targets the selected body skeleton or a custom HairAccessory
     node in its hierarchy. Missing optional limb/accessory bones are skipped.
@@ -1017,7 +1405,8 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
     rig = _Rig(doc)
     number = _character_number(character_id)
     style = str(attack_style).lower()
-    weapon_kind = ('scythe' if style in ('scythe', 'sword', 'slash') else
+    weapon_kind = (style if style in _REFERENCE_STYLES.values() else
+                   'scythe' if style in ('scythe', 'sword', 'slash') else
                    'fan' if style in ('fan', 'flourish') else
                    'rapier' if style in ('rapier', 'thrust', 'lunge') else
                    'wand' if style in ('wand', 'staff') or (number == 6 and style in ('magic', 'cast')) else
@@ -1027,6 +1416,12 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
     durations = (('Idle', 3.2), ('Walk', 1.2), ('Run', .8),
                  ('Attack', _ATTACK_DURATIONS.get(number, 1.6)),
                  ('Defend', 1.8), ('Victory', 2.8), ('Lose', 2.4))
+    if number in _REFERENCE_STYLES:
+        durations = tuple((name, {11: {'Walk': 1.10, 'Victory': 3.05},
+                                 12: {'Walk': 1.05, 'Victory': 3.30},
+                                 13: {'Walk': 1.55, 'Run': .92, 'Victory': 3.65},
+                                 14: {'Walk': 1.65, 'Run': 1.02, 'Victory': 3.75}}[number].get(name, duration))
+                          for name, duration in durations)
     selected = set(clip_names) if clip_names is not None else {name for name, _ in durations}
     if selected - {name for name, _ in durations}:
         raise ValueError('Unknown clip name requested.')
@@ -1192,7 +1587,11 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
                 rotate(node, right, amplitude*math.sin(phase+accessory_index*.7))
                 rotate(node, forward, .6*amplitude*math.sin(phase+accessory_index*1.1))
             rotations, translations = rig.pose(changes, displacement)
-            if clip_name == 'Attack' and weapon_kind:
+            if number in _REFERENCE_STYLES:
+                rotations, translations, personality_tracks = _reference_character_pose(rig, u, clip_name, number)
+                for node in personality_tracks:
+                    changes[node]
+            elif clip_name == 'Attack' and weapon_kind:
                 rotations, translations, weapon_tracks = _weapon_attack_pose(rig, u, weapon_kind, number)
                 for node in weapon_tracks:
                     changes[node]
@@ -1263,6 +1662,17 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
         elif clip_name == 'Lose':
             clip['extras'].update(action='Grounded defeated crouch with lowered head and held finish',
                                   terminalPoseHeld=True, holdWindowSeconds=[duration*.80, duration])
+        if number in _REFERENCE_STYLES:
+            action = (_ATTACK_ACTIONS[number] if clip_name == 'Attack' else
+                      _REFERENCE_ACTIONS[number].get(clip_name, clip['extras'].get('action', clip_name)))
+            clip['extras'].update(action=action, description=action, personalityMotion=True,
+                                  propGrip='Both palms' if number == 11 else 'Right palm',
+                                  propBind={'shaftAxis': rig.up.tolist(), 'faceNormal': rig.forward.tolist()})
+            if clip_name == 'Walk':
+                clip['extras'].update(gait=action, independentPersonality=True)
+            elif clip_name == 'Attack':
+                clip['extras']['impactWindow'] = {11: [.35, .69], 12: [.48, .70],
+                                                 13: [.53, .76], 14: [.48, .74]}[number]
         input_accessor = append_accessor(times.astype('<f4'), 'SCALAR', 5126)
 
         def channel(node, path, samples, kind):
@@ -1274,6 +1684,14 @@ def add_animations(doc: dict, append_accessor: Callable, character_id, attack_st
                 for i in range(1, len(array)):
                     if np.dot(array[i-1], array[i]) < 0:
                         array[i] *= -1
+                if number in _REFERENCE_STYLES:
+                    # Wrist/forearm IK can finish with the equivalent negative
+                    # bind quaternion after a flourish. glTF takes the shortest
+                    # quaternion arc; keep the explicit rest/loop contract exact.
+                    if loop:
+                        array[-1] = array[0]
+                    elif clip_name != 'Lose':
+                        array[0] = array[-1] = rig.q[node]
                 if not np.allclose(np.linalg.norm(array, axis=1), 1, atol=1e-6):
                     raise ValueError(f'Invalid quaternion in {clip_name}.')
             if not np.isfinite(array).all():

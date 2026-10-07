@@ -9,6 +9,7 @@ Dependencies: NumPy and Pillow.
 from __future__ import annotations
 
 import argparse
+import ast
 import base64
 import hashlib
 import io
@@ -30,6 +31,32 @@ REQUIRED_CLIPS = ("Idle", "Walk", "Run", "Attack", "Defend", "Victory", "Lose")
 LOOP_CLIPS = {"Idle", "Walk", "Run"}
 POSE_FRACTIONS = (0., .125, .25, .375, .5, .625, .75, .875, 1.)
 SHEET_SIZE = (2400, 1800)
+
+
+def declared_design_ids(path):
+    """Read literal design IDs and local DESIGNS extensions without executing code."""
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    identifiers, imported = set(), {}
+    for node in tree.body:
+        if isinstance(node, ast.ImportFrom) and node.module:
+            for alias in node.names:
+                if alias.name == "DESIGNS":
+                    imported[alias.asname or alias.name] = path.parent/(node.module.replace(".", "/")+".py")
+        if isinstance(node, ast.Assign) and any(
+                isinstance(target, ast.Name) and target.id == "DESIGNS" for target in node.targets):
+            for design in node.value.elts:
+                value = next(keyword.value for keyword in design.keywords if keyword.arg == "id")
+                identifiers.add(int(ast.literal_eval(value)))
+        if (isinstance(node, ast.Expr) and isinstance(node.value, ast.Call)
+                and isinstance(node.value.func, ast.Attribute) and node.value.func.attr == "extend"
+                and isinstance(node.value.func.value, ast.Name) and node.value.func.value.id == "DESIGNS"):
+            extension = node.value.args[0]
+            if not isinstance(extension, ast.Name) or extension.id not in imported:
+                raise ValueError("DESIGNS extension must refer to a local declarative design module")
+            identifiers.update(declared_design_ids(imported[extension.id]))
+    if not identifiers:
+        raise ValueError(f"No declared design IDs in {path}")
+    return identifiers
 
 
 def qmatrix(q):
@@ -551,6 +578,8 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
             name = animation.get("name", "<unnamed>")
             clip = {"channels": len(animation.get("channels", [])), "duration_seconds": 0.,
                     "moving_channels": 0, "loop_endpoints_exact": name in LOOP_CLIPS}
+            if animation.get("extras", {}).get("description"):
+                clip["description"] = animation["extras"]["description"]
             report["animations"][name] = clip
             if name in REQUIRED_CLIPS:
                 require(animation.get("extras", {}).get("loop") is (name in LOOP_CLIPS),
@@ -631,12 +660,12 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
                             require(arm["min_elbow_flex_degrees"] >= 25.,
                                     f"Animation Run {side} elbow remains too straight "
                                     f"({arm['min_elbow_flex_degrees']:.1f} degrees flexion)")
-                    if name == "Attack":
+                    if name in ("Walk", "Attack", "Victory"):
                         fingerprint = attack_fingerprint(asset, world, worlds)
                         if fingerprint:
                             clip["anatomical_motion_fingerprint"] = fingerprint
                         else:
-                            warnings.append("Attack duplicate-gesture check lacks four named anatomical joints")
+                            warnings.append(f"{name} duplicate-gesture check lacks four named anatomical joints")
                     if name == "Lose":
                         terminal = poses[-1]
                         terminal_displacement = float(np.linalg.norm(terminal-first, axis=1).max())
@@ -684,15 +713,23 @@ def main():
     parser.add_argument("--ids", help="Comma-separated character IDs for a partial check")
     parser.add_argument("--skip-sheets", action="store_true")
     parser.add_argument("--report", default="previews/validation.json", help="Report path relative to root, or - for stdout")
-    parser.add_argument("--expected-count", type=int, default=10)
+    parser.add_argument("--expected-count", type=int,
+                        help="Expected total; defaults to the declared designs in tools/build_characters.py")
     args = parser.parse_args()
     root = args.root.resolve()
     report = {"generated_utc": datetime.now(timezone.utc).isoformat(), "root": str(root),
-              "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks and PNG sheets",
+              "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks, new character walk/victory individuality and PNG sheets",
               "errors": [], "warnings": [], "characters": []}
     try:
         manifest = json.loads((root/"characters"/"manifest.json").read_text(encoding="utf-8"))
         entries = manifest if isinstance(manifest, list) else manifest["characters"]
+        if args.expected_count is None:
+            # Read the declarative design list without executing the builder or
+            # opening any external donor files. This scales when designs are added.
+            expected_ids = declared_design_ids(root/"tools"/"build_characters.py")
+            args.expected_count = len(expected_ids)
+        else:
+            expected_ids = set(range(1, args.expected_count+1))
         ids = {int(value) for value in args.ids.split(",")} if args.ids else None
         if ids:
             entries = [entry for entry in entries if int(entry["id"]) in ids]
@@ -700,7 +737,7 @@ def main():
                 report["errors"].append("Some requested IDs are missing from the manifest")
         elif len(entries) != args.expected_count:
             report["errors"].append(f"Expected {args.expected_count} characters, found {len(entries)}")
-        if not ids and {int(entry["id"]) for entry in entries} != set(range(1, args.expected_count+1)):
+        if not ids and {int(entry["id"]) for entry in entries} != expected_ids:
             report["errors"].append("Character IDs do not cover the expected numbered designs")
         if len({entry["id"] for entry in entries}) != len(entries):
             report["errors"].append("Character IDs are repeated in the manifest")
@@ -715,15 +752,21 @@ def main():
                 result["errors"].append("GLB size differs from manifest bytes")
                 result["status"] = "failed"
             report["characters"].append(result)
-        attacks = {}
+        gestures = {name: {} for name in ("Walk", "Attack", "Victory")}
         for character in report["characters"]:
-            fingerprint = character["animations"].get("Attack", {}).get("anatomical_motion_fingerprint")
-            if fingerprint:
-                if fingerprint in attacks:
+            for name, seen in gestures.items():
+                clip = character["animations"].get(name, {})
+                if int(character["id"]) >= 11 and not clip.get("description"):
+                    report["errors"].append(f"{character['slug']} {name} lacks its authored motion description")
+                fingerprint = clip.get("anatomical_motion_fingerprint")
+                if not fingerprint:
+                    continue
+                earlier = seen.get(fingerprint)
+                if earlier and (name == "Attack" or int(character["id"]) >= 11 or int(earlier["id"]) >= 11):
                     report["errors"].append(
-                        f"Attack gesture is duplicated between {attacks[fingerprint]} and {character['slug']}")
+                        f"{name} gesture is duplicated between {earlier['slug']} and {character['slug']}")
                 else:
-                    attacks[fingerprint] = character["slug"]
+                    seen[fingerprint] = character
     except Exception as exc:
         report["errors"].append(f"Manifest: {exc}")
     errors = len(report["errors"])+sum(len(item["errors"]) for item in report["characters"])

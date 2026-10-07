@@ -79,6 +79,7 @@ function palette(entry){
 
 async function selectCharacter(entry,forceRefresh=false){
   const token=++loadToken;current=entry;
+  const pageURL=new URL(location.href);pageURL.searchParams.set('character',String(entry.id));history.replaceState(null,'',pageURL);
   for(const button of $('characters').children)button.classList.toggle('active',button.dataset.slug===entry.slug);
   $('number').textContent=`CHARACTER / ${String(entry.id).padStart(2,'0')}`;
   $('name').textContent=entry.name||entry.slug;$('name-ko').textContent=entry.name_ko||'';
@@ -167,6 +168,7 @@ async function loadManifest(){
 
 try{
   entries=await loadManifest();
+  $('collection-count').textContent=`MY 3D ASSETS / ${entries.length} DESIGNS`;
   for(const entry of entries){
     const button=document.createElement('button');button.className='character';button.dataset.slug=entry.slug;
     const badge=document.createElement('span');badge.className='badge';badge.textContent=String(entry.id).padStart(2,'0');
@@ -174,5 +176,6 @@ try{
     name.textContent=entry.name||entry.slug;korean.textContent=entry.name_ko||'';labels.append(name,korean);button.append(badge,labels);
     button.addEventListener('click',()=>selectCharacter(entry));$('characters').append(button);
   }
-  if(entries.length)await selectCharacter(entries[0]);else throw new Error('캐릭터 manifest가 비어 있습니다.');
+  const requested=new URLSearchParams(location.search).get('character');
+  if(entries.length)await selectCharacter(entries.find(entry=>String(entry.id)===requested||entry.slug===requested)||entries[0]);else throw new Error('캐릭터 manifest가 비어 있습니다.');
 }catch(error){$('status').textContent=error.message;$('status').classList.add('error');console.error(error);}

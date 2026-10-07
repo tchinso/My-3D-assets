@@ -2,6 +2,7 @@
 
 Usage: python tools/render_characters.py --root . [--ids 1,2] [--skip-gif]
 Use --refresh-motions to preserve sheet turnarounds and redraw animation proofs.
+Use --sheets-only to render selected sheets without replacing collection previews.
 Dependencies: numpy>=2, Pillow>=10, moderngl>=5.12. No source corpus is required.
 """
 from __future__ import annotations
@@ -208,8 +209,9 @@ def character_sheet(root, entry, glb, hero_renderer, pose_renderer):
     return output
 
 
-def contact_sheet(entries, glbs, renderer, output, motion=None, fraction=0.3):
-    width, height = 2400, 1800
+def contact_sheet(entries, glbs, renderer, output, motion=None, fraction=0.3, *, columns=5, minimum_rows=2):
+    rows = max(minimum_rows, math.ceil(len(entries)/columns))
+    width, height = 60+columns*468, 173+rows*794+39
     canvas = Image.new("RGB", (width, height), PAPER)
     draw = ImageDraw.Draw(canvas)
     title = f"{motion.upper()} / MOTION STUDY" if motion else "CHARACTER COLLECTION"
@@ -218,7 +220,7 @@ def contact_sheet(entries, glbs, renderer, output, motion=None, fraction=0.3):
                 f"{len(entries)} designs / {len(MOTION_TIMES)} animation clips each")
     draw.text((56, 109), subtitle, font=font(25), fill=MUTED)
     for index, (entry, glb) in enumerate(zip(entries, glbs)):
-        x, y = 48+(index%5)*468, 173+(index//5)*794
+        x, y = 48+(index%columns)*468, 173+(index//columns)*794
         draw.rounded_rectangle((x, y, x+444, y+770), radius=24, fill="#FFFFFF", outline=LINE, width=2)
         accent = palette_colors(entry)[0]
         draw.rounded_rectangle((x+19, y+18, x+71, y+62), radius=10, fill=INK)
@@ -237,6 +239,8 @@ def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12
     # Show every exported clip, preserving one-shot terminal frames and run timing.
     frames = []
     durations = []
+    columns = 5
+    rows = max(2, math.ceil(len(entries)/columns))
     motions = list(MOTION_TIMES) if motions is None else list(motions)
     for motion in motions:
         motion_bounds = []
@@ -252,12 +256,12 @@ def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12
             span = high-low
             motion_bounds.append((low-span*0.03, high+span*0.03))
         for frame in range(frame_count):
-            canvas = Image.new("RGB", (1200, 840), PAPER)
+            canvas = Image.new("RGB", (1200, 58+rows*383+16), PAPER)
             draw = ImageDraw.Draw(canvas)
             heading(draw, f"{motion.upper()} / CHARACTER COLLECTION", (22, 13), 25)
             draw.text((1075, 15), f"{frame+1:02d} / {frame_count}", font=font(17), fill=MUTED)
             for index, (entry, glb) in enumerate(zip(entries, glbs)):
-                x, y = 12+(index%5)*238, 58+(index//5)*383
+                x, y = 12+(index%columns)*238, 58+(index//columns)*383
                 clip = clip_name(glb, motion)
                 duration = glb.duration(clip)
                 time = duration*frame/frame_count if motion in LOOP_MOTIONS else duration*frame/(frame_count-1)
@@ -270,7 +274,7 @@ def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12
                 draw.text((x+7, y+336), label, font=fit_font(draw, label, 17, 220, True), fill=INK)
             frames.append(canvas.quantize(colors=128))
         # Characters have different clip lengths; the median presents each study
-        # at its authored pace while keeping all ten phases aligned for comparison.
+        # at its authored pace while keeping every character aligned for comparison.
         milliseconds = int(np.median([glb.duration(clip_name(glb, motion)) for glb in glbs])*1000)
         frame_ms = max(30, round(milliseconds/frame_count/10)*10)
         durations.extend([frame_ms]*frame_count)
@@ -292,6 +296,8 @@ def main():
     parser.add_argument("--skip-gif", action="store_true")
     sheet_mode = parser.add_mutually_exclusive_group()
     sheet_mode.add_argument("--contacts-only", action="store_true")
+    sheet_mode.add_argument("--sheets-only", action="store_true",
+                            help="Render selected character sheets without touching collection previews")
     sheet_mode.add_argument("--refresh-motions", action="store_true",
                             help="Keep existing sheet static views and lineup; refresh motion panels and proofs")
     args = parser.parse_args()
@@ -326,14 +332,19 @@ def main():
                 output = (refresh_sheet_motions(entry, glb, pose) if args.refresh_motions
                           else character_sheet(root, entry, glb, hero, pose))
                 print(f"Sheet: {output.relative_to(root)}", flush=True)
-        if not args.refresh_motions:
-            contact_sheet(entries, glbs, contact, previews/"lineup.png")
-        for motion, fraction in MOTION_TIMES.items():
-            contact_sheet(entries, glbs, contact, previews/f"{motion.lower()}_poses.png", motion, fraction)
-        if not args.skip_gif:
-            animation_grid(entries, glbs, gif, previews/"motion_grid.gif")
-            animation_grid(entries, glbs, gif, previews/"run_grid.gif", motions=["Run"], frame_count=24)
-        print(f"Previews: {previews}", flush=True)
+        if not args.sheets_only:
+            if not args.refresh_motions:
+                contact_sheet(entries, glbs, contact, previews/"lineup.png")
+                additions = [(entry, glb) for entry, glb in zip(entries, glbs) if int(entry['id']) >= 11]
+                if additions:
+                    contact_sheet([pair[0] for pair in additions], [pair[1] for pair in additions],
+                                  contact, previews/"new_characters.png", columns=min(4, len(additions)), minimum_rows=1)
+            for motion, fraction in MOTION_TIMES.items():
+                contact_sheet(entries, glbs, contact, previews/f"{motion.lower()}_poses.png", motion, fraction)
+            if not args.skip_gif:
+                animation_grid(entries, glbs, gif, previews/"motion_grid.gif")
+                animation_grid(entries, glbs, gif, previews/"run_grid.gif", motions=["Run"], frame_count=24)
+            print(f"Previews: {previews}", flush=True)
     finally:
         for renderer in reversed(renderers):
             renderer.close()

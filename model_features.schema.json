@@ -9,7 +9,7 @@
       "format": "date"
     },
     "model_count": {
-      "const": 10
+      "const": 14
     },
     "classification_guide": {
       "type": "object",
@@ -58,8 +58,8 @@
     },
     "models": {
       "type": "object",
-      "minProperties": 10,
-      "maxProperties": 10,
+      "minProperties": 14,
+      "maxProperties": 14,
       "propertyNames": {
         "pattern": "^characters/.+\\.glb$"
       },
@@ -101,6 +101,7 @@
         "length": {
           "enum": [
             "짧은 머리",
+            "중간 길이",
             "긴 머리",
             "매우 긴 머리"
           ]
@@ -208,8 +209,22 @@
       "properties": {
         "id": {
           "type": "integer",
-          "minimum": 1,
-          "maximum": 10
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ]
         },
         "character": {
           "type": "string"
@@ -336,32 +351,47 @@
           "additionalProperties": false
         },
         "native_source_clips": {
-          "type": "object",
-          "properties": {
-            "Idle": {
-              "type": "string",
-              "minLength": 1
+          "oneOf": [
+            {
+              "type": "object",
+              "properties": {
+                "Idle": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "Walk": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "Victory": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "Idle",
+                "Walk",
+                "Victory"
+              ],
+              "additionalProperties": false
             },
-            "Walk": {
-              "type": "string",
-              "minLength": 1
-            },
-            "Victory": {
-              "type": "string",
-              "minLength": 1
+            {
+              "const": {}
             }
-          },
-          "required": [
-            "Idle",
-            "Walk",
-            "Victory"
-          ],
-          "additionalProperties": false
+          ]
         },
         "attack_motion": {
           "const": "custom skeletal animation"
         },
         "attack_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "walk_description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "victory_description": {
           "type": "string",
           "minLength": 1
         },
@@ -441,38 +471,19 @@
         },
         "source_roles": {
           "type": "object",
-          "properties": {
-            "costume_and_rig": {
-              "type": "string",
-              "pattern": "\\.glb$"
-            },
-            "hair": {
-              "type": "string",
-              "pattern": "\\.glb$"
-            },
-            "back_hair": {
-              "type": "string",
-              "pattern": "\\.glb$"
-            },
-            "ears": {
-              "type": "string",
-              "pattern": "\\.glb$"
-            },
-            "face": {
-              "type": "string",
-              "pattern": "\\.glb$"
-            },
-            "bare_legs_and_feet": {
-              "type": "string",
-              "pattern": "\\.glb$"
-            }
-          },
+          "minProperties": 3,
           "required": [
             "costume_and_rig",
             "hair",
             "face"
           ],
-          "additionalProperties": false
+          "propertyNames": {
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "\\.glb$"
+          }
         },
         "evidence": {
           "type": "object",

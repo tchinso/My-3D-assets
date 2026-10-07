@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-10-06T08:54:30.746803+00:00",
+  "generated_utc": "2026-10-07T10:18:26.376666+00:00",
   "root": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets",
-  "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks and PNG sheets",
+  "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks, new character walk/victory individuality and PNG sheets",
   "errors": [],
   "warnings": [],
   "characters": [
@@ -11,20 +11,24 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1164580,
-        "nodes": 222,
-        "meshes": 9,
+        "bytes": 1986648,
+        "nodes": 311,
+        "meshes": 43,
         "skins": 1,
-        "embedded_images": 7,
-        "accessors": 545,
+        "embedded_images": 8,
+        "accessors": 749,
         "skin_bind_residuals": [
           9.315243199026213e-08
         ],
-        "vertex_records": 6036,
-        "triangles": 7985,
+        "vertex_records": 15650,
+        "triangles": 25037,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
+          [
+            512,
+            512
+          ],
           [
             512,
             512
@@ -74,7 +78,8 @@
           "moving_channels": 97,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.2730997277238768
+          "sampled_geometry_max_displacement": 0.2730997277238768,
+          "anatomical_motion_fingerprint": "980b936eaf0a619939f9951560de9bc30855a77b394a8af4df61cc6cc3ec483b"
         },
         "Run": {
           "channels": 37,
@@ -101,14 +106,15 @@
               "min_elbow_drop_upperarm_ratio": 0.8599839257123358
             }
           },
-          "walk_normalized_phase_max_difference": 0.2771264561527517,
-          "walk_normalized_phase_rms_difference": 0.09213997148646337
+          "walk_normalized_phase_max_difference": 0.25849466990774733,
+          "walk_normalized_phase_rms_difference": 0.07431588174708519
         },
         "Attack": {
           "channels": 27,
           "duration_seconds": 1.5499999523162842,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
+          "description": "Ribbon rapier: measured fencing lunge and recovery",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.6586205867306522,
           "anatomical_motion_fingerprint": "c4536e6109ed94a44371529b70801b7fe24139c791a2b7bf9a2544bd313ff734"
@@ -127,7 +133,8 @@
           "moving_channels": 112,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.9511156426582671
+          "sampled_geometry_max_displacement": 0.9511156426582671,
+          "anatomical_motion_fingerprint": "5d7903ba86394c855f0c0c56c92d9856712380ee834b37fbde2313bc8874ffeb"
         },
         "Lose": {
           "channels": 27,
@@ -151,8 +158,8 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1899416,
-        "nodes": 160,
+        "bytes": 1745032,
+        "nodes": 215,
         "meshes": 35,
         "skins": 1,
         "embedded_images": 9,
@@ -160,8 +167,8 @@
         "skin_bind_residuals": [
           3.864936670705532e-08
         ],
-        "vertex_records": 13399,
-        "triangles": 18709,
+        "vertex_records": 10776,
+        "triangles": 15933,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -222,7 +229,8 @@
           "moving_channels": 96,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.37917398207527264
+          "sampled_geometry_max_displacement": 0.37917398207527264,
+          "anatomical_motion_fingerprint": "c58c6c199a1772d2392eb34498c455ce0620c7d232a10a0d8d141f3f9345fad8"
         },
         "Run": {
           "channels": 37,
@@ -249,14 +257,15 @@
               "min_elbow_drop_upperarm_ratio": 0.858025029600016
             }
           },
-          "walk_normalized_phase_max_difference": 0.4550715344819145,
-          "walk_normalized_phase_rms_difference": 0.10388444543425661
+          "walk_normalized_phase_max_difference": 0.47683980248872077,
+          "walk_normalized_phase_rms_difference": 0.10886720481898193
         },
         "Attack": {
           "channels": 37,
           "duration_seconds": 1.9500000476837158,
           "moving_channels": 37,
           "loop_endpoints_exact": false,
+          "description": "Crescent scythe: two-handed overhead reaping cut with inner edge leading",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.8546224451032614,
           "anatomical_motion_fingerprint": "2a3216d909c658f60d8fc5454e111db7bb284c717aa674fede547700e99e0598"
@@ -275,7 +284,8 @@
           "moving_channels": 123,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 1.0857058119176695
+          "sampled_geometry_max_displacement": 1.0857058119176695,
+          "anatomical_motion_fingerprint": "ec27809bdbe1f0eceadd78e9de9a6e13166f95d1846997b1f4fa18badeb7733f"
         },
         "Lose": {
           "channels": 27,
@@ -283,8 +293,8 @@
           "moving_channels": 27,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4083221498832275,
-          "terminal_pose_displacement": 0.4083221498832275,
+          "sampled_geometry_max_displacement": 0.4060290109701768,
+          "terminal_pose_displacement": 0.4060290109701768,
           "terminal_pose_hold_max_error": 3.840028741566517e-08
         }
       },
@@ -370,7 +380,8 @@
           "moving_channels": 77,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.36032832280930377
+          "sampled_geometry_max_displacement": 0.36032832280930377,
+          "anatomical_motion_fingerprint": "ecd758f57a1a8e8f36b73ce8a698077206164731ee54cdf91c4b2482ebc3707a"
         },
         "Run": {
           "channels": 37,
@@ -405,6 +416,7 @@
           "duration_seconds": 1.75,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
+          "description": "Azure wave: wide lateral trace followed by a flowing palm release",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.45283991850014366,
           "anatomical_motion_fingerprint": "69beddf3e3a02ef19a66713b199d9c5b2909c00d89b19eb0b6a0bf61b5f43f14"
@@ -423,7 +435,8 @@
           "moving_channels": 84,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 1.1920928955078125e-07,
-          "sampled_geometry_max_displacement": 0.5323590582893569
+          "sampled_geometry_max_displacement": 0.5323590582893569,
+          "anatomical_motion_fingerprint": "0fadd60403418eaadb614c5e58ede6ddfd9f8915185c7b29dfe3d2fe0475b67b"
         },
         "Lose": {
           "channels": 27,
@@ -514,7 +527,8 @@
           "moving_channels": 135,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.32711089062707266
+          "sampled_geometry_max_displacement": 0.32711089062707266,
+          "anatomical_motion_fingerprint": "12e5953161146c3e11ea0cb7ba20bacb8443af48247c487302f0ac8113bd1dbd"
         },
         "Run": {
           "channels": 33,
@@ -549,6 +563,7 @@
           "duration_seconds": 2.0999999046325684,
           "moving_channels": 25,
           "loop_endpoints_exact": false,
+          "description": "Tidal arc: overhead summoning circle and descending charm release",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.38075349663867486,
           "anatomical_motion_fingerprint": "d6ca35cb215419d569cdcf048c6802a28c353344b72d2f06aee791a89448dc5a"
@@ -567,7 +582,8 @@
           "moving_channels": 155,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.5132024933254943
+          "sampled_geometry_max_displacement": 0.5132024933254943,
+          "anatomical_motion_fingerprint": "7e744edb49cb691f98de06f4e15f8dbadd19d68abe1e7aac7b1976384c264cde"
         },
         "Lose": {
           "channels": 25,
@@ -654,7 +670,8 @@
           "moving_channels": 98,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.39207887800844005
+          "sampled_geometry_max_displacement": 0.39207887800844005,
+          "anatomical_motion_fingerprint": "1b28da40628b2a2b20c99e75cc71f530c29015cc04b015bfaddccec04763cbe6"
         },
         "Run": {
           "channels": 29,
@@ -689,6 +706,7 @@
           "duration_seconds": 1.600000023841858,
           "moving_channels": 23,
           "loop_endpoints_exact": false,
+          "description": "Rose pulse: two compact forward casts with a guarded free hand",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.3440243685755953,
           "anatomical_motion_fingerprint": "6164930a36ebbfeafafa0eec51fd48f07d8d2e47421eab9a8e7847f347690b55"
@@ -707,7 +725,8 @@
           "moving_channels": 144,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4626609104745484
+          "sampled_geometry_max_displacement": 0.4626609104745484,
+          "anatomical_motion_fingerprint": "711f129176df41ca926ab32e4506624b4f3e42cb8fba1411536f5ffc8c65dfd2"
         },
         "Lose": {
           "channels": 23,
@@ -794,7 +813,8 @@
           "moving_channels": 127,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3889805615822826
+          "sampled_geometry_max_displacement": 0.3889805615822826,
+          "anatomical_motion_fingerprint": "87deccf7b10b46bd459fd2f824e7998fa6d09e4c991a22497239c4650680a449"
         },
         "Run": {
           "channels": 33,
@@ -829,6 +849,7 @@
           "duration_seconds": 1.850000023841858,
           "moving_channels": 25,
           "loop_endpoints_exact": false,
+          "description": "Clover bloom: rising wand spiral and a small outward seed flick",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.5085002589493345,
           "anatomical_motion_fingerprint": "7bb65c6c9a5be1f3a077dd7d44f50596e5b08c5cfaf5d20836f6d71e0cec0dbc"
@@ -847,7 +868,8 @@
           "moving_channels": 163,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.8747178601686275
+          "sampled_geometry_max_displacement": 0.8747178601686275,
+          "anatomical_motion_fingerprint": "f5e250705a7212c850235e43944a6f3611914afa3785fa4f0bb5b18b08dc058c"
         },
         "Lose": {
           "channels": 25,
@@ -946,7 +968,8 @@
           "moving_channels": 80,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.37228270609660846
+          "sampled_geometry_max_displacement": 0.37228270609660846,
+          "anatomical_motion_fingerprint": "c3e92fe5f13e9f84bd0d9c2cc892730ed2674a8e23868ea9388d031a96280417"
         },
         "Run": {
           "channels": 37,
@@ -981,6 +1004,7 @@
           "duration_seconds": 1.5,
           "moving_channels": 37,
           "loop_endpoints_exact": false,
+          "description": "Cat pounce: lead paw jab followed by a rear paw cross",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.46434013325519036,
           "anatomical_motion_fingerprint": "b055dd047b59d74f473babbbbb5241b8056fafe724d6fad1c54fe673dbe7254b"
@@ -999,7 +1023,8 @@
           "moving_channels": 112,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3107659122056098
+          "sampled_geometry_max_displacement": 0.3107659122056098,
+          "anatomical_motion_fingerprint": "23b3dfb65bdaaf50f4a0200cb7e144c2e443543bb9a3d1656151e51da6d39693"
         },
         "Lose": {
           "channels": 37,
@@ -1023,20 +1048,92 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2199540,
-        "nodes": 152,
-        "meshes": 12,
+        "bytes": 2848344,
+        "nodes": 240,
+        "meshes": 30,
         "skins": 1,
-        "embedded_images": 7,
-        "accessors": 625,
+        "embedded_images": 25,
+        "accessors": 733,
         "skin_bind_residuals": [
-          5.2564138375288394e-08
+          5.55112897870913e-08
         ],
-        "vertex_records": 12717,
-        "triangles": 15192,
+        "vertex_records": 18076,
+        "triangles": 22894,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
           [
             512,
             512
@@ -1078,7 +1175,7 @@
           "moving_channels": 106,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.04259226932872541
+          "sampled_geometry_max_displacement": 0.018644241138555534
         },
         "Walk": {
           "channels": 119,
@@ -1086,7 +1183,8 @@
           "moving_channels": 108,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.38210759167609654
+          "sampled_geometry_max_displacement": 0.38210759167609654,
+          "anatomical_motion_fingerprint": "2607499c5e0cd2e7004fc7fc09ea46b7f06f8a1917fdb840bf8c41b31b99a205"
         },
         "Run": {
           "channels": 37,
@@ -1113,14 +1211,15 @@
               "min_elbow_drop_upperarm_ratio": 0.9191819104371854
             }
           },
-          "walk_normalized_phase_max_difference": 0.22228778450592243,
-          "walk_normalized_phase_rms_difference": 0.06476893669615456
+          "walk_normalized_phase_max_difference": 0.241454879793904,
+          "walk_normalized_phase_rms_difference": 0.04689259920051863
         },
         "Attack": {
           "channels": 27,
           "duration_seconds": 1.7999999523162842,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
+          "description": "Clockwork doll: alternating angular hand strikes with a ticking head",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.34023593152995935,
           "anatomical_motion_fingerprint": "513d50ab94e6dd1fe9268efdc472c48484d69a5a6752a8b0691f85297147e550"
@@ -1139,7 +1238,8 @@
           "moving_channels": 141,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.7382684360871433
+          "sampled_geometry_max_displacement": 0.7382684360871433,
+          "anatomical_motion_fingerprint": "134e8703eab1148db8322be18b1b3e76f0d3302a8078164e92a276bd2107ade0"
         },
         "Lose": {
           "channels": 27,
@@ -1147,8 +1247,8 @@
           "moving_channels": 27,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.46158428902748433,
-          "terminal_pose_displacement": 0.46158428010110425,
+          "sampled_geometry_max_displacement": 0.39671975739012905,
+          "terminal_pose_displacement": 0.3967197488757138,
           "terminal_pose_hold_max_error": 3.913690968402988e-08
         }
       },
@@ -1230,7 +1330,8 @@
           "moving_channels": 141,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 1.1920928955078125e-07,
-          "sampled_geometry_max_displacement": 0.3501585632098871
+          "sampled_geometry_max_displacement": 0.3501585632098871,
+          "anatomical_motion_fingerprint": "f4f8139f3f203410ed7a35b0168546a81bd761446715e14ace8947ba60e1ff67"
         },
         "Run": {
           "channels": 37,
@@ -1265,6 +1366,7 @@
           "duration_seconds": 1.850000023841858,
           "moving_channels": 27,
           "loop_endpoints_exact": false,
+          "description": "Peony fan: cross-body fan slice and outward wrist flourish",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.38270801192525356,
           "anatomical_motion_fingerprint": "356fe0f5bf4d53dcce09c187568c10c10e2882e908182defd41b53c02d5fdad1"
@@ -1283,7 +1385,8 @@
           "moving_channels": 157,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.6371325821360978
+          "sampled_geometry_max_displacement": 0.6371325821360978,
+          "anatomical_motion_fingerprint": "fcc74e64efa91b2fecd40a7c1a3d3a4ce7140e969a420d63cec79a0b653a48a1"
         },
         "Lose": {
           "channels": 27,
@@ -1370,7 +1473,8 @@
           "moving_channels": 105,
           "loop_endpoints_exact": true,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.28713652589302757
+          "sampled_geometry_max_displacement": 0.28713652589302757,
+          "anatomical_motion_fingerprint": "def9d83c5f0d05016e35660b7a8f3dd2d964cc18be29e847e86df10580cacf71"
         },
         "Run": {
           "channels": 33,
@@ -1405,6 +1509,7 @@
           "duration_seconds": 2.200000047683716,
           "moving_channels": 24,
           "loop_endpoints_exact": false,
+          "description": "Snow crystal: gather with both hands, raise, then release symmetrically",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.33990329776292566,
           "anatomical_motion_fingerprint": "36c7be44a16f553365e33b4b08ef529570333f30652e98da5a0fcbf261716cc6"
@@ -1423,7 +1528,8 @@
           "moving_channels": 148,
           "loop_endpoints_exact": false,
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.564269974732646
+          "sampled_geometry_max_displacement": 0.564269974732646,
+          "anatomical_motion_fingerprint": "6d34f9f87932ff62f7d92c5060f08ee65ad8c316c4084159b9c8d736991a5813"
         },
         "Lose": {
           "channels": 25,
@@ -1440,11 +1546,623 @@
       "id": 10,
       "name": "Nevia",
       "slug": "10_snow_buns"
+    },
+    {
+      "glb": "characters/11_quinn_adventurer/11_quinn_adventurer.glb",
+      "sheet": "characters/11_quinn_adventurer/11_quinn_adventurer_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1408108,
+        "nodes": 290,
+        "meshes": 53,
+        "skins": 1,
+        "embedded_images": 7,
+        "accessors": 585,
+        "skin_bind_residuals": [
+          3.992046215817169e-08
+        ],
+        "vertex_records": 11503,
+        "triangles": 15439,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 37,
+          "duration_seconds": 3.200000047683716,
+          "moving_channels": 16,
+          "loop_endpoints_exact": true,
+          "description": "Alert trailblazer: balanced low blades, a small scouting glance and breathing",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.0393931247999447
+        },
+        "Walk": {
+          "channels": 37,
+          "duration_seconds": 1.100000023841858,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Light adventurer steps with outward low blades, a forward lean and scouting head turns",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.09365214298982054,
+          "anatomical_motion_fingerprint": "376750885d552c359b61f143af25858070ab2d07093064d56fb071d743fc1e10"
+        },
+        "Run": {
+          "channels": 37,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Quick trailblazer sprint with both blades kept outside the body and compact knee drive",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.22085286726761047,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.1689196225811261,
+              "mean_outward_upperarm_ratio": 0.035820572699683736,
+              "min_elbow_flex_degrees": 67.5529210143325,
+              "max_elbow_flex_degrees": 81.07677065100708,
+              "min_elbow_drop_upperarm_ratio": 0.8829953127988562
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.16891691695479183,
+              "mean_outward_upperarm_ratio": 0.06320927483957418,
+              "min_elbow_flex_degrees": 67.55281639030154,
+              "max_elbow_flex_degrees": 81.07667157958335,
+              "min_elbow_drop_upperarm_ratio": 0.8829954202467537
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.14679668116973213,
+          "walk_normalized_phase_rms_difference": 0.031174353544286285
+        },
+        "Attack": {
+          "channels": 37,
+          "duration_seconds": 1.899999976158142,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "description": "Trailblazer daggers: left diagonal cut, right return cut and crossed recovery",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.5994418737210068,
+          "anatomical_motion_fingerprint": "81a025a80e98df8d6d7d6ace8e6ad8d5fe3f5dfef47881a3216bd50efad65bc9"
+        },
+        "Defend": {
+          "channels": 37,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "description": "daggers guard: enter, hold and recover",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3904327739038218
+        },
+        "Victory": {
+          "channels": 37,
+          "duration_seconds": 3.049999952316284,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "description": "Confident dagger salute, a quick left-hand flourish and a satisfied nod",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.4015952317249676,
+          "anatomical_motion_fingerprint": "460b1e90502080b4541f6195856144e4f659ab01ae4524a42d43dc186d728bfc"
+        },
+        "Lose": {
+          "channels": 37,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 37,
+          "loop_endpoints_exact": false,
+          "description": "Grounded defeated crouch with lowered head and held finish",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.4599106712029947,
+          "terminal_pose_displacement": 0.4599106712029947,
+          "terminal_pose_hold_max_error": 2.4397119164756555e-08
+        }
+      },
+      "status": "passed",
+      "id": 11,
+      "name": "Quinn",
+      "slug": "11_quinn_adventurer"
+    },
+    {
+      "glb": "characters/12_kimon_fox_idol/12_kimon_fox_idol.glb",
+      "sheet": "characters/12_kimon_fox_idol/12_kimon_fox_idol_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1195016,
+        "nodes": 340,
+        "meshes": 44,
+        "skins": 1,
+        "embedded_images": 8,
+        "accessors": 471,
+        "skin_bind_residuals": [
+          4.5554668925973374e-08
+        ],
+        "vertex_records": 9465,
+        "triangles": 12202,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 27,
+          "duration_seconds": 3.200000047683716,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Cheerful fox: a swaying hip pose, shoulder-high star baton and playful head tilt",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.05203766478281004
+        },
+        "Walk": {
+          "channels": 27,
+          "duration_seconds": 1.0499999523162842,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Buoyant fox steps with lifted toes, a swinging star baton and a jaunty free hand",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.10448938765107592,
+          "anatomical_motion_fingerprint": "13a09fe29c7e8a37281c8edc114206de9c1ac58d725c5cd9bb280b921eb8c5a9"
+        },
+        "Run": {
+          "channels": 27,
+          "duration_seconds": 0.800000011920929,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Bouncy fox dash with a high baton carry and a pumping free arm",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.21741519901877418,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.10710511896384672,
+              "mean_outward_upperarm_ratio": 0.028210859867753617,
+              "min_elbow_flex_degrees": 113.11495024231532,
+              "max_elbow_flex_degrees": 141.12903989865833,
+              "min_elbow_drop_upperarm_ratio": 0.6647495982308099
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.3616125428275108,
+              "mean_outward_upperarm_ratio": 0.2776848832183979,
+              "min_elbow_flex_degrees": 131.56301751845083,
+              "max_elbow_flex_degrees": 149.49431572577322,
+              "min_elbow_drop_upperarm_ratio": 0.8647497134639652
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.1293976725274681,
+          "walk_normalized_phase_rms_difference": 0.018819190384103703
+        },
+        "Attack": {
+          "channels": 27,
+          "duration_seconds": 2.049999952316284,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "description": "Fox-star baton: buoyant wind-up, zigzag star trace and forward bell flick",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.48218853004252316,
+          "anatomical_motion_fingerprint": "833e7a61854c8976ac244a9639f83fd19949c8e3f5a2f328d5572ce8f48b1954"
+        },
+        "Defend": {
+          "channels": 27,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "description": "fox_baton guard: enter, hold and recover",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.31092586629405605
+        },
+        "Victory": {
+          "channels": 37,
+          "duration_seconds": 3.299999952316284,
+          "moving_channels": 33,
+          "loop_endpoints_exact": false,
+          "description": "Two fox-ear hand beats, a side-to-side baton cheer and a little celebratory hop",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.39342445164354756,
+          "anatomical_motion_fingerprint": "95859da55266e1589b1b1f31f31167da8f678fbe329b63a8a200c719baac6a8e"
+        },
+        "Lose": {
+          "channels": 27,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "description": "Grounded defeated crouch with lowered head and held finish",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.4175234591720873,
+          "terminal_pose_displacement": 0.41752345282871955,
+          "terminal_pose_hold_max_error": 8.760016391361739e-09
+        }
+      },
+      "status": "passed",
+      "id": 12,
+      "name": "Kimon",
+      "slug": "12_kimon_fox_idol"
+    },
+    {
+      "glb": "characters/13_florielle_witch/13_florielle_witch.glb",
+      "sheet": "characters/13_florielle_witch/13_florielle_witch_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 1703504,
+        "nodes": 367,
+        "meshes": 87,
+        "skins": 1,
+        "embedded_images": 7,
+        "accessors": 719,
+        "skin_bind_residuals": [
+          5.2564138375288394e-08
+        ],
+        "vertex_records": 15244,
+        "triangles": 21610,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 27,
+          "duration_seconds": 3.200000047683716,
+          "moving_channels": 15,
+          "loop_endpoints_exact": true,
+          "description": "Thoughtful flower witch: upright staff, free hand over the spell book and a quiet glance",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.027259749888992546
+        },
+        "Walk": {
+          "channels": 27,
+          "duration_seconds": 1.5499999523162842,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Measured witch steps with an upright staff, restrained foot lift and gentle cape sway",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.06053261984133453,
+          "anatomical_motion_fingerprint": "dae52c74adce1522977f736818c2c1819014e611881a68f262edeb139af32c10"
+        },
+        "Run": {
+          "channels": 27,
+          "duration_seconds": 0.9200000166893005,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Purposeful witch dash with a stable upright staff and a free hand protecting the hat",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.22828010086902142,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.27106719266807855,
+              "mean_outward_upperarm_ratio": 0.2590659655798708,
+              "min_elbow_flex_degrees": 41.857620196001356,
+              "max_elbow_flex_degrees": 46.93715743156898,
+              "min_elbow_drop_upperarm_ratio": -0.9561938274594778
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.08578473752235559,
+              "mean_outward_upperarm_ratio": 0.07034131447842376,
+              "min_elbow_flex_degrees": 115.31285160499866,
+              "max_elbow_flex_degrees": 118.61237060407812,
+              "min_elbow_drop_upperarm_ratio": 0.8949195630905663
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.2430111042014353,
+          "walk_normalized_phase_rms_difference": 0.03706100265927892
+        },
+        "Attack": {
+          "channels": 27,
+          "duration_seconds": 2.450000047683716,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "description": "Flower witch: staff traces a summoning arc while the free hand writes a spell",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.4192676878363936,
+          "anatomical_motion_fingerprint": "cc192c0df41d307032a4d9ff5daebc0438da157abb3028f14f6babb1f3810b28"
+        },
+        "Defend": {
+          "channels": 27,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "description": "witch_staff guard: enter, hold and recover",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.30947997702913116
+        },
+        "Victory": {
+          "channels": 27,
+          "duration_seconds": 3.6500000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "description": "A theatrical hat-tip, an outward spell-hand flourish and a courteous bow",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3999908756699452,
+          "anatomical_motion_fingerprint": "f9531c6f46dc00efff493595d8836e36bbfe1bfc24493b113328ba7161d7b3ed"
+        },
+        "Lose": {
+          "channels": 27,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 27,
+          "loop_endpoints_exact": false,
+          "description": "Grounded defeated crouch with lowered head and held finish",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.40563800883421863,
+          "terminal_pose_displacement": 0.4056380024971178,
+          "terminal_pose_hold_max_error": 3.582985286491735e-08
+        }
+      },
+      "status": "passed",
+      "id": 13,
+      "name": "Florielle",
+      "slug": "13_florielle_witch"
+    },
+    {
+      "glb": "characters/14_rosaria_bride/14_rosaria_bride.glb",
+      "sheet": "characters/14_rosaria_bride/14_rosaria_bride_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 2727224,
+        "nodes": 371,
+        "meshes": 99,
+        "skins": 1,
+        "embedded_images": 10,
+        "accessors": 777,
+        "skin_bind_residuals": [
+          4.98219480116191e-08
+        ],
+        "vertex_records": 28223,
+        "triangles": 45875,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ]
+        ],
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 25,
+          "duration_seconds": 3.200000047683716,
+          "moving_channels": 15,
+          "loop_endpoints_exact": true,
+          "description": "Poised rose princess: bouquet close to the heart, a gentle head tilt and breathing",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.0081794793182273
+        },
+        "Walk": {
+          "channels": 25,
+          "duration_seconds": 1.649999976158142,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Small graceful barefoot steps with the bouquet held to the heart and the gown gathered aside",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.04527734614459927,
+          "anatomical_motion_fingerprint": "471525299ec97771fbd490c207c125d720007d8e96c4b7221fd9437335871fd3"
+        },
+        "Run": {
+          "channels": 25,
+          "duration_seconds": 1.0199999809265137,
+          "moving_channels": 17,
+          "loop_endpoints_exact": true,
+          "description": "Careful princess hurry with shortened strides, bouquet protected and the gown lifted aside",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.13473386381565675,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": -0.14481877267938315,
+              "mean_outward_upperarm_ratio": -0.15281993483020656,
+              "min_elbow_flex_degrees": 127.09459809340848,
+              "max_elbow_flex_degrees": 128.18999893240283,
+              "min_elbow_drop_upperarm_ratio": 0.7164598527373413
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": -0.0690248501191686,
+              "mean_outward_upperarm_ratio": -0.07659054765786928,
+              "min_elbow_flex_degrees": 117.36226457623033,
+              "max_elbow_flex_degrees": 119.20578602836092,
+              "min_elbow_drop_upperarm_ratio": 0.9935565989126617
+            }
+          },
+          "walk_normalized_phase_max_difference": 0.1367848105609266,
+          "walk_normalized_phase_rms_difference": 0.01222738042376284
+        },
+        "Attack": {
+          "channels": 25,
+          "duration_seconds": 2.549999952316284,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "description": "Rose blessing: cradle the bouquet, extend its flowers and sink into a gentle curtsy",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3709663825347045,
+          "anatomical_motion_fingerprint": "3e598bffbad61528f9363af8c99f69058887df6ee51aa94826e6ad406ad7374c"
+        },
+        "Defend": {
+          "channels": 25,
+          "duration_seconds": 1.7999999523162842,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "description": "bouquet guard: enter, hold and recover",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3557152698141418
+        },
+        "Victory": {
+          "channels": 25,
+          "duration_seconds": 3.75,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "description": "A deep royal curtsy, a gracious bouquet presentation and a warm head tilt",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3532127817594131,
+          "anatomical_motion_fingerprint": "9d7b56c14ff6d86613ee305c77ad39f7c37bd514441de18f84365bd7f2b9355b"
+        },
+        "Lose": {
+          "channels": 25,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 25,
+          "loop_endpoints_exact": false,
+          "description": "Grounded defeated crouch with lowered head and held finish",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_geometry_max_displacement": 0.3407760310641897,
+          "terminal_pose_displacement": 0.3407760310641897,
+          "terminal_pose_hold_max_error": 1.4641313744576635e-08
+        }
+      },
+      "status": "passed",
+      "id": 14,
+      "name": "Rosaria",
+      "slug": "14_rosaria_bride"
     }
   ],
   "summary": {
-    "characters": 10,
-    "passed": 10,
+    "characters": 14,
+    "passed": 14,
     "errors": 0,
     "warnings": 0,
     "status": "passed",
