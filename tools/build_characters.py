@@ -10,7 +10,7 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = Path('C:/Codex/BlueArchiveGLB')
+SOURCE = Path('C:/Codex/BlueArchive-GLB')
 DTYPES = {5121:'u1',5123:'<u2',5125:'<u4',5126:'<f4'}
 COMP = {'SCALAR':1,'VEC2':2,'VEC3':3,'VEC4':4,'MAT4':16}
 
@@ -430,7 +430,8 @@ class Builder:
             tint((np.max(color,axis=2)<125)&~white,'#bcc5df',True)
         alpha=p['mat'].get('alphaMode','OPAQUE')
         if alpha=='OPAQUE':a[:,:,3]=255
-        return Image.fromarray(a)
+        from costume_filters import repaint_marks
+        return repaint_marks(self.c['id'], p['mat']['name'], Image.fromarray(a))
     def wardrobe_material(self,name,p,im):
         mi=self.material(name,'#ffffff',im);m=self.doc['materials'][mi]
         m['alphaMode']=p['mat'].get('alphaMode','OPAQUE');m['doubleSided']=p['mat'].get('doubleSided',True)
@@ -790,6 +791,10 @@ class Builder:
             self.ellipsoid('Signature charm',(x,y+.045,z),(.027,.03,.017),accent,bone)
             self.tube('Charm stem',[[x,y-.025,z],[x,y+.06,z]],[.004,.004],gold,bone)
     def finish(self):
+        if self.c['id'] == 1:
+            self.appearance_fit['garment_mark'] = {'method':'Restored local navy textile across the removed bracket logo', 'source_material':'CH0201_Body', 'atlas_pixels':[429,184,466,225]}
+        elif self.c['id'] == 5:
+            self.appearance_fit['school_crest'] = {'design':'Rose Academy shield, rose, laurel, open book and star with champagne gold frame', 'source_material':'CH0167_Body', 'method':'Repainted original mirrored badge atlas; original badge geometry and skin preserved'}
         inverse=np.array([np.linalg.inv(self.world[i]).T.reshape(-1)for i in self.joint]);self.doc['skins']=[{'name':'Unified SD character rig','joints':self.joint,'inverseBindMatrices':self.acc(inverse,'MAT4'),'skeleton':0}]
         # Skin accessors currently contain node ids. Convert to final joint slots.
         slots={ni:i for i,ni in enumerate(self.joint)}
@@ -800,6 +805,15 @@ class Builder:
         add_animations(self.doc,self.acc,self.c['id'],self.c['attack'])
         native=(add_donor_animations(self.doc,self.acc,self.src.doc,self.src.acc,self.source_node_map,self.c['id'],self.c['attack'])
                 if self.c['id']<11 else {})
+        from source_motion_refresh import add_catalog_motions
+        native.update(add_catalog_motions(self))
+        motion_sources = dict(getattr(self, 'motion_sources', {}))
+        for clip_name, source_clip in native.items():
+            motion_sources.setdefault(clip_name, {
+                'source_file': self.src.name+'.glb', 'source_clip': source_clip,
+                'adaptation': ['original costume rig tracks', 'in-place travel removal', 'exact loop closure' if clip_name in ('Idle','Walk','Run') else 'one-shot playback'],
+                'description': 'Preserved original costume animation',
+            })
         source_roles={'costume_and_rig':self.src.name+'.glb','hair':self.c['hair']+'.glb','face':self.c['face']+'.glb'}
         if self.c['id']==1:source_roles['ahoge']='Erika.glb'
         if self.c['id']==1:source_roles['tail_hair']='Yoshimi.glb'
@@ -810,13 +824,14 @@ class Builder:
         if self.c['id']in(3,6):source_roles['bare_legs_and_feet']='Hina (Swimsuit).glb'
         if self.c['id']>=11:
             source_roles.update(self.c.get('extra_source_roles',{}))
+        source_roles.update({'motion_'+name.lower(): record['source_file'] for name,record in motion_sources.items()})
         source_parts=list(dict.fromkeys(source_roles.values()))
         triangles=sum(self.doc['accessors'][p['indices']]['count']//3 for m in self.doc['meshes']for p in m['primitives'])
         created='2026-10-07'if self.c['id']>=11 else'2026-10-06'
-        self.doc['extras']={'character':self.c['name'],'design_ko':self.c['design'],'created':created,'source_parts':source_parts,'source_roles':source_roles,'original_work':'Actual donor garment topology, selectively repainted source atlases, original accessories, fitted chin/neck and authored animation','head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native,'revision':4,'triangles':triangles}
+        self.doc['extras']={'character':self.c['name'],'design_ko':self.c['design'],'created':created,'modified':'2026-10-08','source_parts':source_parts,'source_roles':source_roles,'original_work':'Original textured donor garment topology, tailored accessories, fitted chin/neck, catalog-selected original motions and prop-aware authored attacks','head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native,'motion_sources':motion_sources,'revision':5,'triangles':triangles}
         self.doc['buffers']=[{'byteLength':len(self.data)}];js=json.dumps(self.doc,ensure_ascii=False,separators=(',',':')).encode();js+=b' '*((-len(js))%4);binary=bytes(self.data)+b'\0'*((-len(self.data))%4)
         out=ROOT/'characters'/self.c['slug'];out.mkdir(parents=True,exist_ok=True);path=out/(self.c['slug']+'.glb');path.write_bytes(struct.pack('<III',0x46546c67,2,12+8+len(js)+8+len(binary))+struct.pack('<II',len(js),0x4e4f534a)+js+struct.pack('<II',len(binary),0x004e4942)+binary)
-        return {'id':self.c['id'],'slug':self.c['slug'],'name':self.c['name'],'name_ko':self.c['name_ko'],'tagline':self.c['tagline'],'palette':self.c['palette'],'design':self.c['design'],'source_parts':source_parts,'source_roles':source_roles,'animations':[a['name']for a in self.doc['animations']],'glb':str(path.relative_to(ROOT)).replace('\\','/'),'sheet':f'characters/{self.c["slug"]}/{self.c["slug"]}_sheet.png','bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'revision':4,'costume_source':self.src.name+'.glb','triangles':triangles,'head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native}
+        return {'id':self.c['id'],'slug':self.c['slug'],'name':self.c['name'],'name_ko':self.c['name_ko'],'tagline':self.c['tagline'],'palette':self.c['palette'],'design':self.c['design'],'source_parts':source_parts,'source_roles':source_roles,'animations':[a['name']for a in self.doc['animations']],'glb':str(path.relative_to(ROOT)).replace('\\','/'),'sheet':f'characters/{self.c["slug"]}/{self.c["slug"]}_sheet.png','bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'revision':5,'costume_source':self.src.name+'.glb','triangles':triangles,'head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native,'motion_sources':motion_sources}
 
 def main():
     global SOURCE

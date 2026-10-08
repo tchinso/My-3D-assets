@@ -235,7 +235,7 @@ def contact_sheet(entries, glbs, renderer, output, motion=None, fraction=0.3, *,
     canvas.save(output, optimize=True)
 
 
-def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12):
+def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12, angle=18):
     # Show every exported clip, preserving one-shot terminal frames and run timing.
     frames = []
     durations = []
@@ -268,7 +268,7 @@ def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12
                 mesh = glb.meshes(clip, time) if clip else glb.meshes()
                 # A frame-independent camera prevents the model from changing scale.
                 bounds = motion_bounds[index]
-                image = renderer.render(glb, mesh, angle=18, bounds=bounds, background=RENDER_BG)
+                image = renderer.render(glb, mesh, angle=angle, bounds=bounds, background=RENDER_BG)
                 canvas.paste(image, (x, y))
                 label = f"{int(entry['id']):02d} {entry.get('name', entry['slug'])}"
                 draw.text((x+7, y+336), label, font=fit_font(draw, label, 17, 220, True), fill=INK)
@@ -282,6 +282,33 @@ def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12
             durations[-1] = max(500, frame_ms)
     frames[0].save(output, save_all=True, append_images=frames[1:], duration=durations,
                    loop=0, disposal=2, optimize=False)
+
+
+def run_side_sequence(entries, glbs, renderer, output):
+    """Six side views per native running cycle, with a fixed camera per row."""
+    phases = (0, 1/6, 2/6, 3/6, 4/6, 5/6)
+    canvas = Image.new('RGB', (1240, 88+len(entries)*258), PAPER)
+    draw = ImageDraw.Draw(canvas)
+    heading(draw, 'RUN / ORIGINAL MOTION SIDE STUDIES', (22, 15), 27)
+    draw.text((22, 51), 'Six normalized phases per character / exported GLB tracks', font=font(17), fill=MUTED)
+    for row, (entry, glb) in enumerate(zip(entries, glbs)):
+        duration = glb.duration('Run')
+        meshes = [glb.meshes('Run', duration*phase) for phase in phases]
+        lows, highs = zip(*(mesh_bounds(mesh) for mesh in meshes))
+        bounds = (np.min(lows,axis=0), np.max(highs,axis=0))
+        y = 88+row*258
+        for col, mesh in enumerate(meshes):
+            frame = renderer.render(glb, mesh, angle=90, bounds=bounds, background=RENDER_BG)
+            frame = frame.resize((151, 219), Image.Resampling.LANCZOS)
+            canvas.paste(frame, (264+col*158, y))
+        label = f"{int(entry['id']):02d} {entry['name']}"
+        draw.text((22,y+49), label, font=font(22,True), fill=INK)
+        source = entry.get('motion_sources',{}).get('Run',{})
+        for i, text in enumerate(wrap_text(draw, source.get('source_file',''), font(15), 220)):
+            draw.text((22,y+82+i*19),text,font=font(15),fill=MUTED)
+        draw.text((22,y+127),source.get('source_clip',''),font=font(15),fill=MUTED)
+        draw.text((22,y+149),f'{duration:.2f} s / in place',font=font(15),fill=MUTED)
+    canvas.save(output)
 
 
 def load_entries(root):
@@ -341,9 +368,11 @@ def main():
                                   contact, previews/"new_characters.png", columns=min(4, len(additions)), minimum_rows=1)
             for motion, fraction in MOTION_TIMES.items():
                 contact_sheet(entries, glbs, contact, previews/f"{motion.lower()}_poses.png", motion, fraction)
+            run_side_sequence(entries, glbs, gif, previews/'run_side_sequence.png')
             if not args.skip_gif:
                 animation_grid(entries, glbs, gif, previews/"motion_grid.gif")
                 animation_grid(entries, glbs, gif, previews/"run_grid.gif", motions=["Run"], frame_count=24)
+                animation_grid(entries, glbs, gif, previews/'run_side_grid.gif', motions=['Run'], frame_count=24, angle=90)
             print(f"Previews: {previews}", flush=True)
     finally:
         for renderer in reversed(renderers):

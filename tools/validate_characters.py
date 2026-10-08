@@ -259,7 +259,7 @@ class Asset:
         return self.world(overrides)
 
 
-def sample_geometry(asset):
+def sample_geometry(asset, max_vertices=64):
     """Representative referenced vertices, including every visible mesh primitive."""
     samples = []
     nodes = asset.doc.get("nodes", [])
@@ -285,7 +285,8 @@ def sample_geometry(asset):
             ids = np.unique(asset.accessor(primitive["indices"]).ravel()) if "indices" in primitive else np.arange(len(positions))
             if not len(ids):
                 continue
-            ids = ids[np.linspace(0, len(ids)-1, min(64, len(ids)), dtype=int)].astype(int)
+            if max_vertices is not None:
+                ids = ids[np.linspace(0, len(ids)-1, min(max_vertices, len(ids)), dtype=int)].astype(int)
             position = positions[ids].astype(float)
             if "skin" in node and "JOINTS_0" in attrs:
                 skin = asset.doc["skins"][node["skin"]]
@@ -428,6 +429,21 @@ def attack_fingerprint(asset, rest_world, posed_worlds):
     return hashlib.sha256(prefix+payload).hexdigest()
 
 
+def run_leg_metrics(asset, rest_world, posed_worlds):
+    """Measure stride around the pelvis, independent of root travel and size."""
+    bones = anatomical_bones(asset)
+    pelvis = bones['Bip001 Pelvis']
+    result = {}
+    for side in ('L', 'R'):
+        thigh, calf, foot = (bones[f'Bip001 {side} {part}'] for part in ('Thigh', 'Calf', 'Foot'))
+        length = (np.linalg.norm(rest_world[calf][:3,3]-rest_world[thigh][:3,3])
+                  + np.linalg.norm(rest_world[foot][:3,3]-rest_world[calf][:3,3]))
+        points = np.array([world[foot][:3,3]-world[pelvis][:3,3] for world in posed_worlds])
+        result[side] = {'fore_aft_stride_leg_lengths': float(np.ptp(points[:,2])/length),
+                        'vertical_stride_leg_lengths': float(np.ptp(points[:,1])/length)}
+    return result
+
+
 def check_asset(path, sheet_path=None, skip_sheets=False):
     report = {"glb": str(path), "sheet": str(sheet_path) if sheet_path else None,
               "errors": [], "warnings": [], "metrics": {}, "animations": {}}
@@ -567,6 +583,8 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
         if world and not errors:
             try:
                 geometry_samples = sample_geometry(asset)
+                ground_reference = float(pose_samples(sample_geometry(asset,None),world)[:,1].min())
+                metrics['rest_geometry_floor_y'] = ground_reference
             except Exception as exc:
                 errors.append(f"Geometry sampling: {exc}")
         names = [animation.get("name", "") for animation in animations]
@@ -580,6 +598,14 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
                     "moving_channels": 0, "loop_endpoints_exact": name in LOOP_CLIPS}
             if animation.get("extras", {}).get("description"):
                 clip["description"] = animation["extras"]["description"]
+            provenance = doc.get('extras', {}).get('motion_sources', {}).get(name)
+            if provenance:
+                clip['source_file'] = provenance['source_file']
+                clip['source_clip'] = provenance['source_clip']
+                require(provenance['source_file'] in doc.get('extras', {}).get('source_parts', []),
+                        f"Animation {name} donor is missing from source_parts")
+                require(doc.get('extras', {}).get('native_clips', {}).get(name) == provenance['source_clip'],
+                        f"Animation {name} original clip differs from its provenance")
             report["animations"][name] = clip
             if name in REQUIRED_CLIPS:
                 require(animation.get("extras", {}).get("loop") is (name in LOOP_CLIPS),
@@ -637,6 +663,11 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
                     first = poses[0]
                     if not len(first):
                         raise ValueError("No visible geometry samples")
+                    if provenance and animation.get('extras',{}).get('geometryFloorFit'):
+                        minimum_y = min(float(posed[:,1].min()) for posed in poses)
+                        clip['sampled_minimum_ground_gap'] = minimum_y-ground_reference
+                        require(minimum_y >= ground_reference-2e-4,
+                                f"Animation {name} deformed geometry crosses the rest ground")
                     maximum_displacement = 0.
                     for posed in poses[1:]:
                         require(np.isfinite(posed).all(), f"Animation {name} deformed positions are nonfinite")
@@ -650,17 +681,25 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
                         sampled_poses[name] = np.asarray(poses)
                     if name == "Run":
                         clip["anatomical_arms"] = run_arm_metrics(asset, world, worlds)
-                        for side, arm in clip["anatomical_arms"].items():
-                            require(arm["mean_outward_upperarm_ratio"] <= .60,
-                                    f"Animation Run {side} elbow remains spread through the cycle "
-                                    f"(mean {arm['mean_outward_upperarm_ratio']:.3f} upper-arm lengths)")
-                            require(arm["max_outward_upperarm_ratio"] <= .75,
-                                    f"Animation Run {side} elbow spreads too far outward "
-                                    f"({arm['max_outward_upperarm_ratio']:.3f} upper-arm lengths)")
-                            require(arm["min_elbow_flex_degrees"] >= 25.,
-                                    f"Animation Run {side} elbow remains too straight "
-                                    f"({arm['min_elbow_flex_degrees']:.1f} degrees flexion)")
-                    if name in ("Walk", "Attack", "Victory"):
+                        if provenance:
+                            # Donors use character-specific arm carriage (staff,
+                            # skirt, idol gestures). Measure it without forcing
+                            # every character into the former common arm pose.
+                            cycle_worlds = [asset.animated_world(animation, clip['duration_seconds']*fraction)
+                                            for fraction in np.linspace(0, 1, 25)]
+                            clip['anatomical_legs'] = run_leg_metrics(asset, world, cycle_worlds)
+                            for side, leg in clip['anatomical_legs'].items():
+                                require(leg['fore_aft_stride_leg_lengths'] > .25,
+                                        f"Animation Run {side} has insufficient running stride")
+                        else:
+                            for side, arm in clip["anatomical_arms"].items():
+                                require(arm["mean_outward_upperarm_ratio"] <= .60,
+                                        f"Animation Run {side} elbow remains spread through the cycle")
+                                require(arm["max_outward_upperarm_ratio"] <= .75,
+                                        f"Animation Run {side} elbow spreads too far outward")
+                                require(arm["min_elbow_flex_degrees"] >= 25.,
+                                        f"Animation Run {side} elbow remains too straight")
+                    if name in ("Walk", "Run", "Attack", "Defend", "Victory", "Lose"):
                         fingerprint = attack_fingerprint(asset, world, worlds)
                         if fingerprint:
                             clip["anatomical_motion_fingerprint"] = fingerprint
@@ -718,7 +757,7 @@ def main():
     args = parser.parse_args()
     root = args.root.resolve()
     report = {"generated_utc": datetime.now(timezone.utc).isoformat(), "root": str(root),
-              "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks, new character walk/victory individuality and PNG sheets",
+              "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, original motion provenance, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
               "errors": [], "warnings": [], "characters": []}
     try:
         manifest = json.loads((root/"characters"/"manifest.json").read_text(encoding="utf-8"))
@@ -752,17 +791,27 @@ def main():
                 result["errors"].append("GLB size differs from manifest bytes")
                 result["status"] = "failed"
             report["characters"].append(result)
-        gestures = {name: {} for name in ("Walk", "Attack", "Victory")}
+        gestures = {name: {} for name in ("Walk", "Run", "Attack", "Defend", "Victory", "Lose")}
+        donor_choices = {name: {} for name in ('Run', 'Defend', 'Lose')}
         for character in report["characters"]:
             for name, seen in gestures.items():
                 clip = character["animations"].get(name, {})
+                if name in donor_choices:
+                    source = clip.get('source_file')
+                    require_source = source and clip.get('source_clip')
+                    if not require_source:
+                        report['errors'].append(f"{character['slug']} {name} lacks original motion provenance")
+                    elif source in donor_choices[name]:
+                        report['errors'].append(f"{name} donor {source} is reused by {donor_choices[name][source]} and {character['slug']}")
+                    else:
+                        donor_choices[name][source] = character['slug']
                 if int(character["id"]) >= 11 and not clip.get("description"):
                     report["errors"].append(f"{character['slug']} {name} lacks its authored motion description")
                 fingerprint = clip.get("anatomical_motion_fingerprint")
                 if not fingerprint:
                     continue
                 earlier = seen.get(fingerprint)
-                if earlier and (name == "Attack" or int(character["id"]) >= 11 or int(earlier["id"]) >= 11):
+                if earlier and (name in ("Run", "Attack", "Defend", "Lose") or int(character["id"]) >= 11 or int(earlier["id"]) >= 11):
                     report["errors"].append(
                         f"{name} gesture is duplicated between {earlier['slug']} and {character['slug']}")
                 else:

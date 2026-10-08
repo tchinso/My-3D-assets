@@ -9,6 +9,102 @@ bare legs and the bloomer/frill islands remain intact.
 from __future__ import annotations
 
 import numpy as np
+from PIL import Image, ImageDraw
+
+
+def repaint_marks(cid, material_name, image):
+    """Replace two donor marks in their exact 512-pixel body-atlas islands.
+
+    This runs after the costume hue pass. Source images remain untouched, as
+    do all pixels outside the local skirt logo and school-medal atlas regions.
+    Reisa's badge uses a mirrored half-island, whose center seam is U345/512.
+    """
+    if image.size != (512, 512):
+        return image
+    if cid == 1 and material_name == 'CH0201_Body':
+        a = np.array(image).copy()
+        # Reconstruct the navy cloth from the clean pixels on either side of
+        # the brackets and their underline, including the printed dark halo.
+        x0, x1, y0, y1 = 429, 466, 184, 225
+        t = np.linspace(0, 1, x1-x0)[None, :, None]
+        left = a[y0:y1, x0-1, :3].astype(float)[:, None, :]
+        right = a[y0:y1, x1, :3].astype(float)[:, None, :]
+        a[y0:y1, x0:x1, :3] = np.rint(left*(1-t)+right*t).astype('u1')
+        return Image.fromarray(a)
+    if cid != 5 or material_name != 'CH0167_Body':
+        return image
+    a = np.array(image).copy()
+    # The old white emblem occupies a uniform dark badge island. The nearest
+    # clean pixels on the same rows recover its already-tinted fabric color.
+    a[90:174, 338:388, :3] = a[90:174, 393:394, :3]
+    # These three lime swatches are used exclusively by the medal's top gems
+    # and outer frame (11/7/15-vertex source components), not blazer fabric.
+    patch = a[84:181, 306:338, :3]
+    r, g, b = patch.astype(float).transpose(2, 0, 1)
+    lime = (r > 150) & (g > 190) & (b < 160) & (g > b*1.3)
+    shade = np.clip(g/235, .72, 1.03)
+    patch[lime] = np.clip(np.array([224, 192, 128])*shade[lime, None], 0, 255).astype('u1')
+    base = Image.fromarray(a)
+    scale = 4
+    overlay = Image.new('RGBA', (512*scale, 512*scale), (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    gold = (227, 195, 137, 255)
+    ivory = (250, 245, 224, 255)
+    rose = (219, 151, 177, 255)
+    rose_shade = (154, 90, 121, 255)
+
+    def xy(points):
+        return [(int(round(x*scale)), int(round(y*scale))) for x, y in points]
+
+    def line(points, color, width=1.4):
+        draw.line(xy(points), fill=color, width=round(width*scale), joint='curve')
+
+    def polygon(points, color):
+        draw.polygon(xy(points), fill=color)
+
+    def ellipse(box, fill, outline=None, width=1):
+        draw.ellipse(tuple(int(round(v*scale)) for v in box), fill=fill,
+                     outline=outline, width=round(width*scale))
+
+    # Only the right half of this design is stored. The source badge mirrors
+    # it across U345, producing a centered rose, paired laurels and open book.
+    line([(345, 78), (399, 66), (391, 118), (382, 151),
+          (365, 177), (345, 190)], gold, 1.8)
+    line([(345, 82), (395, 71), (387, 118), (378, 150),
+          (362, 173), (345, 185)], ivory, .7)
+    polygon([(345, 89), (347, 94), (352, 96), (347, 98),
+             (345, 103), (343, 98), (338, 96), (343, 94)], gold)
+    # Four visible half-petals become an eight-petal academy rose on the mesh.
+    for dx, dy in [(0, -11), (8, -8), (11, 0), (8, 8), (0, 11)]:
+        ellipse((345+dx-6, 122+dy-7, 345+dx+6, 122+dy+7), rose, ivory, .8)
+    ellipse((340, 117, 350, 127), rose_shade, gold, 1)
+    ellipse((343, 120, 347, 124), gold)
+    line([(356, 160), (367, 148), (372, 134), (372, 115), (369, 107)], gold, 1.3)
+    for points in [
+            [(361, 155), (369, 153), (367, 146)],
+            [(366, 147), (375, 144), (371, 137)],
+            [(370, 137), (379, 132), (372, 127)],
+            [(372, 126), (379, 120), (371, 117)],
+            [(371, 116), (377, 109), (369, 108)],
+            [(364, 151), (357, 148), (359, 156)],
+            [(369, 141), (362, 138), (364, 148)],
+            [(372, 130), (365, 127), (367, 139)],
+            [(372, 119), (365, 115), (367, 127)]]:
+        polygon(points, gold)
+    polygon([(345, 159), (355, 155), (361, 156), (361, 168),
+             (354, 166), (345, 170)], ivory)
+    line([(345, 159), (355, 155), (361, 156), (361, 168),
+          (354, 166), (345, 170)], gold, 1)
+    line([(345, 163), (353, 159), (358, 160)], rose_shade, .65)
+    line([(345, 167), (353, 163), (358, 164)], rose_shade, .65)
+    # Restrict antialiasing to the half-island. Its unused left side must not
+    # bleed the motif into the neighboring color swatches at the center seam.
+    overlay = overlay.resize((512, 512), Image.Resampling.LANCZOS)
+    mask = Image.new('L', (512, 512), 0)
+    ImageDraw.Draw(mask).rectangle((345, 61, 404, 196), fill=255)
+    overlay.putalpha(Image.fromarray(np.minimum(np.array(overlay.getchannel('A')),
+                                               np.array(mask))))
+    return Image.alpha_composite(base, overlay)
 
 
 def _inside(lo, hi, rect, epsilon=.002):

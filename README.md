@@ -16,28 +16,28 @@
 | 08 | 로제트 / Rosette | 파스텔 분홍 어깨 길이의 넓은 2회 롤 트윈테일·민트/아쿠아색 끝·중앙 앞머리 컬, 빨강 인형 드레스·흰 팬티스타킹 | `characters/08_carmine_doll` |
 | 09 | 메이린 / Meilin | 풍성한 검갈색 트윈테일·빨강/금색 머리 장식, 옆트임 빨강 치파오, 맨다리 | `characters/09_crimson_qipao` |
 | 10 | 네비아 / Nevia | 흰 긴 웨이브와 양쪽 번, 구름 의상, 흰 팬티스타킹 | `characters/10_snow_buns` |
-| 11 | 퀸 / Quinn | 갈색 긴 트윈테일·붉은 리본, 가죽색 모험가 의상·프릴·옆 가방, 쌍단검 | `characters/11_quinn_adventurer` |
+| 11 | 퀸 / Quinn | 짙은 갈색 웨이브 트윈테일·붉은 리본, 차콜 크롭 재킷·흰 크라바트·보석 커프스·가죽 치마·은색 버클과 체인, 쌍단검 | `characters/11_quinn_adventurer` |
 | 12 | 키몬 / Kimon | 황금색 단발·여우 귀, 크림·주황·청록 아이돌 의상, 분리형 소매·긴 치마 패널, 별 배턴 | `characters/12_kimon_fox_idol` |
 | 13 | 플로리엘 / Florielle | 적갈색 긴 컬·꽃 달린 마녀 모자, 분홍·크림 프릴 드레스·별무늬 망토, 지팡이와 책·흰 팬티스타킹 | `characters/13_florielle_witch` |
 | 14 | 로사리아 / Rosaria | 연금발 긴 컬·보석 왕관, 흰색 겹프릴 하이로 웨딩 드레스, 장미 부케·맨발 | `characters/14_rosaria_bride` |
 
 `characters/manifest.json`에 파일 경로·색·디자인·원본 파츠가 기록되어 있습니다. 저장소 루트의 `models.json`, `model_features.json`, `model_features.schema.json`은 14명의 카탈로그입니다. 원본의 동일 이름 데이터와 렌더 자료로 파츠를 선정했습니다. 원본 폴더는 수정하지 않습니다.
 
-11–14번은 이번에 전달한 네 참고 이미지의 머리·의상 실루엣과 색상을 기준으로 추가했습니다. 원본의 의상·머리·얼굴·귀 파츠와 골격을 조합하고, 모험가 장식·아이돌 치마 패널·마녀 소품·웨딩 겹프릴처럼 필요한 요소를 수정하거나 추가했습니다. 실제 사용한 원본은 manifest와 카탈로그의 `source_roles`에, 추가 형상은 제작 코드와 GLB의 `extras`에 기록합니다.
+11–14번은 기존 참고 이미지의 머리·의상 실루엣과 색상을 기준으로 추가했습니다. 2026-10-08 수정에서는 Quinn을 두 새 사진에 맞춰 차콜 재킷·크라바트·커프스·가죽 장식으로 조정했습니다. Kimon의 원본 플리츠, Florielle의 원본 주름 소매·직물 망토, Rosaria의 원본 레이스 프릴과 새틴 자수로 의상의 세부 표현을 보강했습니다. 실제 사용한 원본은 manifest와 카탈로그의 `source_roles`에, 추가 형상은 제작 코드와 GLB의 `extras`에 기록합니다.
 
 Quinn의 트윈테일 뿌리와 붉은 리본은 실제 두피·머리 표면에 맞춰 피팅하고, 리본이 머리 뿌리 골격을 함께 따르도록 연결했습니다. 크라바트·브로치·가방 장식도 몸과 의상 표면에 맞췄습니다. `previews/quinn_attachment_changes.png`에서 정확한 측면의 부착 전후를 비교할 수 있습니다.
 
 소라는 추가로 전달한 머리·교복 참고 이미지에 맞춰 변경했습니다. Azusa (Swimsuit)의 뾰족한 중앙 앞머리와 얼굴 옆 머리, Miyo의 묶이지 않은 긴 웨이브, Serika의 실제 라펠·주머니·주름치마를 조합했습니다. 기존 폴더 이름 `03_sky_cardigan`은 파일 경로 호환을 위해 유지했습니다.
 
-앞으로의 수정도 원본 `BlueArchiveGLB`의 `models.json`, `model_features.json`, `model_features.schema.json`에서 의상·얼굴·머리·골격 파츠를 선정한 뒤 조합·색상 편집·필요한 비율 수정을 적용합니다. 새 파츠와 변형은 생성 코드 및 GLB/manifest의 출처 기록에 반영하고, 최종 GLB를 기준으로 저장소 카탈로그와 미리보기를 다시 생성합니다.
+앞으로의 수정도 원본 `C:\Codex\BlueArchive-GLB`의 `models.json`, `model_features.json`, `model_features.schema.json`과 `previews`에서 의상·얼굴·머리·골격·모션을 선정한 뒤 조합·색상 편집·필요한 비율 수정을 적용합니다. 새 파츠와 변형은 생성 코드 및 GLB/manifest의 출처 기록에 반영하고, 최종 GLB를 기준으로 저장소 카탈로그와 미리보기를 다시 생성합니다.
 
 Momo는 Miyo의 앞머리·얼굴·원본 미소 입, Kirara의 긴 웨이브·양쪽 번, Kazusa의 고양이 귀를 조합하고 눈을 연보라색으로 편집했습니다. Meilin은 Serika (Swimsuit)의 트윈테일 단면을 넓히고 실제 묶음 위치에 붉은 꽃리본·금색 줄과 펜던트를 추가했습니다. Rina는 머리 크기와 관절 위치를 유지하며 몸통 폭을 20%, 몸통 두께를 14%, 팔다리 단면을 17–18% 줄였습니다. `previews/appearance_changes.png`에서 세 캐릭터의 전후 모습을 비교할 수 있습니다.
 
-Marin의 원본 트윈테일을 느슨한 1–2회 롤로 조정하고 Erika의 실제 휘어진 아호게를 조합했습니다. 차 서비스와 펜싱 성격에 맞는 땋은 디테일·남색 리본·진주와 작은 차·숟가락 장식도 유지했습니다. Viola는 Erika의 실제 짧은 레이어드 단발을 진한 청보라색으로 편집하고 파란 장미를 유지했습니다. Rosette는 Reisa (Magical)의 정수리·앞머리·얼굴 옆 머리를 유지하고 Hatsune Miku의 실제 트윈테일 파츠를 두 개의 넓은 C 컬로 피팅했습니다. 연분홍색에서 민트·아쿠아색으로 이어지는 머리 끝과 중앙 앞머리 컬도 적용했습니다. 세 캐릭터의 의상과 기존 일곱 모션은 유지합니다. `previews/hair_changes.png`에서 이번 머리 수정의 전후 모습을 비교할 수 있습니다.
+Marin의 원본 트윈테일을 느슨한 1–2회 롤로 조정하고 Erika의 실제 휘어진 아호게를 조합했습니다. 차 서비스와 펜싱 성격에 맞는 땋은 디테일·남색 리본·진주와 작은 차·숟가락 장식도 유지했습니다. Viola는 Erika의 실제 짧은 레이어드 단발을 진한 청보라색으로 편집하고 파란 장미를 유지했습니다. Rosette는 Reisa (Magical)의 정수리·앞머리·얼굴 옆 머리를 유지하고 Seia (Swimsuit)의 실제 두 번 말린 굵은 포니테일 파츠를 복제·반사해 양쪽 롤 트윈테일로 피팅했습니다. 연분홍색에서 민트·아쿠아색으로 이어지는 머리 끝과 중앙 앞머리 컬도 적용했습니다. `previews/hair_changes.png`에서 이번 머리 수정의 전후 모습을 비교할 수 있습니다.
 
 ## 미리보기
 
-`previews/lineup.png`는 전체 14명의 캐릭터 연락판입니다. `previews/motion_grid.gif`와 7종 모션별 포즈 연락판도 제공됩니다. `previews/run_grid.gif`는 14명의 달리기만 연속 반복해서 보여 줍니다.
+`previews/lineup.png`는 전체 14명의 캐릭터 연락판입니다. `previews/motion_grid.gif`와 7종 모션별 포즈 연락판도 제공됩니다. `previews/run_grid.gif`는 14명의 달리기를 정면에서, `previews/run_side_grid.gif`는 측면에서 보여 줍니다. `previews/run_side_sequence.png`에는 각 캐릭터의 원본 이름과 달리기 한 주기의 6개 측면 포즈가 있습니다. 모션 연락판은 캐릭터별 주기를 같은 위상으로 맞춰 비교하며, 각 원본의 실제 재생 시간은 GLB와 뷰어에서 유지됩니다.
 
 로컬 3D 뷰어는 저장소 루트에서 아래 명령을 실행한 뒤 `http://localhost:8000/viewer/`를 열면 됩니다. GLB 선택, 회전·확대 및 애니메이션 재생을 지원하며 외부 네트워크 없이 동작합니다.
 
@@ -47,7 +47,11 @@ python -m http.server 8000 --bind 127.0.0.1
 
 ## 애니메이션
 
-각 GLB에 `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose`가 포함됩니다. 기존 10명은 대기·걷기·승리에 원본 의상 골격의 모션을 활용합니다. 새 4명은 원본 골격과 의상 스킨을 유지하면서 일곱 모션 모두 성격과 소품을 반영해 별도로 제작했습니다. 대기·걷기·달리기는 제자리 반복입니다. 달리기는 별도의 보폭, 무릎 굽힘, 공중 구간과 상체 기울기를 사용합니다. 팔꿈치는 몸 옆에서 약 90도로 굽히고 실제 무릎 움직임과 반대로 앞뒤로 흔듭니다. 손은 안쪽을 향해 자연스럽게 쥐며, 소품은 운반 자세로 유지합니다. 공격·방어는 캐릭터의 소품과 성격에 맞춘 별도 모션이며, 비올라는 낫의 안쪽 날이 진행 방향을 향하는 베기 동작을 사용합니다. 패배는 마지막 자세를 유지합니다. 뷰어에서 공격·방어·승리·패배는 1회 재생하고, 모션 버튼을 다시 누르면 재생을 시작합니다. 머리·의상·소품은 골격을 따라 움직이며, 실시간 옷감·머리카락 물리 시뮬레이션은 포함하지 않습니다.
+각 GLB에 `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose`가 포함됩니다. 2026-10-08 수정에서는 14명 모두의 `Run`·`Defend`·`Lose`를 서로 다른 원본 캐릭터의 모션으로 교체했습니다. Quinn·Kimon·Florielle·Rosaria의 나머지 모션도 원본에서 새로 선정했습니다. 기존 10명의 원본 대기·걷기·승리와 소품용 공격은 유지합니다.
+
+원본의 몸통·팔·다리 회전 곡선을 각 의상 골격의 기본 자세와 비율에 맞춰 리타게팅합니다. 달리기는 원본의 넓은 보폭과 무릎 동작을 사용하고, 이동 경로는 제자리로 보정합니다. 손가락·손목은 실제 소품에 맞춰 조정합니다. 원본의 메시 숨김·무기·효과는 복사하지 않습니다. 반복 모션은 처음과 끝을 연결하고, `Lose`는 원본 패배 동작 뒤의 마지막 자세를 유지합니다. 뷰어에서는 모션 버튼을 다시 누르면 처음부터 재생합니다. 실시간 옷감·머리카락 물리는 포함하지 않습니다.
+
+캐릭터별 원본 파일·정확한 클립명·보정 내역은 `characters/manifest.json`, `model_features.json`과 GLB `extras.motion_sources`에 기록합니다. [모션 원본 표](previews/motion_sources.md)에서 전체 선정 내역을 볼 수 있습니다. 검사 도구는 실제 관절 움직임의 중복, 원본 출처, 반복 연결, 달리기 보폭과 패배 자세 유지를 확인합니다.
 
 | 캐릭터 | 공격 동작 |
 | --- | --- |
@@ -62,29 +66,21 @@ python -m http.server 8000 --bind 127.0.0.1
 | Meilin | 몸 앞을 가로지르는 부채 베기와 손목 회전 |
 | Nevia | 양손으로 눈 결정을 모아 들어 올리고 방출 |
 
-새 4명의 걷기·공격·승리는 각각 다음 성격을 반영했습니다. 모션 길이도 캐릭터마다 다릅니다.
-
-| 캐릭터 | 걷기 | 공격 | 승리 |
-| --- | --- | --- | --- |
-| Quinn | 단검을 낮게 벌리고 주변을 살피는 가벼운 발걸음 | 좌우 대각선 쌍단검 베기 후 교차 회수 | 단검 경례, 반대 손의 작은 묘기와 고개 끄덕임 |
-| Kimon | 발끝을 올리며 배턴과 빈손을 흔드는 탄력 있는 여우 걸음 | 별 배턴으로 지그재그 궤적을 그린 뒤 방울을 앞으로 튕기기 | 여우 귀 옆 손동작, 배턴 응원과 작은 점프 |
-| Florielle | 지팡이를 세우고 망토를 흔드는 차분한 걸음 | 지팡이의 큰 소환 궤적과 빈손으로 주문 쓰기 | 모자 끝 인사, 주문 손짓과 허리 숙여 인사 |
-| Rosaria | 부케를 가슴에 모으고 드레스를 살짝 들어 올리는 작은 맨발 걸음 | 부케를 감싸 들어 앞으로 보여 주고 부드럽게 무릎 굽히기 | 드레스 커트시, 부케 제시와 고개 기울임 |
-
-위 설명은 골격 동작을 뜻하며 별도의 투사체·마법 VFX는 포함하지 않습니다. `model_features.json`에는 최종 공격 설명, 새 캐릭터의 걷기·승리 설명, 모션별 반복/1회 재생 방식도 기록합니다.
+새 4명의 동작 설명은 `model_features.json`의 `motion_descriptions`와 원본 표에 기록합니다. 별도의 투사체·마법 VFX는 포함하지 않습니다.
 
 ## 재생성 및 검사
 
 ```powershell
 python -m pip install -r requirements.txt
-python tools/build_characters.py --source C:\Codex\BlueArchiveGLB
-python tools/build_catalog.py --source C:\Codex\BlueArchiveGLB
+python tools/build_characters.py --source C:\Codex\BlueArchive-GLB
+python tools/build_catalog.py --source C:\Codex\BlueArchive-GLB
 python tools/render_characters.py --root .
 python tools/validate_characters.py --root .
+python tools/validate_motions.py --root .
 node tools/validate_gltf.cjs
 ```
 
-제작 스크립트만 원본 파츠 폴더가 필요합니다. 제공된 GLB·시트·뷰어·검사 도구는 그 폴더 없이 사용 가능합니다. `previews/gltf_validation.json`에는 Khronos 검증 결과, `previews/validation.json`에는 파일·스킨·애니메이션·시트 검사 결과가 저장됩니다.
+제작 스크립트만 원본 파츠 폴더가 필요합니다. 제공된 GLB·시트·뷰어·검사 도구는 그 폴더 없이 사용 가능합니다. `previews/gltf_validation.json`에는 Khronos 검증 결과, `previews/validation.json`에는 파일·스킨·애니메이션·시트 검사 결과가 저장됩니다. `previews/motion_validation.json`에는 41개 위상에서 측정한 모션별 관절 곡선의 중복 검사와 가장 가까운 캐릭터 쌍의 각도 차이를 기록합니다.
 
 ## 출처
 

@@ -1,6 +1,6 @@
 """Catalog the delivered characters and their local donor provenance.
 
-Usage: python tools/build_catalog.py --source C:/Codex/BlueArchiveGLB
+Usage: python tools/build_catalog.py --source C:/Codex/BlueArchive-GLB
 Writes models.json, model_features.json and model_features.schema.json at the
 repository root. models.json retains the supplied timestamp-inventory format.
 The feature catalog distinguishes authored final appearance from donor metadata;
@@ -19,7 +19,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = Path("C:/Codex/BlueArchiveGLB")
+DEFAULT_SOURCE = Path("C:/Codex/BlueArchive-GLB")
 SOURCE_FILES = ("models.json", "model_features.json", "model_features.schema.json")
 CLIPS = ("Idle", "Walk", "Run", "Attack", "Defend", "Victory", "Lose")
 
@@ -29,7 +29,7 @@ APPEARANCE = {
     1: dict(hair_colors=["분홍색"], length="매우 긴 머리", styles=["롤 트윈테일", "느슨한 1–2회 컬", "앞머리", "아호게", "부분 땋은 머리"],
             hair="Hatsune Miku의 긴 분홍색 트윈테일을 참고 이미지처럼 느슨한 1–2회 롤로 조정하고 Erika의 실제 휘어진 아호게를 조합. 메이드 헤드밴드와 뿌리·옆머리 땋은 디테일, 남색 리본·작은 진주·차와 숟가락 모티프 장식을 유지",
             outfit_styles=["메이드복"], outfit_colors=["흰색", "남색"],
-            outfit="Momoi (Maid)의 실제 짧은 메이드 드레스와 앞치마·프릴·리본을 흰색과 남색으로 편집",
+            outfit="Momoi (Maid)의 실제 짧은 메이드 드레스와 앞치마·프릴·리본을 흰색과 남색으로 편집. 왼쪽 회전에서 보이던 치마의 사각 괄호 표시는 옷 색과 주름을 복원해 제거",
             legs=["흰색 팬티스타킹"], feet=["원본 메이드 구두"],
             features=["주름진 메이드 헤드밴드", "앞치마와 원본 프릴", "차 숟가락 모티프 레이피어", "느슨한 1–2회 롤 트윈테일", "아호게", "트윈테일 뿌리·옆머리 땋은 디테일", "남색 머리 리본", "작은 진주와 차·숟가락 머리 장식"],
             weapon="숟가락 모양 가드가 있는 리본 레이피어"),
@@ -58,9 +58,9 @@ APPEARANCE = {
     5: dict(hair_colors=["연한 분홍색"], length="긴 머리", styles=["생머리", "한쪽 높은 포니테일", "앞머리"],
             hair="연분홍색 긴 뒷머리와 한쪽에 묶어 포인트를 준 옆머리, 분홍색 리본",
             outfit_styles=["블레이저", "교복", "주름치마"], outfit_colors=["장미색", "흰색", "회색"],
-            outfit="Reisa의 실제 교복 재킷·라펠·블라우스와 짧은 주름치마를 장미색으로 편집. 골격을 유지하며 몸통·소매·치마·다리의 단면을 슬림하게 조정",
+            outfit="Reisa의 실제 교복 재킷·라펠·블라우스와 짧은 주름치마를 장미색으로 편집. 장미·월계수·책·별을 넣은 금색 방패 교표로 가슴 문양 교체. 골격을 유지하며 몸통·소매·치마·다리의 단면을 슬림하게 조정",
             legs=["맨다리"], feet=["원본 분홍색·하늘색 운동화"],
-            features=["한쪽 머리 리본", "블레이저 라펠과 단추", "원본 주름치마", "작은 손 참"],
+            features=["한쪽 머리 리본", "블레이저 라펠과 단추", "장미·월계수·책·별의 금색 방패 교표", "원본 주름치마", "작은 손 참"],
             weapon="책갈피 모티프의 작은 손 참"),
     6: dict(hair_colors=["흰색"], length="짧은 머리", styles=["단발", "앞머리", "삐친 머리"],
             hair="바깥쪽으로 끝이 뻗치는 흰색 짧은 머리",
@@ -77,7 +77,7 @@ APPEARANCE = {
             features=["뾰족한 고양이 귀", "긴 분홍 레이어드 머리", "양쪽 땋은 번", "부드러운 얼굴", "노출된 배꼽", "휘어진 분홍색 고양이 꼬리", "원본 재킷 봉제선"],
             weapon="별도 무기 없이 주먹 공격"),
     8: dict(hair_colors=["연한 분홍색", "민트색", "아쿠아색"], length="중간 길이", styles=["롤 트윈테일", "넓은 2회 컬", "앞머리", "중앙 앞머리 컬"],
-            hair="Reisa (Magical)의 정수리·앞머리·얼굴 옆 머리를 유지하고 Hatsune Miku의 실제 긴 트윈테일 파츠를 어깨 부근의 두 개의 넓은 C 컬로 조합. 연분홍색 뿌리에서 민트색·아쿠아색 끝으로 이어지는 그라데이션과 중앙 앞머리 컬을 추가",
+            hair="Reisa (Magical)의 정수리·앞머리·얼굴 옆 머리를 유지하고 Seia (Swimsuit)의 실제 두 번 말린 굵은 포니테일을 복제·반사해 어깨 부근의 넓은 롤 트윈테일로 조합. 연분홍색 뿌리에서 민트색·아쿠아색 끝으로 이어지는 그라데이션과 중앙 앞머리 컬을 추가",
             outfit_styles=["인형 드레스", "프릴 의상"], outfit_colors=["빨간색", "흰색", "분홍색"],
             outfit="Reisa (Magical)의 원래 리본·레이스·프릴 드레스를 빨간색·흰색으로 편집하고 실제 드릴 트윈테일을 유지",
             legs=["흰색 팬티스타킹"], feet=["원본 리본 구두"],
@@ -100,30 +100,30 @@ APPEARANCE = {
              weapon="작은 구름색 참"),
     11: dict(hair_colors=["갈색"], length="매우 긴 머리", styles=["트윈테일", "느슨한 웨이브", "앞머리"],
              hair="Shizuko (Swimsuit)의 긴 부분 트윈테일과 얼굴 옆 머리를 갈색으로 편집. 트윈테일 뿌리를 두피에 맞춰 피팅하고 양쪽 뿌리의 앞 표면에 붉은 리본을 부착",
-             outfit_styles=["모험가 의상", "크롭 재킷", "프릴 치마"], outfit_colors=["갈색", "크림색", "금색"],
-             outfit="Sakurako (Idol)의 실제 프릴 드레스·넓은 소매·허리 파츠를 갈색 모험가 의상으로 편집하고 크림색 크라바트, 가죽 허리 벨트·옆 가방·긴 부츠를 추가",
+             outfit_styles=["모험가 의상", "크롭 재킷", "프릴 치마"], outfit_colors=["차콜 회색", "갈색", "크림색", "은색", "금색"],
+             outfit="첨부한 두 사진에 맞춰 Serika의 실제 재킷 몸통·어깨·등·소매 메시를 차콜 크롭 실루엣으로 연결. Sakurako (Idol)의 원본 프릴 치마와 크림색 가슴 프릴·크라바트, 청록 브로치, 주름 커프스·보석, 갈색 가죽 장식, 검정 벨트·각진 은색 버클·체인·크로스백을 조합",
              legs=["맨다리"], feet=["갈색 부츠"],
-             features=["붉은 트윈테일 리본", "크림색 가슴 프릴", "가죽색 허리 벨트", "크로스백", "쌍단검"],
+             features=["붉은 트윈테일 리본", "짙은 갈색 웨이브 트윈테일", "차콜 크롭 재킷", "크림색 가슴 프릴", "청록 브로치", "보석 주름 커프스", "검정 벨트·각진 은색 버클·체인", "크로스백", "쌍단검"],
              weapon="양손에 장착한 짧은 쌍단검"),
     12: dict(hair_colors=["금발"], length="짧은 머리", styles=["단발", "한쪽 작은 포니테일", "앞머리"],
              hair="Izuna (Swimsuit)의 단발·작은 옆 포니테일·여우 귀를 황금색으로 편집하고 원본 수영 머리띠를 별 장식으로 교체",
              outfit_styles=["아이돌 의상", "크롭 재킷", "분리형 소매", "분할 롱스커트"],
              outfit_colors=["크림색", "주황색", "청록색", "노란색"],
-             outfit="Seia의 실제 흰색·주황색 의상과 넓은 소매를 크롭 실루엣으로 편집하고 Hina (Swimsuit)의 해부학 복부 메시로 노출된 허리를 조합. 청록색 짧은 주름치마·노랑 체크 분할 패널·주황색 가장자리를 추가",
+             outfit="Seia의 실제 상의·칼라·주름치마를 크림색·청록색으로 편집하고 Hina (Swimsuit)의 해부학 복부 메시로 노출된 허리를 조합. 단순 치마 덮개를 제거해 원본 플리츠·주름·봉제선을 드러내고, 직물 무늬·접힌 음영을 넣은 체크 긴 패널과 넓은 분리형 소매를 조합",
              legs=["맨다리"], feet=["원본 구두"],
              features=["황금색 여우 귀", "크롭 상의", "노출된 복부", "넓은 분리형 소매", "주황색·청록색 목 리본", "긴 분할 치마 패널", "별과 방울 장식"],
              weapon="별과 방울이 달린 공연용 배턴"),
     13: dict(hair_colors=["적갈색"], length="매우 긴 머리", styles=["풍성한 웨이브", "긴 컬", "앞머리"],
              hair="Yuzu (Maid)의 매우 긴 웨이브를 적갈색으로 편집하고 Eri의 실제 뾰족한 모자에 꽃과 하늘색 리본을 추가",
              outfit_styles=["마녀 의상", "프릴 드레스", "망토"], outfit_colors=["분홍색", "크림색", "남색", "금색"],
-             outfit="Reisa (Magical)의 실제 프릴 드레스를 분홍색·크림색으로 편집하고 넓은 소매, 금색 별무늬의 남색 망토·분홍 안감과 꽃 달린 마녀 모자를 추가",
+             outfit="Reisa (Magical)의 실제 프릴 드레스를 분홍색·크림색으로 편집. Seia의 원본 주름 소매·커프스 메시와 텍스처를 연결하고, 직물·별자리 무늬의 남색 망토·장미 다마스크 안감·금색 브레이드와 꽃 달린 마녀 모자를 조합",
              legs=["흰색 팬티스타킹"], feet=["원본 리본 구두"],
              features=["꽃 달린 뾰족한 마녀 모자", "긴 적갈색 컬", "별무늬 망토", "꽃 지팡이", "마법책"],
              weapon="꽃 장식의 긴 지팡이와 허리에 매단 작은 마법책"),
     14: dict(hair_colors=["연한 금발"], length="매우 긴 머리", styles=["긴 컬", "웨이브", "앞머리"],
              hair="Seia (Swimsuit)의 연한 금발 옆 컬을 느슨하게 조정하고 반대쪽에도 반사해 풍성한 긴 컬로 구성. 여우 귀·선캡을 제거하고 작은 보석 왕관을 추가",
              outfit_styles=["웨딩 드레스", "겹프릴 드레스", "하이로 드레스"], outfit_colors=["흰색", "아주 연한 보라색", "금색"],
-             outfit="Saori (Dress) (Cafe)의 실제 코르셋·가슴 레이스·큰 리본과 골격을 유지하고 긴 치마를 흰색·연보라색 여러 겹의 하이로 프릴로 편집. Hina (Swimsuit)의 연속된 다리·맨발 메시를 조합",
+             outfit="Saori (Dress) (Cafe)의 실제 코르셋·가슴 레이스·큰 리본과 골격을 유지. Mari (Idol)의 원본 레이스 프릴 메시·UV·봉제선 텍스처를 여러 겹의 아이보리·연보라색 새틴 하이로 치맛단에 연결하고 자수 무늬를 추가. Hina (Swimsuit)의 연속된 다리·맨발 메시를 조합",
              legs=["맨다리"], feet=["맨발", "원본 해부학 발 메시"],
              features=["보석 작은 왕관", "긴 연금발 컬", "흰색 겹프릴", "뒤로 흐르는 드레스 자락", "흰 장미 부케", "맨발"],
              weapon="흰 장미와 잎을 묶은 부케"),
@@ -149,10 +149,11 @@ def schema_document(design_ids=None):
     rig = obj({"name": {"type": "string"}, "skin_count": {"type": "integer", "minimum": 1},
                "joint_count": {"type": "integer", "minimum": 1}, "up_axis": {"const": "+Y"},
                "front_axis": {"const": "+Z"}, "physical_height_inferred": {"const": False}})
-    native = {"oneOf": [
-        obj({name: {"type": "string", "minLength": 1} for name in ("Idle", "Walk", "Victory")}),
-        {"const": {}},
-    ]}
+    native_names = ("Idle", "Walk", "Run", "Defend", "Victory", "Lose")
+    native = obj({name: {"type": "string", "minLength": 1} for name in CLIPS}, required=list(native_names))
+    motion_source = obj({"source_file": {"type": "string", "pattern": "\\.glb$"},
+                         "source_clip": {"type": "string", "minLength": 1},
+                         "adaptation": ref("strings"), "description": {"type": "string", "minLength": 1}})
     head_fit = obj({name: {"type": "number"} for name in ("neck_top", "chin_target", "vertical_adjustment")})
     source_roles = {"type": "object", "minProperties": 3,
                     "required": ["costume_and_rig", "hair", "face"],
@@ -172,7 +173,10 @@ def schema_document(design_ids=None):
                        "minItems": 7, "maxItems": 7, "uniqueItems": True},
         "animation_duration_seconds": obj({name: {"type": "number", "exclusiveMinimum": 0}
                                              for name in CLIPS}),
-        "native_source_clips": native, "attack_motion": {"const": "custom skeletal animation"},
+        "native_source_clips": native,
+        "motion_sources": obj({name: motion_source for name in CLIPS}, required=list(native_names)),
+        "motion_descriptions": obj({name: {"type": "string"} for name in CLIPS}),
+        "attack_motion": {"enum": ["custom skeletal animation", "retargeted original animation"]},
         "attack_description": {"type": "string", "minLength": 1},
         "walk_description": {"type": "string", "minLength": 1},
         "victory_description": {"type": "string", "minLength": 1},
@@ -271,10 +275,17 @@ def validate_catalog(catalog, schema, inventory, design_ids=None):
             raise ValueError(f"Legwear specification mismatch: {key}")
         if record["build_revision"] < 2:
             raise ValueError(f"Actual-costume revision >= 2 is required: {key}")
-        if record["id"] <= 10 and set(record["native_source_clips"]) != {"Idle", "Walk", "Victory"}:
-            raise ValueError(f"Three native clips are required for the original characters: {key}")
-        if record["id"] >= 11 and record["native_source_clips"] != {}:
-            raise ValueError(f"The new reference characters use seven authored clips rather than native motion: {key}")
+        native_names = set(CLIPS) if record['id'] >= 11 else {"Idle", "Walk", "Run", "Defend", "Victory", "Lose"}
+        if set(record["native_source_clips"]) != native_names or set(record["motion_sources"]) != native_names:
+            raise ValueError(f"Original-source clips and their provenance are required: {key}")
+        for name, provenance in record["motion_sources"].items():
+            if (provenance["source_file"] not in record["source_parts"]
+                    or provenance["source_clip"] != record["native_source_clips"][name]):
+                raise ValueError(f"Motion provenance mismatch: {key}/{name}")
+    for clip_name in ("Run", "Defend", "Lose"):
+        selected = [record["motion_sources"][clip_name] for record in catalog["models"].values()]
+        if len({item["source_file"] for item in selected}) != len(selected):
+            raise ValueError(f"Each character requires a distinct {clip_name} donor")
     try:
         import jsonschema
     except ImportError:
@@ -297,7 +308,7 @@ def build(source):
         raise ValueError("Catalog generation requires every declared actual-costume manifest entry (revision >= 2)")
     if not set(designs).issubset(APPEARANCE):
         raise ValueError("Every declared design needs final appearance metadata")
-    inventory, models, donor_names = {}, {}, set()
+    inventory, models, donor_names, donor_clip_names = {}, {}, set(), {}
     for entry in sorted(manifest, key=lambda item: int(item["id"])):
         number = int(entry["id"])
         config, appearance = designs[number], APPEARANCE[number]
@@ -322,8 +333,21 @@ def build(source):
         if (entry["bytes"] != size or entry["revision"] != extras.get("revision")
                 or set(parts) != set(extras.get("source_parts", []))
                 or entry["native_clips"] != extras.get("native_clips")
+                or entry["motion_sources"] != extras.get("motion_sources")
                 or entry.get("sha256", sha256) != sha256):
             raise ValueError(f"Manifest and delivered GLB metadata differ for character {number}")
+        for clip_name, provenance in entry['motion_sources'].items():
+            donor = provenance['source_file']
+            if donor not in donor_clip_names:
+                with (source/donor).open('rb') as stream:
+                    header = stream.read(20)
+                    length, kind = struct.unpack_from('<II', header, 12)
+                    if kind != 0x4E4F534A:
+                        raise ValueError(f'Invalid motion source JSON chunk: {donor}')
+                    donor_doc = json.loads(stream.read(length).decode('utf-8'))
+                donor_clip_names[donor] = {clip.get('name', '') for clip in donor_doc.get('animations', [])}
+            if provenance['source_clip'] not in donor_clip_names[donor]:
+                raise ValueError(f'Original clip does not exist: {donor}/{provenance["source_clip"]}')
         donor_names.update(parts)
         inventory[entry["glb"]] = int(glb_path.stat().st_mtime)
         models[entry["glb"]] = {
@@ -342,7 +366,9 @@ def build(source):
                                          *appearance["outfit_styles"], *appearance["legs"]])),
             "palette": list(config["palette"]), "design_brief": config["design"], "weapon": appearance["weapon"],
             "animations": [clip["name"] for clip in doc.get("animations", [])], "animation_duration_seconds": durations,
-            "native_source_clips": entry["native_clips"], "attack_motion": "custom skeletal animation",
+            "native_source_clips": entry["native_clips"], "motion_sources": entry["motion_sources"],
+            "motion_descriptions": {clip["name"]: clip.get("extras", {}).get("description", "") for clip in doc["animations"]},
+            "attack_motion": "retargeted original animation" if 'Attack' in entry['motion_sources'] else "custom skeletal animation",
             "attack_description": next((clip.get("extras", {}).get("description", "")
                                          for clip in doc["animations"] if clip["name"] == "Attack"), ""),
             "animation_playback": {name: "loop" if name in ("Idle", "Walk", "Run") else
@@ -357,9 +383,7 @@ def build(source):
                          "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"},
             "review_notes": ["원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
                              "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-                             ("Idle·Walk·Victory는 의상 원본 모션; Run·Attack·Defend·Lose는 캐릭터에 맞춰 별도 제작한 골격 모션. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
-                              if number <= 10 else
-                              "일곱 모션 모두 성격과 소품에 맞춰 별도 제작한 골격 모션이며 native_source_clips는 비어 있음. 원본 골격과 의상 스킨을 유지. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음")],
+                             "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"],
         }
         for clip_name, field in (("Walk", "walk_description"), ("Victory", "victory_description")):
             description = next((clip.get("extras", {}).get("description", "")
@@ -398,6 +422,25 @@ def build(source):
     method = validate_catalog(catalog, schema, inventory, designs)
     for filename, value in (("models.json", inventory), ("model_features.json", catalog), ("model_features.schema.json", schema)):
         (ROOT/filename).write_text(json.dumps(value, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
+    lines = ['# 원본 모션 선정 내역', '',
+             '2026-10-08 수정. 원본 파일은 `C:\\Codex\\BlueArchive-GLB`에서 읽고 수정하지 않습니다.', '',
+             '| 캐릭터 | Run | Defend | Lose |', '| --- | --- | --- | --- |']
+    def cell(record, name):
+        item = record['motion_sources'][name]
+        return f"{item['source_file']} · `{item['source_clip']}`"
+    for record in models.values():
+        lines.append('| '+record['character']+' | '+' | '.join(cell(record,name) for name in ('Run','Defend','Lose'))+' |')
+    lines.extend(['', '## Quinn·Kimon·Florielle·Rosaria의 전체 모션', ''])
+    for record in models.values():
+        if record['id'] < 11:
+            continue
+        lines.extend([f"### {record['character']}", '', '| 모션 | 원본 | 동작·보정 |', '| --- | --- | --- |'])
+        for name in CLIPS:
+            item = record['motion_sources'][name]
+            description = record['motion_descriptions'][name].replace('|','/')
+            lines.append(f"| {name} | {cell(record,name)} | {description} |")
+        lines.append('')
+    (ROOT/'previews'/'motion_sources.md').write_text('\n'.join(lines)+'\n',encoding='utf-8')
     return len(models), len(donors), method
 
 

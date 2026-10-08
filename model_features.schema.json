@@ -351,37 +351,291 @@
           "additionalProperties": false
         },
         "native_source_clips": {
-          "oneOf": [
-            {
+          "type": "object",
+          "properties": {
+            "Idle": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Walk": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Run": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Attack": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Defend": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Victory": {
+              "type": "string",
+              "minLength": 1
+            },
+            "Lose": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "Idle",
+            "Walk",
+            "Run",
+            "Defend",
+            "Victory",
+            "Lose"
+          ],
+          "additionalProperties": false
+        },
+        "motion_sources": {
+          "type": "object",
+          "properties": {
+            "Idle": {
               "type": "object",
               "properties": {
-                "Idle": {
+                "source_file": {
+                  "type": "string",
+                  "pattern": "\\.glb$"
+                },
+                "source_clip": {
                   "type": "string",
                   "minLength": 1
                 },
-                "Walk": {
-                  "type": "string",
-                  "minLength": 1
+                "adaptation": {
+                  "$ref": "#/$defs/strings"
                 },
-                "Victory": {
+                "description": {
                   "type": "string",
                   "minLength": 1
                 }
               },
               "required": [
-                "Idle",
-                "Walk",
-                "Victory"
+                "source_file",
+                "source_clip",
+                "adaptation",
+                "description"
               ],
               "additionalProperties": false
             },
-            {
-              "const": {}
+            "Walk": {
+              "type": "object",
+              "properties": {
+                "source_file": {
+                  "type": "string",
+                  "pattern": "\\.glb$"
+                },
+                "source_clip": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adaptation": {
+                  "$ref": "#/$defs/strings"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_file",
+                "source_clip",
+                "adaptation",
+                "description"
+              ],
+              "additionalProperties": false
+            },
+            "Run": {
+              "type": "object",
+              "properties": {
+                "source_file": {
+                  "type": "string",
+                  "pattern": "\\.glb$"
+                },
+                "source_clip": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adaptation": {
+                  "$ref": "#/$defs/strings"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_file",
+                "source_clip",
+                "adaptation",
+                "description"
+              ],
+              "additionalProperties": false
+            },
+            "Attack": {
+              "type": "object",
+              "properties": {
+                "source_file": {
+                  "type": "string",
+                  "pattern": "\\.glb$"
+                },
+                "source_clip": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adaptation": {
+                  "$ref": "#/$defs/strings"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_file",
+                "source_clip",
+                "adaptation",
+                "description"
+              ],
+              "additionalProperties": false
+            },
+            "Defend": {
+              "type": "object",
+              "properties": {
+                "source_file": {
+                  "type": "string",
+                  "pattern": "\\.glb$"
+                },
+                "source_clip": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adaptation": {
+                  "$ref": "#/$defs/strings"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_file",
+                "source_clip",
+                "adaptation",
+                "description"
+              ],
+              "additionalProperties": false
+            },
+            "Victory": {
+              "type": "object",
+              "properties": {
+                "source_file": {
+                  "type": "string",
+                  "pattern": "\\.glb$"
+                },
+                "source_clip": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adaptation": {
+                  "$ref": "#/$defs/strings"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_file",
+                "source_clip",
+                "adaptation",
+                "description"
+              ],
+              "additionalProperties": false
+            },
+            "Lose": {
+              "type": "object",
+              "properties": {
+                "source_file": {
+                  "type": "string",
+                  "pattern": "\\.glb$"
+                },
+                "source_clip": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "adaptation": {
+                  "$ref": "#/$defs/strings"
+                },
+                "description": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "required": [
+                "source_file",
+                "source_clip",
+                "adaptation",
+                "description"
+              ],
+              "additionalProperties": false
             }
-          ]
+          },
+          "required": [
+            "Idle",
+            "Walk",
+            "Run",
+            "Defend",
+            "Victory",
+            "Lose"
+          ],
+          "additionalProperties": false
+        },
+        "motion_descriptions": {
+          "type": "object",
+          "properties": {
+            "Idle": {
+              "type": "string"
+            },
+            "Walk": {
+              "type": "string"
+            },
+            "Run": {
+              "type": "string"
+            },
+            "Attack": {
+              "type": "string"
+            },
+            "Defend": {
+              "type": "string"
+            },
+            "Victory": {
+              "type": "string"
+            },
+            "Lose": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Idle",
+            "Walk",
+            "Run",
+            "Attack",
+            "Defend",
+            "Victory",
+            "Lose"
+          ],
+          "additionalProperties": false
         },
         "attack_motion": {
-          "const": "custom skeletal animation"
+          "enum": [
+            "custom skeletal animation",
+            "retargeted original animation"
+          ]
         },
         "attack_description": {
           "type": "string",
@@ -540,6 +794,8 @@
         "animations",
         "animation_duration_seconds",
         "native_source_clips",
+        "motion_sources",
+        "motion_descriptions",
         "attack_motion",
         "attack_description",
         "animation_playback",

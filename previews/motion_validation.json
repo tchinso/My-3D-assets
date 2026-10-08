@@ -1,0 +1,1808 @@
+{
+  "sample_phases": 41,
+  "categories": {
+    "Run": {
+      "unique_anatomical_fingerprints": 14,
+      "nearest_pairs": [
+        {
+          "characters": [
+            "Sora",
+            "Nevia"
+          ],
+          "rms_degrees": 18.29918185776567
+        },
+        {
+          "characters": [
+            "Sora",
+            "Rosette"
+          ],
+          "rms_degrees": 18.366686688290766
+        },
+        {
+          "characters": [
+            "Viola",
+            "Fennel"
+          ],
+          "rms_degrees": 21.430088630693923
+        }
+      ],
+      "characters": [
+        {
+          "name": "Marin",
+          "sha256": "21f52d95640fb993104f2bbd493f7c148f1dfee8e289d4a921027767fe348515",
+          "source": {
+            "source_file": "Momoi (Maid).glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Lively maid sprint with a large knee drive"
+          }
+        },
+        {
+          "name": "Viola",
+          "sha256": "237fb0127dd26bbeac9369c8c230071c759f47721dfabdc0897560ac4d030c72",
+          "source": {
+            "source_file": "Haruka (Dress).glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Forward, determined reaper dash"
+          }
+        },
+        {
+          "name": "Sora",
+          "sha256": "b3e95b84dac495f629ce6c4047c8de316a92fc949158a26c6c191b6dacc44b54",
+          "source": {
+            "source_file": "Serika.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Brisk schoolgirl sprint"
+          }
+        },
+        {
+          "name": "Elise",
+          "sha256": "5332085aa92e99e484aeedcc6567af7ae8306be7f1e71f3a2baf657a9eb7bd65",
+          "source": {
+            "source_file": "Sena (Casual).glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Composed, flowing dress run"
+          }
+        },
+        {
+          "name": "Rina",
+          "sha256": "5a1f1bfbe89a1bd473d00a276cd9c075e427eb783cb7d11141dd912a64997197",
+          "source": {
+            "source_file": "Reisa.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Confident academy charge"
+          }
+        },
+        {
+          "name": "Fennel",
+          "sha256": "2288a54ed4468f6a6c9ceed091043a85f1c564f93b34a214a4065ab9a838f809",
+          "source": {
+            "source_file": "Ibuki.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Light, buoyant sprite run"
+          }
+        },
+        {
+          "name": "Momo",
+          "sha256": "08cc7075dbb2895ad6b28bbff6af902987fde789674af528822c00d109e5bdb9",
+          "source": {
+            "source_file": "Saori (Swimsuit).glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Low, agile city-cat dash"
+          }
+        },
+        {
+          "name": "Rosette",
+          "sha256": "4ebe59fd8d6c2e0b768eb71f535c6cc9d9a32ce99cd0697705ba442ac55dbcd2",
+          "source": {
+            "source_file": "Mutsuki.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Playful, asymmetric doll sprint"
+          }
+        },
+        {
+          "name": "Meilin",
+          "sha256": "1a2e26a062e840c07a278905c7533587ca244d902c89bdd5633233bbf1fdb6b8",
+          "source": {
+            "source_file": "Wakamo.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Strong, deliberate forward pursuit"
+          }
+        },
+        {
+          "name": "Nevia",
+          "sha256": "a93e023e11cdf82d7dd873893705592843611a64ca4a848b14e2f910c2fc0c4e",
+          "source": {
+            "source_file": "Atsuko.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Soft but decisive snow-dress run"
+          }
+        },
+        {
+          "name": "Quinn",
+          "sha256": "252b4afc020c1d47c250d30412e50b2cc10eaf379932bea7287fd6756431748f",
+          "source": {
+            "source_file": "Neru.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Aggressive dual-arm scout sprint with a long stride"
+          }
+        },
+        {
+          "name": "Kimon",
+          "sha256": "4511bd7e0167c73433f266726bb3384cfc77bccce75014954219d58bde88760f",
+          "source": {
+            "source_file": "Izuna.glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Energetic fox-ninja bounding sprint"
+          }
+        },
+        {
+          "name": "Florielle",
+          "sha256": "c886b11ae83056813c732af95b0f44470d2b7bc7a1001bdf171022a299146ac1",
+          "source": {
+            "source_file": "Eri.glb",
+            "source_clip": "DiceRace_Run",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Expressive witch race run with free arm carriage"
+          }
+        },
+        {
+          "name": "Rosaria",
+          "sha256": "585c745ea223ef1e0d759bec1459019a7a0429c61b550c8bc126133d9f7d2d50",
+          "source": {
+            "source_file": "Mari (Idol).glb",
+            "source_clip": "Move_Ing",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Poised, buoyant bridal dash"
+          }
+        }
+      ]
+    },
+    "Defend": {
+      "unique_anatomical_fingerprints": 14,
+      "nearest_pairs": [
+        {
+          "characters": [
+            "Marin",
+            "Nevia"
+          ],
+          "rms_degrees": 11.163609894988342
+        },
+        {
+          "characters": [
+            "Sora",
+            "Nevia"
+          ],
+          "rms_degrees": 16.444595043104098
+        },
+        {
+          "characters": [
+            "Marin",
+            "Sora"
+          ],
+          "rms_degrees": 24.213531472564203
+        }
+      ],
+      "characters": [
+        {
+          "name": "Marin",
+          "sha256": "46af8e5e3e44001631c903df670f6177526de343cc20288e8df00b83ea1b9394",
+          "source": {
+            "source_file": "Momoi (Maid).glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Alert maid recoil and ready guard"
+          }
+        },
+        {
+          "name": "Viola",
+          "sha256": "236fbd33f0a4c8e4eb1a53ab61e7e42496c865ab594c2507ae5d5d84b206c98d",
+          "source": {
+            "source_file": "Tsurugi.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Fierce two-arm reaper guard"
+          }
+        },
+        {
+          "name": "Sora",
+          "sha256": "6ac8d7361a730058e5d0ba505de22be3fc15866ea8e8e210423a639f6efcbb8b",
+          "source": {
+            "source_file": "Serika.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Compact, determined school guard"
+          }
+        },
+        {
+          "name": "Elise",
+          "sha256": "f2c410d8168597b71c312a884710a5722a9f93f38c528075f335a1f909942f02",
+          "source": {
+            "source_file": "Sena (Casual).glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Calm, braced dress guard"
+          }
+        },
+        {
+          "name": "Rina",
+          "sha256": "02a37e2bae662f1aa17b85e63158905d92b2ed12bc64fc0d6ede746cf2090fe3",
+          "source": {
+            "source_file": "Noa.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Measured academy defensive stance"
+          }
+        },
+        {
+          "name": "Fennel",
+          "sha256": "c78ffa384418fbf9d7563b6fc8fc3a87df8a56dde2f66925b1ce48ec0692e89a",
+          "source": {
+            "source_file": "Ibuki.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Small, startled sprite protection"
+          }
+        },
+        {
+          "name": "Momo",
+          "sha256": "31f3d3466305af04ab9950e2ef4b1c98b32d7e562dc4d9c19abb539977b1a71e",
+          "source": {
+            "source_file": "Asuna (School Uniform).glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Agile, open city-cat guard"
+          }
+        },
+        {
+          "name": "Rosette",
+          "sha256": "274b3cb05e95252d78e23e5d8340282af924e97f225176fd16dbda132c541553",
+          "source": {
+            "source_file": "Sakurako (Idol).glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Expressive, drawn-in doll protection"
+          }
+        },
+        {
+          "name": "Meilin",
+          "sha256": "9e6dcde5cfce7747e1977dbe635332846fb08d645928fcd5504ac3fe1264359c",
+          "source": {
+            "source_file": "Mimori.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Graceful, balanced fan-user guard"
+          }
+        },
+        {
+          "name": "Nevia",
+          "sha256": "7417e00607c60076a163e60f18f419c5c8636b8eb54a29e039f4d0df33d5a7cd",
+          "source": {
+            "source_file": "Atsuko.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Gentle, protective snow stance"
+          }
+        },
+        {
+          "name": "Quinn",
+          "sha256": "9c5abda070a6320e2dcc9cb9062dec6c4da9036ec441e2f20f9ce5a1163aaadb",
+          "source": {
+            "source_file": "Mine.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Firm, squared scout guard"
+          }
+        },
+        {
+          "name": "Kimon",
+          "sha256": "c09c7ad6d0c37d446ac991857d64ae3fd2035ec199a4aae10f82a168d8f77fc5",
+          "source": {
+            "source_file": "Izuna.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Springy fox-ninja ready stance"
+          }
+        },
+        {
+          "name": "Florielle",
+          "sha256": "900cd645b9785aa12718a566c0e8b21bb252e71b0cc82267b0c34cd8d131f4b6",
+          "source": {
+            "source_file": "Eri.glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Witch recoil and braced casting guard"
+          }
+        },
+        {
+          "name": "Rosaria",
+          "sha256": "6789e267dee2572b4861acff98683b4dabe5a40b0685b8ec5ca8e45498ec9967",
+          "source": {
+            "source_file": "Mari (Idol).glb",
+            "source_clip": "Vital_Panic",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Reserved, protective bridal recoil"
+          }
+        }
+      ]
+    },
+    "Lose": {
+      "unique_anatomical_fingerprints": 14,
+      "nearest_pairs": [
+        {
+          "characters": [
+            "Marin",
+            "Sora"
+          ],
+          "rms_degrees": 9.685181086730607
+        },
+        {
+          "characters": [
+            "Rina",
+            "Rosette"
+          ],
+          "rms_degrees": 15.63695894903619
+        },
+        {
+          "characters": [
+            "Sora",
+            "Fennel"
+          ],
+          "rms_degrees": 16.353816871878845
+        }
+      ],
+      "characters": [
+        {
+          "name": "Marin",
+          "sha256": "35368afe745586f3e899f5e992328fc214bbc18ac02f45b5274d2ae6ea5fd7ec",
+          "source": {
+            "source_file": "Momoi (Maid).glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Maid stumbles and settles defeated"
+          }
+        },
+        {
+          "name": "Viola",
+          "sha256": "6fa9e2195123c3aeeb18ee684a221411ea09dbd159320cd1997cebd09f5e9d8d",
+          "source": {
+            "source_file": "Tsurugi.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Dramatic reaper collapse"
+          }
+        },
+        {
+          "name": "Sora",
+          "sha256": "33feed08fd6fa8a119f75e6e7cdaa7f5e2851ed9715569fc7adc3d01ca37f6cf",
+          "source": {
+            "source_file": "Serika.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Determined school stance gives way"
+          }
+        },
+        {
+          "name": "Elise",
+          "sha256": "666542143db09b8ec31912b8f824c1c70d163addcbad89063d02de488abb032f",
+          "source": {
+            "source_file": "Sena (Casual).glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Controlled dress-wearer sinking defeat"
+          }
+        },
+        {
+          "name": "Rina",
+          "sha256": "527733581e8a3db0b8403fa2ed777db0eb6dcea13a6042f003e86f52bbfa2044",
+          "source": {
+            "source_file": "Noa.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Asymmetric academy fall and exhausted finish"
+          }
+        },
+        {
+          "name": "Fennel",
+          "sha256": "265fa713eefe5da6ecb815f656f9a3d0ad060d160ebdf0a981e69facf8b12fb4",
+          "source": {
+            "source_file": "Ibuki.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Small sprite flinch and collapse"
+          }
+        },
+        {
+          "name": "Momo",
+          "sha256": "43ed94b9c6cf30d5812da7adb56538c279d97e6c83f0709cf45eb3cfc68b8b27",
+          "source": {
+            "source_file": "Mika.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "City-cat loses balance and folds into a dramatic defeat"
+          }
+        },
+        {
+          "name": "Rosette",
+          "sha256": "3273d9f09d89737f827ee9ce38fb9a0b5ad35d0ef13f336783821dd70d897fde",
+          "source": {
+            "source_file": "Sakurako (Idol).glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Expressive doll collapse"
+          }
+        },
+        {
+          "name": "Meilin",
+          "sha256": "db75bb971de72de07f42fa5979c4b29f04d6ddfbfd81fa7f09b0a6b7e767af1e",
+          "source": {
+            "source_file": "Wakamo.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Dramatic fan-user fall"
+          }
+        },
+        {
+          "name": "Nevia",
+          "sha256": "21f413860a3fc12cebe16ab2c5d57d8f47d2574101dbe5510253e693beccaf9b",
+          "source": {
+            "source_file": "Atsuko.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Gentle snow-character folding defeat"
+          }
+        },
+        {
+          "name": "Quinn",
+          "sha256": "d98c8f0b9b91a851d2c6f89e5146169f782937d2a001880db2fd6497dcd73daf",
+          "source": {
+            "source_file": "Mine.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Scout loses balance and lands defeated"
+          }
+        },
+        {
+          "name": "Kimon",
+          "sha256": "a0dcff0cb0e5772c0cc4c37103915f5bb45fcf98aaf5802867dec834f180e17e",
+          "source": {
+            "source_file": "Seia.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Fox idol falters and settles into defeat"
+          }
+        },
+        {
+          "name": "Florielle",
+          "sha256": "cb4ca53b917e7024d56448e5255148f9ed2cdd1aab128143ded128eddf2eaaee",
+          "source": {
+            "source_file": "Eri.glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Witch staggers and lowers into exhaustion"
+          }
+        },
+        {
+          "name": "Rosaria",
+          "sha256": "85c54d910a34bb787201ea51a26790e9f65f7a06686af32e05e2aeeea437cf02",
+          "source": {
+            "source_file": "Mari (Idol).glb",
+            "source_clip": "Vital_Death",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Native final defeat pose held for the final 20% of the output clip",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Poised bridal character sinks defeated"
+          }
+        }
+      ]
+    },
+    "Walk": {
+      "unique_anatomical_fingerprints": 14,
+      "nearest_pairs": [
+        {
+          "characters": [
+            "Sora",
+            "Rina"
+          ],
+          "rms_degrees": 14.975728545208145
+        },
+        {
+          "characters": [
+            "Rosette",
+            "Kimon"
+          ],
+          "rms_degrees": 17.643933466255145
+        },
+        {
+          "characters": [
+            "Marin",
+            "Rosette"
+          ],
+          "rms_degrees": 23.803382000363015
+        }
+      ],
+      "characters": [
+        {
+          "name": "Marin",
+          "sha256": "dcda805e95b6c641b2b5e89c049039fc624d685f74b17636a6b15baed8644628",
+          "source": {
+            "source_file": "Momoi (Maid).glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Viola",
+          "sha256": "0be413a20a462469f13bc42aaa2cee09fa535e5ac8a54e8065e3a80e31ffd895",
+          "source": {
+            "source_file": "Haruka (Dress).glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Sora",
+          "sha256": "f37e1b74af8f89b8c8fb516b4d317fa0f035a9f058529db5ef7bfdc130668ab1",
+          "source": {
+            "source_file": "Serika.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Elise",
+          "sha256": "52699d690659e7f090e00f482c5b3012d7444910cf422537e543b508f2baa85b",
+          "source": {
+            "source_file": "Sena (Casual).glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Rina",
+          "sha256": "954ca94d141c83ce7883fa6f50e074a1fb155c422df7b101a5dc2077b0f931da",
+          "source": {
+            "source_file": "Reisa.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Fennel",
+          "sha256": "e49ff57a75b5ecc7fd8cb0523d33a783316c1b1c70bf8be23e91999b8eb8f6ec",
+          "source": {
+            "source_file": "Ibuki.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Momo",
+          "sha256": "028728ea7b93a32e984d76036d52fc0a7686614b100afc4fe3af792e217fa1c9",
+          "source": {
+            "source_file": "Saori (Swimsuit).glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Rosette",
+          "sha256": "3a6c6098d28958fbc7503bb76c8e458812faca5d456d0727de4b2d3afdd1dde5",
+          "source": {
+            "source_file": "Reisa (Magical).glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Meilin",
+          "sha256": "abf9294ab6fd969329c624b7b42047d8ac838dc3dc72ef542635f2a1cf96097e",
+          "source": {
+            "source_file": "Kisaki.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Nevia",
+          "sha256": "379d2e51255abd43724851fe5f3c48974bbe22faf5ff7bfc4134700b7d78f551",
+          "source": {
+            "source_file": "Mutsuki (Dress).glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "exact loop closure"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Quinn",
+          "sha256": "f2ebaec53db48bb2d46a7b59995160ea9f3619f2e58b1ff1d11b5629cfd8a9d4",
+          "source": {
+            "source_file": "Shiroko.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Purposeful, observant scout walk"
+          }
+        },
+        {
+          "name": "Kimon",
+          "sha256": "24f94cf49a82a986922d62c785ecf394f817ff362656c688c5eccfc002ba6278",
+          "source": {
+            "source_file": "Izuna.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Buoyant fox-ninja walk"
+          }
+        },
+        {
+          "name": "Florielle",
+          "sha256": "6b130860779102edb33d5b11bcc6c24b3a09ed932e573946f83798987afc6971",
+          "source": {
+            "source_file": "Eri.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Measured, composed witch walk"
+          }
+        },
+        {
+          "name": "Rosaria",
+          "sha256": "04682b8a0f17bea550c21ef8b1b201517eac2b6b19afbc98e324830662b01abb",
+          "source": {
+            "source_file": "Mimori.glb",
+            "source_clip": "Cafe_Walk",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Continuous endpoint correction for an exact loop seam",
+              "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Gentle ceremonial walk"
+          }
+        }
+      ]
+    },
+    "Victory": {
+      "unique_anatomical_fingerprints": 14,
+      "nearest_pairs": [
+        {
+          "characters": [
+            "Viola",
+            "Meilin"
+          ],
+          "rms_degrees": 33.856087849448635
+        },
+        {
+          "characters": [
+            "Sora",
+            "Momo"
+          ],
+          "rms_degrees": 35.68912323834724
+        },
+        {
+          "characters": [
+            "Viola",
+            "Momo"
+          ],
+          "rms_degrees": 36.066242129648174
+        }
+      ],
+      "characters": [
+        {
+          "name": "Marin",
+          "sha256": "577502a8f776cde4336bdaaa42869d7adf38c3aad52802257a5764607c1a2e78",
+          "source": {
+            "source_file": "Momoi (Maid).glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Viola",
+          "sha256": "2e3318c623f6f7e70a72e6b82e9c37ee51193515b84c6e70d35297cc8429046e",
+          "source": {
+            "source_file": "Haruka (Dress).glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Sora",
+          "sha256": "fb0dd2391dfbd451af81af1b57d8d42873bbbbe82bc00a33a2088b22811a0fb1",
+          "source": {
+            "source_file": "Serika.glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Elise",
+          "sha256": "0e491901bd4cc3d415947c9e105096bc2d43f572f4b52efa6baa5e7740e74a9b",
+          "source": {
+            "source_file": "Sena (Casual).glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Rina",
+          "sha256": "6f15fdd67df29ccd7c0a86a65177a06df27e60bea7f5b5cd3ea4467d77f5c978",
+          "source": {
+            "source_file": "Reisa.glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Fennel",
+          "sha256": "50ceffa468924f4e0f8d5028b51f6c8d15594f1c9d8f01b76bdffcc835874c32",
+          "source": {
+            "source_file": "Ibuki.glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Momo",
+          "sha256": "92d9911ed95d85cd2247a23263a9c735195947ff89c39f5627dcd85fafdddb66",
+          "source": {
+            "source_file": "Saori (Swimsuit).glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Rosette",
+          "sha256": "10756aba315a6ee58c077eca2d49e023901472e43ecc76f8d5e62e71970fd9b7",
+          "source": {
+            "source_file": "Reisa (Magical).glb",
+            "source_clip": "Cafe_Reaction",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Meilin",
+          "sha256": "baf577ae49b8af503da5b1c8e988e868fb9ccef21717ee988af5a899f77f73a6",
+          "source": {
+            "source_file": "Kisaki.glb",
+            "source_clip": "Cafe_Reaction",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Nevia",
+          "sha256": "ef709122e0ee6993ba5096b8d7d04c40d97354e70bec4d722bb4c59e47b080b4",
+          "source": {
+            "source_file": "Mutsuki (Dress).glb",
+            "source_clip": "Cafe_Reaction",
+            "adaptation": [
+              "original costume rig tracks",
+              "in-place travel removal",
+              "one-shot playback"
+            ],
+            "description": "Preserved original costume animation"
+          }
+        },
+        {
+          "name": "Quinn",
+          "sha256": "c46f1771251e3d09027591062e63c4118e1854f15db83c12237cc8c58977c089",
+          "source": {
+            "source_file": "Shiroko.glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Small scout victory salute"
+          }
+        },
+        {
+          "name": "Kimon",
+          "sha256": "ac1926521291782046b5e8d5cea6f2bf8f53dcdba83abc8a9695703cdd8cae3a",
+          "source": {
+            "source_file": "Izuna.glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Exuberant fox-ninja victory"
+          }
+        },
+        {
+          "name": "Florielle",
+          "sha256": "cedbfcf775aaef86f6c545d333619aea17a30922e4ff7a25ee55fcaaf52d553d",
+          "source": {
+            "source_file": "Eri.glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Cheerful witch celebration"
+          }
+        },
+        {
+          "name": "Rosaria",
+          "sha256": "c70c98a03c4e416a4cdae9f8f549c176a64b16dc44538e9d675f7521d0b45a76",
+          "source": {
+            "source_file": "Mimori.glb",
+            "source_clip": "Victory_Start",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Courteous bridal celebration"
+          }
+        }
+      ]
+    },
+    "Attack": {
+      "unique_anatomical_fingerprints": 14,
+      "nearest_pairs": [
+        {
+          "characters": [
+            "Elise",
+            "Rina"
+          ],
+          "rms_degrees": 30.353074705200065
+        },
+        {
+          "characters": [
+            "Rina",
+            "Nevia"
+          ],
+          "rms_degrees": 36.14069514665126
+        },
+        {
+          "characters": [
+            "Rina",
+            "Meilin"
+          ],
+          "rms_degrees": 36.64993440473706
+        }
+      ],
+      "characters": [
+        {
+          "name": "Marin",
+          "sha256": "5a317c1e4132c1ac3de525fa421e0db1c9a421f639c6b601361faa0d7cbfbbc5",
+          "source": null
+        },
+        {
+          "name": "Viola",
+          "sha256": "3030f55245e92a8b30e278e658f6d120f40150fc9bc3a2fc31abea9e4d7c22e6",
+          "source": null
+        },
+        {
+          "name": "Sora",
+          "sha256": "9dd8e2dedeb0ad00a0fbb2b6ad87e679a80c20838f4aa766241c17a42b71c616",
+          "source": null
+        },
+        {
+          "name": "Elise",
+          "sha256": "2d356af0336ee5a3d9c639ded35c51e7cbc6ef7336a87aada656b3101fbd0c24",
+          "source": null
+        },
+        {
+          "name": "Rina",
+          "sha256": "498bb705680fc9477e1b3e1329c0c5d8529b0558d3d7ee90dc93f3e014d8e372",
+          "source": null
+        },
+        {
+          "name": "Fennel",
+          "sha256": "814960ce708a7b5ab56cde9bd4f4835bedc2cebe96ddf1f9484a4b3bba0a5a8d",
+          "source": null
+        },
+        {
+          "name": "Momo",
+          "sha256": "6d5e1c153457eb89db75157bdb7f9bae75cda5aaf0aad6632cf89522da2d76bb",
+          "source": null
+        },
+        {
+          "name": "Rosette",
+          "sha256": "a87040e45edf8c7349929e203dc3575baf781289b644ce3cb6f1ec99c7e84923",
+          "source": null
+        },
+        {
+          "name": "Meilin",
+          "sha256": "9789fe917299f3169aa3a90df2e1fe6ec7ba2ecb80ab68fe3147ee051d729fed",
+          "source": null
+        },
+        {
+          "name": "Nevia",
+          "sha256": "79b5ac5e755d46979613e03ae5220b1c3f7a8275a3c75e84596b7f552d2fd39a",
+          "source": null
+        },
+        {
+          "name": "Quinn",
+          "sha256": "c2e6db44b217d258549a09db4815933ce55b56f9e08a8daa360dabb895dd1ad5",
+          "source": {
+            "source_file": "Neru.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Aggressive native dual-arm scout combination, with fitted dagger grips"
+          }
+        },
+        {
+          "name": "Kimon",
+          "sha256": "971c2569303a8b2e8362bed0e9fce1067948a4bcfca20689e9db1be16a641a06",
+          "source": {
+            "source_file": "Izuna.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native fox-ninja casting flourish, with a fitted starbell baton grip"
+          }
+        },
+        {
+          "name": "Florielle",
+          "sha256": "9a4c076e8c5c5ccd0fa3c57d1a111c061742b01074f95bb9feeff0b7c2fae1fb",
+          "source": {
+            "source_file": "Eri.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native witch stirring and casting sweep, with a fitted flower-staff grip"
+          }
+        },
+        {
+          "name": "Rosaria",
+          "sha256": "3ea18f314daf7e97a5a5135e19f62001e4d89a1d87501f925bc2c0ab9d80e72f",
+          "source": {
+            "source_file": "Mimori.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native support flourish, adapted to lifting the rose bouquet"
+          }
+        }
+      ]
+    }
+  },
+  "preserved_original_clips": [
+    {
+      "character": "Marin",
+      "clip": "Idle",
+      "rms_degrees": 3.0551354426592994e-07
+    },
+    {
+      "character": "Marin",
+      "clip": "Walk",
+      "rms_degrees": 3.4641979726696033e-07
+    },
+    {
+      "character": "Marin",
+      "clip": "Attack",
+      "rms_degrees": 4.320613977895511e-07
+    },
+    {
+      "character": "Marin",
+      "clip": "Victory",
+      "rms_degrees": 4.216487496210681e-07
+    },
+    {
+      "character": "Viola",
+      "clip": "Idle",
+      "rms_degrees": 4.618930630226137e-07
+    },
+    {
+      "character": "Viola",
+      "clip": "Walk",
+      "rms_degrees": 4.899115755694733e-07
+    },
+    {
+      "character": "Viola",
+      "clip": "Attack",
+      "rms_degrees": 3.6515852864578917e-07
+    },
+    {
+      "character": "Viola",
+      "clip": "Victory",
+      "rms_degrees": 5.41617625538596e-07
+    },
+    {
+      "character": "Sora",
+      "clip": "Idle",
+      "rms_degrees": 4.2688682312579694e-07
+    },
+    {
+      "character": "Sora",
+      "clip": "Walk",
+      "rms_degrees": 3.771341067121988e-07
+    },
+    {
+      "character": "Sora",
+      "clip": "Attack",
+      "rms_degrees": 4.7610847164557787e-07
+    },
+    {
+      "character": "Sora",
+      "clip": "Victory",
+      "rms_degrees": 4.7610847164557787e-07
+    },
+    {
+      "character": "Elise",
+      "clip": "Idle",
+      "rms_degrees": 3.6515852864578917e-07
+    },
+    {
+      "character": "Elise",
+      "clip": "Walk",
+      "rms_degrees": 3.5277665404602263e-07
+    },
+    {
+      "character": "Elise",
+      "clip": "Attack",
+      "rms_degrees": 3.771341067121988e-07
+    },
+    {
+      "character": "Elise",
+      "clip": "Victory",
+      "rms_degrees": 4.216487496210681e-07
+    },
+    {
+      "character": "Rina",
+      "clip": "Idle",
+      "rms_degrees": 4.521679093716865e-07
+    },
+    {
+      "character": "Rina",
+      "clip": "Walk",
+      "rms_degrees": 4.4222893942245707e-07
+    },
+    {
+      "character": "Rina",
+      "clip": "Attack",
+      "rms_degrees": 4.853541595325402e-07
+    },
+    {
+      "character": "Rina",
+      "clip": "Victory",
+      "rms_degrees": 5.249484598399787e-07
+    },
+    {
+      "character": "Fennel",
+      "clip": "Idle",
+      "rms_degrees": 3.771341067121988e-07
+    },
+    {
+      "character": "Fennel",
+      "clip": "Walk",
+      "rms_degrees": 4.853541595325402e-07
+    },
+    {
+      "character": "Fennel",
+      "clip": "Attack",
+      "rms_degrees": 4.7141763339024847e-07
+    },
+    {
+      "character": "Fennel",
+      "clip": "Victory",
+      "rms_degrees": 6.110270885318599e-07
+    },
+    {
+      "character": "Momo",
+      "clip": "Idle",
+      "rms_degrees": 5.735043033016133e-07
+    },
+    {
+      "character": "Momo",
+      "clip": "Walk",
+      "rms_degrees": 5.735043033016133e-07
+    },
+    {
+      "character": "Momo",
+      "clip": "Attack",
+      "rms_degrees": 5.374988005499562e-07
+    },
+    {
+      "character": "Momo",
+      "clip": "Victory",
+      "rms_degrees": 5.164121436270794e-07
+    },
+    {
+      "character": "Rosette",
+      "clip": "Idle",
+      "rms_degrees": 4.3717472841106217e-07
+    },
+    {
+      "character": "Rosette",
+      "clip": "Walk",
+      "rms_degrees": 3.5902097340034655e-07
+    },
+    {
+      "character": "Rosette",
+      "clip": "Attack",
+      "rms_degrees": 3.197309949516638e-07
+    },
+    {
+      "character": "Rosette",
+      "clip": "Victory",
+      "rms_degrees": 4.0552878190423724e-07
+    },
+    {
+      "character": "Meilin",
+      "clip": "Idle",
+      "rms_degrees": 5.537903280108299e-07
+    },
+    {
+      "character": "Meilin",
+      "clip": "Walk",
+      "rms_degrees": 5.291649810690339e-07
+    },
+    {
+      "character": "Meilin",
+      "clip": "Attack",
+      "rms_degrees": 3.771341067121988e-07
+    },
+    {
+      "character": "Meilin",
+      "clip": "Victory",
+      "rms_degrees": 5.120906271199366e-07
+    },
+    {
+      "character": "Nevia",
+      "clip": "Idle",
+      "rms_degrees": 4.4222893942245707e-07
+    },
+    {
+      "character": "Nevia",
+      "clip": "Walk",
+      "rms_degrees": 4.521679093716865e-07
+    },
+    {
+      "character": "Nevia",
+      "clip": "Attack",
+      "rms_degrees": 4.320613977895511e-07
+    },
+    {
+      "character": "Nevia",
+      "clip": "Victory",
+      "rms_degrees": 4.47226035203829e-07
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "characters": 14,
+    "replaced_clips": 58,
+    "preserved_clips_checked": 40,
+    "errors": 0,
+    "status": "passed"
+  }
+}

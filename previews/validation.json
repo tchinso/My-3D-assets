@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-10-07T10:18:26.376666+00:00",
+  "generated_utc": "2026-10-08T11:40:45.501235+00:00",
   "root": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets",
-  "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, motion/loops, run/walk distinction and arm anatomy, held defeat pose, duplicate attacks, new character walk/victory individuality and PNG sheets",
+  "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, original motion provenance, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
   "errors": [],
   "warnings": [],
   "characters": [
@@ -11,20 +11,24 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1986648,
-        "nodes": 311,
-        "meshes": 43,
+        "bytes": 2316248,
+        "nodes": 370,
+        "meshes": 44,
         "skins": 1,
-        "embedded_images": 8,
-        "accessors": 749,
+        "embedded_images": 9,
+        "accessors": 1479,
         "skin_bind_residuals": [
-          9.315243199026213e-08
+          1.4153760155040216e-07
         ],
-        "vertex_records": 15650,
-        "triangles": 25037,
+        "vertex_records": 10407,
+        "triangles": 15581,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
+          [
+            512,
+            512
+          ],
           [
             512,
             512
@@ -58,6 +62,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": -2.562673544963723e-07,
         "sheet_dimensions": [
           2400,
           1800
@@ -69,6 +74,8 @@
           "duration_seconds": 2.0,
           "moving_channels": 84,
           "loop_endpoints_exact": true,
+          "source_file": "Momoi (Maid).glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.03815261040466322
         },
@@ -77,37 +84,54 @@
           "duration_seconds": 1.2000000476837158,
           "moving_channels": 97,
           "loop_endpoints_exact": true,
+          "source_file": "Momoi (Maid).glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.2730997277238768,
           "anatomical_motion_fingerprint": "980b936eaf0a619939f9951560de9bc30855a77b394a8af4df61cc6cc3ec483b"
         },
         "Run": {
-          "channels": 37,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 240,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 202,
           "loop_endpoints_exact": true,
+          "description": "Lively maid sprint with a large knee drive",
+          "source_file": "Momoi (Maid).glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.2110789058141013,
+          "sampled_minimum_ground_gap": 0.012171702011163722,
+          "sampled_geometry_max_displacement": 0.46539676562909216,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.11623144376837462,
-              "mean_outward_upperarm_ratio": 0.11125497971409717,
-              "min_elbow_flex_degrees": 92.86896898182637,
-              "max_elbow_flex_degrees": 105.03039312833462,
-              "min_elbow_drop_upperarm_ratio": 0.7996306400718213
+              "max_outward_upperarm_ratio": 0.7038874446361714,
+              "mean_outward_upperarm_ratio": 0.6601826527271992,
+              "min_elbow_flex_degrees": 0.13847137411283503,
+              "max_elbow_flex_degrees": 0.13847138390877983,
+              "min_elbow_drop_upperarm_ratio": 0.2526977040214036
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.07677023071182196,
-              "mean_outward_upperarm_ratio": 0.07255597355066983,
-              "min_elbow_flex_degrees": 101.52271228435227,
-              "max_elbow_flex_degrees": 104.1564433727133,
-              "min_elbow_drop_upperarm_ratio": 0.8599839257123358
+              "max_outward_upperarm_ratio": 0.8526207215932682,
+              "mean_outward_upperarm_ratio": 0.7890082974339057,
+              "min_elbow_flex_degrees": 8.969719173275452,
+              "max_elbow_flex_degrees": 8.969719542354865,
+              "min_elbow_drop_upperarm_ratio": -0.3305696140876548
             }
           },
-          "walk_normalized_phase_max_difference": 0.25849466990774733,
-          "walk_normalized_phase_rms_difference": 0.07431588174708519
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 0.9051521616683051,
+              "vertical_stride_leg_lengths": 0.7749732987726533
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 0.9199511674956886,
+              "vertical_stride_leg_lengths": 0.6836641211781664
+            }
+          },
+          "anatomical_motion_fingerprint": "1d87cbdcbe4931cbc699eef5349bb82cbfe51d81c1109f00352858287d7fa65c",
+          "walk_normalized_phase_max_difference": 0.37045754818803484,
+          "walk_normalized_phase_rms_difference": 0.25318009470636293
         },
         "Attack": {
           "channels": 27,
@@ -120,31 +144,43 @@
           "anatomical_motion_fingerprint": "c4536e6109ed94a44371529b70801b7fe24139c791a2b7bf9a2544bd313ff734"
         },
         "Defend": {
-          "channels": 27,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 27,
+          "channels": 232,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 232,
           "loop_endpoints_exact": false,
+          "description": "Alert maid recoil and ready guard",
+          "source_file": "Momoi (Maid).glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4884921673915375
+          "sampled_minimum_ground_gap": 0.004494273413050913,
+          "sampled_geometry_max_displacement": 0.5733593375701711,
+          "anatomical_motion_fingerprint": "15096bf9afaf4bf24cb1ee9ca5528a5024348c9ff514f5260929246724af1c37"
         },
         "Victory": {
           "channels": 112,
           "duration_seconds": 3.0,
           "moving_channels": 112,
           "loop_endpoints_exact": false,
+          "source_file": "Momoi (Maid).glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.9511156426582671,
           "anatomical_motion_fingerprint": "5d7903ba86394c855f0c0c56c92d9856712380ee834b37fbde2313bc8874ffeb"
         },
         "Lose": {
-          "channels": 27,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 27,
+          "channels": 249,
+          "duration_seconds": 2.5,
+          "moving_channels": 249,
           "loop_endpoints_exact": false,
+          "description": "Maid stumbles and settles defeated",
+          "source_file": "Momoi (Maid).glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.501246826874097,
-          "terminal_pose_displacement": 0.501246826874097,
-          "terminal_pose_hold_max_error": 2.2184325092919967e-08
+          "sampled_minimum_ground_gap": 0.00853334393979576,
+          "sampled_geometry_max_displacement": 1.0046524682712816,
+          "anatomical_motion_fingerprint": "5ace2e63b250479e96408f9215bc04acf2d449cd15ac99ebf099c58ca0068656",
+          "terminal_pose_displacement": 1.0046524047387397,
+          "terminal_pose_hold_max_error": 6.780488376643104e-08
         }
       },
       "status": "passed",
@@ -158,14 +194,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1745032,
+        "bytes": 2124688,
         "nodes": 215,
         "meshes": 35,
         "skins": 1,
         "embedded_images": 9,
-        "accessors": 744,
+        "accessors": 1119,
         "skin_bind_residuals": [
-          3.864936670705532e-08
+          9.688339597246909e-08
         ],
         "vertex_records": 10776,
         "triangles": 15933,
@@ -209,6 +245,7 @@
             256
           ]
         ],
+        "rest_geometry_floor_y": -0.00020459957828349392,
         "sheet_dimensions": [
           2400,
           1800
@@ -220,6 +257,8 @@
           "duration_seconds": 4.0,
           "moving_channels": 89,
           "loop_endpoints_exact": true,
+          "source_file": "Haruka (Dress).glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.018445274036057866
         },
@@ -228,37 +267,54 @@
           "duration_seconds": 2.4000000953674316,
           "moving_channels": 96,
           "loop_endpoints_exact": true,
+          "source_file": "Haruka (Dress).glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.37917398207527264,
           "anatomical_motion_fingerprint": "c58c6c199a1772d2392eb34498c455ce0620c7d232a10a0d8d141f3f9345fad8"
         },
         "Run": {
-          "channels": 37,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 132,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 112,
           "loop_endpoints_exact": true,
+          "description": "Forward, determined reaper dash",
+          "source_file": "Haruka (Dress).glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.23184057986185394,
+          "sampled_minimum_ground_gap": 0.0027250067420845816,
+          "sampled_geometry_max_displacement": 0.4687450096366997,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.11653220319904864,
-              "mean_outward_upperarm_ratio": 0.11156356164098748,
-              "min_elbow_flex_degrees": 92.84910049573088,
-              "max_elbow_flex_degrees": 105.46568870262287,
-              "min_elbow_drop_upperarm_ratio": 0.7732754622832825
+              "max_outward_upperarm_ratio": 0.2722101875054523,
+              "mean_outward_upperarm_ratio": 0.21331955314110865,
+              "min_elbow_flex_degrees": 98.97466066991915,
+              "max_elbow_flex_degrees": 113.33284508043796,
+              "min_elbow_drop_upperarm_ratio": 0.8197270223111393
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.07094442353970129,
-              "mean_outward_upperarm_ratio": 0.06640098390781869,
-              "min_elbow_flex_degrees": 98.25442203675914,
-              "max_elbow_flex_degrees": 102.29567339592282,
-              "min_elbow_drop_upperarm_ratio": 0.858025029600016
+              "max_outward_upperarm_ratio": 0.724382994464827,
+              "mean_outward_upperarm_ratio": 0.6717719892036018,
+              "min_elbow_flex_degrees": 100.10203780410573,
+              "max_elbow_flex_degrees": 110.46221530860751,
+              "min_elbow_drop_upperarm_ratio": 0.6446820433748536
             }
           },
-          "walk_normalized_phase_max_difference": 0.47683980248872077,
-          "walk_normalized_phase_rms_difference": 0.10886720481898193
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 0.8895720578068567,
+              "vertical_stride_leg_lengths": 0.6290518182224881
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.0591525837381048,
+              "vertical_stride_leg_lengths": 0.6542490125182681
+            }
+          },
+          "anatomical_motion_fingerprint": "e8631b81f6e8ef5582f1cdc45734cd0df6367c7a96986876d178568ea8829c91",
+          "walk_normalized_phase_max_difference": 0.36873901886147764,
+          "walk_normalized_phase_rms_difference": 0.09087339514535936
         },
         "Attack": {
           "channels": 37,
@@ -271,31 +327,43 @@
           "anatomical_motion_fingerprint": "2a3216d909c658f60d8fc5454e111db7bb284c717aa674fede547700e99e0598"
         },
         "Defend": {
-          "channels": 37,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 37,
+          "channels": 119,
+          "duration_seconds": 1.4000000953674316,
+          "moving_channels": 119,
           "loop_endpoints_exact": false,
+          "description": "Fierce two-arm reaper guard",
+          "source_file": "Tsurugi.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.6071241368293813
+          "sampled_minimum_ground_gap": 0.0001494320894994858,
+          "sampled_geometry_max_displacement": 0.5534585417482151,
+          "anatomical_motion_fingerprint": "130efab3e4c149411af7a3e0a47b3b3b69ea28bd3b85ee05be07b5b8fefe3a1c"
         },
         "Victory": {
           "channels": 123,
           "duration_seconds": 3.000000238418579,
           "moving_channels": 123,
           "loop_endpoints_exact": false,
+          "source_file": "Haruka (Dress).glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 1.0857058119176695,
           "anatomical_motion_fingerprint": "ec27809bdbe1f0eceadd78e9de9a6e13166f95d1846997b1f4fa18badeb7733f"
         },
         "Lose": {
-          "channels": 27,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 27,
+          "channels": 121,
+          "duration_seconds": 2.9166669845581055,
+          "moving_channels": 121,
           "loop_endpoints_exact": false,
+          "description": "Dramatic reaper collapse",
+          "source_file": "Tsurugi.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4060290109701768,
-          "terminal_pose_displacement": 0.4060290109701768,
-          "terminal_pose_hold_max_error": 3.840028741566517e-08
+          "sampled_minimum_ground_gap": 0.00020447272323427106,
+          "sampled_geometry_max_displacement": 1.0037967604634004,
+          "anatomical_motion_fingerprint": "b26f649b09f9e7a4c9b2c9869b11394489e85ad34079ae5b9960b09689e088f6",
+          "terminal_pose_displacement": 1.0022327786347787,
+          "terminal_pose_hold_max_error": 5.226857333027363e-08
         }
       },
       "status": "passed",
@@ -309,14 +377,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1606896,
+        "bytes": 2187824,
         "nodes": 400,
         "meshes": 100,
         "skins": 1,
         "embedded_images": 9,
-        "accessors": 1015,
+        "accessors": 1635,
         "skin_bind_residuals": [
-          3.923752200929442e-08
+          1.4770825711520338e-07
         ],
         "vertex_records": 8107,
         "triangles": 10181,
@@ -360,6 +428,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": -0.0007744312775190523,
         "sheet_dimensions": [
           2400,
           1800
@@ -371,6 +440,8 @@
           "duration_seconds": 1.6666667461395264,
           "moving_channels": 89,
           "loop_endpoints_exact": true,
+          "source_file": "Serika.glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.07819963937359099
         },
@@ -379,37 +450,54 @@
           "duration_seconds": 1.3333333730697632,
           "moving_channels": 77,
           "loop_endpoints_exact": true,
+          "source_file": "Serika.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.36032832280930377,
           "anatomical_motion_fingerprint": "ecd758f57a1a8e8f36b73ce8a698077206164731ee54cdf91c4b2482ebc3707a"
         },
         "Run": {
-          "channels": 37,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 206,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 181,
           "loop_endpoints_exact": true,
+          "description": "Brisk schoolgirl sprint",
+          "source_file": "Serika.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.22868048140111405,
+          "sampled_minimum_ground_gap": 0.0023958879766175093,
+          "sampled_geometry_max_displacement": 0.3014662821007892,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.11461773510283738,
-              "mean_outward_upperarm_ratio": 0.11022219998532888,
-              "min_elbow_flex_degrees": 91.23518687259904,
-              "max_elbow_flex_degrees": 102.32330855804453,
-              "min_elbow_drop_upperarm_ratio": 0.8105457625629536
+              "max_outward_upperarm_ratio": 0.09060138740426105,
+              "mean_outward_upperarm_ratio": -0.04910994193852561,
+              "min_elbow_flex_degrees": 53.54730758805657,
+              "max_elbow_flex_degrees": 93.69253582264213,
+              "min_elbow_drop_upperarm_ratio": 0.9701449002116945
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.07512099588366124,
-              "mean_outward_upperarm_ratio": 0.07120371916082119,
-              "min_elbow_flex_degrees": 100.5533617416687,
-              "max_elbow_flex_degrees": 103.35665640876806,
-              "min_elbow_drop_upperarm_ratio": 0.8735353026099626
+              "max_outward_upperarm_ratio": 0.9139827261574061,
+              "mean_outward_upperarm_ratio": 0.8524913195960979,
+              "min_elbow_flex_degrees": 98.91038377353452,
+              "max_elbow_flex_degrees": 128.11364477033848,
+              "min_elbow_drop_upperarm_ratio": 0.08949652438388057
             }
           },
-          "walk_normalized_phase_max_difference": 0.2657518757777377,
-          "walk_normalized_phase_rms_difference": 0.07970783726220584
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.0790408387570871,
+              "vertical_stride_leg_lengths": 0.6474768204740271
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.050565777244283,
+              "vertical_stride_leg_lengths": 0.6233442059459153
+            }
+          },
+          "anatomical_motion_fingerprint": "f3005da184c8236d6f9fffac1ff14bec52ab0e7c4ee52287a06daf2e4097f722",
+          "walk_normalized_phase_max_difference": 0.35321834852453343,
+          "walk_normalized_phase_rms_difference": 0.13172890159612222
         },
         "Attack": {
           "channels": 27,
@@ -422,31 +510,43 @@
           "anatomical_motion_fingerprint": "69beddf3e3a02ef19a66713b199d9c5b2909c00d89b19eb0b6a0bf61b5f43f14"
         },
         "Defend": {
-          "channels": 27,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 27,
+          "channels": 204,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 204,
           "loop_endpoints_exact": false,
+          "description": "Compact, determined school guard",
+          "source_file": "Serika.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3183345733113075
+          "sampled_minimum_ground_gap": 8.64290913837884e-08,
+          "sampled_geometry_max_displacement": 0.5972597336703377,
+          "anatomical_motion_fingerprint": "704182a7600e328bc264755299bb507aa1e6d90002ee9d0737ddd21c5d843bb7"
         },
         "Victory": {
           "channels": 84,
           "duration_seconds": 3.2333335876464844,
           "moving_channels": 84,
           "loop_endpoints_exact": false,
+          "source_file": "Serika.glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 1.1920928955078125e-07,
           "sampled_geometry_max_displacement": 0.5323590582893569,
           "anatomical_motion_fingerprint": "0fadd60403418eaadb614c5e58ede6ddfd9f8915185c7b29dfe3d2fe0475b67b"
         },
         "Lose": {
-          "channels": 27,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 27,
+          "channels": 207,
+          "duration_seconds": 2.4583334922790527,
+          "moving_channels": 207,
           "loop_endpoints_exact": false,
+          "description": "Determined school stance gives way",
+          "source_file": "Serika.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.32156704988507945,
-          "terminal_pose_displacement": 0.3215670430483737,
-          "terminal_pose_hold_max_error": 2.697329902631432e-08
+          "sampled_minimum_ground_gap": 8.64290913837884e-08,
+          "sampled_geometry_max_displacement": 1.111729087410946,
+          "anatomical_motion_fingerprint": "c7592bb772b9b8dc11a7432d43c7db5256c8a70d64b2f706e13496967456309d",
+          "terminal_pose_displacement": 1.1114624558999036,
+          "terminal_pose_hold_max_error": 6.833017492190781e-08
         }
       },
       "status": "passed",
@@ -460,14 +560,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1726092,
+        "bytes": 2298744,
         "nodes": 317,
         "meshes": 10,
         "skins": 1,
         "embedded_images": 8,
-        "accessors": 652,
+        "accessors": 1176,
         "skin_bind_residuals": [
-          5.899811217346951e-08
+          1.715567939055188e-07
         ],
         "vertex_records": 7716,
         "triangles": 9689,
@@ -507,6 +607,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": -0.00011581206577899183,
         "sheet_dimensions": [
           2400,
           1800
@@ -518,6 +619,8 @@
           "duration_seconds": 4.6666669845581055,
           "moving_channels": 140,
           "loop_endpoints_exact": true,
+          "source_file": "Sena (Casual).glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.0224989447418299
         },
@@ -526,37 +629,54 @@
           "duration_seconds": 2.6666667461395264,
           "moving_channels": 135,
           "loop_endpoints_exact": true,
+          "source_file": "Sena (Casual).glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.32711089062707266,
           "anatomical_motion_fingerprint": "12e5953161146c3e11ea0cb7ba20bacb8443af48247c487302f0ac8113bd1dbd"
         },
         "Run": {
-          "channels": 33,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 178,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 177,
           "loop_endpoints_exact": true,
+          "description": "Composed, flowing dress run",
+          "source_file": "Sena (Casual).glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.21145477994796316,
+          "sampled_minimum_ground_gap": 0.025816246319729664,
+          "sampled_geometry_max_displacement": 0.5330592056303721,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.1345660231131805,
-              "mean_outward_upperarm_ratio": 0.130492358774689,
-              "min_elbow_flex_degrees": 96.394950560498,
-              "max_elbow_flex_degrees": 108.63675854441368,
-              "min_elbow_drop_upperarm_ratio": 0.8455963882908808
+              "max_outward_upperarm_ratio": 0.45951386705747077,
+              "mean_outward_upperarm_ratio": 0.4300181281422264,
+              "min_elbow_flex_degrees": 84.5780741655979,
+              "max_elbow_flex_degrees": 102.64674108123867,
+              "min_elbow_drop_upperarm_ratio": 0.8290115614302498
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.058427392106819256,
-              "mean_outward_upperarm_ratio": 0.05359458496852306,
-              "min_elbow_flex_degrees": 104.02778492355405,
-              "max_elbow_flex_degrees": 107.75542831858263,
-              "min_elbow_drop_upperarm_ratio": 0.9230299592302648
+              "max_outward_upperarm_ratio": 0.6664816066323046,
+              "mean_outward_upperarm_ratio": 0.6536647594771144,
+              "min_elbow_flex_degrees": 109.6199876165281,
+              "max_elbow_flex_degrees": 111.41929196767202,
+              "min_elbow_drop_upperarm_ratio": 0.5180282400288669
             }
           },
-          "walk_normalized_phase_max_difference": 0.2799170706898487,
-          "walk_normalized_phase_rms_difference": 0.08623941599356584
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.3250654767577523,
+              "vertical_stride_leg_lengths": 0.6043451886233605
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.320095238776112,
+              "vertical_stride_leg_lengths": 0.6014483017032309
+            }
+          },
+          "anatomical_motion_fingerprint": "fdd8b758d3dca94f1b38d71e3f0e679e78985580e4380a4900202b25edb18b42",
+          "walk_normalized_phase_max_difference": 0.45552226521543737,
+          "walk_normalized_phase_rms_difference": 0.12760017321693481
         },
         "Attack": {
           "channels": 25,
@@ -569,31 +689,43 @@
           "anatomical_motion_fingerprint": "d6ca35cb215419d569cdcf048c6802a28c353344b72d2f06aee791a89448dc5a"
         },
         "Defend": {
-          "channels": 25,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 25,
+          "channels": 174,
+          "duration_seconds": 2.3333334922790527,
+          "moving_channels": 174,
           "loop_endpoints_exact": false,
+          "description": "Calm, braced dress guard",
+          "source_file": "Sena (Casual).glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.29743917952955506
+          "sampled_minimum_ground_gap": 0.02421236334008396,
+          "sampled_geometry_max_displacement": 0.47380007329364826,
+          "anatomical_motion_fingerprint": "16804faee002a1410468a1e1148c458df95a6ad36443ca2048c4632c8121a27d"
         },
         "Victory": {
           "channels": 155,
           "duration_seconds": 3.000000238418579,
           "moving_channels": 155,
           "loop_endpoints_exact": false,
+          "source_file": "Sena (Casual).glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.5132024933254943,
           "anatomical_motion_fingerprint": "7e744edb49cb691f98de06f4e15f8dbadd19d68abe1e7aac7b1976384c264cde"
         },
         "Lose": {
-          "channels": 25,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 25,
+          "channels": 169,
+          "duration_seconds": 2.5,
+          "moving_channels": 169,
           "loop_endpoints_exact": false,
+          "description": "Controlled dress-wearer sinking defeat",
+          "source_file": "Sena (Casual).glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3234437722656998,
-          "terminal_pose_displacement": 0.3234437722656998,
-          "terminal_pose_hold_max_error": 2.8989117513768026e-08
+          "sampled_minimum_ground_gap": 0.007496891323309834,
+          "sampled_geometry_max_displacement": 1.006074699354644,
+          "anatomical_motion_fingerprint": "58282b31447062f0d67ee9e557ab97ff7a0a4cd7b8ca3d130aa482ab28ea812e",
+          "terminal_pose_displacement": 1.0059840263335178,
+          "terminal_pose_hold_max_error": 4.152926033472761e-08
         }
       },
       "status": "passed",
@@ -607,14 +739,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1579476,
+        "bytes": 2123936,
         "nodes": 270,
         "meshes": 14,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 660,
+        "accessors": 1169,
         "skin_bind_residuals": [
-          4.0762627051549316e-08
+          1.3781781707593692e-07
         ],
         "vertex_records": 6571,
         "triangles": 8057,
@@ -650,6 +782,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": 0.002057837157087473,
         "sheet_dimensions": [
           2400,
           1800
@@ -661,6 +794,8 @@
           "duration_seconds": 5.000000476837158,
           "moving_channels": 126,
           "loop_endpoints_exact": true,
+          "source_file": "Reisa.glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.03185226650813675
         },
@@ -669,37 +804,54 @@
           "duration_seconds": 1.3333334922790527,
           "moving_channels": 98,
           "loop_endpoints_exact": true,
+          "source_file": "Reisa.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.39207887800844005,
           "anatomical_motion_fingerprint": "1b28da40628b2a2b20c99e75cc71f530c29015cc04b015bfaddccec04763cbe6"
         },
         "Run": {
-          "channels": 29,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 169,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 156,
           "loop_endpoints_exact": true,
+          "description": "Confident academy charge",
+          "source_file": "Reisa.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.22778956125634645,
+          "sampled_minimum_ground_gap": 0.00020872947934945894,
+          "sampled_geometry_max_displacement": 0.42331320241436304,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.11308944603808627,
-              "mean_outward_upperarm_ratio": 0.11043206040667315,
-              "min_elbow_flex_degrees": 98.89489263704843,
-              "max_elbow_flex_degrees": 108.18560311696793,
-              "min_elbow_drop_upperarm_ratio": 0.7751003895619337
+              "max_outward_upperarm_ratio": 0.025112533170882807,
+              "mean_outward_upperarm_ratio": -0.04983879758208522,
+              "min_elbow_flex_degrees": 1.2514664880018527,
+              "max_elbow_flex_degrees": 4.30995882554938,
+              "min_elbow_drop_upperarm_ratio": -0.12719484620955132
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.07512097775331913,
-              "mean_outward_upperarm_ratio": 0.07101688728219024,
-              "min_elbow_flex_degrees": 99.61401062575479,
-              "max_elbow_flex_degrees": 103.35666532819474,
-              "min_elbow_drop_upperarm_ratio": 0.8735352620223243
+              "max_outward_upperarm_ratio": 0.9845171975713845,
+              "mean_outward_upperarm_ratio": 0.971770918802902,
+              "min_elbow_flex_degrees": 5.196455305153219,
+              "max_elbow_flex_degrees": 13.042856973312336,
+              "min_elbow_drop_upperarm_ratio": -0.1126572218274112
             }
           },
-          "walk_normalized_phase_max_difference": 0.2889471946368055,
-          "walk_normalized_phase_rms_difference": 0.09155742029431976
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 0.48754522846347376,
+              "vertical_stride_leg_lengths": 0.6999509329669991
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 0.44471236583683443,
+              "vertical_stride_leg_lengths": 0.660615875631168
+            }
+          },
+          "anatomical_motion_fingerprint": "4876b667518aedb5a6439c5a56b44e50af8a181ad8dcfd5a405aadbc14d6539b",
+          "walk_normalized_phase_max_difference": 0.4812733571944721,
+          "walk_normalized_phase_rms_difference": 0.2053302575330268
         },
         "Attack": {
           "channels": 23,
@@ -712,31 +864,43 @@
           "anatomical_motion_fingerprint": "6164930a36ebbfeafafa0eec51fd48f07d8d2e47421eab9a8e7847f347690b55"
         },
         "Defend": {
-          "channels": 23,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 23,
+          "channels": 165,
+          "duration_seconds": 1.666666865348816,
+          "moving_channels": 165,
           "loop_endpoints_exact": false,
+          "description": "Measured academy defensive stance",
+          "source_file": "Noa.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3060086070139506
+          "sampled_minimum_ground_gap": 1.0909952847908133e-07,
+          "sampled_geometry_max_displacement": 0.624907626648379,
+          "anatomical_motion_fingerprint": "1f216b894839da8e1570b0486574b799765a674f3aaf657bd76b11495f88a4e7"
         },
         "Victory": {
           "channels": 144,
           "duration_seconds": 3.000000238418579,
           "moving_channels": 144,
           "loop_endpoints_exact": false,
+          "source_file": "Reisa.glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.4626609104745484,
           "anatomical_motion_fingerprint": "711f129176df41ca926ab32e4506624b4f3e42cb8fba1411536f5ffc8c65dfd2"
         },
         "Lose": {
-          "channels": 23,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 23,
+          "channels": 172,
+          "duration_seconds": 2.7916669845581055,
+          "moving_channels": 172,
           "loop_endpoints_exact": false,
+          "description": "Asymmetric academy fall and exhausted finish",
+          "source_file": "Noa.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3458621207500388,
-          "terminal_pose_displacement": 0.3458621154393013,
-          "terminal_pose_hold_max_error": 2.5895132456581623e-08
+          "sampled_minimum_ground_gap": 0.00015445534791209796,
+          "sampled_geometry_max_displacement": 0.9679844250057312,
+          "anatomical_motion_fingerprint": "008e2fa21a4d855cd330ccb2433760f395310be3cc9419fd6419eed47c8430c0",
+          "terminal_pose_displacement": 0.9340702517576599,
+          "terminal_pose_hold_max_error": 4.840362138683276e-08
         }
       },
       "status": "passed",
@@ -750,14 +914,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1552220,
+        "bytes": 2152576,
         "nodes": 308,
         "meshes": 19,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 756,
+        "accessors": 1358,
         "skin_bind_residuals": [
-          4.1071835488182273e-08
+          1.4268988602002171e-07
         ],
         "vertex_records": 6138,
         "triangles": 7150,
@@ -793,6 +957,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": 0.009643494401274152,
         "sheet_dimensions": [
           2400,
           1800
@@ -804,45 +969,64 @@
           "duration_seconds": 4.0,
           "moving_channels": 142,
           "loop_endpoints_exact": true,
+          "source_file": "Ibuki.glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 1.1920928955078125e-07,
-          "sampled_geometry_max_displacement": 0.026708899978801784
+          "sampled_geometry_max_displacement": 0.02670889998568486
         },
         "Walk": {
           "channels": 177,
           "duration_seconds": 1.3333333730697632,
           "moving_channels": 127,
           "loop_endpoints_exact": true,
+          "source_file": "Ibuki.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.3889805615822826,
           "anatomical_motion_fingerprint": "87deccf7b10b46bd459fd2f824e7998fa6d09e4c991a22497239c4650680a449"
         },
         "Run": {
-          "channels": 33,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 200,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 182,
           "loop_endpoints_exact": true,
+          "description": "Light, buoyant sprite run",
+          "source_file": "Ibuki.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.21030285941348778,
+          "sampled_minimum_ground_gap": 0.0008525077495844663,
+          "sampled_geometry_max_displacement": 0.4581322868785429,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.14567938016956447,
-              "mean_outward_upperarm_ratio": 0.14249666563035548,
-              "min_elbow_flex_degrees": 93.12314766550668,
-              "max_elbow_flex_degrees": 102.75682549660615,
-              "min_elbow_drop_upperarm_ratio": 0.9032398927692968
+              "max_outward_upperarm_ratio": 0.7110154997258313,
+              "mean_outward_upperarm_ratio": 0.6271018047951222,
+              "min_elbow_flex_degrees": 118.91070778286866,
+              "max_elbow_flex_degrees": 123.59175428800967,
+              "min_elbow_drop_upperarm_ratio": 0.4350540841680284
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.06648115510705178,
-              "mean_outward_upperarm_ratio": 0.06470070152618718,
-              "min_elbow_flex_degrees": 99.88891752986112,
-              "max_elbow_flex_degrees": 102.36681292882456,
-              "min_elbow_drop_upperarm_ratio": 0.9192898098203529
+              "max_outward_upperarm_ratio": 0.7341837039718759,
+              "mean_outward_upperarm_ratio": 0.6527939102426539,
+              "min_elbow_flex_degrees": 97.30094519891776,
+              "max_elbow_flex_degrees": 103.86588627543746,
+              "min_elbow_drop_upperarm_ratio": 0.6707863582122948
             }
           },
-          "walk_normalized_phase_max_difference": 0.2713775922261819,
-          "walk_normalized_phase_rms_difference": 0.0956446757896652
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 0.9737980009868588,
+              "vertical_stride_leg_lengths": 0.4786948054530827
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.0453933285768868,
+              "vertical_stride_leg_lengths": 0.462038374900017
+            }
+          },
+          "anatomical_motion_fingerprint": "4e03e741191e449708bb9adf2c16e51bc9ee76184d95bfb0d8277cc9f678c86d",
+          "walk_normalized_phase_max_difference": 0.3558351685762393,
+          "walk_normalized_phase_rms_difference": 0.10584631652162353
         },
         "Attack": {
           "channels": 25,
@@ -855,31 +1039,43 @@
           "anatomical_motion_fingerprint": "7bb65c6c9a5be1f3a077dd7d44f50596e5b08c5cfaf5d20836f6d71e0cec0dbc"
         },
         "Defend": {
-          "channels": 25,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 25,
+          "channels": 199,
+          "duration_seconds": 1.6000001430511475,
+          "moving_channels": 199,
           "loop_endpoints_exact": false,
+          "description": "Small, startled sprite protection",
+          "source_file": "Ibuki.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.32042718810538384
+          "sampled_minimum_ground_gap": 4.296385006294541e-05,
+          "sampled_geometry_max_displacement": 0.5208954738700937,
+          "anatomical_motion_fingerprint": "100f370cdbc3ec984aab5792d15c1f62db5875024db39b1a1a6025bf98391772"
         },
         "Victory": {
           "channels": 163,
           "duration_seconds": 3.000000238418579,
           "moving_channels": 163,
           "loop_endpoints_exact": false,
+          "source_file": "Ibuki.glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.8747178601686275,
+          "sampled_geometry_max_displacement": 0.8747178602839393,
           "anatomical_motion_fingerprint": "f5e250705a7212c850235e43944a6f3611914afa3785fa4f0bb5b18b08dc058c"
         },
         "Lose": {
-          "channels": 25,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 25,
+          "channels": 200,
+          "duration_seconds": 2.5,
+          "moving_channels": 200,
           "loop_endpoints_exact": false,
+          "description": "Small sprite flinch and collapse",
+          "source_file": "Ibuki.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.5234726526570674,
-          "terminal_pose_displacement": 0.5234726526570674,
-          "terminal_pose_hold_max_error": 2.9017217763451754e-08
+          "sampled_minimum_ground_gap": 4.296385006294541e-05,
+          "sampled_geometry_max_displacement": 1.1426427417171023,
+          "anatomical_motion_fingerprint": "b53bfae0714fd27f538b1c5825c7660be47f682dcfc44673324bec72f6ce403b",
+          "terminal_pose_displacement": 1.1412930117116984,
+          "terminal_pose_hold_max_error": 7.180896580163498e-08
         }
       },
       "status": "passed",
@@ -893,14 +1089,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2201352,
+        "bytes": 2657560,
         "nodes": 286,
         "meshes": 28,
         "skins": 1,
         "embedded_images": 10,
-        "accessors": 706,
+        "accessors": 1126,
         "skin_bind_residuals": [
-          3.9798253855092004e-08
+          1.1945988356407753e-07
         ],
         "vertex_records": 13124,
         "triangles": 17874,
@@ -948,6 +1144,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": 0.00012499221159402484,
         "sheet_dimensions": [
           2400,
           1800
@@ -959,6 +1156,8 @@
           "duration_seconds": 4.0,
           "moving_channels": 87,
           "loop_endpoints_exact": true,
+          "source_file": "Saori (Swimsuit).glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.023291543499335713
         },
@@ -967,37 +1166,54 @@
           "duration_seconds": 7.200000286102295,
           "moving_channels": 80,
           "loop_endpoints_exact": true,
+          "source_file": "Saori (Swimsuit).glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.37228270609660846,
           "anatomical_motion_fingerprint": "c3e92fe5f13e9f84bd0d9c2cc892730ed2674a8e23868ea9388d031a96280417"
         },
         "Run": {
-          "channels": 37,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 108,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 87,
           "loop_endpoints_exact": true,
+          "description": "Low, agile city-cat dash",
+          "source_file": "Saori (Swimsuit).glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.22494003178567784,
+          "sampled_minimum_ground_gap": 0.011560622765894561,
+          "sampled_geometry_max_displacement": 0.3263658661753616,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.1267985423627543,
-              "mean_outward_upperarm_ratio": 0.12441964531014725,
-              "min_elbow_flex_degrees": 91.29938948209623,
-              "max_elbow_flex_degrees": 103.00347577922618,
-              "min_elbow_drop_upperarm_ratio": 0.8400055710848734
+              "max_outward_upperarm_ratio": 0.1194878092789574,
+              "mean_outward_upperarm_ratio": 0.074876078885459,
+              "min_elbow_flex_degrees": 51.674914880446686,
+              "max_elbow_flex_degrees": 65.76494698494389,
+              "min_elbow_drop_upperarm_ratio": 0.966233650435863
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.12560264398631818,
-              "mean_outward_upperarm_ratio": 0.12351535459167977,
-              "min_elbow_flex_degrees": 92.19453801394418,
-              "max_elbow_flex_degrees": 103.66276418891132,
-              "min_elbow_drop_upperarm_ratio": 0.8357173967042226
+              "max_outward_upperarm_ratio": 0.9604118226934591,
+              "mean_outward_upperarm_ratio": 0.9449141650767849,
+              "min_elbow_flex_degrees": 78.50394057930079,
+              "max_elbow_flex_degrees": 91.13259064605538,
+              "min_elbow_drop_upperarm_ratio": 0.01919346486797954
             }
           },
-          "walk_normalized_phase_max_difference": 0.2923816074008498,
-          "walk_normalized_phase_rms_difference": 0.05206087154123749
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.0286458161131853,
+              "vertical_stride_leg_lengths": 0.5646459423979303
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.0255316893110595,
+              "vertical_stride_leg_lengths": 0.4890539944438972
+            }
+          },
+          "anatomical_motion_fingerprint": "15ddb20365fc50f891cffba23fd789211c32a46a14c3d7f16618d91f504cd040",
+          "walk_normalized_phase_max_difference": 0.353588097345459,
+          "walk_normalized_phase_rms_difference": 0.10729155300385335
         },
         "Attack": {
           "channels": 37,
@@ -1010,31 +1226,43 @@
           "anatomical_motion_fingerprint": "b055dd047b59d74f473babbbbb5241b8056fafe724d6fad1c54fe673dbe7254b"
         },
         "Defend": {
-          "channels": 37,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 37,
+          "channels": 159,
+          "duration_seconds": 1.6666667461395264,
+          "moving_channels": 159,
           "loop_endpoints_exact": false,
+          "description": "Agile, open city-cat guard",
+          "source_file": "Asuna (School Uniform).glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3597370108337903
+          "sampled_minimum_ground_gap": 0.009728027009408793,
+          "sampled_geometry_max_displacement": 0.7183091657785026,
+          "anatomical_motion_fingerprint": "3113144e589d193643453f9a3ba7c61b755f202d1d71f7723da7338a9d41c6ac"
         },
         "Victory": {
           "channels": 112,
           "duration_seconds": 3.000000238418579,
           "moving_channels": 112,
           "loop_endpoints_exact": false,
+          "source_file": "Saori (Swimsuit).glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.3107659122056098,
           "anatomical_motion_fingerprint": "23b3dfb65bdaaf50f4a0200cb7e144c2e443543bb9a3d1656151e51da6d39693"
         },
         "Lose": {
-          "channels": 37,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 37,
+          "channels": 150,
+          "duration_seconds": 2.8333334922790527,
+          "moving_channels": 150,
           "loop_endpoints_exact": false,
-          "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3722607484587169,
-          "terminal_pose_displacement": 0.37226074358130573,
-          "terminal_pose_hold_max_error": 2.1966210535566555e-08
+          "description": "City-cat loses balance and folds into a dramatic defeat",
+          "source_file": "Mika.glb",
+          "source_clip": "Vital_Death",
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_minimum_ground_gap": 0.004457556907226476,
+          "sampled_geometry_max_displacement": 1.0139746085562542,
+          "anatomical_motion_fingerprint": "c25fedb83d0327c13f939acdc05aaefb024ea080570e2d5dfc7f6c5ad74ce4d5",
+          "terminal_pose_displacement": 1.0139745412102263,
+          "terminal_pose_hold_max_error": 7.390418472309408e-08
         }
       },
       "status": "passed",
@@ -1048,20 +1276,88 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2848344,
-        "nodes": 240,
-        "meshes": 30,
+        "bytes": 2943248,
+        "nodes": 343,
+        "meshes": 47,
         "skins": 1,
-        "embedded_images": 25,
-        "accessors": 733,
+        "embedded_images": 42,
+        "accessors": 1276,
         "skin_bind_residuals": [
-          5.55112897870913e-08
+          1.35504507171727e-07
         ],
-        "vertex_records": 18076,
-        "triangles": 22894,
+        "vertex_records": 12690,
+        "triangles": 14384,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
           [
             512,
             512
@@ -1163,6 +1459,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": -1.8365962156026274e-07,
         "sheet_dimensions": [
           2400,
           1800
@@ -1174,6 +1471,8 @@
           "duration_seconds": 4.0,
           "moving_channels": 106,
           "loop_endpoints_exact": true,
+          "source_file": "Reisa (Magical).glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.018644241138555534
         },
@@ -1182,37 +1481,54 @@
           "duration_seconds": 1.3333333730697632,
           "moving_channels": 108,
           "loop_endpoints_exact": true,
+          "source_file": "Reisa (Magical).glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.38210759167609654,
           "anatomical_motion_fingerprint": "2607499c5e0cd2e7004fc7fc09ea46b7f06f8a1917fdb840bf8c41b31b99a205"
         },
         "Run": {
-          "channels": 37,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 101,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 61,
           "loop_endpoints_exact": true,
+          "description": "Playful, asymmetric doll sprint",
+          "source_file": "Mutsuki.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.2129273553618046,
+          "sampled_minimum_ground_gap": 0.036938806417096355,
+          "sampled_geometry_max_displacement": 0.2604911213850276,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.1296628450300953,
-              "mean_outward_upperarm_ratio": 0.12842972108283335,
-              "min_elbow_flex_degrees": 94.29369034498656,
-              "max_elbow_flex_degrees": 104.68684502145746,
-              "min_elbow_drop_upperarm_ratio": 0.844215899597606
+              "max_outward_upperarm_ratio": -0.07148736449289574,
+              "mean_outward_upperarm_ratio": -0.09689971819772306,
+              "min_elbow_flex_degrees": 68.73760142927155,
+              "max_elbow_flex_degrees": 99.73568595496364,
+              "min_elbow_drop_upperarm_ratio": 0.9323224339660727
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.06293686801198141,
-              "mean_outward_upperarm_ratio": 0.05990941330612105,
-              "min_elbow_flex_degrees": 99.95282482317259,
-              "max_elbow_flex_degrees": 103.15242940542261,
-              "min_elbow_drop_upperarm_ratio": 0.9191819104371854
+              "max_outward_upperarm_ratio": 0.9418865942960019,
+              "mean_outward_upperarm_ratio": 0.9036175046223023,
+              "min_elbow_flex_degrees": 91.0390332841254,
+              "max_elbow_flex_degrees": 122.60156549586665,
+              "min_elbow_drop_upperarm_ratio": -0.07300402134907287
             }
           },
-          "walk_normalized_phase_max_difference": 0.241454879793904,
-          "walk_normalized_phase_rms_difference": 0.04689259920051863
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 0.8830663936490422,
+              "vertical_stride_leg_lengths": 0.3916964332751318
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 0.8160119841707588,
+              "vertical_stride_leg_lengths": 0.36995460443688366
+            }
+          },
+          "anatomical_motion_fingerprint": "a0ae2ac06f89ad4830fa279d7ae3cb3148f7d4755158464a0d448cf76334d415",
+          "walk_normalized_phase_max_difference": 0.33476206270589504,
+          "walk_normalized_phase_rms_difference": 0.16998743054314144
         },
         "Attack": {
           "channels": 27,
@@ -1225,31 +1541,43 @@
           "anatomical_motion_fingerprint": "513d50ab94e6dd1fe9268efdc472c48484d69a5a6752a8b0691f85297147e550"
         },
         "Defend": {
-          "channels": 27,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 27,
+          "channels": 168,
+          "duration_seconds": 1.6000001430511475,
+          "moving_channels": 168,
           "loop_endpoints_exact": false,
+          "description": "Expressive, drawn-in doll protection",
+          "source_file": "Sakurako (Idol).glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.2808492924014916
+          "sampled_minimum_ground_gap": 0.032246431394873605,
+          "sampled_geometry_max_displacement": 0.5932989127075002,
+          "anatomical_motion_fingerprint": "c6a03b3eb065895f7ffb55a73671f69a2800097fd32be1f641f07ac0fbc14da2"
         },
         "Victory": {
           "channels": 141,
           "duration_seconds": 8.866666793823242,
           "moving_channels": 141,
           "loop_endpoints_exact": false,
+          "source_file": "Reisa (Magical).glb",
+          "source_clip": "Cafe_Reaction",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.7382684360871433,
           "anatomical_motion_fingerprint": "134e8703eab1148db8322be18b1b3e76f0d3302a8078164e92a276bd2107ade0"
         },
         "Lose": {
-          "channels": 27,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 27,
+          "channels": 169,
+          "duration_seconds": 3.0,
+          "moving_channels": 169,
           "loop_endpoints_exact": false,
+          "description": "Expressive doll collapse",
+          "source_file": "Sakurako (Idol).glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.39671975739012905,
-          "terminal_pose_displacement": 0.3967197488757138,
-          "terminal_pose_hold_max_error": 3.913690968402988e-08
+          "sampled_minimum_ground_gap": 0.0001493966939498041,
+          "sampled_geometry_max_displacement": 0.925043825585157,
+          "anatomical_motion_fingerprint": "1fff5ac090cfa2a2ce795fafea88c72462c334f4fbdb6b3152e3afc51680b817",
+          "terminal_pose_displacement": 0.925043825585157,
+          "terminal_pose_hold_max_error": 5.036991913637811e-08
         }
       },
       "status": "passed",
@@ -1263,14 +1591,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2659944,
+        "bytes": 2968456,
         "nodes": 236,
         "meshes": 54,
         "skins": 1,
         "embedded_images": 8,
-        "accessors": 940,
+        "accessors": 1251,
         "skin_bind_residuals": [
-          3.7264980758298335e-08
+          1.5541761495381286e-07
         ],
         "vertex_records": 9032,
         "triangles": 13994,
@@ -1310,6 +1638,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": -0.000335609775641544,
         "sheet_dimensions": [
           2400,
           1800
@@ -1321,6 +1650,8 @@
           "duration_seconds": 4.0,
           "moving_channels": 135,
           "loop_endpoints_exact": true,
+          "source_file": "Kisaki.glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.021173276659835157
         },
@@ -1329,37 +1660,54 @@
           "duration_seconds": 6.333333492279053,
           "moving_channels": 141,
           "loop_endpoints_exact": true,
+          "source_file": "Kisaki.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 1.1920928955078125e-07,
           "sampled_geometry_max_displacement": 0.3501585632098871,
           "anatomical_motion_fingerprint": "f4f8139f3f203410ed7a35b0168546a81bd761446715e14ace8947ba60e1ff67"
         },
         "Run": {
-          "channels": 37,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 96,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 80,
           "loop_endpoints_exact": true,
+          "description": "Strong, deliberate forward pursuit",
+          "source_file": "Wakamo.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.2200509302749238,
+          "sampled_minimum_ground_gap": 0.001144374961446251,
+          "sampled_geometry_max_displacement": 0.2588721257895392,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.1310903420939197,
-              "mean_outward_upperarm_ratio": 0.1302066214911292,
-              "min_elbow_flex_degrees": 91.73821122748402,
-              "max_elbow_flex_degrees": 102.37377140445986,
-              "min_elbow_drop_upperarm_ratio": 0.8499921253134318
+              "max_outward_upperarm_ratio": 0.9753072453137659,
+              "mean_outward_upperarm_ratio": 0.9249539251046384,
+              "min_elbow_flex_degrees": 100.52430100947228,
+              "max_elbow_flex_degrees": 110.49013145227248,
+              "min_elbow_drop_upperarm_ratio": 0.2038661435221745
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.07482485732423637,
-              "mean_outward_upperarm_ratio": 0.07288681615592624,
-              "min_elbow_flex_degrees": 100.7342867659776,
-              "max_elbow_flex_degrees": 102.24819036642954,
-              "min_elbow_drop_upperarm_ratio": 0.8923139073848356
+              "max_outward_upperarm_ratio": 0.5384729410918471,
+              "mean_outward_upperarm_ratio": 0.5097044340237002,
+              "min_elbow_flex_degrees": 19.310990260910714,
+              "max_elbow_flex_degrees": 26.15168453806278,
+              "min_elbow_drop_upperarm_ratio": 0.013071900425687193
             }
           },
-          "walk_normalized_phase_max_difference": 0.38812172761034275,
-          "walk_normalized_phase_rms_difference": 0.08519015219757291
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.1414984434256812,
+              "vertical_stride_leg_lengths": 0.46298378121521294
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.1569923540742302,
+              "vertical_stride_leg_lengths": 0.4192447646010567
+            }
+          },
+          "anatomical_motion_fingerprint": "00d4091e9766d97fc907a4dce129fbab3faa26f931968ba9b6ddc5a425048871",
+          "walk_normalized_phase_max_difference": 0.44314889476964436,
+          "walk_normalized_phase_rms_difference": 0.21912924816587898
         },
         "Attack": {
           "channels": 27,
@@ -1372,31 +1720,43 @@
           "anatomical_motion_fingerprint": "356fe0f5bf4d53dcce09c187568c10c10e2882e908182defd41b53c02d5fdad1"
         },
         "Defend": {
-          "channels": 27,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 27,
+          "channels": 119,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 119,
           "loop_endpoints_exact": false,
+          "description": "Graceful, balanced fan-user guard",
+          "source_file": "Mimori.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.35643733213183365
+          "sampled_minimum_ground_gap": 0.00024016890265564855,
+          "sampled_geometry_max_displacement": 0.47995828171784477,
+          "anatomical_motion_fingerprint": "f68f87eaf8bf3263d35ca53eabbf1556bde687f788719b4ebebaca13e5840321"
         },
         "Victory": {
           "channels": 157,
           "duration_seconds": 9.333333969116211,
           "moving_channels": 157,
           "loop_endpoints_exact": false,
+          "source_file": "Kisaki.glb",
+          "source_clip": "Cafe_Reaction",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.6371325821360978,
           "anatomical_motion_fingerprint": "fcc74e64efa91b2fecd40a7c1a3d3a4ce7140e969a420d63cec79a0b653a48a1"
         },
         "Lose": {
-          "channels": 27,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 27,
+          "channels": 93,
+          "duration_seconds": 2.9166669845581055,
+          "moving_channels": 93,
           "loop_endpoints_exact": false,
+          "description": "Dramatic fan-user fall",
+          "source_file": "Wakamo.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.35139907800983616,
-          "terminal_pose_displacement": 0.3513990737550647,
-          "terminal_pose_hold_max_error": 3.580691301183033e-08
+          "sampled_minimum_ground_gap": 0.00024016890265564855,
+          "sampled_geometry_max_displacement": 0.6860009972616172,
+          "anatomical_motion_fingerprint": "32d6258c696fffa01dc6f9aecb23f5f748e6eafe017ed9d9b82c47251e1cb2a3",
+          "terminal_pose_displacement": 0.5047039552065526,
+          "terminal_pose_hold_max_error": 3.766537313228231e-08
         }
       },
       "status": "passed",
@@ -1410,14 +1770,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2324820,
+        "bytes": 2690464,
         "nodes": 292,
         "meshes": 9,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 612,
+        "accessors": 1045,
         "skin_bind_residuals": [
-          1.077301681196019e-07
+          1.4934159797697077e-07
         ],
         "vertex_records": 9140,
         "triangles": 12086,
@@ -1453,6 +1813,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": -8.405543139195445e-06,
         "sheet_dimensions": [
           2400,
           1800
@@ -1464,45 +1825,64 @@
           "duration_seconds": 10.333333969116211,
           "moving_channels": 125,
           "loop_endpoints_exact": true,
+          "source_file": "Mutsuki (Dress).glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.07213221066065646
+          "sampled_geometry_max_displacement": 0.07213221089021614
         },
         "Walk": {
           "channels": 121,
           "duration_seconds": 1.3333333730697632,
           "moving_channels": 105,
           "loop_endpoints_exact": true,
+          "source_file": "Mutsuki (Dress).glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.28713652589302757,
           "anatomical_motion_fingerprint": "def9d83c5f0d05016e35660b7a8f3dd2d964cc18be29e847e86df10580cacf71"
         },
         "Run": {
-          "channels": 33,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 138,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 105,
           "loop_endpoints_exact": true,
+          "description": "Soft but decisive snow-dress run",
+          "source_file": "Atsuko.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.21449654319534012,
+          "sampled_minimum_ground_gap": 0.0013478026136559303,
+          "sampled_geometry_max_displacement": 0.277209676195001,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.12308547509180048,
-              "mean_outward_upperarm_ratio": 0.1208856197155703,
-              "min_elbow_flex_degrees": 96.77105394840325,
-              "max_elbow_flex_degrees": 106.64590190065158,
-              "min_elbow_drop_upperarm_ratio": 0.8207951406344419
+              "max_outward_upperarm_ratio": 0.0837871907945082,
+              "mean_outward_upperarm_ratio": 0.042766894283495976,
+              "min_elbow_flex_degrees": 44.652536040374635,
+              "max_elbow_flex_degrees": 84.2898610992728,
+              "min_elbow_drop_upperarm_ratio": 0.915854293506722
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.06663075603320502,
-              "mean_outward_upperarm_ratio": 0.06296189040878783,
-              "min_elbow_flex_degrees": 97.25447056218024,
-              "max_elbow_flex_degrees": 102.31434173734951,
-              "min_elbow_drop_upperarm_ratio": 0.9190013073616375
+              "max_outward_upperarm_ratio": 0.8142595714482772,
+              "mean_outward_upperarm_ratio": 0.7396477357603716,
+              "min_elbow_flex_degrees": 95.56343451120443,
+              "max_elbow_flex_degrees": 118.3671350984988,
+              "min_elbow_drop_upperarm_ratio": 0.5672605332268515
             }
           },
-          "walk_normalized_phase_max_difference": 0.2788981789096181,
-          "walk_normalized_phase_rms_difference": 0.07427468161680378
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.018395042691676,
+              "vertical_stride_leg_lengths": 0.4795076733545432
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.0232410751911192,
+              "vertical_stride_leg_lengths": 0.3788779108725165
+            }
+          },
+          "anatomical_motion_fingerprint": "65a10b50c0f331504cf524fa59235c13c1f64dd06f60496cd24d3dbec1ac60bf",
+          "walk_normalized_phase_max_difference": 0.3883323294149574,
+          "walk_normalized_phase_rms_difference": 0.12374835594186209
         },
         "Attack": {
           "channels": 25,
@@ -1515,31 +1895,43 @@
           "anatomical_motion_fingerprint": "36c7be44a16f553365e33b4b08ef529570333f30652e98da5a0fcbf261716cc6"
         },
         "Defend": {
-          "channels": 25,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 25,
+          "channels": 147,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 147,
           "loop_endpoints_exact": false,
+          "description": "Gentle, protective snow stance",
+          "source_file": "Atsuko.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.303243337367505
+          "sampled_minimum_ground_gap": 8.979919329905039e-06,
+          "sampled_geometry_max_displacement": 0.5677833872186815,
+          "anatomical_motion_fingerprint": "f68c259822d4e93a65a102548b43e1c7f31dfcdca96365e27fe15221110b4008"
         },
         "Victory": {
           "channels": 148,
           "duration_seconds": 6.833333492279053,
           "moving_channels": 148,
           "loop_endpoints_exact": false,
+          "source_file": "Mutsuki (Dress).glb",
+          "source_clip": "Cafe_Reaction",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_geometry_max_displacement": 0.564269974732646,
           "anatomical_motion_fingerprint": "6d34f9f87932ff62f7d92c5060f08ee65ad8c316c4084159b9c8d736991a5813"
         },
         "Lose": {
-          "channels": 25,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 25,
+          "channels": 145,
+          "duration_seconds": 1.8750001192092896,
+          "moving_channels": 145,
           "loop_endpoints_exact": false,
+          "description": "Gentle snow-character folding defeat",
+          "source_file": "Atsuko.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.30366088638843564,
-          "terminal_pose_displacement": 0.3036608788848725,
-          "terminal_pose_hold_max_error": 4.1905517429782565e-08
+          "sampled_minimum_ground_gap": 0.00019649615698779708,
+          "sampled_geometry_max_displacement": 0.9112532397143888,
+          "anatomical_motion_fingerprint": "dd4867f1d29ef8241e621e539a428b03c4da6c0143baf55f72934de92fd26216",
+          "terminal_pose_displacement": 0.9112532320568044,
+          "terminal_pose_hold_max_error": 4.287242014188838e-08
         }
       },
       "status": "passed",
@@ -1553,17 +1945,17 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1408108,
-        "nodes": 290,
-        "meshes": 53,
+        "bytes": 4100080,
+        "nodes": 326,
+        "meshes": 89,
         "skins": 1,
-        "embedded_images": 7,
-        "accessors": 585,
+        "embedded_images": 10,
+        "accessors": 2062,
         "skin_bind_residuals": [
-          3.992046215817169e-08
+          1.4770825711520338e-07
         ],
-        "vertex_records": 11503,
-        "triangles": 15439,
+        "vertex_records": 15367,
+        "triangles": 23242,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -1588,14 +1980,27 @@
             512
           ],
           [
-            512,
-            512
+            1024,
+            1024
           ],
           [
             512,
             512
+          ],
+          [
+            1024,
+            1024
+          ],
+          [
+            1024,
+            1024
+          ],
+          [
+            1024,
+            1024
           ]
         ],
+        "rest_geometry_floor_y": -0.0008367970225100374,
         "sheet_dimensions": [
           2400,
           1800
@@ -1603,92 +2008,126 @@
       },
       "animations": {
         "Idle": {
-          "channels": 37,
-          "duration_seconds": 3.200000047683716,
-          "moving_channels": 16,
+          "channels": 176,
+          "duration_seconds": 1.6666667461395264,
+          "moving_channels": 160,
           "loop_endpoints_exact": true,
-          "description": "Alert trailblazer: balanced low blades, a small scouting glance and breathing",
+          "description": "Quiet scout breathing",
+          "source_file": "Shiroko.glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.0393931247999447
+          "sampled_minimum_ground_gap": 0.0006299665510700643,
+          "sampled_geometry_max_displacement": 0.07491522582358136
         },
         "Walk": {
-          "channels": 37,
-          "duration_seconds": 1.100000023841858,
-          "moving_channels": 17,
+          "channels": 179,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 163,
           "loop_endpoints_exact": true,
-          "description": "Light adventurer steps with outward low blades, a forward lean and scouting head turns",
+          "description": "Purposeful, observant scout walk",
+          "source_file": "Shiroko.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.09365214298982054,
-          "anatomical_motion_fingerprint": "376750885d552c359b61f143af25858070ab2d07093064d56fb071d743fc1e10"
+          "sampled_minimum_ground_gap": 0.0011790976006917108,
+          "sampled_geometry_max_displacement": 0.4085666815851979,
+          "anatomical_motion_fingerprint": "2f083f33b4b81349a3a349dc0769f742215597c6c5575aa795742e6410d4c031"
         },
         "Run": {
-          "channels": 37,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 175,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 152,
           "loop_endpoints_exact": true,
-          "description": "Quick trailblazer sprint with both blades kept outside the body and compact knee drive",
+          "description": "Aggressive dual-arm scout sprint with a long stride",
+          "source_file": "Neru.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.22085286726761047,
+          "sampled_minimum_ground_gap": 0.010122306179369042,
+          "sampled_geometry_max_displacement": 0.43354303620495027,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.1689196225811261,
-              "mean_outward_upperarm_ratio": 0.035820572699683736,
-              "min_elbow_flex_degrees": 67.5529210143325,
-              "max_elbow_flex_degrees": 81.07677065100708,
-              "min_elbow_drop_upperarm_ratio": 0.8829953127988562
+              "max_outward_upperarm_ratio": 0.9987695820335394,
+              "mean_outward_upperarm_ratio": 0.9568216453749161,
+              "min_elbow_flex_degrees": 64.01100508733435,
+              "max_elbow_flex_degrees": 93.53987908719031,
+              "min_elbow_drop_upperarm_ratio": 0.030946070730857443
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.16891691695479183,
-              "mean_outward_upperarm_ratio": 0.06320927483957418,
-              "min_elbow_flex_degrees": 67.55281639030154,
-              "max_elbow_flex_degrees": 81.07667157958335,
-              "min_elbow_drop_upperarm_ratio": 0.8829954202467537
+              "max_outward_upperarm_ratio": 0.5725271236505801,
+              "mean_outward_upperarm_ratio": 0.46865386296925504,
+              "min_elbow_flex_degrees": 16.678298469884265,
+              "max_elbow_flex_degrees": 53.426657264088355,
+              "min_elbow_drop_upperarm_ratio": 0.1162261155287952
             }
           },
-          "walk_normalized_phase_max_difference": 0.14679668116973213,
-          "walk_normalized_phase_rms_difference": 0.031174353544286285
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.1781599546546109,
+              "vertical_stride_leg_lengths": 0.6607511592908721
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.1179263985653436,
+              "vertical_stride_leg_lengths": 0.6060263137727563
+            }
+          },
+          "anatomical_motion_fingerprint": "9e48a24c5dcce2544445aa8de0ff0a1b4af15effbb48b094a10fc5a3401d5f30",
+          "walk_normalized_phase_max_difference": 0.35498512949071137,
+          "walk_normalized_phase_rms_difference": 0.13195911773319746
         },
         "Attack": {
-          "channels": 37,
-          "duration_seconds": 1.899999976158142,
-          "moving_channels": 37,
+          "channels": 176,
+          "duration_seconds": 4.933333396911621,
+          "moving_channels": 176,
           "loop_endpoints_exact": false,
-          "description": "Trailblazer daggers: left diagonal cut, right return cut and crossed recovery",
+          "description": "Aggressive native dual-arm scout combination, with fitted dagger grips",
+          "source_file": "Neru.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.5994418737210068,
-          "anatomical_motion_fingerprint": "81a025a80e98df8d6d7d6ace8e6ad8d5fe3f5dfef47881a3216bd50efad65bc9"
+          "sampled_minimum_ground_gap": 0.0008350464763818067,
+          "sampled_geometry_max_displacement": 0.6593178326240603,
+          "anatomical_motion_fingerprint": "ae2ef36fea1256a9f71cf5c6f4ad74d271ed1095ece617d6e1a7c4bc49f4d003"
         },
         "Defend": {
-          "channels": 37,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 37,
+          "channels": 184,
+          "duration_seconds": 1.4000000953674316,
+          "moving_channels": 184,
           "loop_endpoints_exact": false,
-          "description": "daggers guard: enter, hold and recover",
+          "description": "Firm, squared scout guard",
+          "source_file": "Mine.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3904327739038218
+          "sampled_minimum_ground_gap": 0.000997349945912085,
+          "sampled_geometry_max_displacement": 0.6085858781496085,
+          "anatomical_motion_fingerprint": "888a937dcb79cc28030de8cb6b1995a19763f5b1015bfbd61c042c02182d8974"
         },
         "Victory": {
-          "channels": 37,
-          "duration_seconds": 3.049999952316284,
-          "moving_channels": 37,
+          "channels": 180,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 180,
           "loop_endpoints_exact": false,
-          "description": "Confident dagger salute, a quick left-hand flourish and a satisfied nod",
+          "description": "Small scout victory salute",
+          "source_file": "Shiroko.glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4015952317249676,
-          "anatomical_motion_fingerprint": "460b1e90502080b4541f6195856144e4f659ab01ae4524a42d43dc186d728bfc"
+          "sampled_minimum_ground_gap": 0.0008239133396285905,
+          "sampled_geometry_max_displacement": 0.8222027761323517,
+          "anatomical_motion_fingerprint": "3f26d66cd4c058708b705265825db04a8ec074a4f9809e9b6ae7b1254e056240"
         },
         "Lose": {
-          "channels": 37,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 37,
+          "channels": 184,
+          "duration_seconds": 3.1666669845581055,
+          "moving_channels": 184,
           "loop_endpoints_exact": false,
-          "description": "Grounded defeated crouch with lowered head and held finish",
+          "description": "Scout loses balance and lands defeated",
+          "source_file": "Mine.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4599106712029947,
-          "terminal_pose_displacement": 0.4599106712029947,
-          "terminal_pose_hold_max_error": 2.4397119164756555e-08
+          "sampled_minimum_ground_gap": 0.0008350464763818067,
+          "sampled_geometry_max_displacement": 0.7285906089304799,
+          "anatomical_motion_fingerprint": "8c57d91d4f31e7abf4f983fd3ab379edf693516bd0a9d644c263ad7b575b4774",
+          "terminal_pose_displacement": 0.646334259118536,
+          "terminal_pose_hold_max_error": 5.116494477994089e-08
         }
       },
       "status": "passed",
@@ -1702,17 +2141,17 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1195016,
+        "bytes": 3292740,
         "nodes": 340,
         "meshes": 44,
         "skins": 1,
-        "embedded_images": 8,
-        "accessors": 471,
+        "embedded_images": 9,
+        "accessors": 1845,
         "skin_bind_residuals": [
-          4.5554668925973374e-08
+          1.3554490335037016e-07
         ],
-        "vertex_records": 9465,
-        "triangles": 12202,
+        "vertex_records": 11021,
+        "triangles": 15258,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -1745,10 +2184,15 @@
             512
           ],
           [
+            1024,
+            1024
+          ],
+          [
             512,
             512
           ]
         ],
+        "rest_geometry_floor_y": -0.0010260954375223281,
         "sheet_dimensions": [
           2400,
           1800
@@ -1756,92 +2200,126 @@
       },
       "animations": {
         "Idle": {
-          "channels": 27,
-          "duration_seconds": 3.200000047683716,
-          "moving_channels": 17,
+          "channels": 197,
+          "duration_seconds": 3.200000286102295,
+          "moving_channels": 180,
           "loop_endpoints_exact": true,
-          "description": "Cheerful fox: a swaying hip pose, shoulder-high star baton and playful head tilt",
+          "description": "Bright fox-ninja anticipation",
+          "source_file": "Izuna.glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.05203766478281004
+          "sampled_minimum_ground_gap": 0.0048112951128469715,
+          "sampled_geometry_max_displacement": 0.0546314541168714
         },
         "Walk": {
-          "channels": 27,
-          "duration_seconds": 1.0499999523162842,
-          "moving_channels": 17,
+          "channels": 196,
+          "duration_seconds": 1.2666667699813843,
+          "moving_channels": 172,
           "loop_endpoints_exact": true,
-          "description": "Buoyant fox steps with lifted toes, a swinging star baton and a jaunty free hand",
+          "description": "Buoyant fox-ninja walk",
+          "source_file": "Izuna.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.10448938765107592,
-          "anatomical_motion_fingerprint": "13a09fe29c7e8a37281c8edc114206de9c1ac58d725c5cd9bb280b921eb8c5a9"
+          "sampled_minimum_ground_gap": 0.002234988947862225,
+          "sampled_geometry_max_displacement": 0.4109927048866277,
+          "anatomical_motion_fingerprint": "7f7c7900bf3a3e3043fcf2664735b5d36c5d366534628d5dfc8ca2cf52a44706"
         },
         "Run": {
-          "channels": 27,
-          "duration_seconds": 0.800000011920929,
-          "moving_channels": 17,
+          "channels": 196,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 186,
           "loop_endpoints_exact": true,
-          "description": "Bouncy fox dash with a high baton carry and a pumping free arm",
+          "description": "Energetic fox-ninja bounding sprint",
+          "source_file": "Izuna.glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.21741519901877418,
+          "sampled_minimum_ground_gap": 0.0027419384748320085,
+          "sampled_geometry_max_displacement": 0.42880214324005156,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.10710511896384672,
-              "mean_outward_upperarm_ratio": 0.028210859867753617,
-              "min_elbow_flex_degrees": 113.11495024231532,
-              "max_elbow_flex_degrees": 141.12903989865833,
-              "min_elbow_drop_upperarm_ratio": 0.6647495982308099
+              "max_outward_upperarm_ratio": 0.18741914687508415,
+              "mean_outward_upperarm_ratio": -0.0283668868756516,
+              "min_elbow_flex_degrees": 99.31548275254153,
+              "max_elbow_flex_degrees": 115.44377011253397,
+              "min_elbow_drop_upperarm_ratio": 0.6720416836656116
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.3616125428275108,
-              "mean_outward_upperarm_ratio": 0.2776848832183979,
-              "min_elbow_flex_degrees": 131.56301751845083,
-              "max_elbow_flex_degrees": 149.49431572577322,
-              "min_elbow_drop_upperarm_ratio": 0.8647497134639652
+              "max_outward_upperarm_ratio": 0.8555224846051142,
+              "mean_outward_upperarm_ratio": 0.7139704148734933,
+              "min_elbow_flex_degrees": 0.8291305743602388,
+              "max_elbow_flex_degrees": 19.514951285285765,
+              "min_elbow_drop_upperarm_ratio": -0.22412350041127221
             }
           },
-          "walk_normalized_phase_max_difference": 0.1293976725274681,
-          "walk_normalized_phase_rms_difference": 0.018819190384103703
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 0.9399268615013627,
+              "vertical_stride_leg_lengths": 0.6353518579270091
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 0.9784935253685844,
+              "vertical_stride_leg_lengths": 0.6337276480119511
+            }
+          },
+          "anatomical_motion_fingerprint": "f66fdc49e10663870e13b7591024aa92bb315146d8190b182bf40772d4326b6c",
+          "walk_normalized_phase_max_difference": 0.4521828611351258,
+          "walk_normalized_phase_rms_difference": 0.18438161924579421
         },
         "Attack": {
-          "channels": 27,
-          "duration_seconds": 2.049999952316284,
-          "moving_channels": 27,
+          "channels": 196,
+          "duration_seconds": 4.333333492279053,
+          "moving_channels": 196,
           "loop_endpoints_exact": false,
-          "description": "Fox-star baton: buoyant wind-up, zigzag star trace and forward bell flick",
+          "description": "Native fox-ninja casting flourish, with a fitted starbell baton grip",
+          "source_file": "Izuna.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.48218853004252316,
-          "anatomical_motion_fingerprint": "833e7a61854c8976ac244a9639f83fd19949c8e3f5a2f328d5572ce8f48b1954"
+          "sampled_minimum_ground_gap": 0.0007390319472054588,
+          "sampled_geometry_max_displacement": 2.0829020254559714,
+          "anatomical_motion_fingerprint": "76caf8344661febc9a8eb7c3f5b31f023387ed5fe1a8bc8629d0f1130ff63b4a"
         },
         "Defend": {
-          "channels": 27,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 27,
+          "channels": 194,
+          "duration_seconds": 1.4000000953674316,
+          "moving_channels": 194,
           "loop_endpoints_exact": false,
-          "description": "fox_baton guard: enter, hold and recover",
+          "description": "Springy fox-ninja ready stance",
+          "source_file": "Izuna.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.31092586629405605
+          "sampled_minimum_ground_gap": 0.0010261693353732252,
+          "sampled_geometry_max_displacement": 0.657824269805112,
+          "anatomical_motion_fingerprint": "a502ba17319391af16fec816ced6e6d7e8cb4f4801288a7526f9600c795ef10e"
         },
         "Victory": {
-          "channels": 37,
-          "duration_seconds": 3.299999952316284,
-          "moving_channels": 33,
+          "channels": 194,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 194,
           "loop_endpoints_exact": false,
-          "description": "Two fox-ear hand beats, a side-to-side baton cheer and a little celebratory hop",
+          "description": "Exuberant fox-ninja victory",
+          "source_file": "Izuna.glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.39342445164354756,
-          "anatomical_motion_fingerprint": "95859da55266e1589b1b1f31f31167da8f678fbe329b63a8a200c719baac6a8e"
+          "sampled_minimum_ground_gap": 0.0009174816175720533,
+          "sampled_geometry_max_displacement": 1.5120557673777832,
+          "anatomical_motion_fingerprint": "53c5ffbd1c5fec0344fe215a9e15322f512b68dfe23c352ac596b4a7d46b0b17"
         },
         "Lose": {
-          "channels": 27,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 27,
+          "channels": 194,
+          "duration_seconds": 2.5,
+          "moving_channels": 194,
           "loop_endpoints_exact": false,
-          "description": "Grounded defeated crouch with lowered head and held finish",
+          "description": "Fox idol falters and settles into defeat",
+          "source_file": "Seia.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4175234591720873,
-          "terminal_pose_displacement": 0.41752345282871955,
-          "terminal_pose_hold_max_error": 8.760016391361739e-09
+          "sampled_minimum_ground_gap": 0.001193121967820651,
+          "sampled_geometry_max_displacement": 1.2072825527502276,
+          "anatomical_motion_fingerprint": "0ac474e2910d07600668457e2830508e5c29943340264dba3c8e5c7b3fd02b33",
+          "terminal_pose_displacement": 1.2066469677885137,
+          "terminal_pose_hold_max_error": 8.096672643184116e-08
         }
       },
       "status": "passed",
@@ -1855,17 +2333,17 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 1703504,
-        "nodes": 367,
-        "meshes": 87,
+        "bytes": 4469600,
+        "nodes": 349,
+        "meshes": 69,
         "skins": 1,
-        "embedded_images": 7,
-        "accessors": 719,
+        "embedded_images": 10,
+        "accessors": 2099,
         "skin_bind_residuals": [
-          5.2564138375288394e-08
+          1.880158682219959e-07
         ],
-        "vertex_records": 15244,
-        "triangles": 21610,
+        "vertex_records": 16522,
+        "triangles": 23658,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -1894,10 +2372,23 @@
             512
           ],
           [
+            1024,
+            1024
+          ],
+          [
+            1024,
+            1024
+          ],
+          [
+            512,
+            512
+          ],
+          [
             512,
             512
           ]
         ],
+        "rest_geometry_floor_y": -1.8365962156026274e-07,
         "sheet_dimensions": [
           2400,
           1800
@@ -1905,92 +2396,126 @@
       },
       "animations": {
         "Idle": {
-          "channels": 27,
-          "duration_seconds": 3.200000047683716,
-          "moving_channels": 15,
+          "channels": 209,
+          "duration_seconds": 4.0,
+          "moving_channels": 198,
           "loop_endpoints_exact": true,
-          "description": "Thoughtful flower witch: upright staff, free hand over the spell book and a quiet glance",
-          "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.027259749888992546
+          "description": "Thoughtful witch idle",
+          "source_file": "Eri.glb",
+          "source_clip": "Cafe_Idle",
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_minimum_ground_gap": 0.009456557324785123,
+          "sampled_geometry_max_displacement": 0.018961513940577136
         },
         "Walk": {
-          "channels": 27,
-          "duration_seconds": 1.5499999523162842,
-          "moving_channels": 17,
+          "channels": 211,
+          "duration_seconds": 1.3333333730697632,
+          "moving_channels": 181,
           "loop_endpoints_exact": true,
-          "description": "Measured witch steps with an upright staff, restrained foot lift and gentle cape sway",
+          "description": "Measured, composed witch walk",
+          "source_file": "Eri.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.06053261984133453,
-          "anatomical_motion_fingerprint": "dae52c74adce1522977f736818c2c1819014e611881a68f262edeb139af32c10"
+          "sampled_minimum_ground_gap": 0.009316994560587936,
+          "sampled_geometry_max_displacement": 0.3590526655694226,
+          "anatomical_motion_fingerprint": "1f6e6eddfb4225e7648efda3674b6b62b6112badb7a6e097f6b9bddfd3fc38e2"
         },
         "Run": {
-          "channels": 27,
-          "duration_seconds": 0.9200000166893005,
-          "moving_channels": 17,
+          "channels": 210,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 199,
           "loop_endpoints_exact": true,
-          "description": "Purposeful witch dash with a stable upright staff and a free hand protecting the hat",
+          "description": "Expressive witch race run with free arm carriage",
+          "source_file": "Eri.glb",
+          "source_clip": "DiceRace_Run",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.22828010086902142,
+          "sampled_minimum_ground_gap": 0.01000893852326747,
+          "sampled_geometry_max_displacement": 0.45806399790730884,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.27106719266807855,
-              "mean_outward_upperarm_ratio": 0.2590659655798708,
-              "min_elbow_flex_degrees": 41.857620196001356,
-              "max_elbow_flex_degrees": 46.93715743156898,
-              "min_elbow_drop_upperarm_ratio": -0.9561938274594778
+              "max_outward_upperarm_ratio": 0.4861756343760622,
+              "mean_outward_upperarm_ratio": 0.4300003824776456,
+              "min_elbow_flex_degrees": 63.90929556447214,
+              "max_elbow_flex_degrees": 73.11428314836368,
+              "min_elbow_drop_upperarm_ratio": 0.7108997373195899
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.08578473752235559,
-              "mean_outward_upperarm_ratio": 0.07034131447842376,
-              "min_elbow_flex_degrees": 115.31285160499866,
-              "max_elbow_flex_degrees": 118.61237060407812,
-              "min_elbow_drop_upperarm_ratio": 0.8949195630905663
+              "max_outward_upperarm_ratio": 0.2721296176103507,
+              "mean_outward_upperarm_ratio": 0.17881785376193027,
+              "min_elbow_flex_degrees": 22.77264212046961,
+              "max_elbow_flex_degrees": 35.35245464551893,
+              "min_elbow_drop_upperarm_ratio": 0.3500118846250469
             }
           },
-          "walk_normalized_phase_max_difference": 0.2430111042014353,
-          "walk_normalized_phase_rms_difference": 0.03706100265927892
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.3457818879633143,
+              "vertical_stride_leg_lengths": 0.6223225816214557
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.3286055978334719,
+              "vertical_stride_leg_lengths": 0.7366554559261632
+            }
+          },
+          "anatomical_motion_fingerprint": "01b775a1585db9cb89476f7875c63b0af151751832cd575f3902fb5b639bda9b",
+          "walk_normalized_phase_max_difference": 0.34700274989616176,
+          "walk_normalized_phase_rms_difference": 0.16238037915534528
         },
         "Attack": {
-          "channels": 27,
-          "duration_seconds": 2.450000047683716,
-          "moving_channels": 27,
+          "channels": 213,
+          "duration_seconds": 6.000000476837158,
+          "moving_channels": 213,
           "loop_endpoints_exact": false,
-          "description": "Flower witch: staff traces a summoning arc while the free hand writes a spell",
+          "description": "Native witch stirring and casting sweep, with a fitted flower-staff grip",
+          "source_file": "Eri.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.4192676878363936,
-          "anatomical_motion_fingerprint": "cc192c0df41d307032a4d9ff5daebc0438da157abb3028f14f6babb1f3810b28"
+          "sampled_minimum_ground_gap": 0.00015002579952390937,
+          "sampled_geometry_max_displacement": 0.8808225482428658,
+          "anatomical_motion_fingerprint": "7b9f428babcc38a6d3d8ddec1101d88ee6e059b352abf4dc514228478fdad8b1"
         },
         "Defend": {
-          "channels": 27,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 27,
+          "channels": 210,
+          "duration_seconds": 2.0,
+          "moving_channels": 210,
           "loop_endpoints_exact": false,
-          "description": "witch_staff guard: enter, hold and recover",
+          "description": "Witch recoil and braced casting guard",
+          "source_file": "Eri.glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.30947997702913116
+          "sampled_minimum_ground_gap": 0.009177009093842165,
+          "sampled_geometry_max_displacement": 0.9987454450253376,
+          "anatomical_motion_fingerprint": "97294c6f4004edcf30c9d7f74582c5cbdb8bcbb892e91a6f08d0f529a4339538"
         },
         "Victory": {
-          "channels": 27,
-          "duration_seconds": 3.6500000953674316,
-          "moving_channels": 27,
+          "channels": 213,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 213,
           "loop_endpoints_exact": false,
-          "description": "A theatrical hat-tip, an outward spell-hand flourish and a courteous bow",
+          "description": "Cheerful witch celebration",
+          "source_file": "Eri.glb",
+          "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3999908756699452,
-          "anatomical_motion_fingerprint": "f9531c6f46dc00efff493595d8836e36bbfe1bfc24493b113328ba7161d7b3ed"
+          "sampled_minimum_ground_gap": 0.009055974360702379,
+          "sampled_geometry_max_displacement": 0.876897501735712,
+          "anatomical_motion_fingerprint": "96512b575b9f82f1c18e43bb56a2d41e81e5692a5ba597c0f7ccaa4dd892eed2"
         },
         "Lose": {
-          "channels": 27,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 27,
+          "channels": 215,
+          "duration_seconds": 2.9166669845581055,
+          "moving_channels": 215,
           "loop_endpoints_exact": false,
-          "description": "Grounded defeated crouch with lowered head and held finish",
+          "description": "Witch staggers and lowers into exhaustion",
+          "source_file": "Eri.glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.40563800883421863,
-          "terminal_pose_displacement": 0.4056380024971178,
-          "terminal_pose_hold_max_error": 3.582985286491735e-08
+          "sampled_minimum_ground_gap": 0.00015002444864147742,
+          "sampled_geometry_max_displacement": 1.124020862427647,
+          "anatomical_motion_fingerprint": "f915b1bfe555a2f23ccef8951e88d7c8270babce97dd961ab58e26e9aebee851",
+          "terminal_pose_displacement": 1.1240172058309872,
+          "terminal_pose_hold_max_error": 8.16007091783724e-08
         }
       },
       "status": "passed",
@@ -2004,17 +2529,17 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2727224,
+        "bytes": 4019000,
         "nodes": 371,
         "meshes": 99,
         "skins": 1,
-        "embedded_images": 10,
-        "accessors": 777,
+        "embedded_images": 11,
+        "accessors": 1732,
         "skin_bind_residuals": [
-          4.98219480116191e-08
+          1.6784005688828688e-07
         ],
-        "vertex_records": 28223,
-        "triangles": 45875,
+        "vertex_records": 25607,
+        "triangles": 40171,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -2043,8 +2568,12 @@
             512
           ],
           [
-            512,
-            512
+            1024,
+            1024
+          ],
+          [
+            1024,
+            1024
           ],
           [
             512,
@@ -2059,6 +2588,7 @@
             512
           ]
         ],
+        "rest_geometry_floor_y": 0.025326490924115593,
         "sheet_dimensions": [
           2400,
           1800
@@ -2066,92 +2596,126 @@
       },
       "animations": {
         "Idle": {
-          "channels": 25,
-          "duration_seconds": 3.200000047683716,
-          "moving_channels": 15,
+          "channels": 145,
+          "duration_seconds": 1.6666667461395264,
+          "moving_channels": 127,
           "loop_endpoints_exact": true,
-          "description": "Poised rose princess: bouquet close to the heart, a gentle head tilt and breathing",
+          "description": "Graceful, reserved bridal idle",
+          "source_file": "Mimori.glb",
+          "source_clip": "Cafe_Idle",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.0081794793182273
+          "sampled_minimum_ground_gap": 0.004583321479818086,
+          "sampled_geometry_max_displacement": 0.035637889041711564
         },
         "Walk": {
-          "channels": 25,
-          "duration_seconds": 1.649999976158142,
-          "moving_channels": 17,
+          "channels": 148,
+          "duration_seconds": 1.2000000476837158,
+          "moving_channels": 133,
           "loop_endpoints_exact": true,
-          "description": "Small graceful barefoot steps with the bouquet held to the heart and the gown gathered aside",
+          "description": "Gentle ceremonial walk",
+          "source_file": "Mimori.glb",
+          "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.04527734614459927,
-          "anatomical_motion_fingerprint": "471525299ec97771fbd490c207c125d720007d8e96c4b7221fd9437335871fd3"
+          "sampled_minimum_ground_gap": 0.00015001511238069143,
+          "sampled_geometry_max_displacement": 0.272902511757255,
+          "anatomical_motion_fingerprint": "5d83c63dd36ea21227aec92b747f2e39d7e1cc70af3c2fee11780769a7158e09"
         },
         "Run": {
-          "channels": 25,
-          "duration_seconds": 1.0199999809265137,
-          "moving_channels": 17,
+          "channels": 123,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 112,
           "loop_endpoints_exact": true,
-          "description": "Careful princess hurry with shortened strides, bouquet protected and the gown lifted aside",
+          "description": "Poised, buoyant bridal dash",
+          "source_file": "Mari (Idol).glb",
+          "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.13473386381565675,
+          "sampled_minimum_ground_gap": 0.007423388037048371,
+          "sampled_geometry_max_displacement": 0.45363577611543815,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": -0.14481877267938315,
-              "mean_outward_upperarm_ratio": -0.15281993483020656,
-              "min_elbow_flex_degrees": 127.09459809340848,
-              "max_elbow_flex_degrees": 128.18999893240283,
-              "min_elbow_drop_upperarm_ratio": 0.7164598527373413
+              "max_outward_upperarm_ratio": 0.23419079147450317,
+              "mean_outward_upperarm_ratio": 0.20322543981848085,
+              "min_elbow_flex_degrees": 102.05750352588574,
+              "max_elbow_flex_degrees": 102.05750880276493,
+              "min_elbow_drop_upperarm_ratio": 0.9544202298342818
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": -0.0690248501191686,
-              "mean_outward_upperarm_ratio": -0.07659054765786928,
-              "min_elbow_flex_degrees": 117.36226457623033,
-              "max_elbow_flex_degrees": 119.20578602836092,
-              "min_elbow_drop_upperarm_ratio": 0.9935565989126617
+              "max_outward_upperarm_ratio": 0.49611858506099665,
+              "mean_outward_upperarm_ratio": 0.41263834078166456,
+              "min_elbow_flex_degrees": 98.1246603936093,
+              "max_elbow_flex_degrees": 112.61799890401751,
+              "min_elbow_drop_upperarm_ratio": 0.7878277408448012
             }
           },
-          "walk_normalized_phase_max_difference": 0.1367848105609266,
-          "walk_normalized_phase_rms_difference": 0.01222738042376284
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 1.0682394189273328,
+              "vertical_stride_leg_lengths": 0.514921061148406
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 1.08382542906485,
+              "vertical_stride_leg_lengths": 0.527117101740286
+            }
+          },
+          "anatomical_motion_fingerprint": "726fea6017cb97571eaf611ad43e86f16a71403cfa3c4d8ce5170d0c3570306d",
+          "walk_normalized_phase_max_difference": 0.3039117027007623,
+          "walk_normalized_phase_rms_difference": 0.14134218501511428
         },
         "Attack": {
-          "channels": 25,
-          "duration_seconds": 2.549999952316284,
-          "moving_channels": 25,
+          "channels": 148,
+          "duration_seconds": 2.9666669368743896,
+          "moving_channels": 148,
           "loop_endpoints_exact": false,
-          "description": "Rose blessing: cradle the bouquet, extend its flowers and sink into a gentle curtsy",
+          "description": "Native support flourish, adapted to lifting the rose bouquet",
+          "source_file": "Mimori.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3709663825347045,
-          "anatomical_motion_fingerprint": "3e598bffbad61528f9363af8c99f69058887df6ee51aa94826e6ad406ad7374c"
+          "sampled_minimum_ground_gap": 0.00023867934604384494,
+          "sampled_geometry_max_displacement": 0.5465897527670324,
+          "anatomical_motion_fingerprint": "e41f6355b24df747159358d52b2f61fc30b596fd952b26def29f7705e0c8c0d7"
         },
         "Defend": {
-          "channels": 25,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 25,
+          "channels": 117,
+          "duration_seconds": 1.6000001430511475,
+          "moving_channels": 117,
           "loop_endpoints_exact": false,
-          "description": "bouquet guard: enter, hold and recover",
+          "description": "Reserved, protective bridal recoil",
+          "source_file": "Mari (Idol).glb",
+          "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3557152698141418
+          "sampled_minimum_ground_gap": 0.00023867934604384494,
+          "sampled_geometry_max_displacement": 0.485543013584605,
+          "anatomical_motion_fingerprint": "34fd7376e21157985dec735cd76b97c0235e5a5de74c733b4d2a1fb11252fcba"
         },
         "Victory": {
-          "channels": 25,
-          "duration_seconds": 3.75,
-          "moving_channels": 25,
+          "channels": 147,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 147,
           "loop_endpoints_exact": false,
-          "description": "A deep royal curtsy, a gracious bouquet presentation and a warm head tilt",
-          "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3532127817594131,
-          "anatomical_motion_fingerprint": "9d7b56c14ff6d86613ee305c77ad39f7c37bd514441de18f84365bd7f2b9355b"
+          "description": "Courteous bridal celebration",
+          "source_file": "Mimori.glb",
+          "source_clip": "Victory_Start",
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_minimum_ground_gap": 0.00023867934604384494,
+          "sampled_geometry_max_displacement": 0.5379997895003773,
+          "anatomical_motion_fingerprint": "374db3ea9e2aa2f5b1804d94a5435deccd1147be1f37ba2b2d00269f8d76739f"
         },
         "Lose": {
-          "channels": 25,
-          "duration_seconds": 2.4000000953674316,
-          "moving_channels": 25,
+          "channels": 120,
+          "duration_seconds": 2.5,
+          "moving_channels": 120,
           "loop_endpoints_exact": false,
-          "description": "Grounded defeated crouch with lowered head and held finish",
+          "description": "Poised bridal character sinks defeated",
+          "source_file": "Mari (Idol).glb",
+          "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3407760310641897,
-          "terminal_pose_displacement": 0.3407760310641897,
-          "terminal_pose_hold_max_error": 1.4641313744576635e-08
+          "sampled_minimum_ground_gap": 0.00023867934604384494,
+          "sampled_geometry_max_displacement": 1.0740774863708609,
+          "anatomical_motion_fingerprint": "b394d6db2e5ef778a88e566b51fed4efc1169457f36498253f37421ab0941133",
+          "terminal_pose_displacement": 1.0740439468202627,
+          "terminal_pose_hold_max_error": 2.645101064175232e-08
         }
       },
       "status": "passed",

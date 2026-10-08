@@ -13,9 +13,10 @@ from PIL import Image, ImageDraw
 DESIGNS = [
     dict(id=11, slug='11_quinn_adventurer', name='Quinn', name_ko='퀸',
          tagline='Leather & lace · twin dagger scout', hair='Shizuko (Swimsuit)', face='Nonomi',
-         hair_color='#796052', eye_color='#77b9c2', palette=['#8a6754','#eee6dc','#a72e36','#dec586'],
+         hair_color='#574b48', eye_color='#68b4bd', palette=['#575b66','#6d5145','#eee6dc','#a72e36','#dec586'],
          style='adventurer', legs='bare', attack='daggers',
-         design='첫 번째 참고 이미지의 갈색 긴 트윈테일과 빨강 리본, 청록색 눈. 회갈색 크롭 프릴 재킷과 흰 크라바트, 갈색 가죽 치마·벨트·크로스백, 긴 부츠와 두 자루 단검.'),
+         extra_source_roles={'cropped_jacket_shoulders':'Serika.glb'},
+         design='첨부한 두 참고 이미지에 맞춘 짙은 갈색 웨이브 트윈테일과 빨강 리본, 청록색 눈. 차콜 크롭 재킷·흰 주름 크라바트·금테 청록 보석, 흰 주름 커프스와 보석 장식. 갈색 스캘럽 가죽 치마·검정 벨트·각진 은 버클·체인·크로스백, 긴 부츠와 두 자루 단검.'),
     dict(id=12, slug='12_kimon_fox_idol', name='Kimon', name_ko='키몬',
          tagline='Golden fox · starbell encore', hair='Izuna (Swimsuit)', face='Momoi (Maid)',
          hair_color='#f3be54', eye_color='#d76a83', palette=['#fff3d7','#ed842d','#72d3d8','#f3be54'],
@@ -26,13 +27,13 @@ DESIGNS = [
          tagline='Flower witch · celestial grimoire', hair='Yuzu (Maid)', face='Natsu',
          hair_color='#98605c', eye_color='#9ab25c', palette=['#f8eada','#e995ae','#252a4d','#d9b475'],
          style='flower_witch', legs='white', attack='witch_staff',
-         extra_source_roles={'hat':'Eri.glb'},
+         extra_source_roles={'hat':'Eri.glb','tailored_sleeves':'Seia.glb'},
          design='세 번째 참고 이미지의 적갈색 긴 웨이브와 꽃·리본이 달린 큰 마녀 모자. 크림색·분홍색 프릴 드레스와 넓은 소매, 별자리 무늬의 남색·분홍 안감 망토, 꽃 지팡이와 허리에 매단 마법서.'),
     dict(id=14, slug='14_rosaria_bride', name='Rosaria', name_ko='로사리아',
          tagline='Pearl crown · rose bouquet', hair='Seia (Swimsuit)', face='Nonomi',
          hair_color='#f5e4ba', eye_color='#6ec3d8', palette=['#fffaf1','#e5e2f7','#e0b7c6','#d6b86e'],
          style='rose_bride', legs='bare', attack='bouquet',
-         extra_source_roles={'bare_legs_and_feet':'Hina (Swimsuit).glb'},
+         extra_source_roles={'bare_legs_and_feet':'Hina (Swimsuit).glb','ruffled_lace_hem':'Mari (Idol).glb'},
          design='네 번째 참고 이미지의 연한 금발 긴 컬과 작은 보석 왕관, 하늘색 눈. 원본 드레스의 코르셋·큰 리본과 흰색·연보라색 겹프릴 하이로 드레스, 진주 목걸이, 흰 장미 부케, 맨다리·맨발.'),
 ]
 COSTUME_SOURCES = {11:'Sakurako (Idol)', 12:'Seia', 13:'Reisa (Magical)', 14:'Saori (Dress) (Cafe)'}
@@ -98,6 +99,11 @@ def _quinn_tail_fit(points, head_y):
     upper = upper*upper*(3-2*upper)
     q[:,0] -= np.sign(q[:,0])*(.014+.012*upper)
     q[:,2] += .050+.025*upper
+    # Broad, gentle waves continue the donor's locks instead of replacing them
+    # by a tube. The same deformation is applied to their rest pivots.
+    length=np.clip((head_y+.12-q[:,1])/.68,0,1)
+    q[:,0]+=np.sign(q[:,0])*.018*np.sin(length*math.pi*1.8)*length
+    q[:,2]+=.012*np.sin(length*math.pi*2.4)*length
     return q
 
 
@@ -155,6 +161,53 @@ def _groups(p):
     return components(p['pos'],p['idx'])
 
 
+def _uv_region(p, triangles, size):
+    """An atlas mask follows the original clothing UV islands, including seams."""
+    mask=Image.new('L',size,0);draw=ImageDraw.Draw(mask)
+    for triangle in p['idx'][triangles]:
+        draw.polygon([tuple(point) for point in p['uv'][triangle]*np.array(size)],fill=255)
+    return np.array(mask)>0
+
+
+def _woven_texture(base, motif=None):
+    """Paint restrained weave, sewn hems and satin folds on authored cloth UVs."""
+    size=1024;y,x=np.indices((size,size));u=x/size;v=y/size
+    fold=.90+.075*np.cos(2*math.pi*(u*12+.06*np.sin(v*math.pi)))
+    weave=1+.007*np.sin(x*math.pi/2)+.006*np.cos(y*math.pi/2)
+    pixels=np.zeros((size,size,4),np.uint8)
+    pixels[:,:,:3]=np.clip(color(base)*fold[:,:,None]*weave[:,:,None],0,255)
+    pixels[:,:,3]=255;im=Image.fromarray(pixels);draw=ImageDraw.Draw(im)
+    edge=tuple(np.clip(color(base)*.65,0,255).astype(int))+(255,)
+    light=tuple(np.clip(color(base)*1.025+7,0,255).astype(int))+(255,)
+    for yy in (19,24,985,990):draw.line((0,yy,size,yy),fill=edge,width=1)
+    for xx in range(0,size,12):
+        for yy in (29,979):draw.line((xx,yy,xx+5,yy),fill=light,width=2)
+    if motif=='lace':
+        # Embroidered small petals read as lace at the hems and as subtle
+        # woven brocade over the wide silk panels.
+        for yy in (95,980):
+            for xx in range(0,size+1,64):
+                draw.arc((xx-28,yy-24,xx+28,yy+24),0,180,fill=light,width=3)
+                for k in range(5):
+                    a=2*math.pi*k/5;cx=xx+11*math.cos(a);cy=yy-12+11*math.sin(a)
+                    draw.ellipse((cx-6,cy-8,cx+6,cy+8),outline=light,width=2)
+        for yy in range(160,850,160):
+            for xx in range((yy//160%2)*80,1024,160):
+                draw.ellipse((xx-8,yy-11,xx+8,yy+11),outline=light,width=1)
+                draw.line((xx-20,yy,xx+20,yy),fill=light,width=1)
+    elif motif=='stars':
+        gold=(191,160,98,255)
+        for row in range(4):
+            points=[]
+            for col in range(7):
+                xx=55+col*147+(row%2)*25;yy=210+row*190+27*math.sin(col*2.1)
+                points.append((xx,yy));r=7 if col%3 else 11
+                draw.polygon([(xx,yy-r),(xx+3,yy-3),(xx+r,yy),(xx+3,yy+3),
+                              (xx,yy+r),(xx-3,yy+3),(xx-r,yy),(xx-3,yy-3)],fill=gold)
+            draw.line(points,fill=(105,103,122,255),width=1)
+    return im
+
+
 def _repaint(b,p):
     im=b.src.image(p['mat']['pbrMetallicRoughness']['baseColorTexture']['index'])
     a=np.array(im);c=a[:,:,:3].astype(float);r,g,bl=c.transpose(2,0,1)
@@ -169,8 +222,12 @@ def _repaint(b,p):
         if raised:shade=.60+.40*np.minimum(shade,1)
         a[:,:,:3][mask]=np.clip(color(target)*shade[mask,None],0,255).astype('u1')
     if b.c['id']==11:
-        paint(c.max(2)<145,'#896c60',True)
-        paint((bl>r+8)&(bl>g+3),'#775342')
+        center=p['pos'][p['idx']].mean(1)
+        jacket=(center[:,1]>.515)|((np.abs(center[:,0])>.155)&(center[:,1]>.37))
+        jacket=_uv_region(p,np.flatnonzero(jacket),im.size)
+        paint((c.max(2)<165)&jacket,'#575b66',True)
+        paint((c.max(2)<165)&~jacket,'#6e5143',True)
+        paint((bl>r+8)&(bl>g+3)&~jacket,'#6d4e3e')
     elif b.c['id']==12:
         paint((r>g+22)&(g>bl+18),'#ef8d30',True)
         paint(c.max(2)<135,'#66bac1',True)
@@ -197,6 +254,24 @@ def _garment(b,p):
             keep[triangles]=False;continue
         if any('bone_tail' in n for n in names):keep[triangles]=False;continue
         if cid==11:
+            if any('earring' in n for n in names):
+                keep[triangles]=False;continue
+            if lo[1]>.622 and hi[1]<.645 and np.ptp(q[:,0])<.041 and center[2]>.04:
+                # Remove the idol donor's old jewel beneath the new shield-cut
+                # brooch; leave the real high collar and ruffle trim intact.
+                keep[triangles]=False;continue
+            if hi[1]<.515 and lo[1]>.35 and abs(center[0])>.20 and any('hand' in n or 'finger' in n for n in names) and not any('sleeve' in n for n in names):
+                mi=b.material('Quinn reference bare hands','#f6dbcc')
+                b.mesh('Quinn original hand anatomy without idol gloves',pos,idx[triangles],mi,uv=p['uv'],norm=p['norm'],
+                       j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
+                keep[triangles]=False;continue
+            if abs(center[0])>.235 and hi[1]<.515 and any('sleeve' in n for n in names):
+                # The source's bell-shaped frill is replaced by fitted pleated
+                # bracelet cuffs with the reference's paired jewel studs.
+                keep[triangles]=False;continue
+            if any('sleeve' in n for n in names) and abs(center[0])>.13 and hi[1]<.61:
+                # Serika supplies a complete tailored sleeve and shoulder cap.
+                keep[triangles]=False;continue
             # The real raised skirt front and broad sleeve cuffs are retained.
             if hi[1]<.42 and lo[1]>.058 and np.ptp(q[:,0])<.15:
                 # Replace printed socks by leather boot geometry below.
@@ -237,6 +312,21 @@ def _garment(b,p):
         keep&=~waist
     idx=idx[keep]
     if not len(idx):return
+    if cid==12:
+        skirt_bones=np.array(['skirt' in name.lower() for name in p['names']])
+        coverage=(skirt_bones[p['j']]*p['w']).sum(1)
+        original_center=p['pos'][idx].mean(1)
+        skirt=(coverage[idx].mean(1)>.30)&(original_center[:,1]>.312)&(original_center[:,1]<.442)
+        if skirt.any():
+            atlas=np.array(_repaint(b,p));c=atlas[:,:,:3].astype(float);r,g,bl=c.transpose(2,0,1)
+            skin=(r>165)&(g>125)&(bl>110)&(r-g>8)&(r-bl>10)
+            gold=(r>140)&(g>98)&(bl<g*.71)
+            shade=.68+.32*(c@np.array([.27,.57,.16])/255)
+            atlas[:,:,:3][~skin&~gold]=np.clip(color('#68bdc4')*shade[~skin&~gold,None],0,255).astype('u1')
+            mat=b.wardrobe_material('Kimon original textured pleats in turquoise',p,Image.fromarray(atlas))
+            b.mesh('Kimon tailored source skirt with original pleats',pos,idx[skirt],mat,uv=p['uv'],norm=None,
+                   j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
+            idx=idx[~skirt]
     mat=b.wardrobe_material('Reference tailored source / '+b.src.name+' / '+p['mat']['name'],p,_repaint(b,p))
     b.mesh('Reference donor garment / '+p['name'],pos,idx,mat,uv=p['uv'],norm=None,
            j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
@@ -267,34 +357,172 @@ def _palm(b,side):
     return hand
 
 
+def _front_at(b,x,y):
+    """Intersect the donor's front at an accessory's anchor in the bind pose."""
+    hits=[]
+    for p in b.costume_parts+getattr(b,'additional_clothing_surfaces',[]):
+        q=p['pos'][p['idx']];a,c,d=q[:,0],q[:,1],q[:,2]
+        e0,e1=c[:,:2]-a[:,:2],d[:,:2]-a[:,:2];point=np.array([x,y])-a[:,:2]
+        den=e0[:,0]*e1[:,1]-e1[:,0]*e0[:,1];valid=np.abs(den)>1e-10;den=np.where(valid,den,1)
+        u=(point[:,0]*e1[:,1]-point[:,1]*e1[:,0])/den
+        v=(e0[:,0]*point[:,1]-e0[:,1]*point[:,0])/den
+        inside=valid&(u>=0)&(v>=0)&(u+v<=1)
+        if inside.any():hits.extend((a[:,2]+u*(c[:,2]-a[:,2])+v*(d[:,2]-a[:,2]))[inside])
+    return float(max(hits)) if hits else .07
+
+
+def _rest_fit(b,p,s):
+    """Fit donor clothing through shared anatomy; merge weights in mesh()."""
+    joints=s.doc['skins'][s.doc['nodes'][p['node']]['skin']]['joints'];transforms=[];remap=[]
+    for node in joints:
+        anchor=node
+        while not (s.doc['nodes'][anchor].get('name','').startswith('Bip001') and s.doc['nodes'][anchor].get('name') in b.bone):
+            if anchor not in s.parents:break
+            anchor=s.parents[anchor]
+        target=b.bone.get(s.doc['nodes'][anchor].get('name'),b.bone['Bip001 Spine1'])
+        remap.append(target);transforms.append(b.world[target]@np.linalg.inv(s.world[anchor]))
+    blend=(np.array(transforms)[p['j']]*p['w'][:,:,None,None]).sum(1)
+    pos=np.einsum('nij,nj->ni',blend,np.c_[p['pos'],np.ones(len(p['pos']))])[:,:3]
+    return pos,np.array(remap,np.uint16)[p['j']]
+
+
+def _quinn_jacket(b):
+    """Close the shoulders/back with an actual tailored source coat shell."""
+    s=b.source('Serika')
+    for p in s.parts():
+        if not p['mat']['name'].endswith('_Body'):continue
+        selected=[];sleeves=[]
+        for g in _groups(p):
+            v=np.unique(p['idx'][g]);q=p['pos'][v]
+            dominant=p['j'][v][np.arange(len(v)),p['w'][v].argmax(1)]
+            names=[p['names'][joint].lower() for joint in dominant]
+            if len(g)>100 and q[:,1].max()>.625 and q[:,1].max()<.65 and q[:,1].min()<.54 and any('spine' in n for n in names):
+                selected.extend(g)
+            elif len(g)>100 and q[:,1].max()>.625 and q[:,1].max()<.65 and q[:,1].min()>.42 and any('upperarm' in n for n in names) and any('clavicle' in n for n in names):
+                sleeves.extend(g)
+        if not selected:continue
+        pos,joints=_rest_fit(b,p,s);idx=p['idx'][selected]
+        idx=idx[(pos[idx,1].max(1)>.533)]
+        used=np.unique(idx)
+        # Cropping the existing continuous shell preserves its real shoulder
+        # seams and back topology; lower coat vertices form the level crop hem.
+        pos[used,1]=np.maximum(pos[used,1],.533)
+        if sleeves:idx=np.concatenate([idx,p['idx'][sleeves]])
+        used=np.unique(idx)
+        outward=pos[used]*np.array([1,0,1]);outward[:,2]-=.035
+        outward/=np.maximum(np.linalg.norm(outward,axis=1)[:,None],1e-9);pos[used]+=outward*.002
+        im=s.image(p['mat']['pbrMetallicRoughness']['baseColorTexture']['index']);a=np.array(im)
+        c=a[:,:,:3].astype(float);r,g,bl=c.transpose(2,0,1);lum=c@np.array([.27,.57,.16])/255
+        neutral=c.max(2)<170
+        a[:,:,:3][neutral]=np.clip(color('#575b66')*(.72+.28*lum[neutral,None]),0,255).astype('u1')
+        mat=b.wardrobe_material('Quinn original Serika charcoal jacket shell atlas',p,Image.fromarray(a))
+        b.mesh('Quinn tailored source jacket shoulders back and crop shell',pos,idx,mat,uv=p['uv'],norm=None,j=joints,w=p['w'])
+        b.additional_clothing_surfaces=[{'pos':pos,'idx':idx}]
+        break
+
+
+def _quinn_cravat(b,cream,gold,spine):
+    z=_front_at(b,0,.613)+.003
+    # Pleated silk spreads from the jewel into rounded fans and two draped
+    # tails. The front anchor sits on the original sewn blouse surface.
+    for side in (-1,1):
+        vertices=[];uv=[];faces=[];rows=8;segments=20
+        for k in range(rows+1):
+            t=k/rows
+            for i in range(segments+1):
+                a=-.8+1.6*i/segments;r=.010+.052*t
+                vertices.append([side*r*math.cos(a),.615+r*.67*math.sin(a)-.007*t,
+                                 z+.003+.004*math.cos(i*math.pi/2)*t+.007*math.sin(t*math.pi)])
+                uv.append([i/segments,t])
+        for k in range(rows):
+            for i in range(segments):
+                a=k*(segments+1)+i;c=a+segments+1;faces.extend([[a,c,a+1],[a+1,c,c+1]])
+        b.mesh('Quinn folded ivory cravat fan',vertices,faces,cream,spine,uv=uv)
+        b.patch('Quinn draped cravat tail',[[side*.009,.612,z+.008],[side*.031,.568,z+.010],
+                [side*.002,.574,z+.016],[-side*.007,.607,z+.011]],cream,spine)
+    center=np.array([0,.621,z+.018]);outline=[]
+    for x,y in [(0,.018),(.013,.010),(.013,-.002),(0,-.020),(-.013,-.002),(-.013,.010),(0,.018)]:
+        outline.append(center+[x,y,0])
+    b.tube('Quinn gold setting for teal pendant',outline,[.0023]*len(outline),gold,spine,10)
+    gem=b.material('Quinn faceted turquoise brooch','#4cabb6',metal=.20)
+    v=[center+[0,0,.003]]+[point for point in outline[:-1]]
+    b.mesh('Quinn reference shield-cut teal brooch',v,[[0,i+1,(i+1)%6+1] for i in range(6)],gem,spine)
+
+
+def _quinn_cuff(b,letter,cream,gold):
+    fore=b.bone[f'Bip001 {letter} Forearm'];hand=b.world[b.bone[f'Bip001 {letter} Hand']][:3,3]
+    elbow=b.world[fore][:3,3];axis=hand-elbow;axis/=np.linalg.norm(axis)
+    u=np.array([0,0,1.]);u-=axis*np.dot(u,axis);u/=np.linalg.norm(u);v=np.cross(axis,u)
+    vertices=[];uv=[];faces=[];rings=8;seg=48
+    for k in range(rings+1):
+        t=k/rings;center=hand-axis*(.009+.055*t)
+        for i in range(seg+1):
+            a=2*math.pi*i/seg;r=.041+.003*math.cos(12*a)+.002*math.sin(t*math.pi)
+            vertices.append(center+r*(u*math.cos(a)+v*math.sin(a)));uv.append([i/seg,t])
+    for k in range(rings):
+        for i in range(seg):
+            a=k*(seg+1)+i;c=a+seg+1;faces.extend([[a,c,a+1],[a+1,c,c+1]])
+    cuff=b.material('Quinn ivory satin cuff pleats','#ffffff',_woven_texture('#ede9e1'))
+    b.mesh('Quinn wide twelve-pleat jeweled cuff',vertices,faces,cuff,fore,uv=uv)
+    for row in (0,rings):
+        edge=vertices[row*(seg+1):(row+1)*(seg+1)]
+        b.tube('Quinn gold-edged cuff bracelet',edge,[.002]*(seg+1),gold,fore,8)
+    for t,col in [(.22,'#64bfc3'),(.73,'#ad3b50')]:
+        c=hand-axis*(.009+.055*t)+u*.048
+        b.ellipsoid('Quinn cuff jewel setting',c,[.006,.006,.003],gold,fore,12,6)
+        b.ellipsoid('Quinn cuff paired jewel',c+u*.003,[.004,.004,.003],b.material('Quinn cuff jewel '+col,col,metal=.20),fore,12,6)
+
+
 def _leatherwork(b,gold,cream):
-    leather=b.material('Quinn leather grain','#755443',b.clothing_texture('#87624e'))
+    leather=b.material('Quinn leather grain','#755443',_woven_texture('#765343'))
     dark=b.material('Quinn leather seam','#563c32');red=b.material('Quinn red silk','#a8323b')
     # These coordinates already follow the donor surfaces. Use the actual
     # joints directly so the older generic forward garment offset is not added.
     pelvis, spine = b.bone['Bip001 Pelvis'], b.bone['Bip001 Spine1']
-    b.lathe('Quinn wide leather waist belt',[(.478,.09,.064),(.45,.098,.071)],leather,'Bip001 Pelvis',segments=64)
+    _quinn_jacket(b)
+    belt=b.material('Quinn black polished leather belt','#383239',_woven_texture('#383239'))
+    b.lathe('Quinn wide black waist belt',[(.478,.091,.066),(.445,.102,.078)],belt,pelvis,segments=64)
     # Buckle is an open metal frame, rather than a solid square.
-    b.tube('Quinn silver buckle frame',[[-.029,.468,.126],[.029,.468,.126],[.029,.433,.133],[-.029,.433,.133],[-.029,.468,.126]],
-           [.004]*5,b.material('Quinn brushed buckle','#e1e5ec',metal=.65),pelvis)
-    b.tube('Quinn buckle tongue',[[0,.448,.135],[.025,.448,.135]],[.0025,.0025],gold,pelvis)
+    silver=b.material('Quinn brushed buckle','#e1e5ec',metal=.65)
+    buckle=[[-.033,.468,.130],[-.024,.477,.128],[.026,.476,.128],[.034,.468,.131],
+            [.030,.440,.140],[.020,.433,.142],[-.026,.435,.141],[-.033,.444,.139],[-.033,.468,.130]]
+    buckle=[[x,y,_front_at(b,x,y)+.016] for x,y,z in buckle]
+    b.tube('Quinn angular silver buckle frame',buckle,[.0038]*len(buckle),silver,pelvis)
+    b.tube('Quinn silver buckle tongue',[[x,.457,_front_at(b,x,.457)+.020] for x in (0,.026)],[.0025,.0025],silver,pelvis)
+    # Individual linked rings drape from the belt to the left hip.
+    for k in range(14):
+        t=k/13;x=.038+.068*t;y=.455-.025*math.sin(math.pi*t);c=np.array([x,y,_front_at(b,x,y)+.014])
+        points=[c+[.0038*math.cos(a),.0025*math.sin(a),.0013*math.sin(a)*(k%2)] for a in np.linspace(0,2*math.pi,13)]
+        b.tube('Quinn linked silver hip chain',points,[.0008]*len(points),silver,pelvis,6)
     # Strap follows the surface of the cropped donor blouse and left hip.
     b.tube('Quinn diagonal stitched satchel strap',[[-.066,.618,.087],[-.025,.564,.119],[.018,.511,.129],[.106,.453,.095]],
            [.007]*4,leather,spine)
     b.ellipsoid('Quinn rounded leather satchel',[.146,.441,.093],[.060,.049,.033],leather,pelvis)
     b.patch('Quinn satchel flap',[[.092,.47,.133],[.199,.47,.133],[.183,.426,.151],[.149,.415,.157],[.113,.429,.151]],dark,pelvis)
     b.ellipsoid('Quinn bag clasp',[.146,.435,.161],[.008,.009,.004],gold,pelvis,12,6)
-    b.bow('Quinn ivory cravat',[0,.609,.080],.040,cream,spine)
-    b.ellipsoid('Quinn turquoise brooch',[0,.618,.090],[.012,.014,.006],b.material('Quinn brooch','#62babe'),spine,16,8)
+    _quinn_cravat(b,b.material('Quinn ivory folded cravat','#ffffff',_woven_texture('#f5f1e9')),gold,spine)
+    # The scalloped leather waist and small silver studs follow the original
+    # skirt surface, retaining its donor folds, underskirt and painted seams.
+    edge=[];verts=[];faces=[]
+    for k in range(25):
+        x=-.098+.196*k/24;y=.490-.015*(1+math.cos(x/.098*math.pi*2))/2
+        top=[x,y,_front_at(b,x,y)+.003];bottom=[x,.395,_front_at(b,x,.395)+.003]
+        edge.append(top);verts.extend([top,bottom])
+    for k in range(24):a=k*2;faces.extend([[a,a+1,a+2],[a+1,a+3,a+2]])
+    b.mesh('Quinn scalloped leather waist overlay',verts,faces,leather,pelvis)
+    b.tube('Quinn stitched scalloped waist border',edge,[.0018]*len(edge),silver,pelvis,8)
+    belt_front=[];belt_faces=[]
+    for k in range(25):
+        x=-.101+.202*k/24
+        for y in (.473,.443):belt_front.append([x,y,_front_at(b,x,y)+.009])
+    for k in range(24):a=k*2;belt_faces.extend([[a,a+1,a+2],[a+1,a+3,a+2]])
+    b.mesh('Quinn fitted black belt front over scalloped leather',belt_front,belt_faces,belt,pelvis)
+    for x,y in [(-.062,.465),(.063,.465),(-.040,.414),(.042,.414)]:
+        b.ellipsoid('Quinn silver leather rivet',[x,y,_front_at(b,x,y)+.007],[.0035,.0035,.0018],silver,pelvis,12,6)
     for side,letter in [(-1,'R'),(1,'L')]:
         tail_root = b.bone[f'Shizuko (Swimsuit)::bone_hair_t_{letter.lower()}_00']
         b.bow('Quinn red hair ribbon',_quinn_ribbon_anchor(b,side),.037,red,tail_root)
-        upper=b.world[b.bone[f'Bip001 {letter} UpperArm']][:3,3]
-        elbow=b.world[b.bone[f'Bip001 {letter} Forearm']][:3,3]
-        wrist=b.world[b.bone[f'Bip001 {letter} Hand']][:3,3]
-        jacket=b.material('Quinn taupe jacket silk','#8b7468',b.clothing_texture('#8b7468'))
-        b.tube('Quinn cropped jacket upper sleeve',[upper,upper*.4+elbow*.6,elbow],[.037,.039,.033],jacket,f'Bip001 {letter} UpperArm',20)
-        b.tube('Quinn tailored jacket forearm',[elbow,elbow*.25+wrist*.75,wrist],[.034,.030,.027],jacket,f'Bip001 {letter} Forearm',20)
+        _quinn_cuff(b,letter,cream,gold)
         # Boots use actual leg rest endpoints, split at calf/foot joints.
         calf=b.world[b.bone[f'Bip001 {letter} Calf']][:3,3];foot=b.world[b.bone[f'Bip001 {letter} Foot']][:3,3]
         b.tube('Quinn tall stitched boot',[calf+[0,.027,0],calf,foot],[.039,.037,.026],leather,f'Bip001 {letter} Calf',24)
@@ -308,10 +536,14 @@ def _leatherwork(b,gold,cream):
 
 def _fox_panels(b,gold,cream):
     orange=b.material('Kimon orange piping','#ed8830');teal=b.material('Kimon turquoise silk','#7ed2d2')
-    texture=Image.new('RGBA',(512,512),(255,244,215,255));d=ImageDraw.Draw(texture)
-    for y in range(0,512,64):
-        for x in range(0,512,64):
-            if (x//64+y//64)%2:d.rectangle((x,y,x+63,y+63),fill=(245,207,109,255))
+    texture=_woven_texture('#fff0d1');d=ImageDraw.Draw(texture)
+    for y in range(0,1024,128):
+        for x in range(0,1024,128):
+            if (x//128+y//128)%2:d.rectangle((x,y,x+127,y+127),fill=(236,194,96,255))
+            for z in range(0,128,8):
+                d.line((x+z,y,x+z,y+127),fill=(248,221,157,255),width=1)
+    a=np.array(texture);xx=np.arange(1024);a[:,:,:3]=np.clip(a[:,:,:3]*(.86+.14*np.cos(xx*math.pi/128))[None,:,None],0,255).astype('u1')
+    texture=Image.fromarray(a)
     check=b.material('Kimon yellow check panels','#ffffff',texture)
     _abdomen(b)
     # Izuna's ear topology is in the Body primitive, separate from the hair.
@@ -335,21 +567,22 @@ def _fox_panels(b,gold,cream):
                    'Bip001 Head',uv=p['uv'],norm=p['norm'])
     for side in (-1,1):
         v=[];uv=[];faces=[]
-        for k in range(9):
-            t=k/8;y=.448-.34*t;width=.055+.06*t
-            for i in range(9):
-                f=i/8;x=side*(.095+width*f);z=.075-.205*t+.026*math.sin(math.pi*f)
-                v.append([x,y+.028*math.cos(math.pi*f)*t,z]);uv.append([f,t])
-        for k in range(8):
-            for i in range(8):a=k*9+i;faces.extend([[a,a+9,a+1],[a+1,a+9,a+10]])
+        rows,cols=24,20
+        for k in range(rows+1):
+            t=k/rows;y=.448-.34*t;width=.055+.06*t
+            for i in range(cols+1):
+                f=i/cols;x=side*(.095+width*f)
+                z=.075-.205*t+.016*math.sin(math.pi*f)+.012*math.sin(6*math.pi*f)*t
+                v.append([x,y+.028*math.cos(math.pi*f)*t+.004*math.sin(f*math.pi*6)*t*t,z]);uv.append([f,t])
+        for k in range(rows):
+            for i in range(cols):a=k*(cols+1)+i;faces.extend([[a,a+cols+1,a+1],[a+1,a+cols+1,a+cols+2]])
         # A light leg influence gives the open panels a distinct alternating sway.
         bones=[('Bip001 Pelvis',.85),(f'Bip001 {"L"if side>0 else"R"} Thigh',.15)]
         b.mesh('Kimon split checked coat tail',v,faces,check,bones,uv=uv)
-        for edge in [0,8]:
-            points=[v[k*9+edge]for k in range(9)]
-            b.tube('Kimon orange panel border',points,[.003]*9,orange,bones)
+        for edge in [0,cols]:
+            points=[v[k*(cols+1)+edge]for k in range(rows+1)]
+            b.tube('Kimon orange panel border',points,[.0025]*(rows+1),orange,bones)
     b.bow('Kimon orange bow tie',[0,.59,.101],.047,orange,'Bip001 Spine1')
-    b.lathe('Kimon turquoise pleated underskirt',[(.441,.102,.073),(.337,.18,.122)],teal,'Bip001 Pelvis',segments=72,pleats=.055)
     # Deliberate star/bell motifs instead of the swimsuit donor's headband.
     _point(b,'Kimon lilac hair star',[-.047,b.headpos[1]+.205,.148],.020,b.material('Kimon violet stars','#a09ccb'))
     b.bow('Kimon ponytail ribbon',[.164,b.headpos[1]+.15,-.025],.032,teal)
@@ -380,8 +613,43 @@ def _abdomen(b):
            uv=p['uv'],norm=None,j=np.array(remap,np.uint16)[p['j']],w=p['w'])
 
 
+def _fitted_source_sleeves(b):
+    """Use real Seia sleeve seams, billowing folds, cuff UVs and skin weights."""
+    s=b.source('Seia')
+    for p in s.parts():
+        if not p['mat']['name'].endswith('_Body'):continue
+        selected=[]
+        for g in _groups(p):
+            v=np.unique(p['idx'][g]);q=p['pos'][v]
+            dominant=p['j'][v][np.arange(len(v)),p['w'][v].argmax(1)]
+            names=[p['names'][joint].lower() for joint in dominant]
+            if any('hand_' in name and 'acc' in name for name in names) and q[:,1].max()<.57 and q[:,2].min()>-.08:
+                selected.extend(g)
+        if not selected:continue
+        joints=s.doc['skins'][s.doc['nodes'][p['node']]['skin']]['joints'];transforms=[];remap=[]
+        for node in joints:
+            anchor=node
+            while not (s.doc['nodes'][anchor].get('name','').startswith('Bip001') and s.doc['nodes'][anchor].get('name') in b.bone):
+                if anchor not in s.parents:break
+                anchor=s.parents[anchor]
+            target=b.bone.get(s.doc['nodes'][anchor].get('name'),b.bone['Bip001 Spine1'])
+            remap.append(target);transforms.append(b.world[target]@np.linalg.inv(s.world[anchor]))
+        blend=(np.array(transforms)[p['j']]*p['w'][:,:,None,None]).sum(1)
+        pos=np.einsum('nij,nj->ni',blend,np.c_[p['pos'],np.ones(len(p['pos']))])[:,:3]
+        atlas=np.array(s.image(p['mat']['pbrMetallicRoughness']['baseColorTexture']['index']))
+        c=atlas[:,:,:3].astype(float);r,g,bl=c.transpose(2,0,1);lum=c@np.array([.27,.57,.16])/255
+        trim=(r>g+18)&(g>bl+14);dark=c.max(2)<150
+        atlas[:,:,:3]=np.clip(color('#f4e7d8')*(.78+.22*lum[:,:,None]),0,255).astype('u1')
+        atlas[:,:,:3][trim]=np.clip(color('#c99cb2')*(.74+.26*lum[trim,None]),0,255).astype('u1')
+        atlas[:,:,:3][dark]=np.clip(color('#a57491')*(.68+.32*lum[dark,None]),0,255).astype('u1')
+        mat=b.wardrobe_material('Florielle ivory donor sleeve atlas with rose seams',p,Image.fromarray(atlas))
+        b.mesh('Florielle fitted Seia gathered sleeves and original cuffs',pos,p['idx'][selected],mat,
+               uv=p['uv'],norm=None,j=np.array(remap,np.uint16)[p['j']],w=p['w'])
+
+
 def _witch(b,gold,cream):
-    navy=b.material('Florielle starlit velvet','#282c50');pink=b.material('Florielle rose lining','#d47c9c')
+    navy=b.material('Florielle starlit embroidered velvet','#ffffff',_woven_texture('#282c50','stars'))
+    pink=b.material('Florielle rose damask lining','#ffffff',_woven_texture('#d47c9c','lace'))
     sky=b.material('Florielle blue silk','#b8d4e8');leaf=b.material('Florielle leaves','#72986c')
     # Eri supplies the real pointed hat mesh, including its curved brim and UVs.
     s=b.source('Eri');sh=next(i for i,n in enumerate(s.doc['nodes'])if n.get('name')=='Bip001 Head'and i in s.world)
@@ -407,21 +675,23 @@ def _witch(b,gold,cream):
         t=k/rows;rx=.093+.172*t;rz=.065+.142*t
         for i in range(segments+1):
             a=.72+(2*math.pi-1.44)*i/segments
-            vertices.append([math.sin(a)*rx,.603-.355*t+.018*math.sin(7*a)*t,.036+math.cos(a)*rz])
+            fold=1+.045*math.cos(a*10)*t
+            vertices.append([math.sin(a)*rx*fold,.603-.355*t+.010*math.sin(7*a)*t,.036+math.cos(a)*rz*fold])
             uv.append([i/segments,t])
     for k in range(rows):
         for i in range(segments):a=k*(segments+1)+i;c=a+segments+1;faces.extend([[a,c,a+1],[a+1,c,c+1]])
     cloth=[('Bip001 Spine1',.20),('Bip001 Spine',.45),('Bip001 Pelvis',.35)]
     b.mesh('Florielle flowing constellation cape',vertices,faces,navy,cloth,uv=uv)
-    lining=np.array(vertices);lining[:,2]-=.002
+    lining=np.array(vertices);radial=lining*np.array([1,0,1]);radial[:,2]-=.036
+    radial/=np.maximum(np.linalg.norm(radial,axis=1)[:,None],1e-9);lining-=radial*.002
     b.mesh('Florielle cape rose silk lining',lining,faces,pink,cloth,uv=uv)
-    # Surface stars use cape coordinates so the markings sit on its curved face.
-    for k in range(18):
-        a=1.02+(2*math.pi-2.04)*(k%6)/5;t=.32+.24*(k//6)
-        c=np.array([math.sin(a)*(.093+.172*t),.603-.355*t,.036+math.cos(a)*(.065+.142*t)])
-        _point(b,'Florielle embroidered cape star',c+[0,0,-.003],.009 if k%3 else .014,gold,cloth)
-    for side in ('L','R'):
-        b.sleeve(side,cream,long=True,puff=True)
+    # Satin braid follows the real hem and front opening; stars and connecting
+    # constellations are embroidered in UV space, so they follow every fold.
+    for edge in (0,segments):
+        points=[vertices[k*(segments+1)+edge] for k in range(rows+1)]
+        b.tube('Florielle gold-braided cape opening',points,[.0018]*len(points),gold,cloth,8)
+    b.tube('Florielle woven gold cape hem',vertices[-segments-1:],[.0018]*(segments+1),gold,cloth,8)
+    _fitted_source_sleeves(b)
     h=_palm(b,'R');bone='Bip001 R Hand'
     b.tube('Florielle lacquered flower staff',[h+[0,-.34,0],h+[0,.34,0]],[.006,.004],navy,bone,20)
     b.tube('Florielle staff gold collar',[h+[0,.285,0],h+[0,.328,0]],[.013,.014],gold,bone,20)
@@ -453,13 +723,39 @@ def _silk_tier(b,name,top,bottom,rx,rz,mat,phase=0):
         j[i,:2]=[b.bone['Bip001 Pelvis'],b.bone['Bip001 L Thigh'if q[0]>0 else'Bip001 R Thigh']]
         w[i,:2]=[.94,.06]
     b.mesh(name,v,faces,mat,uv=uv,j=j,w=w)
-    lace=b.material('Rosaria pearl lace trim','#eee5f3')
-    b.tube(name+' scalloped lace edge',v[-segments-1:],[.0028]*(segments+1),lace,[('Bip001 Pelvis',1.)],seg=8)
+    _donor_lace_flounce(b,name,bottom,rx,rz,phase)
+
+
+def _donor_lace_flounce(b,name,bottom,rx,rz,phase):
+    """Graft Mari's real ruffled hem islands with their original painted seams."""
+    s=b.source('Mari (Idol)')
+    for p in s.parts():
+        if not p['mat']['name'].endswith('_Body'):continue
+        choices=[]
+        for g in _groups(p):
+            q=p['pos'][np.unique(p['idx'][g])]
+            if q[:,1].min()>.24 and q[:,1].max()<.35 and np.ptp(q[:,0])>.40 and len(g)>100:
+                choices.append(g)
+        if not choices:continue
+        chosen=max(choices,key=lambda g:float(np.mean(np.linalg.norm(p['pos'][np.unique(p['idx'][g])][:,[0,2]],axis=1))))
+        idx=p['idx'][chosen];used=np.unique(idx);q=p['pos'][used];pos=p['pos'].copy()
+        a=np.arctan2(q[:,0],q[:,2]-.026);rho=np.sqrt(q[:,0]**2+(q[:,2]-.026)**2)
+        t=(q[:,1].max()-q[:,1])/np.ptp(q[:,1]);fold=.93+.083*t+.012*np.sin(12*a+phase)*t
+        front=(1+np.cos(a))/2
+        pos[used,0]=np.sin(a)*rx*fold*1.015
+        pos[used,2]=.026+np.cos(a)*rz*fold*1.015
+        pos[used,1]=bottom+.052-.062*t+.125*front**3+.003*np.sin(12*a+phase)
+        atlas=np.array(s.image(p['mat']['pbrMetallicRoughness']['baseColorTexture']['index']))
+        c=atlas[:,:,:3].astype(float);lum=c@np.array([.27,.57,.16])/255
+        atlas[:,:,:3]=np.clip(color('#f6f0ef')*(.88+.12*lum[:,:,None]),0,255).astype('u1')
+        mat=b.wardrobe_material('Rosaria original Mari ruffle stitch atlas',p,Image.fromarray(atlas))
+        b.mesh(name+' original folded lace flounce',pos,idx,mat,'Bip001 Pelvis',uv=p['uv'],norm=None)
+        break
 
 
 def _bride(b,gold,cream):
-    silk=b.material('Rosaria ivory silk','#fff8ef',b.clothing_texture('#fff8ef'))
-    lilac=b.material('Rosaria lilac undersilk','#dedcf2',b.clothing_texture('#dedcf2'))
+    silk=b.material('Rosaria ivory embroidered satin','#ffffff',_woven_texture('#fff8ef','lace'))
+    lilac=b.material('Rosaria lilac woven undersilk','#ffffff',_woven_texture('#dedcf2','lace'))
     pink=b.material('Rosaria crown velvet','#b95779');leaf=b.material('Rosaria bouquet greenery','#6d946b')
     # Reflect the actual loose back curl islands to balance the donor's side
     # ponytail into the reference's wide cascade. Preserve their UV topology.
@@ -524,5 +820,12 @@ def outfits(b):
     gold=b.material('Reference accessory gold','#d8b775',metal=.65)
     cream=b.material('Reference ivory pearl','#fff5e7')
     {11:_leatherwork,12:_fox_panels,13:_witch,14:_bride}[b.c['id']](b,gold,cream)
-    b.appearance_fit['reference']={'image_index':b.c['id']-10,'construction':'Catalog-selected rigged donor clothing and hair; tailored topology, repainted atlases and fitted original accessories',
-                                 'original_sd_proportions':True,'authored_motion_set':['Idle','Walk','Run','Attack','Defend','Victory','Lose']}
+    details={
+        11:'Original Serika jacket shoulder/back topology and atlas cropped and fitted over the retained blouse pintucks; charcoal tailoring, fitted pleated ivory cravat with gold-framed teal pendant, twelve-pleat paired-jewel cuffs, scalloped leather waist, black belt, angular silver buckle, linked chain and silver rivets; dark donor twin-tail locks fitted into broad waves',
+        12:'Original rigged Seia skirt pleats and cream hem exposed by removing the primitive skirt overlay; turquoise source atlas, folded checked panels with woven shading, piping and stitched edges; original gathered sleeves preserved',
+        13:'Original Seia gathered sleeve topology and cuff atlases retargeted to the character rest arms; folded navy constellation-embroidered cape, rose damask inner lining, gold braid and source Reisa dress frills preserved',
+        14:'Original Mari Idol ruffle hem topology and stitch atlas fitted onto four silk tiers; ivory and lilac embroidered satin with woven shading and sewn borders; original Saori corset and large back bow preserved',
+    }
+    b.appearance_fit['reference']={'image_index':b.c['id']-10,
+        'construction':'Catalog-selected rigged donor garments and original UVs with fitted folds, lace, embroidery and sewn accessories',
+        'outfit_details':details[b.c['id']], 'original_sd_proportions':True}
