@@ -38,13 +38,15 @@ function subtractRect(source, cut) {
 function rebuildTerrace(k, t) {
   for (const m of t.meshes) k.root.remove(m);
   const old = new Set(t.surfaces); k.surfaces = k.surfaces.filter(s => !old.has(s));
-  t.meshes = []; t.surfaces = [];
+  const oldColliders = new Set(t.colliders); k.colliders = k.colliders.filter(c => !oldColliders.has(c));
+  t.meshes = []; t.surfaces = []; t.colliders = [];
   let parts = [{ x: t.x, z: t.z, w: t.w, d: t.d }];
   for (const cut of t.cuts) parts = parts.flatMap(part => subtractRect(part, cut));
   for (const p of parts) {
     t.meshes.push(k.box(p.x, (t.top + t.base) / 2, p.z, p.w, t.top - t.base, p.d, t.bodyColor));
     if (t.color !== t.bodyColor) t.meshes.push(k.box(p.x, t.top - .035, p.z, p.w, .07, p.d, t.color));
     k.surface(p.x, p.z, p.w, p.d, t.top); t.surfaces.push(k.surfaces[k.surfaces.length - 1]);
+    k.collide(p.x,p.z,p.w,p.d,{y:t.base,h:t.top-t.base});t.colliders.push(k.colliders[k.colliders.length-1]);
   }
   // Remove edge outcrops from the physical staircase trench as well.
   for (const detail of t.edgeDetails) {
@@ -53,7 +55,7 @@ function rebuildTerrace(k, t) {
 }
 
 function terrace(k, x, top, z, w, d, color, base, bodyColor) {
-  const t = { x, z, w, d, top, base, color, bodyColor, cuts: [], meshes: [], surfaces: [], edgeDetails: [] };
+  const t = { x, z, w, d, top, base, color, bodyColor, cuts: [], meshes: [], surfaces: [], colliders: [], edgeDetails: [] };
   (k.__natureTerraces ||= []).push(t); rebuildTerrace(k, t); return t;
 }
 
@@ -541,14 +543,14 @@ export const natureMaps = [
       path(k, river, 1.06, '#57bbbd', .044);
       for (let i = 1; i < river.length; i++) {
         const [x1, z1] = river[i - 1], [x2, z2] = river[i];
-        k.collide((x1 + x2) / 2, (z1 + z2) / 2, 1.0, Math.hypot(x2 - x1, z2 - z1), { y: 0, h: .13, rot: Math.atan2(x2 - x1, z2 - z1) });
+        k.collide((x1 + x2) / 2, (z1 + z2) / 2, 1.0, Math.hypot(x2 - x1, z2 - z1), { y: 0, h: .13, rot: Math.atan2(x2 - x1, z2 - z1), support: false });
       }
       for (let i = 1; i < river.length; i++) {
         const [x, z] = river[i];
         k.line([[x - .33, .08, z + .25], [x, .085, z], [x + .3, .08, z - .25]], '#c7eee1', .016);
       }
       addWater(k, -15.3, .043, 7.5, 3.6, [.85, 1, 1.9]);
-      k.collide(-15.2, 7.5, 4.4, 12, { y: 0, h: .13 });
+      k.collide(-15.2, 7.5, 4.4, 12, { y: 0, h: .13, support: false });
       for (let i = 0; i < 7; i++) {
         k.box(-2.4 + i * .38, .21, -6.6, .35, .19, 2.9, i % 2 ? '#bc9654' : '#a37a3d', { rot: .17 });
         k.surface(-2.4 + i * .38, -6.6, .4, 2.9, .31, { rot: .17 });
@@ -817,6 +819,7 @@ export const natureMaps = [
       }
       function mineEntrance(x, y, z, stone = false) {
         k.box(x, y + 1.45, z, 2, 2.9, .13, '#171f1e');
+        k.collide(x,z,2.5,.2,{y,h:3.2});
         for (const side of [-1, 1]) {
           k.box(x + side * 1.14, y + 1.5, z + .08, .22, 3, .35, '#95794c');
           beam(k, [x + side * 1.22, y, z + .14], [x + side * .8, y + 2.95, z + .14], .09, '#c5a878');

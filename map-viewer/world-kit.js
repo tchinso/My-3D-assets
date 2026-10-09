@@ -99,14 +99,17 @@ export class WorldKit {
       this.box(xx,top+.008,zz,w,.018,.05,'#bba982',{rot:heading});
     }
   }
-  collide(x,z,w,d,{y=0,h=10,rot=0,camera=true}={}){this.colliders.push({x,z,w,d,y,h,rot,camera});}
+  collide(x,z,w,d,{y=0,h=10,rot=0,camera=true,support=true,shape='rect',...metadata}={}){this.colliders.push({x,z,w,d,y,h,rot,camera,support,shape,...metadata});}
   surface(x,z,w,d,y,{rot=0}={}){this.surfaces.push({x,z,w,d,y,rot});}
   optimize() {
-    // Merge by rendering state rather than by geometry identity. Small unique
-    // props and repeated primitives then share a draw call, including nested
-    // building groups. Authored instances and moving groups retain their shape.
+    // Material batches are spatial outdoors: a distant grove no longer keeps
+    // every tree of that color inside the camera frustum. All original triangles
+    // and indexed vertices survive; moving groups and authored instances remain.
     this.root.updateMatrixWorld(true);
-    const candidates=[],batches=new Map(),canonical=new Map(),inverseRoot=this.root.matrixWorld.clone().invert();
+    const candidates=[],batches=new Map(),canonical=new Map(),staticTransforms=new Set(),inverseRoot=this.root.matrixWorld.clone().invert();
+    const indoor=this.descriptor.category==='실내'||this.descriptor.category==='던전';
+    const span=Math.max(this.width,this.depth);
+    const chunkSize=this.descriptor.renderChunkSize??(indoor?0:(span>=90||span<=40?20:24)),bounds=new THREE.Box3(),relative=new THREE.Matrix4(),center=new THREE.Vector3(),extent=new THREE.Vector3();
     const functionIds=new WeakMap(),materialKeys=new WeakMap();let nextFunction=0;
     const serialize=(value)=>{
       if(value===undefined)return ['undefined'];
@@ -148,8 +151,16 @@ export class WorldKit {
       }
       // Extra custom attributes with different item sizes require distinct batches.
       const custom=Object.keys(g.attributes).filter(a=>!['position','normal','uv','uv1','uv2','color','tangent'].includes(a)).sort().map(a=>`${a}:${g.attributes[a].itemSize}`).join(',');
-      const batchKey=[m.material.uuid,m.castShadow,m.receiveShadow,m.layers.mask,m.renderOrder,m.frustumCulled,custom].join('/');
+      let cell='room';
+      if(chunkSize>0&&m.frustumCulled){
+        if(!g.boundingBox)g.computeBoundingBox();relative.multiplyMatrices(inverseRoot,m.matrixWorld);
+        bounds.copy(g.boundingBox).applyMatrix4(relative);bounds.getCenter(center);bounds.getSize(extent);
+        // A huge floor or terrace must not enlarge a batch of small nearby props.
+        cell=Math.max(extent.x,extent.z)>chunkSize*1.75?`large:${m.uuid}`:`${Math.floor((center.x+this.width/2)/chunkSize)},${Math.floor((center.z+this.depth/2)/chunkSize)}`;
+      }
+      const batchKey=[m.material.uuid,m.castShadow,m.receiveShadow,m.layers.mask,m.renderOrder,m.frustumCulled,custom,cell].join('/');
       if(!batches.has(batchKey))batches.set(batchKey,[]);batches.get(batchKey).push(m);
+      m.updateMatrix();m.matrixAutoUpdate=false;staticTransforms.add(m);
     }
     for(const meshes of batches.values()){
       if(meshes.length<2)continue;
@@ -187,14 +198,21 @@ export class WorldKit {
             if(name==='tangent')for(let v=0;v<clone.attributes.position.count;v++){data[v*size]=1;if(size===4)data[v*size+3]=1;}
             clone.setAttribute(name,new THREE.BufferAttribute(data,size));
           }
-          // Mixed indexed/non-indexed inputs need one consistent representation.
-          if(clone.index){const expanded=clone.toNonIndexed();clone.dispose();clones[i]=expanded;}
+          // Keep shared indexed vertices instead of expanding every triangle.
+          // Existing non-indexed geometry gets identity indices: no welding,
+          // coordinate rounding, seam changes or detail reduction is involved.
+          if(!clone.index){
+            const count=clone.attributes.position.count,indices=count>65535?new Uint32Array(count):new Uint16Array(count);
+            for(let v=0;v<count;v++)indices[v]=v;
+            clone.setIndex(new THREE.BufferAttribute(indices,1));
+          }
         }
         const geometry=mergeGeometries(clones,false);if(!geometry)continue;
         geometry.computeBoundingBox();geometry.computeBoundingSphere();
         const first=meshes[0],combined=new THREE.Mesh(geometry,first.material);
         combined.castShadow=first.castShadow;combined.receiveShadow=first.receiveShadow;combined.layers.mask=first.layers.mask;
-        combined.renderOrder=first.renderOrder;combined.frustumCulled=first.frustumCulled;combined.name='Static map geometry';
+        combined.renderOrder=first.renderOrder;combined.frustumCulled=first.frustumCulled;combined.name=chunkSize>0?'Static map chunk':'Static map geometry';
+        combined.updateMatrix();combined.matrixAutoUpdate=false;combined.userData.staticMapBatch=true;
         for(const m of meshes){
           // Keep unowned source resources reachable for WorldKit.dispose; caches
           // and authored instances may still share their original geometry.
@@ -204,6 +222,18 @@ export class WorldKit {
         this.root.add(combined);
       }finally{for(const clone of clones)clone.dispose();}
     }
+    // The architectural world is stationary. Calculate final world matrices
+    // once, then skip scene-wide forced recalculation of these exact matrices.
+    // Dynamic ancestors (the harbor ship) and individual flames stay live.
+    this.root.updateMatrixWorld(true);
+    const freeze=(object,moving=false)=>{
+      moving ||= !!object.userData.dynamic;
+      if(!moving&&object!==this.root&&(staticTransforms.has(object)||object.userData.staticMapBatch||object.isInstancedMesh||object.isGroup)){
+        object.matrixAutoUpdate=false;object.matrixWorldAutoUpdate=false;
+      }
+      for(const child of object.children)freeze(child,moving);
+    };
+    freeze(this.root);
   }
   dispose() {
     const geometries=new Set(),materials=new Set(),textures=new Set(this.textures);

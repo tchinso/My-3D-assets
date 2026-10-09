@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { WorldKit } from './world-kit.js';
-import { floorAt, moveWithCollisions, blocked } from './navigation.js';
+import { floorAt, blocked, prepareNavigation, createPhysicsState, stepCharacter } from './navigation.js';
+import { ShadowCache } from './shadow-cache.js';
 import { interiorMaps } from './maps/interiors.js';
 import { cityMaps } from './maps/cities.js';
 import { natureMaps } from './maps/nature.js';
@@ -14,10 +15,14 @@ const motionKeys = {KeyQ:'Attack',KeyF:'Defend',KeyV:'Victory',KeyL:'Lose',KeyX:
 let renderer, scene, camera, world, avatar, model, mixer, action, entries = [], selectedMap, selectedCharacter;
 let loadToken = 0, loaded = false, overrideMotion = null, runToggle = false, nearestInteraction = null;
 let loadedAvatarSlug = null;
-let yaw = Math.PI*.24, pitch = .42, distance = 6.2, view = 'follow', verticalSpeed = 0, lastTime = performance.now(), elapsed = 0;
+let shadowCache, minimapBase = null;
+const fadingActions = new Map();
+let yaw = Math.PI*.24, pitch = .42, distance = 6.2, view = 'follow', lastTime = performance.now(), elapsed = 0;
+let physics = createPhysicsState(), jumpTouch = false, jumpQueued = false;
 let toastUntil = 0, minimapTime = 0, currentMotion = 'Idle';
 const position = new THREE.Vector3(), keys = new Set(), joystick = {x:0,z:0,pointer:null};
 const cameraTarget = new THREE.Vector3();
+const cameraLook = new THREE.Vector3(), cameraOffset = new THREE.Vector3(), cameraDesired = new THREE.Vector3();
 const loader = new GLTFLoader();
 let dragging = null, pixelRatio = Math.min(devicePixelRatio, 1.6);
 
@@ -28,7 +33,7 @@ function showError(error) {
 function toast(message, seconds = 4) {
   $('toast').textContent = message; $('toast').hidden = false; toastUntil = performance.now() + seconds*1000;
 }
-function clearInput() { keys.clear(); resetJoystick(); dragging=null; }
+function clearInput() { keys.clear(); resetJoystick(); dragging=null;jumpTouch=false;jumpQueued=false; }
 function dialogOpen() { return !!document.querySelector('dialog[open]'); }
 function openDialog(id) { if(!loaded)return;clearInput(); $(id).showModal(); }
 function saveSelection() {
@@ -48,10 +53,11 @@ function setMotion(name, force = false) {
   if(!clip)return;
   if(currentMotion===name && action && !force)return;
   const next=mixer.clipAction(clip), previous=action;
+  fadingActions.delete(next);
   const loop=['Idle','Walk','Run'].includes(name);
   next.reset().setLoop(loop?THREE.LoopRepeat:THREE.LoopOnce,loop?Infinity:1);
   next.clampWhenFinished=!loop; next.enabled=true;next.setEffectiveTimeScale(1).setEffectiveWeight(1).play();
-  if(previous && previous!==next) { previous.fadeOut(.14);next.fadeIn(.14); }
+  if(previous && previous!==next) { previous.fadeOut(.14);next.fadeIn(.14);fadingActions.set(previous,elapsed+.15); }
   action=next;currentMotion=name;
   document.querySelectorAll('#action-buttons button').forEach(button=>{const on=button.dataset.motion===name;button.classList.toggle('active',on);button.setAttribute('aria-pressed',String(on));});
 }
@@ -72,7 +78,7 @@ function resetPosition() {
       if(y!==null && Math.abs(x)<world.width/2-.3&&Math.abs(z)<world.depth/2-.3&&!blocked(world.colliders,x,z,y)) { position.set(x,y,z);found=true; }
     }
   }
-  verticalSpeed=0;overrideMotion=null;
+  physics=createPhysicsState();overrideMotion=null;
   if(avatar)avatar.position.copy(position);
   cameraTarget.copy(position).add(new THREE.Vector3(0,1,0));
   if(mixer)setMotion('Idle',true);
@@ -96,6 +102,7 @@ async function select(map, character, changeMap=true, changeCharacter=true) {
       if(world){scene.remove(world.root);world.dispose();}
       world=new WorldKit(map);map.build(world);world.optimize();scene.add(world.root);
       world.cameraColliders=world.colliders.filter(c=>c.camera!==false);
+      prepareNavigation(world);
       scene.background=new THREE.Color(map.sky||'#9dbfca');
       scene.fog=new THREE.Fog(map.fog||map.sky||'#9dbfca',Math.max(map.width,map.depth)*.8,Math.max(map.width,map.depth)*2.2);
       const indoor=map.category==='실내'||map.category==='던전';
@@ -103,12 +110,14 @@ async function select(map, character, changeMap=true, changeCharacter=true) {
       const sun=scene.getObjectByName('sun');sun.intensity=indoor?1.5:2.25;
       const size=Math.max(map.width,map.depth);sun.shadow.camera.left=-size/2;sun.shadow.camera.right=size/2;sun.shadow.camera.top=size/2;sun.shadow.camera.bottom=-size/2;sun.shadow.camera.updateProjectionMatrix();
       sun.position.set(-size*.3,Math.max(18,size*.65),size*.3);
+      shadowCache.setWorld(world);minimapBase=null;
       yaw=Math.PI*.24;pitch=.42;distance=indoor?5.0:6.2;resetPosition();
     }
     if(changeCharacter || !avatar || loadedAvatarSlug!==character.slug) {
       const gltf=await loader.loadAsync(`../${character.glb}?revision=${encodeURIComponent(character.sha256 || character.revision)}`);
       if(token!==loadToken){disposeModel(gltf.scene);return;}
       if(avatar){scene.remove(avatar);mixer.stopAllAction();mixer.uncacheRoot(model);disposeModel(avatar);}
+      fadingActions.clear();
       avatar=new THREE.Group();model=gltf.scene;
       let firstMouth=null;model.traverse(object=>{
         if(object.isMesh){object.castShadow=true;object.receiveShadow=true;
@@ -120,6 +129,7 @@ async function select(map, character, changeMap=true, changeCharacter=true) {
       const scale=1.5/Math.max(size.y,.01),center=bounds.getCenter(new THREE.Vector3());
       model.scale.multiplyScalar(scale);model.position.set(-center.x*scale,-bounds.min.y*scale,-center.z*scale);
       avatar.add(model);avatar.position.copy(position);scene.add(avatar);
+      shadowCache.prepareMaterials(avatar);
       loadedAvatarSlug=character.slug;
       mixer=new THREE.AnimationMixer(model);mixer._clips=gltf.animations;
       mixer.addEventListener('finished',event=>{
@@ -141,7 +151,7 @@ async function select(map, character, changeMap=true, changeCharacter=true) {
     avatar.position.copy(position);avatar.visible=view!=='first';loaded=true;
     updateTitles();saveSelection();$('loading').hidden=true;
     // Allows repeatable end-to-end inspection without exposing implementation in the UI.
-    window.mapExplorer={maps,characters:entries,get world(){return world;},get position(){return position.clone();},get motion(){return currentMotion;},get selected(){return {map:selectedMap.id,character:selectedCharacter.name};},get avatarSlug(){return loadedAvatarSlug;},get avatarHeight(){return new THREE.Box3().setFromObject(avatar).getSize(new THREE.Vector3()).y;},selectMap:async id=>select(maps.find(m=>m.id===id),selectedCharacter,true,false),selectCharacter:async name=>select(selectedMap,entries.find(c=>c.name===name),false,true),get renderer(){return renderer;}};
+    window.mapExplorer={maps,characters:entries,get world(){return world;},get position(){return position.clone();},get motion(){return currentMotion;},get selected(){return {map:selectedMap.id,character:selectedCharacter.name};},get avatarSlug(){return loadedAvatarSlug;},get avatarHeight(){return new THREE.Box3().setFromObject(avatar).getSize(new THREE.Vector3()).y;},selectMap:async id=>select(maps.find(m=>m.id===id),selectedCharacter,true,false),selectCharacter:async name=>select(selectedMap,entries.find(c=>c.name===name),false,true),get renderer(){return renderer;},compareShadows:()=>shadowCache.compareReference(renderer,camera)};
   } catch(error) { if(token===loadToken)showError(error); }
 }
 function buildPickers() {
@@ -195,12 +205,16 @@ function setupInput() {
   $('reset-position').onclick=()=>{resetPosition();toast('시작 위치로 돌아왔어요.',2);};
   $('retry').onclick=()=>select(selectedMap,selectedCharacter,true,true);
   $('run-button').onclick=()=>{runToggle=!runToggle;$('run-button').setAttribute('aria-pressed',String(runToggle));};
+  const jumpButton=$('jump-button');
+  jumpButton.addEventListener('pointerdown',e=>{if(!loaded||dialogOpen())return;e.preventDefault();jumpTouch=true;jumpButton.setPointerCapture(e.pointerId);});
+  for(const type of ['pointerup','pointercancel','lostpointercapture'])jumpButton.addEventListener(type,()=>jumpTouch=false);
+  jumpButton.onclick=e=>{if(e.detail===0 && loaded && !dialogOpen())jumpQueued=true;};
   $('interact-button').onclick=interact;
   $('fullscreen-button').onclick=async()=>{try{if(document.fullscreenElement)await document.exitFullscreen();else await $('world').requestFullscreen();}catch{toast('이 브라우저에서는 전체 화면을 사용할 수 없어요.');}};
   $('capture').onclick=()=>{if(!loaded)return;renderer.render(scene,camera);const a=document.createElement('a');a.download=`${selectedMap.id}-${selectedCharacter.name}.png`;a.href=renderer.domElement.toDataURL('image/png');a.click();toast('탐험 화면을 PNG로 저장했어요.',2);};
   window.addEventListener('keydown',event=>{
     if(dialogOpen()||/INPUT|TEXTAREA|SELECT/.test(event.target.tagName))return;
-    if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(event.code))event.preventDefault();
+    if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(event.code))event.preventDefault();
     keys.add(event.code);
     if(event.repeat)return;
     if(motionKeys[event.code])triggerMotion(motionKeys[event.code]);
@@ -218,18 +232,18 @@ function setupInput() {
 function updateCamera(dt) {
   const smooth=1-Math.exp(-dt*9);
   if(view==='overview') {
-    const size=Math.max(world.width,world.depth),target=new THREE.Vector3(0,2,0);
-    const desired=new THREE.Vector3(Math.sin(yaw)*size*.6,size*.95,Math.cos(yaw)*size*.6);
+    const size=Math.max(world.width,world.depth),target=cameraLook.set(0,2,0);
+    const desired=cameraDesired.set(Math.sin(yaw)*size*.6,size*.95,Math.cos(yaw)*size*.6);
     const aspectCorrection=Math.max(1,1/camera.aspect);desired.multiplyScalar(aspectCorrection);
     camera.position.lerp(desired,smooth);cameraTarget.lerp(target,smooth);camera.lookAt(cameraTarget);return;
   }
-  const target=position.clone().add(new THREE.Vector3(0,view==='first'?1.25:1.05,0));
+  const target=cameraLook.copy(position);target.y+=view==='first'?1.25:1.05;
   cameraTarget.lerp(target,smooth);
   if(view==='first') {
     camera.position.copy(target);
-    camera.lookAt(target.clone().add(new THREE.Vector3(-Math.sin(yaw)*Math.cos(pitch),-Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch))));return;
+    camera.lookAt(cameraDesired.copy(target).add(cameraOffset.set(-Math.sin(yaw)*Math.cos(pitch),-Math.sin(pitch),-Math.cos(yaw)*Math.cos(pitch))));return;
   }
-  const offset=new THREE.Vector3(Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),Math.cos(yaw)*Math.cos(pitch));
+  const offset=cameraOffset.set(Math.sin(yaw)*Math.cos(pitch),Math.sin(pitch),Math.cos(yaw)*Math.cos(pitch));
   let cameraDistance=distance;
   // Camera obstruction uses the same physical walls as movement. Sampling avoids
   // raycasting every small leaf/book/rope, keeping large maps usable on phones.
@@ -238,12 +252,20 @@ function updateCamera(dt) {
       cameraDistance=Math.max(.55,d-.18);break;
     }
   }
-  const desired=cameraTarget.clone().addScaledVector(offset,cameraDistance);
+  const desired=cameraDesired.copy(cameraTarget).addScaledVector(offset,cameraDistance);
   camera.position.lerp(desired,Math.min(1,smooth*1.5));camera.lookAt(cameraTarget);
 }
 function drawMinimap() {
-  const ctx=$('minimap').getContext('2d'),w=240,h=240;
   const scale=220/Math.max(world.width,world.depth),cx=120,cy=120;
+  if(!minimapBase)minimapBase=buildMinimap(scale,cx,cy);
+  const ctx=$('minimap').getContext('2d');ctx.clearRect(0,0,240,240);ctx.drawImage(minimapBase,0,0);
+  ctx.save();ctx.translate(cx+position.x*scale,cy+position.z*scale);ctx.rotate(-avatar.rotation.y);
+  ctx.fillStyle='#fff5c3';ctx.shadowColor='#fff5c3';ctx.shadowBlur=6;ctx.beginPath();ctx.moveTo(0,7);ctx.lineTo(-5,-5);ctx.lineTo(0,-2);ctx.lineTo(5,-5);ctx.closePath();ctx.fill();ctx.restore();
+  $('coordinates').textContent=`${position.x.toFixed(1)}, ${position.z.toFixed(1)}`;$('level').textContent=`${position.y.toFixed(1)} m`;
+}
+function buildMinimap(scale,cx,cy) {
+  const canvas=document.createElement('canvas');canvas.width=240;canvas.height=240;
+  const ctx=canvas.getContext('2d'),w=240,h=240;
   ctx.fillStyle='#234638';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#91ad7630';ctx.lineWidth=.6;
   for(let i=10;i<240;i+=22){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i,240);ctx.moveTo(0,i);ctx.lineTo(240,i);ctx.stroke();}
   ctx.save();ctx.translate(cx,cy);ctx.scale(scale,scale);
@@ -251,9 +273,7 @@ function drawMinimap() {
   for(const c of world.colliders){ctx.save();ctx.translate(c.x,c.z);ctx.rotate(-(c.rot||0));ctx.fillStyle='#172f25b0';ctx.fillRect(-c.w/2,-c.d/2,c.w,c.d);ctx.restore();}
   ctx.restore();
   ctx.fillStyle='#ddc484';for(const interaction of world.interactions){ctx.beginPath();ctx.arc(cx+interaction.position[0]*scale,cy+interaction.position[2]*scale,1.5,0,Math.PI*2);ctx.fill();}
-  ctx.save();ctx.translate(cx+position.x*scale,cy+position.z*scale);ctx.rotate(-avatar.rotation.y);
-  ctx.fillStyle='#fff5c3';ctx.shadowColor='#fff5c3';ctx.shadowBlur=6;ctx.beginPath();ctx.moveTo(0,7);ctx.lineTo(-5,-5);ctx.lineTo(0,-2);ctx.lineTo(5,-5);ctx.closePath();ctx.fill();ctx.restore();
-  $('coordinates').textContent=`${position.x.toFixed(1)}, ${position.z.toFixed(1)}`;$('level').textContent=`${position.y.toFixed(1)} m`;
+  return canvas;
 }
 function updateInteractions() {
   nearestInteraction=null;let nearestDistance=2.0;
@@ -271,30 +291,32 @@ function frame(now) {
     }
     const length=Math.hypot(x,z),moving=length>.09;
     const running=runToggle||keys.has('ShiftLeft')||keys.has('ShiftRight');
+    let moveX=0,moveZ=0;
     if(moving) {
       if(overrideMotion==='Lose'||['Walk','Run'].includes(overrideMotion))overrideMotion=null;
       if(!overrideMotion) {
         const factor=1/Math.max(length,1),dx=(x*Math.cos(yaw)+z*Math.sin(yaw))*factor,dz=(-x*Math.sin(yaw)+z*Math.cos(yaw))*factor;
-        const speed=running?4.0:1.75;moveWithCollisions(world,position,dx*dt*speed,dz*dt*speed);
+        const speed=running?4.0:1.75;moveX=dx*dt*speed;moveZ=dz*dt*speed;
         const heading=Math.atan2(dx,dz),diff=Math.atan2(Math.sin(heading-avatar.rotation.y),Math.cos(heading-avatar.rotation.y));
         avatar.rotation.y+=diff*(1-Math.exp(-dt*14));setMotion(running?'Run':'Walk');
       }
     } else if(!overrideMotion)setMotion('Idle');
-    const floor=floorAt(world.surfaces,position.x,position.z,position.y);
-    if(floor!==null){if(position.y>floor+.015){verticalSpeed-=12*dt;position.y=Math.max(floor,position.y+verticalSpeed*dt);}else{position.y=floor;verticalSpeed=0;}}
+    const jump=!dialogOpen() && !overrideMotion && (keys.has('Space')||jumpTouch||jumpQueued);
+    stepCharacter(world,position,physics,moveX,moveZ,dt,{jump});jumpQueued=false;
     if(position.y<-5)resetPosition();
     avatar.position.copy(position);if(mixer)mixer.update(dt);
+    for(const [faded,until] of fadingActions)if(elapsed>=until){if(faded!==action)faded.stop();fadingActions.delete(faded);}
     for(const animate of world.animated)animate(dt,elapsed);
     updateCamera(dt);
     if(now-minimapTime>130){drawMinimap();updateInteractions();minimapTime=now;}
-    renderer.render(scene,camera);
+    shadowCache.bake(renderer,camera);shadowCache.updateBounds(avatar,world,currentMotion);renderer.render(scene,camera);
   }
   if(toastUntil && now>toastUntil){$('toast').hidden=true;toastUntil=0;}
   requestAnimationFrame(frame);
 }
 async function boot() {
   try {
-    renderer=new THREE.WebGLRenderer({canvas:$('scene'),antialias:true,preserveDrawingBuffer:true,powerPreference:'high-performance'});
+    renderer=new THREE.WebGLRenderer({canvas:$('scene'),antialias:true,powerPreference:'high-performance'});
     renderer.setPixelRatio(pixelRatio);renderer.outputColorSpace=THREE.SRGBColorSpace;
     renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.18;
     renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
@@ -302,6 +324,7 @@ async function boot() {
     const ambient=new THREE.HemisphereLight('#fff3d5','#697857',2.35);ambient.name='ambient';scene.add(ambient);
     const sun=new THREE.DirectionalLight('#fff4d8',2.25);sun.name='sun';sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.bias=-.0004;sun.shadow.normalBias=.035;sun.shadow.camera.near=.1;sun.shadow.camera.far=200;scene.add(sun);
     const fill=new THREE.DirectionalLight('#c5dded',.6);fill.position.set(10,8,-14);scene.add(fill);
+    shadowCache=new ShadowCache(scene,sun);
     const resize=()=>{const w=$('world').clientWidth,h=$('world').clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};new ResizeObserver(resize).observe($('world'));resize();
     setupInput();
     const response=await fetch('../characters/manifest.json');if(!response.ok)throw new Error(`캐릭터 목록 ${response.status}`);entries=await response.json();

@@ -1,0 +1,393 @@
+{
+  "tag": "optimized",
+  "timestamp": "2026-10-09T13:02:17.860Z",
+  "viewport": [
+    1440,
+    1000
+  ],
+  "gpu": [
+    {
+      "vendorId": 4098,
+      "deviceId": 5686,
+      "subSysId": 940316586,
+      "revision": 195,
+      "vendorString": "",
+      "deviceString": "AMD Radeon(TM) Graphics",
+      "driverVendor": "AMD",
+      "driverVersion": "27.20.11044.4003"
+    },
+    {
+      "vendorId": 5140,
+      "deviceId": 140,
+      "subSysId": 0,
+      "revision": 0,
+      "vendorString": "",
+      "deviceString": "Microsoft Basic Render Driver",
+      "driverVendor": "",
+      "driverVersion": "10.0.22621.5415"
+    }
+  ],
+  "results": [
+    {
+      "map": "Academy",
+      "frames": 211,
+      "fps": 60.07630544957577,
+      "medianMs": 16.699999999999818,
+      "p95Ms": 16.800000000000182,
+      "calls": 115,
+      "triangles": 34901,
+      "drawingBuffer": [
+        1440,
+        1000
+      ],
+      "geometryBuffers": 318,
+      "hot": [
+        {
+          "functionName": "(idle) :0",
+          "samples": 2019
+        },
+        {
+          "functionName": "(program) :0",
+          "samples": 149
+        },
+        {
+          "functionName": "(anonymous) three.module.min.js:6",
+          "samples": 132
+        },
+        {
+          "functionName": "Ye three.module.min.js:6",
+          "samples": 57
+        },
+        {
+          "functionName": "setup three.module.min.js:6",
+          "samples": 51
+        },
+        {
+          "functionName": "multiplyMatrices three.core.min.js:6",
+          "samples": 45
+        },
+        {
+          "functionName": "updateMatrixWorld three.core.min.js:6",
+          "samples": 42
+        },
+        {
+          "functionName": "A three.module.min.js:6",
+          "samples": 35
+        },
+        {
+          "functionName": "bindVertexArray :0",
+          "samples": 30
+        },
+        {
+          "functionName": "copy three.core.min.js:6",
+          "samples": 25
+        },
+        {
+          "functionName": "renderBufferDirect three.module.min.js:6",
+          "samples": 24
+        },
+        {
+          "functionName": "update three.module.min.js:6",
+          "samples": 24
+        },
+        {
+          "functionName": "drawElements :0",
+          "samples": 18
+        },
+        {
+          "functionName": "r three.module.min.js:6",
+          "samples": 15
+        }
+      ]
+    },
+    {
+      "map": "NormalTown",
+      "frames": 211,
+      "fps": 60.035281397547685,
+      "medianMs": 16.69999999999891,
+      "p95Ms": 16.900000000001455,
+      "calls": 156,
+      "triangles": 99087,
+      "drawingBuffer": [
+        1440,
+        1000
+      ],
+      "geometryBuffers": 209,
+      "hot": [
+        {
+          "functionName": "(idle) :0",
+          "samples": 2119
+        },
+        {
+          "functionName": "(anonymous) three.module.min.js:6",
+          "samples": 171
+        },
+        {
+          "functionName": "(program) :0",
+          "samples": 154
+        },
+        {
+          "functionName": "renderBufferDirect three.module.min.js:6",
+          "samples": 46
+        },
+        {
+          "functionName": "setup three.module.min.js:6",
+          "samples": 42
+        },
+        {
+          "functionName": "updateMatrixWorld three.core.min.js:6",
+          "samples": 38
+        },
+        {
+          "functionName": "multiplyMatrices three.core.min.js:6",
+          "samples": 32
+        },
+        {
+          "functionName": "Ye three.module.min.js:6",
+          "samples": 27
+        },
+        {
+          "functionName": "upload three.module.min.js:6",
+          "samples": 24
+        },
+        {
+          "functionName": "A three.module.min.js:6",
+          "samples": 22
+        },
+        {
+          "functionName": "bindVertexArray :0",
+          "samples": 22
+        },
+        {
+          "functionName": "update three.module.min.js:6",
+          "samples": 20
+        },
+        {
+          "functionName": "r three.module.min.js:6",
+          "samples": 15
+        },
+        {
+          "functionName": "setValue three.module.min.js:6",
+          "samples": 14
+        }
+      ]
+    },
+    {
+      "map": "Port",
+      "frames": 211,
+      "fps": 60.03186525549108,
+      "medianMs": 16.69999999999891,
+      "p95Ms": 16.899999999999636,
+      "calls": 77,
+      "triangles": 24509,
+      "drawingBuffer": [
+        1440,
+        1000
+      ],
+      "geometryBuffers": 203,
+      "hot": [
+        {
+          "functionName": "(idle) :0",
+          "samples": 2115
+        },
+        {
+          "functionName": "(anonymous) three.module.min.js:6",
+          "samples": 134
+        },
+        {
+          "functionName": "(program) :0",
+          "samples": 130
+        },
+        {
+          "functionName": "setup three.module.min.js:6",
+          "samples": 51
+        },
+        {
+          "functionName": "updateMatrixWorld three.core.min.js:6",
+          "samples": 35
+        },
+        {
+          "functionName": "renderBufferDirect three.module.min.js:6",
+          "samples": 33
+        },
+        {
+          "functionName": "bindVertexArray :0",
+          "samples": 30
+        },
+        {
+          "functionName": "A three.module.min.js:6",
+          "samples": 29
+        },
+        {
+          "functionName": "Ye three.module.min.js:6",
+          "samples": 23
+        },
+        {
+          "functionName": "multiplyMatrices three.core.min.js:6",
+          "samples": 19
+        },
+        {
+          "functionName": "setValue three.module.min.js:6",
+          "samples": 18
+        },
+        {
+          "functionName": "xr three.module.min.js:6",
+          "samples": 16
+        },
+        {
+          "functionName": "update three.module.min.js:6",
+          "samples": 15
+        },
+        {
+          "functionName": "copy three.core.min.js:6",
+          "samples": 13
+        }
+      ]
+    },
+    {
+      "map": "in-Academy",
+      "frames": 211,
+      "fps": 60.14823261112337,
+      "medianMs": 16.700000000000728,
+      "p95Ms": 16.900000000001455,
+      "calls": 83,
+      "triangles": 127081,
+      "drawingBuffer": [
+        1440,
+        1000
+      ],
+      "geometryBuffers": 122,
+      "hot": [
+        {
+          "functionName": "(idle) :0",
+          "samples": 2363
+        },
+        {
+          "functionName": "(program) :0",
+          "samples": 127
+        },
+        {
+          "functionName": "(anonymous) three.module.min.js:6",
+          "samples": 59
+        },
+        {
+          "functionName": "multiplyMatrices three.core.min.js:6",
+          "samples": 30
+        },
+        {
+          "functionName": "upload three.module.min.js:6",
+          "samples": 24
+        },
+        {
+          "functionName": "bindVertexArray :0",
+          "samples": 23
+        },
+        {
+          "functionName": "updateMatrixWorld three.core.min.js:6",
+          "samples": 20
+        },
+        {
+          "functionName": "renderBufferDirect three.module.min.js:6",
+          "samples": 19
+        },
+        {
+          "functionName": "Ye three.module.min.js:6",
+          "samples": 18
+        },
+        {
+          "functionName": "setValue three.module.min.js:6",
+          "samples": 16
+        },
+        {
+          "functionName": "A three.module.min.js:6",
+          "samples": 14
+        },
+        {
+          "functionName": "drawElements :0",
+          "samples": 13
+        },
+        {
+          "functionName": "texSubImage2D :0",
+          "samples": 9
+        },
+        {
+          "functionName": "xr three.module.min.js:6",
+          "samples": 9
+        }
+      ]
+    },
+    {
+      "map": "Odanka",
+      "frames": 211,
+      "fps": 60.02161916140408,
+      "medianMs": 16.700000000000728,
+      "p95Ms": 16.80000000000291,
+      "calls": 102,
+      "triangles": 91227,
+      "drawingBuffer": [
+        1440,
+        1000
+      ],
+      "geometryBuffers": 137,
+      "hot": [
+        {
+          "functionName": "(idle) :0",
+          "samples": 2308
+        },
+        {
+          "functionName": "(program) :0",
+          "samples": 132
+        },
+        {
+          "functionName": "(anonymous) three.module.min.js:6",
+          "samples": 58
+        },
+        {
+          "functionName": "updateMatrixWorld three.core.min.js:6",
+          "samples": 35
+        },
+        {
+          "functionName": "multiplyMatrices three.core.min.js:6",
+          "samples": 31
+        },
+        {
+          "functionName": "renderBufferDirect three.module.min.js:6",
+          "samples": 28
+        },
+        {
+          "functionName": "upload three.module.min.js:6",
+          "samples": 23
+        },
+        {
+          "functionName": "setValue three.module.min.js:6",
+          "samples": 22
+        },
+        {
+          "functionName": "update three.module.min.js:6",
+          "samples": 22
+        },
+        {
+          "functionName": "bindVertexArray :0",
+          "samples": 17
+        },
+        {
+          "functionName": "A three.module.min.js:6",
+          "samples": 15
+        },
+        {
+          "functionName": "Ye three.module.min.js:6",
+          "samples": 13
+        },
+        {
+          "functionName": "r three.module.min.js:6",
+          "samples": 11
+        },
+        {
+          "functionName": "intersectsObject three.core.min.js:6",
+          "samples": 11
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

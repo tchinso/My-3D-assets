@@ -19,6 +19,12 @@ function lathe(k,x,y,z,height,radius,color,shape='jar') {
   const p=(profiles[shape]||profiles.jar).map(([a,b])=>new k.THREE.Vector2(a*radius,b*height));
   const m=new k.THREE.Mesh(new k.THREE.LatheGeometry(p,16),new k.THREE.MeshStandardMaterial({color,roughness:.6}));m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;k.root.add(m);return m;
 }
+function roundSolid(k,x,z,r,y,h) {
+  k.collide(x,z,r*2,r*2,{y,h});
+  // Navigation uses the conservative rectangle for indexing, then the actual
+  // circular outline to keep pillar corners from blocking a landing turn.
+  k.colliders[k.colliders.length-1].shape='circle';
+}
 function room(k,w,d,{floor='#bbb39a',wall='#b7b29b',tile='stone',height=3.8,brick=false}={}) {
   k.floor(w,d,floor,{tile});k.wall(0,-d/2,w,height,.22,wall);k.wall(-w/2,0,.22,height,d,wall);
   k.collide(w/2,0,.18,d,{h:height,camera:false});k.collide(0,d/2,w,.18,{h:height,camera:false});
@@ -75,7 +81,7 @@ function sconce(k,x,y,z) {
 }
 function pipe(k,points,r=.11,color=C.iron) {k.line(points,color,r);for(let i=0;i<points.length-1;i++){const a=points[i],b=points[i+1],p=a.map((n,j)=>n+(b[j]-n)*.25);const dx=b[0]-a[0],dy=b[1]-a[1];k.torus(...p,r*1.07,.025,color,dy!==0?[Math.PI/2,0,0]:dx!==0?[0,Math.PI/2,0]:[0,0,0]);}}
 function barrel(k,x,z,r=.38,h=.85,y=0,color='#8e7754') {
-  lathe(k,x,y,z,h,r,color,'jar');for(const yy of [.1,.4,.77])k.torus(x,y+yy*h/.85,z,r*(yy===.4?.97:.74),.033,'#4f4f44');k.cylinder(x,y+h+.012,z,r*.58,.035,color);k.collide(x,z,r*2,r*2,{y,h});
+  lathe(k,x,y,z,h,r,color,'jar');for(const yy of [.1,.4,.77])k.torus(x,y+yy*h/.85,z,r*(yy===.4?.97:.74),.033,'#4f4f44');k.cylinder(x,y+h+.012,z,r*.58,.035,color);roundSolid(k,x,z,r,y,h);
 }
 function crate(k,x,z,w=.85,h=.85,d=.85,y=0,color='#987f56') {
   k.box(x,y+h/2,z,w,h,d,color,{solid:true});const a=[];
@@ -98,6 +104,18 @@ function stairsZ(k,x,z,w,count,rise,run,color,y=0,direction=-1) {
 function railing(k,x1,z1,x2,z2,y=0,color=C.brass) {
   const len=Math.hypot(x2-x1,z2-z1),a=[],rot=Math.atan2(-(z2-z1),x2-x1);k.line([[x1,y+.94,z1],[x2,y+.94,z2]],color,.035);
   for(let i=0;i<=Math.ceil(len/.45);i++){const f=i/Math.ceil(len/.45);a.push({x:x1+(x2-x1)*f,y:y+.47,z:z1+(z2-z1)*f,w:.04,h:.94,d:.04,color,rot});}batch(k,a);k.collide((x1+x2)/2,(z1+z2)/2,len,.11,{y,h:1.1,rot});
+}
+function landingGuard(k,x1,z1,x2,z2,y) {
+  const color='#554e45',len=Math.hypot(x2-x1,z2-z1),rot=Math.atan2(-(z2-z1),x2-x1),count=Math.max(1,Math.ceil(len/.45));
+  const ring=k.geometry('landing-ring:.07,.012,5,12',()=>new k.THREE.TorusGeometry(.07,.012,5,12));
+  const cap=k.geometry('landing-cap:.045,8,6',()=>new k.THREE.SphereGeometry(.045,8,6));
+  k.line([[x1,y+.94,z1],[x2,y+.94,z2]],color,.035);
+  for(const height of [.16,.49])k.line([[x1,y+height,z1],[x2,y+height,z2]],color,.019);
+  // Cached primitives merge into the room's existing material batches rather
+  // than introducing one authored instance draw call per short guard section.
+  for(let i=0;i<count;i++){const t=(i+.5)/count;k.mesh(ring,'#ab9470',x1+(x2-x1)*t,y+.64,z1+(z2-z1)*t,{rot});}
+  for(let i=0;i<=count;i++){const t=i/count,x=x1+(x2-x1)*t,z=z1+(z2-z1)*t;k.box(x,y+.47,z,.04,.94,.04,color,{rot});k.mesh(cap,'#baa480',x,y+.965,z);}
+  k.collide((x1+x2)/2,(z1+z2)/2,len,.11,{y,h:1.1,rot});
 }
 function light(k,x,y,z,color='#ffd996',intensity=2,distance=7) {const l=new k.THREE.PointLight(color,intensity,distance,2);l.position.set(x,y,z);k.root.add(l);}
 function inspect(k,name,x,y,z,text) {k.interactions.push({name,position:[x,y,z],kind:'inspect',text});}
@@ -143,7 +161,7 @@ function mansion(k) {
   for(const x of [-7.7,-3.5,.5,4.5]){door(k,x,-7.68,1.55,3.5,'#ede5b5');k.box(x,4.55,-7.53,.045,2.1,.07,'#c2bb92');k.box(x,4.7,-7.52,1.48,.07,.07,'#c2bb92');k.torus(x,5.56,-7.49,.32,.045,'#c2bb92',[0,0,0]);}
   door(k,7,-7.64,2,3.2,'#c7bc60');k.torus(7,4.4,-7.5,.59,.065,'#a69649',[0,0,0]);k.box(7,4.4,-7.48,.045,2.2,.04,'#a69649');
   // Recessed guardian alcove with an arched sculpted lintel.
-  k.box(4.25,1.45,-6.95,2.4,2.9,.35,'#514d43');door(k,4.25,-6.65,2.5,0,'#b79581');k.box(4.25,1.35,-6.5,1.86,2.6,.08,'#515748');statue(k,4.25,-5.65,0,1.5);k.torus(4.25,2.94,-6.45,.46,.065,'#7a6656',[0,0,0]);
+  k.box(4.25,1.45,-6.95,2.4,2.9,.35,'#514d43',{solid:true});door(k,4.25,-6.65,2.5,0,'#b79581');k.box(4.25,1.35,-6.5,1.86,2.6,.08,'#515748');statue(k,4.25,-5.65,0,1.5);k.torus(4.25,2.94,-6.45,.46,.065,'#7a6656',[0,0,0]);
   for(const p of [[-5,4.2],[-1.2,4.2],[2.8,5.2]])statue(k,p[0],p[1],0,1);
   for(const x of [-6,-2,2,6])for(const y of [2.4,5.7]){sconce(k,x,y,-7.48);sconce(k,x+.22,y,-7.47);}
   const carpet=[];for(let i=0;i<14;i++)carpet.push({x:Math.sin(i*.53)*3.4,y:.025,z:-.7+i*.5,w:8.7,h:.025,d:.52,color:i%2?'#c19d8d':'#cba697'});batch(k,carpet);
@@ -167,12 +185,19 @@ function academy(k) {
       for(let x=-12.5;x<13;x++)for(let z=-11;z<=-6;z++)floor.push({x,y:y+.018,z,w:.99,h:.025,d:.99,color:(Math.round(x+z)%2)?'#e8dfc0':'#524d41'});
       for(const xx of [-10.5,10.5])for(let x=xx-2;x<xx+2.5;x++)for(let z=-5;z<6;z++){if(xx<0&&x>-12.4&&x<-8.6&&z>-5&&z<5)continue;const side=xx<0&&x>-9&&Math.abs(z)<5;floor.push({x:side?-8.3:x,y:y+.018,z,w:side?.59:.99,h:.025,d:.99,color:(Math.round(x+z)%2)?'#e8dfc0':'#524d41'});}
       railing(k,-8,-5.5,8,-5.5,y,l===4?'#d0c7ad':'#605e4d');railing(k,-8,-5.5,-8,5.5,y,'#605e4d');railing(k,8,-5.5,8,5.5,y,'#605e4d');
+      // Guard the flat switchback landings while keeping both tread entrances
+      // and the back-gallery route open. Slots match the existing stair rails.
+      landingGuard(k,-12.96,6.4,-7.86,6.4,y);
+      landingGuard(k,-7.86,6.4,-7.86,5.62,y);
+      landingGuard(k,-7.86,5.62,-8,5.5,y);
+      for(const z of [-5.08,5.08])for(const [left,right] of [[-12.96,-12.19],[-10.71,-10.24],[-8.76,-8.02]])landingGuard(k,left,z,right,z,y);
       trim.push({x:0,y:y-.18,z:-5.5,w:16,h:.2,d:.18,color:'#947764'},{x:-8,y:y-.18,z:0,w:.18,h:.2,d:11,color:'#947764'},{x:8,y:y-.18,z:0,w:.18,h:.2,d:11,color:'#947764'});
     }
     for(const x of [-11.8,-7.5,-3.8,0,3.8,7.5,11.8]){
       k.cylinder(x,y+1.6,-5.9,l===0?.2:.16,3.2,'#9fa08c');k.cylinder(x,y+.12,-5.9,.3,.24,'#b4af94');k.cylinder(x,y+3.24,-5.9,.28,.16,'#b4af94');k.torus(x,y+.32,-5.9,.23,.04,'#8e907d');
+      roundSolid(k,x,-5.9,l===0?.2:.16,y+.16,3.2);roundSolid(k,x,-5.9,.3,y,.24);
     }
-    for(const x of [-8,8])for(const z of [0,5.5]){k.cylinder(x,y+1.6,z,.16,3.2,'#9fa08c');k.cylinder(x,y+.12,z,.3,.24,'#b4af94');k.cylinder(x,y+3.24,z,.28,.16,'#b4af94');}
+    for(const x of [-8,8])for(const z of [0,5.5]){k.cylinder(x,y+1.6,z,.16,3.2,'#9fa08c');k.cylinder(x,y+.12,z,.3,.24,'#b4af94');k.cylinder(x,y+3.24,z,.28,.16,'#b4af94');roundSolid(k,x,z,.16,y+.16,3.2);roundSolid(k,x,z,.3,y,.24);}
     if(l<4){for(const x of [-9,-5,0,5,9])door(k,x,-11.22,1.55,y,'#ad795a');for(const x of [-7,-2,3,7])sconce(k,x,y+2.05,-11.07);}
     else{
       for(const x of [-6,6]){k.cylinder(x,y+1.75,-8.4,.65,3.5,'#96968a',{solid:true});k.cylinder(x,y+.15,-8.4,.84,.3,'#7b7c72');k.torus(x,y+.5,-8.4,.74,.09,'#999d8d');k.torus(x,y+3.1,-8.4,.7,.09,'#7a7e71');}
@@ -191,12 +216,13 @@ function academy(k) {
     stairsZ(k,sx,start,1.45,24,.15,.425,'#b78f76',y,dir);
     for(let i=0;i<=24;i++){const z=start+dir*i*.425,yy=y+i*.15;for(const side of [-1,1])k.cylinder(sx+side*.74,yy+.47,z,.023,.95,'#554e45');}
     for(const side of [-1,1])k.line([[sx+side*.74,y+.95,start],[sx+side*.74,y+level+.95,start+dir*10.2]],'#554e45',.045);
+    for(let i=0;i<24;i++)for(const side of [-1,1])k.collide(sx+side*.74,start+dir*(i+.5)*.425,.075,.445,{y:y+i*.15,h:1.25});
   }
   // Ground hall wainscoting, elaborate entrance doors, bulletin board and clock.
   const panels=[];for(let x=-12.4;x<13;x+=.24)panels.push({x,y:.68,z:-11.15,w:.18,h:1.3,d:.13,color:'#b8a076'});batch(k,panels);
   for(const p of [[-5,'#79805b'],[0,'#978f73'],[5,'#9f4439']])door(k,p[0],-11.02,2.05,0,p[1]);
   k.box(-8.5,1.8,-11.01,2.5,1.15,.12,'#668267');for(let i=0;i<5;i++)k.box(-9.3+i*.37,1.83+(i%2)*.08,-10.92,.32,.44,.025,'#ebe6c9');
-  k.box(8.7,1.35,-10.95,.58,2.7,.32,'#695642');k.cylinder(8.7,2.46,-10.68,.31,.08,'#e9dfb8',{segments:24});k.torus(8.7,2.46,-10.58,.29,.035,C.brass,[0,0,0]);k.line([[8.7,2.46,-10.54],[8.7,2.62,-10.54]],'#423f35',.015);k.line([[8.7,2.46,-10.54],[8.83,2.4,-10.54]],'#423f35',.015);
+  k.box(8.7,1.35,-10.95,.58,2.7,.32,'#695642',{solid:true});k.cylinder(8.7,2.46,-10.68,.31,.08,'#e9dfb8',{segments:24});k.torus(8.7,2.46,-10.58,.29,.035,C.brass,[0,0,0]);k.line([[8.7,2.46,-10.54],[8.7,2.62,-10.54]],'#423f35',.015);k.line([[8.7,2.46,-10.54],[8.83,2.4,-10.54]],'#423f35',.015);
   inspect(k,'학원 게시판',-8.5,1.8,-10.7,'여러 층의 회랑과 계단을 직접 올라가며 학원 내부를 탐험할 수 있습니다.');k.features.push('4개 상층 회랑 · 연결 계단 96단 · 체크 무늬 바닥 · 황동 난간 · 기둥 · 스테인드글라스 · 게시판과 시계');
 }
 
@@ -204,7 +230,7 @@ function library(k) {
   room(k,17,14,{floor:'#c1bca8',wall:'#93aea4',height:6.4});
   const rings=[];for(let x=-7.9;x<8.4;x+=.82)for(let z=-6.3;z<7;z+=.82)rings.push({x,y:.025,z,w:.29,h:.29,d:.29,rx:Math.PI/2,color:'#a19786'});instances(k,new k.THREE.TorusGeometry(1,.045,4,16),rings);
   k.platform(3.1,2.7,-4.1,10.6,5.8,'#c6c3ae');k.box(3.1,2.56,-1.2,10.6,.2,.16,'#afa58d');
-  for(const x of [-1.8,3.1,7.9])k.cylinder(x,1.32,-1.28,.095,2.65,'#7d826b');
+  for(const x of [-1.8,3.1,7.9]){k.cylinder(x,1.32,-1.28,.095,2.65,'#7d826b');roundSolid(k,x,-1.28,.095,-.005,2.65);}
   bookcase(k,3.25,-6.56,9.7,3.5,0,2.7,2);bookcase(k,7.95,-4.1,4.8,2.5,Math.PI/2,0,7);
   bookcase(k,-.6,.1,5.7,2.05,0,0,3);bookcase(k,3.4,3.1,5.7,2.05,0,0,1);
   stairsZ(k,-5,-.8,3.05,10,.135,.24,'#cdcbb7');k.platform(-5,1.35,-4,4.4,1.5,'#c5c7b2');stairsZ(k,-4.65,-4.65,1.5,9,.15,.19,'#bfc2ac',1.35);
@@ -217,7 +243,7 @@ function library(k) {
   const shelf=[];for(const y of [.7,1.6,2.5,3.4,4.3,5.2])shelf.push({x:-8.28,y,z:0,w:.09,h:.055,d:14,color:'#9b7d60'});batch(k,shelf);
   for(const p of [[-6.8,2.25,1.7],[-6.6,3.9,1.3],[-2.2,4.4,1.5]])frame(k,p[0],p[1],-6.82,p[2],1.1,'#b6b393');
   for(const p of [[-2.6,1.9,1.4],[1.2,1.9,1.1],[4.4,1.9,.8]])frame(k,-8.32,p[1],p[0],p[2],1.1,'#b6b393',Math.PI/2);
-  k.box(-2.25,1.45,-2.5,.5,2.9,.38,'#8a755b');k.torus(-2.25,2.6,-2.27,.23,.035,C.brass,[0,0,0]);k.sphere(-2.25,2.6,-2.26,.22,'#e8e5cc',[1,1,.08]);k.line([[-2.25,2.6,-2.21],[-2.25,2.74,-2.21]],'#645e48',.013);k.line([[-2.25,2.6,-2.21],[-2.11,2.54,-2.21]],'#645e48',.013);
+  k.box(-2.25,1.45,-2.5,.5,2.9,.38,'#8a755b',{solid:true});k.torus(-2.25,2.6,-2.27,.23,.035,C.brass,[0,0,0]);k.sphere(-2.25,2.6,-2.26,.22,'#e8e5cc',[1,1,.08]);k.line([[-2.25,2.6,-2.21],[-2.25,2.74,-2.21]],'#645e48',.013);k.line([[-2.25,2.6,-2.21],[-2.11,2.54,-2.21]],'#645e48',.013);
   inspect(k,'도서 검색',-.6,1.2,.45,'책등, 금빛 라벨, 이동 사다리가 있는 서가입니다. 상층 열람 구역까지 계단이 연결됩니다.');k.features.push('수백 권의 입체 책 · 상층 서가와 사다리 · 두 구간 계단 · 원형 타일 무늬 · 대출 데스크 · 벽 그림과 괘종시계');
 }
 
@@ -244,6 +270,7 @@ function restaurant(k) {
   k.platform(2.7,.18,-2.1,7.2,5.8,'#b6ac91');k.box(2.7,.09,-2.1,7.2,.18,5.8,'#867961');
   // Brick dome kiln, recessed arched fire door, flue, burner and ventilation hood.
   k.cylinder(1.2,.35,-4,1.5,.7,'#b39a77',{segments:24,solid:true});k.sphere(1.2,1.2,-4,1.5,'#b79872',[1,.85,1]);k.cylinder(1.2,2.35,-4,.43,.5,'#777967');k.cylinder(1.2,3.3,-4,.21,1.7,'#777967');
+  roundSolid(k,1.2,-4,1.5,0,2.35);
   for(const y of [.65,1.2,1.65])k.torus(1.2,y,-4,1.45-Math.max(0,y-.8)*.5,.027,'#806f59');k.box(1.2,.94,-2.54,.85,1.05,.04,'#664b30');k.sphere(1.2,1.46,-2.55,.44,'#664b30',[1,1,.08]);k.box(1.2,.97,-2.5,.68,.8,.025,'#ffce73');k.sphere(1.2,1.35,-2.5,.34,'#ffc66f',[1,1,.06]);flame(k,1.2,.75,-2.43,.24);
   for(let i=0;i<3;i++)k.box(1.2,.15+i*.16,-2.1-i*.23,1.05,.15,.28,'#ad9878');
   table(k,-3.5,-3.75,3,1,.18,'#baac86');k.cylinder(-4.05,1.15,-3.75,.42,.5,'#846c48');k.torus(-4.05,1.42,-3.75,.42,.035,'#c0a773');k.line([[-4.12,1.4,-3.7],[-4.25,1.88,-3.7]],'#baa079',.025);k.cylinder(-2.8,1.05,-3.75,.38,.1,'#594d3c');k.cone(-2.8,1.2,-3.75,.34,.2,'#856e4d');
@@ -256,7 +283,7 @@ function restaurant(k) {
   for(let i=0;i<10;i++)k.cylinder(4.9+(i%5)*.3,1.86+(Math.floor(i/5)*.08),-1.55,.13,.045,'#c7c1a4');for(let i=0;i<4;i++)lathe(k,4.95+i*.39,1.13,-1.6,.32,.14,['#9aafa5','#b4bca8','#bac0a3','#8ba49c'][i],'jar');sack(k,5.2,-1.6,.28,.48,2.6);sack(k,5.9,-1.6,.3,.46,2.6);
   for(let i=0;i<3;i++)k.box(5.9,2.67+i*.055,-1.55,.62,.045,.5,'#e0d7ba');table(k,5,-4.35,2.8,.7,.18);for(let i=0;i<5;i++)lathe(k,4.1+i*.33,1.02,-4.35,.23,.09,'#c5c6ad','jar');
   k.box(5,2.25,-5.34,2.7,1.1,.15,'#695c48');for(let i=0;i<7;i++)k.box(5,1.78+i*.145,-5.2,2.4,.075,.06,'#987a58');
-  barrel(k,-6,2,.42,.9);barrel(k,6.3,-3.9,.35,.82,.18);cylinder(k,4.75,.52,.65,.39,.75,'#9b805b',[0,0,Math.PI/2]);k.torus(4.42,.52,.65,.39,.035,'#6c6049',[0,Math.PI/2,0]);
+  barrel(k,-6,2,.42,.9);barrel(k,6.3,-3.9,.35,.82,.18);cylinder(k,4.75,.52,.65,.39,.75,'#9b805b',[0,0,Math.PI/2]);k.torus(4.42,.52,.65,.39,.035,'#6c6049',[0,Math.PI/2,0]);k.collide(4.75,.65,.78,.78,{y:.13,h:.78});
   k.box(-5.8,.5,-1.1,1.8,.68,.9,'#9c795c',{solid:true});k.sphere(-5.8,.89,-1.1,.92,'#a88766',[1,.5,.5]);k.box(-5.8,.76,-.61,1.4,.06,.05,C.brass);k.box(-5.8,.66,-.6,.22,.19,.05,C.brass);for(const x of [-6.3,-5.3])k.torus(x,.79,-.59,.1,.025,C.brass,[0,0,0]);
   k.box(-5.55,2.4,-5.28,2.5,.09,.52,'#987857');for(const x of [-6.4,-6.05])lathe(k,x,2.44,-5.3,.3,.095,'#8b8d6a','bottle');k.box(-5.2,2.55,-5.32,.6,.28,.34,'#bcb296');
   inspect(k,'벽돌 오븐',1.2,1,-2,'벽돌 돔 오븐의 불빛과 조리대, 식기 선반이 있는 식당입니다.');k.features.push('벽돌 돔 오븐 · 연통과 환기 후드 · 냄비와 국자 · 두 식탁과 의자 · 식기와 수건 선반 · 식량 상자와 통');
@@ -270,6 +297,7 @@ function sauna(k) {
   for(let i=0;i<8;i++){const x=-10.8+(i%2)*4.2,z=-1.85+Math.floor(i/2)*2.55;k.box(x,.12,z,2.8,.23,1.5,'#f2f1d6',{solid:true});k.box(x+.8,.36,z,1.1,.3,1.22,'#e7c532');cylinder(k,x+.35,.37,z,.28,1.23,'#faf4d8',[Math.PI/2,0,0]);for(let q=0;q<2;q++)k.torus(x+.35,.37,z+(q?-.63:.63),.19,.035,'#d2d6b8',[0,0,0]);k.interactions.push({name:'휴식 매트',position:[x,.25,z],kind:'seat',text:'폭신한 매트와 말아 둔 노란 수건입니다.'});}
   for(const x of [-11,-6.3]){k.box(x,1.5,-9.27,1.4,.8,.07,'#665f45');k.box(x,1.5,-9.2,1.22,.63,.025,'#f2f2d5');k.box(x,1.5,-9.17,.06,.65,.03,'#a4a18a');}
   k.sphere(-8.1,.9,-7.1,1.25,'#aa8550',[1,.85,.8]);k.box(-8.1,.49,-6.17,.75,.8,.04,'#493a27');flame(k,-8.1,.55,-6.12,.28);k.cylinder(-8.1,2.3,-7.1,.12,1.6,'#8b805c');for(const x of [-9.8,-6.5]){k.box(x,.23,-6.9,.9,.3,.8,'#d4bb5d');for(let i=0;i<4;i++)k.sphere(x-.3+i*.19,.4,-6.9,.09,'#f1c953');}
+  k.collide(-8.1,-7.1,2.5,2,{y:0,h:1.97});
   // Raised pools have actual rims, water geometry, steps and ripple animation.
   const waterMat=new k.THREE.MeshStandardMaterial({color:'#81b9bc',transparent:true,opacity:.76,roughness:.17,metalness:.15});
   function pool(x,z,w,d,y){k.box(x,y-.15,z,w,.3,d,'#a9bab5');k.box(x,y+.13,z-d/2,w,.3,.25,'#d5dfc9',{solid:true});k.box(x,y+.13,z+d/2,w,.3,.25,'#d5dfc9',{solid:true});k.box(x-w/2,y+.13,z,.25,.3,d,'#d5dfc9',{solid:true});k.box(x+w/2,y+.13,z,.25,.3,d,'#d5dfc9',{solid:true});k.box(x,y+.01,z,w-.3,.035,d-.3,'#82bfc0',{material:waterMat});k.surface(x,z,w-.5,d-.5,y-.12);k.collide(x,z,w,d,{y:-1,h:y-.01});for(let i=0;i<4;i++)k.torus(x+(i-1.5)*w*.16,y+.055,z+Math.sin(i*2)*.3,.26+i*.07,.007,'#c3e3dc');inspect(k,'온탕',x,y+.4,z,'타일로 둘러싼 따뜻한 온탕입니다.');}
@@ -324,6 +352,7 @@ function storage(k) {
   for(const p of [[-5.3,2.35,.4,.95],[-3.5,4,.45,.95],[1.2,-4.6,.43,1],[4.25,2.25,.38,.8]])barrel(k,...p);
   lathe(k,-5.3,0,-2.7,2.3,.67,'#d2d0a5','urn');for(let i=0;i<5;i++)k.sphere(-5.3+Math.sin(i*1.3)*.42,.74+i*.24,-2.2,.18,'#a96848',[.65,1.5,.12]);
   lathe(k,-4.8,0,3.3,1.2,.56,'#594d32','jar');k.torus(-4.8,1.17,3.3,.34,.035,'#c0a866');
+  roundSolid(k,-5.3,-2.7,.67,0,2.3);roundSolid(k,-4.8,3.3,.56,0,1.2);
   for(const p of [[-4.4,.15,.3,.8],[-2.9,-4.15,.35,.95],[4.5,-2.65,.48,.8],[3.6,4,.55,1.1],[0,4.8,.43,.8]])sack(k,...p);
   k.box(-.3,.61,-1.45,3.9,.12,.8,'#826448',{solid:true});for(const x of [-1.95,1.35])k.box(x,.29,-1.45,.17,.58,.64,'#73583e');
   k.box(-.65,.65,.6,2.6,1.2,1,'#916546',{solid:true});k.sphere(-.65,1.27,.6,1.3,'#9e7754',[1,.34,.4]);for(const x of [-1.65,.35])k.box(x,.8,1.15,.09,.95,.06,'#c3b58a');k.box(-.65,.75,1.14,.23,.22,.06,'#bdae81');k.line([[-.69,.74,1.2],[-.64,.74,1.2]],'#535346',.026);
@@ -353,6 +382,7 @@ function toilet(k) {
   for(let i=0;i<3;i++){const z=-3.6+i*1.25;k.sphere(-5.99,.8,z,.36,'#c6d6ca',[.5,1.8,.8]);k.sphere(-5.78,.85,z,.24,'#728e80',[.13,1.9,.75]);k.sphere(-5.72,.48,z,.31,'#d6e2d1',[.7,.4,1]);k.line([[-6.05,1.3,z],[-6.05,1.62,z],[-5.95,1.62,z]],'#7f9d8c',.025);k.torus(-5.91,1.63,z,.065,.016,'#bdd0ba',[0,Math.PI/2,0]);k.collide(-5.84,z,.6,.7,{h:1.6});}
   // Circular pedestal sink, mirror and chrome tap between cubicles and floor.
   lathe(k,-1.65,0,-1.4,.78,.41,'#a5beb1','urn');k.torus(-1.65,.79,-1.4,.4,.045,'#d0dbca');k.cylinder(-1.65,.76,-1.4,.32,.025,'#75988b');pipe(k,[[-1.65,.79,-1.68],[-1.65,1.05,-1.68],[-1.65,1.05,-1.5]],.03,'#d0d5bd');k.box(-1.65,1.64,-2.61,1.45,1.08,.08,'#6e7868');k.box(-1.65,1.64,-2.55,1.27,.92,.025,'#b6dcd2');
+  roundSolid(k,-1.65,-1.4,.41,0,.84);
   k.box(5.43,.47,2,1.5,.95,.9,'#b5c4b7',{solid:true});k.box(5.43,.97,2,1.4,.075,.85,'#dbe2cd');k.box(5.43,1.02,2,.95,.025,.58,'#839d8c');for(const x of [5.15,5.7])pipe(k,[[x,1.06,1.71],[x,1.23,1.71],[x,1.23,1.86]],.018,'#a5b9a6');
   for(const x of [4.8,5.15,5.5]){k.line([[x,.12,-4.2],[x-.18,1.7,-4.2]],'#a0936f',.025);k.box(x,.07,-4.14,.32,.06,.23,'#969e81');}k.box(5.8,1.48,-5.15,1.6,.55,.1,'#b8c4ad');k.text('청결을 지켜주세요',5.8,1.48,-5.07,{width:1.3,height:.16,color:'#667d6d',background:'#cdd7bd'});
   for(let i=0;i<4;i++)k.torus(4.8+i*.24,1.1,-5.1,.18,.022,['#7f9e89','#c3d0b5'][i%2],[0,0,0]);

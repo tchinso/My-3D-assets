@@ -34,7 +34,7 @@ function water(k,points,width=6) {
   path(k,points,width,'#47a6bf',.02);
   for(let i=1;i<points.length;i++){
     const a=points[i-1],b=points[i],dx=b[0]-a[0],dz=b[1]-a[1],len=Math.hypot(dx,dz);
-    k.collide((a[0]+b[0])/2,(a[1]+b[1])/2,width,len,{y:-3,h:3.18,rot:Math.atan2(dx,dz)});
+    k.collide((a[0]+b[0])/2,(a[1]+b[1])/2,width,len,{y:-3,h:3.18,rot:Math.atan2(dx,dz),support:false});
     const perp=[dz/len,-dx/len];
     for(let side of [-1,1])stroke(k,[[a[0]+perp[0]*width*.52,.13,a[1]+perp[1]*width*.52],[b[0]+perp[0]*width*.52,.13,b[1]+perp[1]*width*.52]],'#8a9980',.14);
     for(let j=0;j<4;j++){const t=(j+.3)/4; stroke(k,[[a[0]+dx*t-.45,.075,a[1]+dz*t],[a[0]+dx*t+.45,.075,a[1]+dz*t+.05]],'#93dce0',.02);}
@@ -179,11 +179,11 @@ function buildAcademy(k){
   water(k,[[23,-45],[27,-33],[20,-20],[25,-7],[20,7],[18,23],[26,34],[36,46]],7);
   water(k,[[-48,-27],[-33,-29],[-23,-37],[-8,-36],[9,-39],[23,-35]],5);
   // A raised brick academy island, with full accessible approach and side stairs.
-  k.box(-1,1.1,-5,48,2.2,52,'#b0a58a');k.platform(-1,2.2,-5,48,52,'#e8deb9');
+  k.box(-1,1.09,-5,48,2.18,52,'#b0a58a');k.platform(-1,2.2,-5,48,52,'#e8deb9');
   for(let i=0;i<19;i++){const xx=-24+(i+.5)*48/19;if(xx>-11&&xx<3)continue;rock(k,xx,21.3,1.35,2.9,'#b4aa8d',-.8);}
   academyBuilding(k,-4,-16,25,9,8.7,2.2);academyBuilding(k,-21,-12,8,8,8.1,2.2);academyBuilding(k,15,2,8,7,6.8,2.2);
   // Gothic central entry with rose window, pediment, clock and bell tower.
-  k.box(-4,7.2,-9.8,5.1,10,3.5,'#ac7969');roof(k,-4,12.2,-9.8,6,4.4,3.5,'#a99a80');
+  k.box(-4,7.2,-9.8,5.1,10,3.5,'#ac7969',{solid:true});roof(k,-4,12.2,-9.8,6,4.4,3.5,'#a99a80');
   door(k,-4,2.2,-7.96,2,3.1,'#63523e');arch(k,-4,2.2,-7.8,2.65,4.4,.28,'#b6b194');
   k.torus(-4,10.45,-7.79,1.02,.12,'#c9c0a4',[0,0,0]);
   for(let a=0;a<8;a++){const angle=a*Math.PI/4;stroke(k,[[-4,10.45,-7.77],[-4+Math.sin(angle)*.9,10.45+Math.cos(angle)*.9,-7.77]],'#beb99c',.04);}
@@ -250,7 +250,7 @@ function buildAcademy(k){
   k.interactions.push({name:'원형극장',position:[-5,.5,40.8],kind:'inspect',text:'두 층의 석조 아치와 원형 관람석을 따라 고대 원형극장을 둘러보세요.'});
   // Lower right town and observatory, matching the reference's secondary districts.
   house(k,37,25,5,4,6,{roof:'#bf8b58',wall:'#e0cf9e'});house(k,43,31,5,4,5,{roof:'#bca46e'});house(k,33,34,4,4,5,{roof:'#ba714d'});
-  k.cylinder(39,4.8,35,1.1,9.6,'#d5cbb0');k.cone(39,11.2,35,1.8,4,'#dca83b',14);
+  k.cylinder(39,4.8,35,1.1,9.6,'#d5cbb0',{solid:true});k.cone(39,11.2,35,1.8,4,'#dca83b',14);
   house(k,38,7,7,4,4,{roof:'#9d9674',wall:'#bbba99',timber:false});k.sphere(35.5,5.1,7,1.3,'#a5aca5',[1,1,1]);k.cylinder(35.5,4.75,7,1.3,.3,'#6f796f',{segments:16});
   arch(k,-27,0,33,6,5,.5,'#b8aa87');for(let xx of [-30, -24])k.cylinder(xx,1.3,33,.45,2.6,'#a89570');
   // Telescope atop the western sandstone overlook.
@@ -288,7 +288,7 @@ function palace(k,x,z,w,d,h,domer,color='#e1d4a2',gold='#e5c65d',y=0){
 }
 function buildAsuria(k){
   k.floor(76,65,'#d6cd8c',{tile:'sand'});
-  prism(k,[[25,-32],[38,-32],[38,32],[25,32],[17,24],[24,10],[21,-6]],-.3,.03,'#63bdd1');k.collide(32,0,12,65,{y:-3,h:3.2});
+  prism(k,[[25,-32],[38,-32],[38,32],[25,32],[17,24],[24,10],[21,-6]],-.3,.03,'#63bdd1');k.collide(32,0,12,65,{y:-3,h:3.2,support:false});
   water(k,[[-5,-32],[-4,-22],[-9,-12],[-6,-3],[6,3],[17,12],[25,26]],5.7);
   water(k,[[1,-30],[9,-27],[20,-29],[27,-23]],4);
   palace(k,12,-14,17,11,5.4,5.6);palace(k,23,-6,5.5,5.5,5.9,3.2);palace(k,10,-5,8,5,3.4,3.3);
@@ -330,10 +330,10 @@ function castleTower(k,x,z,r=1.7,h=12,roofColor='#6379a1',y=0,square=false){
 }
 function buildCapitalCity(k){
   k.floor(67,61,'#86a562',{tile:'grass'});
-  prism(k,[[25,-31],[34,-31],[34,31],[25,31],[25,10]],-1,.04,'#5cb7ce');k.collide(29.5,0,9,61,{y:-3,h:3.2});
+  prism(k,[[25,-31],[34,-31],[34,31],[25,31],[25,10]],-1,.04,'#5cb7ce');k.collide(29.5,0,9,61,{y:-3,h:3.2,support:false});
   // White cobbled civic terraces rise towards the blue-spired royal castle.
   k.platform(0,.12,6,43,31,'#e0dfcb');k.platform(0,1.5,-8,38,16,'#dcdacb');k.platform(0,3,-22,33,15,'#d6d9cf');
-  k.box(0,.75,-8,38,1.5,16,'#aaa99a');k.box(0,1.5,-22,33,3,15,'#aeb3a6');
+  k.box(0,.74,-8,38,1.48,16,'#aaa99a');k.box(0,1.49,-22,33,2.98,15,'#aeb3a6');
   k.stairs(0,-.2,8,6,.23,.44,'#c8cbbc');raisedStairs(k,0,-13.2,9,6,.25,.44,'#d7d9cb',1.5);
   k.box(0,7.3,-25,19,8.6,10,'#dedfd2');k.collide(0,-25,19,10,{y:3,h:8.6});
   for(let floor=0;floor<3;floor++)for(let i=0;i<9;i++)window(k,-8+i*2,4.5+floor*2.3,-19.9,.64,1.45,'#aaafa7',0,true);
@@ -347,7 +347,7 @@ function buildCapitalCity(k){
   house(k,-13,-10,7,5,5,{y:1.5,wall:'#e5e0c6',roof:'#cc8745',timber:false});house(k,13,-10,7,5,4.7,{y:1.5,wall:'#e5e0c6',roof:'#c98040',timber:false});house(k,22,-12,4,4,6,{wall:'#e6debf',roof:'#c68749',timber:false});
   house(k,-21,3,5,4,4.2,{wall:'#e3ddc4',roof:'#c88849',timber:false});market(k,-21,5.4,4,'#b84436');
   // Pavilion, bath house and open two-tier rotunda around the lower plaza.
-  k.box(-11,1.8,6,4,3.6,4,'#e0ddc3');pyramidalRoof(k,-11,3.6,6,5,5,3.6,'#cf9657');for(let xx of [-12.4,-9.6])arch(k,xx,0,8.05,1.1,2.3,.16,'#bec8b7');
+  k.box(-11,1.8,6,4,3.6,4,'#e0ddc3',{solid:true});pyramidalRoof(k,-11,3.6,6,5,5,3.6,'#cf9657');for(let xx of [-12.4,-9.6])arch(k,xx,0,8.05,1.1,2.3,.16,'#bec8b7');
   k.cylinder(13,2.4,7,4.2,4.8,'#dedecd',{segments:24});k.sphere(13,5,7,4.3,'#d3d7c4',[1,.65,1]);
   for(let i=0;i<12;i++){const a=i*Math.PI/6;k.box(13+Math.sin(a)*4.2,2.4,7+Math.cos(a)*4.2,.4,4.6,.13,'#b4bcab',{rot:a});}door(k,13,0,11.25,1.7,2.8,'#646d5c');k.collide(13,7,8,8,{h:7});
   k.cylinder(0,.25,8,4.4,.5,'#dcdcc8',{segments:32});k.cylinder(0,1.8,8,4.2,3.6,'#dcdcc8',{segments:32});k.cylinder(0,3.75,8,4.5,.3,'#c4ccb9',{segments:32});
@@ -370,14 +370,14 @@ function buildDeran(k){
   k.floor(73,66,'#9fb976',{tile:'grass'});
   water(k,[[-34,-26],[-26,-28],[-17,-28],[-4,-29],[15,-28],[26,-30],[36,-27]],7);
   path(k,[[0,31],[0,19],[0,6],[-3,-8],[-2,-19]],7,'#dec996');path(k,[[-23,10],[-5,3],[18,10],[27,20]],5,'#dec996');
-  k.platform(-1,1.5,-22,35,14,'#d2cabb');k.box(-1,.75,-22,35,1.5,14,'#9c9a8b');k.stairs(-2,-13.6,9,6,.25,.46,'#b9b9a7');
+  k.platform(-1,1.5,-22,35,14,'#d2cabb');k.box(-1,.74,-22,35,1.48,14,'#9c9a8b');k.stairs(-2,-13.6,9,6,.25,.46,'#b9b9a7');
   k.box(-1,6.2,-23,24,9.4,9,'#95a4a8');k.collide(-1,-23,24,9,{y:1.5,h:9.4});roof(k,-1,10.9,-23,25,10,3,'#566f7b',0,false);
   for(let yy of [3.4,5.8,8.2]){k.box(-1,yy-1,-18.44,24,.15,.13,'#647b85');for(let i=0;i<11;i++)window(k,-11.6+i*2.1,yy,-18.4,.5,.9,'#c2c8c2');}
   for(let p of [[-14,-19],[12,-19],[-14,-27],[12,-27]])castleTower(k,p[0],p[1],1.65,11.2,'#59717d',1.5,true);
   k.box(-1,13,-24,8,6,6,'#a5b0b0');roof(k,-1,16,-24,9,7,3,'#627c86',0,false);
   for(let p of [[-4.5,-24],[2.5,-24]])castleTower(k,p[0],p[1],1,17,'#61737c',1.5,true);
   // Castle entrance is a columned portico and pediment.
-  k.box(-2,3.6,-16,9,4.2,3.5,'#a4b0af');for(let xx of [-6,-4,-2,0,2])k.cylinder(xx,3.6,-13.9,.23,4.2,'#bec3b9',{segments:8});roof(k,-2,5.8,-15,10,5,2,'#5b7480',0,false);door(k,-2,1.5,-14.15,2,2.7,'#43545b');
+  k.box(-2,3.6,-16,9,4.2,3.5,'#a4b0af',{solid:true});for(let xx of [-6,-4,-2,0,2])k.cylinder(xx,3.6,-13.9,.23,4.2,'#bec3b9',{segments:8,solid:true});roof(k,-2,5.8,-15,10,5,2,'#5b7480',0,false);door(k,-2,1.5,-14.15,2,2.7,'#43545b');
   // Left hedge labyrinth has open corridors sized for a 1.5 m character.
   const maze=[[-24,-12,15,1],[-25,-4,13,1],[-31,-8,1,9],[-17,-9,1,7],[-25,-10,7,1],[-22,-7,1,5],[-28,-6,1,5],[-26,-1,9,1],[-16,-4,1,5],[-17,0,7,1]];
   for(const [x,z,w,d] of maze)hedge(k,x,z,w,d,1.25);
@@ -480,9 +480,9 @@ function boat(k,x,z,length=3,width=1.1,y=.15,rot=0,large=false){
 }
 function buildPort(k){
   k.floor(48,45,'#539fb3',{tile:'water'});
-  k.box(0,-.3,10,48,.5,26,'#438fa5');k.collide(0,12,48,26,{y:-3,h:3.3});
+  k.box(0,-.3,10,48,.5,26,'#438fa5');k.collide(0,12,48,26,{y:-3,h:3.3,support:false});
   // Full-height quay and its walkable cobbled surface.
-  k.box(0,.6,-10,48,1.2,22,'#b0b5a3');k.platform(0,1.2,-10,48,22,'#d2d1b3');
+  k.box(0,.59,-10,48,1.18,22,'#b0b5a3');k.platform(0,1.2,-10,48,22,'#d2d1b3');
   for(let i=0;i<30;i++)k.box(-24+(i+.5)*48/30,.55,.96,1.5,.75,.12,i%2?'#9c9f88':'#a9ad92');
   for(let i=0;i<18;i++)k.box(-24+(i+.5)*48/18,1.32,1.25,2.58,.18,2.4,'#bf936b');k.surface(0,1.2,48,2.4,1.43);
   // A perpendicular pier reaching the Viking merchant vessel.

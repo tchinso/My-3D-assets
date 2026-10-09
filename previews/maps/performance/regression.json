@@ -1,0 +1,369 @@
+{
+  "timestamp": "2026-10-09T12:59:31.606Z",
+  "reusedUnchangedCharacterValidation": true,
+  "maps": [
+    {
+      "id": "Academy",
+      "position": [
+        -4,
+        2.2,
+        6
+      ],
+      "embedded": false,
+      "calls": 116,
+      "triangles": 34925
+    },
+    {
+      "id": "Asuria",
+      "position": [
+        8,
+        0,
+        29
+      ],
+      "embedded": false,
+      "calls": 233,
+      "triangles": 86325
+    },
+    {
+      "id": "BoilerRoom",
+      "position": [
+        -1,
+        0,
+        2
+      ],
+      "embedded": false,
+      "calls": 90,
+      "triangles": 34089
+    },
+    {
+      "id": "CapitalCity",
+      "position": [
+        10,
+        0,
+        23
+      ],
+      "embedded": false,
+      "calls": 182,
+      "triangles": 64223
+    },
+    {
+      "id": "CuriousMansion",
+      "position": [
+        0,
+        0,
+        6.5
+      ],
+      "embedded": false,
+      "calls": 95,
+      "triangles": 40453
+    },
+    {
+      "id": "Deran",
+      "position": [
+        0,
+        0,
+        27
+      ],
+      "embedded": false,
+      "calls": 169,
+      "triangles": 60353
+    },
+    {
+      "id": "EagleTown",
+      "position": [
+        -6,
+        0,
+        12
+      ],
+      "embedded": false,
+      "calls": 84,
+      "triangles": 39549
+    },
+    {
+      "id": "in-Academy",
+      "position": [
+        0,
+        0,
+        8.5
+      ],
+      "embedded": false,
+      "calls": 86,
+      "triangles": 127489
+    },
+    {
+      "id": "Library",
+      "position": [
+        -3,
+        0,
+        5.6
+      ],
+      "embedded": false,
+      "calls": 83,
+      "triangles": 81733
+    },
+    {
+      "id": "Mine",
+      "position": [
+        -5.5,
+        0,
+        11
+      ],
+      "embedded": false,
+      "calls": 89,
+      "triangles": 51671
+    },
+    {
+      "id": "NormalTown",
+      "position": [
+        0,
+        0,
+        26
+      ],
+      "embedded": false,
+      "calls": 137,
+      "triangles": 96787
+    },
+    {
+      "id": "Nymphen",
+      "position": [
+        1,
+        0.25,
+        11
+      ],
+      "embedded": false,
+      "calls": 108,
+      "triangles": 122435
+    },
+    {
+      "id": "Odanka",
+      "position": [
+        -5,
+        0,
+        11
+      ],
+      "embedded": false,
+      "calls": 103,
+      "triangles": 91563
+    },
+    {
+      "id": "PEStorage",
+      "position": [
+        -2.4,
+        0,
+        3.5
+      ],
+      "embedded": false,
+      "calls": 68,
+      "triangles": 30437
+    },
+    {
+      "id": "Port",
+      "position": [
+        -13,
+        1.2,
+        -3
+      ],
+      "embedded": false,
+      "calls": 83,
+      "triangles": 25823
+    },
+    {
+      "id": "PrimitiveTown",
+      "position": [
+        -6,
+        0,
+        14
+      ],
+      "embedded": false,
+      "calls": 99,
+      "triangles": 68521
+    },
+    {
+      "id": "Restaurant",
+      "position": [
+        1.8,
+        0,
+        3.8
+      ],
+      "embedded": false,
+      "calls": 99,
+      "triangles": 31661
+    },
+    {
+      "id": "Sauna",
+      "position": [
+        5.5,
+        0,
+        7
+      ],
+      "embedded": false,
+      "calls": 102,
+      "triangles": 41397
+    },
+    {
+      "id": "ScienceRoom",
+      "position": [
+        -1.8,
+        0,
+        3.8
+      ],
+      "embedded": false,
+      "calls": 96,
+      "triangles": 27481
+    },
+    {
+      "id": "SnowyTown",
+      "position": [
+        1,
+        0,
+        13
+      ],
+      "embedded": false,
+      "calls": 131,
+      "triangles": 55331
+    },
+    {
+      "id": "SpiralStair",
+      "position": [
+        0,
+        0,
+        5.6
+      ],
+      "embedded": false,
+      "calls": 75,
+      "triangles": 52941
+    },
+    {
+      "id": "Storage",
+      "position": [
+        4.5,
+        0,
+        4.2
+      ],
+      "embedded": false,
+      "calls": 97,
+      "triangles": 35001
+    },
+    {
+      "id": "Toilet",
+      "position": [
+        0,
+        0,
+        3.6
+      ],
+      "embedded": false,
+      "calls": 76,
+      "triangles": 25173
+    },
+    {
+      "id": "Underground",
+      "position": [
+        0,
+        0,
+        5
+      ],
+      "embedded": false,
+      "calls": 85,
+      "triangles": 51719
+    },
+    {
+      "id": "Village",
+      "position": [
+        0,
+        0,
+        17
+      ],
+      "embedded": false,
+      "calls": 132,
+      "triangles": 33671
+    }
+  ],
+  "shadows": [
+    {
+      "id": "Academy",
+      "meanChannelDifference": 0,
+      "changedPixelFraction": 0,
+      "maximumDifference": 0
+    },
+    {
+      "id": "BoilerRoom",
+      "meanChannelDifference": 0,
+      "changedPixelFraction": 0,
+      "maximumDifference": 0
+    },
+    {
+      "id": "in-Academy",
+      "meanChannelDifference": 0,
+      "changedPixelFraction": 0,
+      "maximumDifference": 0
+    },
+    {
+      "id": "Port",
+      "meanChannelDifference": 0,
+      "changedPixelFraction": 0,
+      "maximumDifference": 0
+    },
+    {
+      "id": "SnowyTown",
+      "meanChannelDifference": 0,
+      "changedPixelFraction": 0,
+      "maximumDifference": 0
+    }
+  ],
+  "keyboardJump": {
+    "floor": 2.2,
+    "apex": 3.0470221950000007,
+    "held": 2.2
+  },
+  "mobileJump": {
+    "floor": 2.2,
+    "apex": 3.0430751500000004
+  },
+  "collisionCoverage": [
+    {
+      "id": "Academy",
+      "clear": true,
+      "travel": 1.079999999999993,
+      "position": [
+        -4,
+        2.2,
+        -7.779999999999993
+      ]
+    },
+    {
+      "id": "Academy",
+      "clear": true,
+      "travel": 0.7200000000000273,
+      "position": [
+        39,
+        0,
+        36.379999999999974
+      ]
+    },
+    {
+      "id": "CapitalCity",
+      "clear": true,
+      "travel": 0.240000000000002,
+      "position": [
+        -11,
+        0.12,
+        8.259999999999998
+      ]
+    },
+    {
+      "id": "Deran",
+      "clear": true,
+      "travel": 0.720000000000006,
+      "position": [
+        -2,
+        1,
+        -13.420000000000005
+      ]
+    }
+  ],
+  "errors": [],
+  "environmentErrors": [
+    "[AdGuard Userscript Module] Thrown from AdsBypasser:",
+    "TypeError: Cannot read properties of undefined (reading 'Future')\n    at Web%20of%20Trust.user.js:37:30\n    at Window.<anonymous> (Web%20of%20Trust.user.js:56:2)\n    at Web%20of%20Trust.user.js:4:67\n    at e.anonymous [as $content] (Web%20of%20Trust.user.js:4:143)\n    at Web%20of%20Trust.user.js:2:36296\n    at o (Web%20of%20Trust.user.js:2:35898)\n    at Web%20of%20Trust.user.js:2:35928\n    at Web%20of%20Trust.user.js:2:36276\n    at Web%20of%20Trust.user.js:9609:5"
+  ]
+}
