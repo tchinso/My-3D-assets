@@ -311,6 +311,32 @@ def run_side_sequence(entries, glbs, renderer, output):
     canvas.save(output)
 
 
+def attack_sequence(entries, glbs, renderer, output):
+    """Eight full-action poses with a fixed camera and the actual donor label."""
+    phases = np.linspace(.08, .90, 8)
+    canvas = Image.new('RGB', (1600, 88+len(entries)*258), PAPER)
+    draw = ImageDraw.Draw(canvas)
+    heading(draw, 'ATTACK / ORIGINAL MOTION STUDIES', (22, 15), 27)
+    draw.text((22, 51), 'Eight normalized phases / exported GLB tracks / fixed camera per row', font=font(17), fill=MUTED)
+    for row, (entry, glb) in enumerate(zip(entries, glbs)):
+        duration = glb.duration('Attack')
+        meshes = [glb.meshes('Attack', duration*phase) for phase in phases]
+        lows, highs = zip(*(mesh_bounds(mesh) for mesh in meshes))
+        bounds = (np.min(lows, axis=0), np.max(highs, axis=0))
+        y = 88+row*258
+        for col, mesh in enumerate(meshes):
+            frame = renderer.render(glb, mesh, angle=24, bounds=bounds, background=RENDER_BG)
+            frame = frame.resize((151, 219), Image.Resampling.LANCZOS)
+            canvas.paste(frame, (304+col*158, y))
+        draw.text((22, y+38), f"{int(entry['id']):02d} {entry['name']}", font=font(22, True), fill=INK)
+        source = entry.get('motion_sources', {}).get('Attack', {})
+        for index, line in enumerate(wrap_text(draw, source.get('source_file', ''), font(15), 270)):
+            draw.text((22, y+72+index*19), line, font=font(15), fill=MUTED)
+        draw.text((22, y+120), source.get('source_clip', ''), font=font(15), fill=MUTED)
+        draw.text((22, y+143), f'{duration:.2f} s / in place', font=font(15), fill=MUTED)
+    canvas.save(output, optimize=True)
+
+
 def load_entries(root):
     manifest = json.loads((root/"characters"/"manifest.json").read_text(encoding="utf-8"))
     return manifest if isinstance(manifest, list) else manifest.get("characters", manifest.get("models", []))
@@ -369,8 +395,10 @@ def main():
             for motion, fraction in MOTION_TIMES.items():
                 contact_sheet(entries, glbs, contact, previews/f"{motion.lower()}_poses.png", motion, fraction)
             run_side_sequence(entries, glbs, gif, previews/'run_side_sequence.png')
+            attack_sequence(entries, glbs, gif, previews/'attack_sequence.png')
             if not args.skip_gif:
                 animation_grid(entries, glbs, gif, previews/"motion_grid.gif")
+                animation_grid(entries, glbs, gif, previews/'attack_grid.gif', motions=['Attack'], frame_count=36)
                 animation_grid(entries, glbs, gif, previews/"run_grid.gif", motions=["Run"], frame_count=24)
                 animation_grid(entries, glbs, gif, previews/'run_side_grid.gif', motions=['Run'], frame_count=24, angle=90)
             print(f"Previews: {previews}", flush=True)

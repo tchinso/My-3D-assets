@@ -386,6 +386,7 @@
             "Idle",
             "Walk",
             "Run",
+            "Attack",
             "Defend",
             "Victory",
             "Lose"
@@ -589,6 +590,7 @@
             "Idle",
             "Walk",
             "Run",
+            "Attack",
             "Defend",
             "Victory",
             "Lose"

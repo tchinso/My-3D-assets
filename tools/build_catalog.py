@@ -74,8 +74,8 @@ APPEARANCE = {
             outfit_styles=["현대 캐주얼", "크롭 재킷", "반바지"], outfit_colors=["흰색", "분홍색", "검은색"],
             outfit="Saori (Swimsuit)의 짧은 재킷·크롭 상의와 반바지를 흰색·분홍색 계열로 편집하고 배꼽 부분을 노출",
             legs=["검은색 팬티스타킹"], feet=["원본 캐주얼 신발"],
-            features=["뾰족한 고양이 귀", "긴 분홍 레이어드 머리", "양쪽 땋은 번", "부드러운 얼굴", "노출된 배꼽", "휘어진 분홍색 고양이 꼬리", "원본 재킷 봉제선"],
-            weapon="별도 무기 없이 주먹 공격"),
+            features=["뾰족한 고양이 귀", "긴 분홍 레이어드 머리", "양쪽 땋은 번", "부드러운 얼굴", "노출된 배꼽", "원본 재킷 봉제선"],
+            weapon="별도 무기 없이 무술 발차기"),
     8: dict(hair_colors=["연한 분홍색", "민트색", "아쿠아색"], length="중간 길이", styles=["롤 트윈테일", "넓은 2회 컬", "앞머리", "중앙 앞머리 컬"],
             hair="Reisa (Magical)의 정수리·앞머리·얼굴 옆 머리를 유지하고 Seia (Swimsuit)의 실제 두 번 말린 굵은 포니테일을 복제·반사해 어깨 부근의 넓은 롤 트윈테일로 조합. 연분홍색 뿌리에서 민트색·아쿠아색 끝으로 이어지는 그라데이션과 중앙 앞머리 컬을 추가",
             outfit_styles=["인형 드레스", "프릴 의상"], outfit_colors=["빨간색", "흰색", "분홍색"],
@@ -109,7 +109,7 @@ APPEARANCE = {
              hair="Izuna (Swimsuit)의 단발·작은 옆 포니테일·여우 귀를 황금색으로 편집하고 원본 수영 머리띠를 별 장식으로 교체",
              outfit_styles=["아이돌 의상", "크롭 재킷", "분리형 소매", "분할 롱스커트"],
              outfit_colors=["크림색", "주황색", "청록색", "노란색"],
-             outfit="Seia의 실제 상의·칼라·주름치마를 크림색·청록색으로 편집하고 Hina (Swimsuit)의 해부학 복부 메시로 노출된 허리를 조합. 단순 치마 덮개를 제거해 원본 플리츠·주름·봉제선을 드러내고, 직물 무늬·접힌 음영을 넣은 체크 긴 패널과 넓은 분리형 소매를 조합",
+             outfit="Seia의 실제 상의·칼라·주름치마를 크림색·청록색으로 편집하고 Hina (Swimsuit)의 해부학 복부 메시로 노출된 허리를 조합. 단순 치마 덮개를 제거해 원본 플리츠·주름·봉제선을 드러내고, 직물 무늬·접힌 음영을 넣은 체크 긴 패널과 넓은 분리형 소매를 조합. 목 리본을 실제 블라우스 표면에 붙이고 같은 스킨 가중치로 함께 움직이도록 피팅",
              legs=["맨다리"], feet=["원본 구두"],
              features=["황금색 여우 귀", "크롭 상의", "노출된 복부", "넓은 분리형 소매", "주황색·청록색 목 리본", "긴 분할 치마 패널", "별과 방울 장식"],
              weapon="별과 방울이 달린 공연용 배턴"),
@@ -149,7 +149,7 @@ def schema_document(design_ids=None):
     rig = obj({"name": {"type": "string"}, "skin_count": {"type": "integer", "minimum": 1},
                "joint_count": {"type": "integer", "minimum": 1}, "up_axis": {"const": "+Y"},
                "front_axis": {"const": "+Z"}, "physical_height_inferred": {"const": False}})
-    native_names = ("Idle", "Walk", "Run", "Defend", "Victory", "Lose")
+    native_names = CLIPS
     native = obj({name: {"type": "string", "minLength": 1} for name in CLIPS}, required=list(native_names))
     motion_source = obj({"source_file": {"type": "string", "pattern": "\\.glb$"},
                          "source_clip": {"type": "string", "minLength": 1},
@@ -275,14 +275,14 @@ def validate_catalog(catalog, schema, inventory, design_ids=None):
             raise ValueError(f"Legwear specification mismatch: {key}")
         if record["build_revision"] < 2:
             raise ValueError(f"Actual-costume revision >= 2 is required: {key}")
-        native_names = set(CLIPS) if record['id'] >= 11 else {"Idle", "Walk", "Run", "Defend", "Victory", "Lose"}
+        native_names = set(CLIPS)
         if set(record["native_source_clips"]) != native_names or set(record["motion_sources"]) != native_names:
             raise ValueError(f"Original-source clips and their provenance are required: {key}")
         for name, provenance in record["motion_sources"].items():
             if (provenance["source_file"] not in record["source_parts"]
                     or provenance["source_clip"] != record["native_source_clips"][name]):
                 raise ValueError(f"Motion provenance mismatch: {key}/{name}")
-    for clip_name in ("Run", "Defend", "Lose"):
+    for clip_name in ("Run", "Attack", "Defend", "Lose"):
         selected = [record["motion_sources"][clip_name] for record in catalog["models"].values()]
         if len({item["source_file"] for item in selected}) != len(selected):
             raise ValueError(f"Each character requires a distinct {clip_name} donor")
@@ -383,7 +383,7 @@ def build(source):
                          "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"},
             "review_notes": ["원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
                              "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-                             "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"],
+                             "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"],
         }
         for clip_name, field in (("Walk", "walk_description"), ("Victory", "victory_description")):
             description = next((clip.get("extras", {}).get("description", "")
@@ -423,13 +423,18 @@ def build(source):
     for filename, value in (("models.json", inventory), ("model_features.json", catalog), ("model_features.schema.json", schema)):
         (ROOT/filename).write_text(json.dumps(value, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     lines = ['# 원본 모션 선정 내역', '',
-             '2026-10-08 수정. 원본 파일은 `C:\\Codex\\BlueArchive-GLB`에서 읽고 수정하지 않습니다.', '',
-             '| 캐릭터 | Run | Defend | Lose |', '| --- | --- | --- | --- |']
+             catalog['analyzed_on']+' 수정. 원본 파일은 `C:\\Codex\\BlueArchive-GLB`에서 읽고 수정하지 않습니다.', '',
+             '| 캐릭터 | Attack | Run | Defend | Lose |', '| --- | --- | --- | --- | --- |']
     def cell(record, name):
         item = record['motion_sources'][name]
         return f"{item['source_file']} · `{item['source_clip']}`"
     for record in models.values():
-        lines.append('| '+record['character']+' | '+' | '.join(cell(record,name) for name in ('Run','Defend','Lose'))+' |')
+        lines.append('| '+record['character']+' | '+' | '.join(cell(record,name) for name in ('Attack','Run','Defend','Lose'))+' |')
+    lines.extend(['', '## 1–10번 공격 동작', '', '| 캐릭터 | 원본 | 동작·보정 |', '| --- | --- | --- |'])
+    for record in models.values():
+        if record['id'] <= 10:
+            description = record['attack_description'].replace('|', '/')
+            lines.append(f"| {record['character']} | {cell(record, 'Attack')} | {description} |")
     lines.extend(['', '## Quinn·Kimon·Florielle·Rosaria의 전체 모션', ''])
     for record in models.values():
         if record['id'] < 11:

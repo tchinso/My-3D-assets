@@ -77,11 +77,33 @@ _ADDITIONS = {
     14: ('Mimori', 'Graceful, reserved bridal idle', 'Gentle ceremonial walk', 'Courteous bridal celebration'),
 }
 _ATTACK = {
+    1: ('Mine', 'Exs', 'Native airborne charge and descending rapier plunge'),
+    2: ('Saten Ruiko', 'Exs', 'Native two-handed windup, full-body turn and broad crescent-scythe sweep'),
+    3: ('Misaka Mikoto', 'Exs', 'Native coin-flick charge and decisive forward spell release'),
+    4: ('Umika', 'Exs01', 'Native flowing festival flourish and arcing tidal cast'),
+    5: ('Koharu', 'Exs', 'Native overhead windup and emphatic academy spell toss'),
+    6: ('Suzumi (Magical)', 'Exs', 'Native magical-girl wand presentation and sweeping clover cast'),
+    7: ('Reijo', 'Exs', 'Native martial-arts crouch, rising kick and balanced recovery'),
+    8: ('Reisa (Magical)', 'Exs_Cutin_03', 'Native airborne magical-doll flourish and pointed charm release'),
+    9: ('Niya', 'Exs', 'Native fan ritual, graceful pivot and broad ceremonial flourish'),
+    10: ('Airi', 'Exs', 'Native playful windup, buoyant hop and snow-charm toss'),
     11: ('Neru', 'Exs', 'Aggressive native dual-arm scout combination, with fitted dagger grips'),
     12: ('Izuna', 'Exs', 'Native fox-ninja casting flourish, with a fitted starbell baton grip'),
     13: ('Eri', 'Exs', 'Native witch stirring and casting sweep, with a fitted flower-staff grip'),
     14: ('Mimori', 'Exs', 'Native support flourish, adapted to lifting the rose bouquet'),
 }
+_ATTACK_GRIPS = {
+    1: 'Rapier shaft follows the native thrust forearm; target fingers fitted around its palm grip',
+    2: 'Scythe follows the native palm span; smooth wrist turnover during the raised windup keeps the concave cutting edge leading both sweeps; fingers fitted for native off-hand support',
+    6: 'Native magical-wand wrist sweep retained; target fingers fitted around the clover stem',
+    7: 'Native unarmed wrist action retained; target fingers closed into fists',
+    9: 'Fan tilts through the native forearm arc with its paper face presented; target fingers fitted around the pivot',
+}
+
+
+def _attack_grip_description(number):
+    return _ATTACK_GRIPS.get(number,
+        'Native casting wrist performance retained; target fingers fitted around the small charm stem')
 
 _ANATOMY = re.compile(r'^Bip001(?:$| (?:Pelvis|Spine\d*|Neck|Head|[LR] (?:Clavicle|UpperArm|Forearm|Hand|Thigh|Calf|Foot|Toe\d*|Finger\d*)))$')
 _EXCLUDED = re.compile(r'weapon|prop|halo|face|eye|mouth|brow|breast', re.I)
@@ -200,6 +222,102 @@ def _append_channel(builder, clip, input_accessor, rig, node, path, values):
     clip['channels'].append({'sampler': index, 'target': {'node': int(node), 'path': path}})
 
 
+def _fit_attack_prop_grips(rig, number, rotations, translations, root_values, fade):
+    """Let each native performance carry its prop through its actual action.
+
+    Small charms keep the donor's wrist performance. Long blades follow the
+    forearm or the two native palms, and a fan tilts through its forearm's arc
+    while presenting its paper face. No shoulder, elbow, torso or leg rotation
+    is rewritten.
+    """
+    count = len(fade)
+    sides = ('R', 'L') if number in (2, 7) else ('R',)
+    for frame, activity in enumerate(fade):
+        if activity <= 0:
+            continue
+        q, t = rig.q.copy(), rig.t.copy()
+        for node, values in rotations.items():
+            q[node] = values[frame]
+        for node, values in translations.items():
+            t[node] = values[frame]
+        t[rig.root] = root_values[frame]
+        world, world_q = rig.world(q, t)
+        palms = {}
+        for side in sides:
+            hand = rig.bones.get(f'Bip001 {side} Hand')
+            if hand is not None:
+                delta = _qmul(world_q[hand], _qinv(rig.rest_world_q[hand]))
+                palms[side] = world[hand, :3, 3]+_qrot(delta, rig.palm_offset(side))
+        # The authored crescent's sharp inner edge is below its decorated
+        # spine along the bind shaft. The first sweep reverses shaft AND face
+        # normal. The following raised windup provides time for a continuous
+        # wrist turnover before the opposing return stroke; a fixed roll alone
+        # would strike with the blunt spine on one of those two strokes.
+        scythe_shaft = _unit(palms['R']-palms['L'], -rig.up) if number == 2 else None
+        if number == 2:
+            phase = frame/max(1, count-1)
+            turnover = float(np.clip((phase-.44)/.16, 0, 1))
+            turnover = turnover*turnover*(3-2*turnover)
+            support_release = math.sin(math.pi*turnover)**2
+        for side in sides:
+            hand = rig.bones.get(f'Bip001 {side} Hand')
+            elbow = rig.bones.get(f'Bip001 {side} Forearm')
+            if hand is None or elbow is None:
+                continue
+            world, world_q = rig.world(q, t)
+            native_delta = _qmul(world_q[hand], _qinv(rig.rest_world_q[hand]))
+            shaft = _qrot(native_delta, rig.up)
+            normal = _qrot(native_delta, rig.forward)
+            if number == 1:
+                shaft = _unit(world[hand, :3, 3]-world[elbow, :3, 3], rig.forward)
+            elif number == 2:
+                shaft = scythe_shaft
+                normal = -normal
+            elif number == 9:
+                direction = _unit(world[hand, :3, 3]-world[elbow, :3, 3], rig.forward)
+                shaft = _unit(rig.up*.72+direction*.40, rig.up)
+                normal = rig.forward
+            if number in (1, 2, 9):
+                delta = _weapon_rotation(rig, shaft, normal)
+                if number == 2:
+                    delta = _slerp(delta, _weapon_rotation(rig, -shaft, normal), turnover)
+                goal_world = _qmul(delta, rig.rest_world_q[hand])
+                parent = rig.parent[hand]
+                goal_local = _qmul(_qinv(world_q[parent]), goal_world) if parent >= 0 else goal_world
+                q[hand] = _slerp(q[hand], goal_local, activity)
+                rotations.setdefault(hand, np.tile(rig.q[hand], (count, 1)))[frame] = q[hand]
+                world, world_q = rig.world(q, t)
+            actual_delta = _qmul(world_q[hand], _qinv(rig.rest_world_q[hand]))
+            actual_shaft = _qrot(actual_delta, rig.up)
+            grip = world[hand, :3, 3]+_qrot(actual_delta, rig.palm_offset(side))
+            if number == 2 and side == 'R':
+                # Both hands curl around the same rigid scythe line. The palm
+                # span comes from the donor's real two-handed batting action.
+                shared_grip, shared_shaft = grip, actual_shaft
+            elif number == 2 and side == 'L':
+                # The right wrist is fitted first below; use its measured
+                # shaft rather than a second, disconnected imaginary handle.
+                right = rig.bones['Bip001 R Hand']
+                rd = _qmul(world_q[right], _qinv(rig.rest_world_q[right]))
+                shared_grip = world[right, :3, 3]+_qrot(rd, rig.palm_offset('R'))
+                shared_shaft = _qrot(rd, rig.up)
+            grip_strength = activity*.95
+            if number == 2 and side == 'L':
+                # Release and catch the shaft during the wrist turnover,
+                # instead of depicting an off-hand clamped around empty air.
+                for bone_name, node in rig.bones.items():
+                    if bone_name.startswith('Bip001 L Finger'):
+                        q[node] = _slerp(q[node], rig.q[node], support_release)
+                        rotations.setdefault(node, np.tile(rig.q[node], (count, 1)))[frame] = q[node]
+                grip_strength *= 1-support_release
+            tracks = rig.finger_grip(q, t, side,
+                shared_grip if number == 2 else grip,
+                shared_shaft if number == 2 else actual_shaft,
+                grip_strength, closed_fist=number == 7)
+            for node in tracks:
+                rotations.setdefault(node, np.tile(rig.q[node], (count, 1)))[frame] = q[node]
+
+
 def _fit_prop_grips(rig, number, name, rotations, translations, root_values, fade):
     """Refit wrists and fingers around target props, preserving native arms.
 
@@ -208,6 +326,9 @@ def _fit_prop_grips(rig, number, name, rotations, translations, root_values, fad
     dagger: orient those props relative to the native forearm action and curl
     the actual target fingers around their fitted shaft at the measured palm.
     """
+    if name == 'Attack' and number <= 10:
+        _fit_attack_prop_grips(rig, number, rotations, translations, root_values, fade)
+        return
     if number == 7:
         return
     sides = ('L', 'R') if number == 11 else ('R',)
@@ -410,7 +531,9 @@ def _retarget(builder, name, selection, target_rig):
         adaptation.append('Native final defeat pose held for the final 20% of the output clip')
     else:
         adaptation.append('Smooth entry and recovery to the target bind pose')
-    if int(builder.c['id']) != 7:
+    if name == 'Attack' and int(builder.c['id']) <= 10:
+        adaptation.append(_attack_grip_description(int(builder.c['id']))+'; native shoulders and elbows retained')
+    elif int(builder.c['id']) != 7:
         adaptation.append('Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained')
     adaptation.append('Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps')
     provenance = {'source_file': donor+'.glb', 'source_clip': animation['name'],
@@ -429,9 +552,17 @@ def _retarget(builder, name, selection, target_rig):
         clip['extras'].update(gait=description, independentOfWalk=True, nativeStride=True)
     if name == 'Attack':
         clip['extras'].update(attackStyle=builder.c['attack'], weaponAware=True,
-                              propGrip='Both palms' if builder.c['id'] == 11 else 'Right palm',
+                              propGrip=('Both palms' if builder.c['id'] == 11 else
+                                        'Right palm with native left-hand support' if builder.c['id'] == 2 else
+                                        'None' if builder.c['id'] == 7 else 'Right palm'),
                               propBind={'shaftAxis': target_rig.up.tolist(), 'faceNormal': target_rig.forward.tolist()},
                               gripAdaptation='Wrist orientation and target finger curl only; native shoulders and elbows retained')
+        if builder.c['id'] == 7:
+            clip['extras'].update(attackStyle='martial_arts_kick', weaponAware=False,
+                                  gripAdaptation='Native unarmed wrist action retained; target fingers closed into fists')
+            clip['extras'].pop('propBind')
+        if builder.c['id'] == 2:
+            clip['extras']['bladeCuttingEdge'] = 'Concave inner cutting edge leads both sweeps; a smooth wrist turnover during the raised windup puts the decorated convex spine behind the return stroke'
     exact = builder.source_node_map if donor == builder.src.name else {}
     secondaries = _secondary_map(source_rig, target_rig, animation, exact)
     rotations, translations = {}, {}
@@ -567,7 +698,9 @@ def _retarget(builder, name, selection, target_rig):
             values[held] = values[np.flatnonzero(held)[0]]
     if name == 'Attack' or name in ('Idle', 'Walk', 'Run', 'Defend', 'Lose', 'Victory'):
         _fit_prop_grips(target_rig, int(builder.c['id']), name, rotations, translations, root_values, fade)
-        if int(builder.c['id']) != 7:
+        if name == 'Attack' and int(builder.c['id']) <= 10:
+            clip['extras']['gripAdaptation'] = _attack_grip_description(int(builder.c['id']))+'; native shoulders and elbows retained'
+        elif int(builder.c['id']) != 7:
             clip['extras']['gripAdaptation'] = 'Wrist orientation and target finger curl only; native shoulders and elbows retained'
     maximum_floor_lift = _fit_geometry_floor(builder._motion_floor, rotations, translations, root_values)
     clip['extras']['geometryFloorFit'] = True
@@ -597,7 +730,8 @@ def _retarget(builder, name, selection, target_rig):
 def add_catalog_motions(builder):
     """Install the curated motions and attach reviewable per-clip provenance."""
     number = int(builder.c['id'])
-    selections = {'Run': _RUN[number], 'Defend': _DEFEND[number], 'Lose': _LOSE[number]}
+    selections = {'Run': _RUN[number], 'Defend': _DEFEND[number], 'Lose': _LOSE[number],
+                  'Attack': _ATTACK[number]}
     if number in _ADDITIONS:
         donor, idle, walk, victory = _ADDITIONS[number]
         selections.update(Idle=(donor, 'Cafe_Idle', idle), Walk=(donor, 'Cafe_Walk', walk),

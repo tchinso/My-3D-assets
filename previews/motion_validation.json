@@ -1,8 +1,11 @@
 {
   "sample_phases": 41,
+  "near_shared_threshold_degrees": 5.0,
+  "attack_comparison": "Rest-relative anatomical rotations excluding fitted wrists; normalized playback phases",
   "categories": {
     "Run": {
       "unique_anatomical_fingerprints": 14,
+      "unique_native_donors": 14,
       "nearest_pairs": [
         {
           "characters": [
@@ -324,6 +327,7 @@
     },
     "Defend": {
       "unique_anatomical_fingerprints": 14,
+      "unique_native_donors": 14,
       "nearest_pairs": [
         {
           "characters": [
@@ -631,6 +635,7 @@
     },
     "Lose": {
       "unique_anatomical_fingerprints": 14,
+      "unique_native_donors": 14,
       "nearest_pairs": [
         {
           "characters": [
@@ -938,6 +943,7 @@
     },
     "Walk": {
       "unique_anatomical_fingerprints": 14,
+      "unique_native_donors": null,
       "nearest_pairs": [
         {
           "characters": [
@@ -1190,6 +1196,7 @@
     },
     "Victory": {
       "unique_anatomical_fingerprints": 14,
+      "unique_native_donors": null,
       "nearest_pairs": [
         {
           "characters": [
@@ -1438,79 +1445,233 @@
     },
     "Attack": {
       "unique_anatomical_fingerprints": 14,
+      "unique_native_donors": 14,
       "nearest_pairs": [
         {
           "characters": [
-            "Elise",
-            "Rina"
+            "Nevia",
+            "Rosaria"
           ],
-          "rms_degrees": 30.353074705200065
+          "rms_degrees": 38.16244522195484,
+          "core_body_rms_degrees": 27.70181295942248
         },
         {
           "characters": [
-            "Rina",
-            "Nevia"
+            "Fennel",
+            "Rosaria"
           ],
-          "rms_degrees": 36.14069514665126
+          "rms_degrees": 39.21523253823108,
+          "core_body_rms_degrees": 30.748051558246573
         },
         {
           "characters": [
-            "Rina",
-            "Meilin"
+            "Meilin",
+            "Rosaria"
           ],
-          "rms_degrees": 36.64993440473706
+          "rms_degrees": 38.66211510328769,
+          "core_body_rms_degrees": 32.03090420259314
         }
       ],
       "characters": [
         {
           "name": "Marin",
-          "sha256": "5a317c1e4132c1ac3de525fa421e0db1c9a421f639c6b601361faa0d7cbfbbc5",
-          "source": null
+          "sha256": "2390531a052907b5a774b39d7a9e5b1d205bdb9b216b013c131290383c5dd1d4",
+          "source": {
+            "source_file": "Mine.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Rapier shaft follows the native thrust forearm; target fingers fitted around its palm grip; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native airborne charge and descending rapier plunge"
+          }
         },
         {
           "name": "Viola",
-          "sha256": "3030f55245e92a8b30e278e658f6d120f40150fc9bc3a2fc31abea9e4d7c22e6",
-          "source": null
+          "sha256": "c0f409fec29c6a0c18f6bf617f2fa5d018473dad574b1d3c60d048970b9e8b15",
+          "source": {
+            "source_file": "Saten Ruiko.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Scythe follows the native palm span; smooth wrist turnover during the raised windup keeps the concave cutting edge leading both sweeps; fingers fitted for native off-hand support; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native two-handed windup, full-body turn and broad crescent-scythe sweep"
+          }
         },
         {
           "name": "Sora",
-          "sha256": "9dd8e2dedeb0ad00a0fbb2b6ad87e679a80c20838f4aa766241c17a42b71c616",
-          "source": null
+          "sha256": "d8fe63115fbce59f8d2628fa2027164843394d2c82c39986d7d0ecee733a40f9",
+          "source": {
+            "source_file": "Misaka Mikoto.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native coin-flick charge and decisive forward spell release"
+          }
         },
         {
           "name": "Elise",
-          "sha256": "2d356af0336ee5a3d9c639ded35c51e7cbc6ef7336a87aada656b3101fbd0c24",
-          "source": null
+          "sha256": "1645b7f3617d3e2165f6a869f2327155d9bfa9c58a9a6fc64b3d4c8537f7e717",
+          "source": {
+            "source_file": "Umika.glb",
+            "source_clip": "Exs01",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native flowing festival flourish and arcing tidal cast"
+          }
         },
         {
           "name": "Rina",
-          "sha256": "498bb705680fc9477e1b3e1329c0c5d8529b0558d3d7ee90dc93f3e014d8e372",
-          "source": null
+          "sha256": "33a5165fcb76addc098329e1bdcb07983f1fef0198a02068ccf95021984849b0",
+          "source": {
+            "source_file": "Koharu.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native overhead windup and emphatic academy spell toss"
+          }
         },
         {
           "name": "Fennel",
-          "sha256": "814960ce708a7b5ab56cde9bd4f4835bedc2cebe96ddf1f9484a4b3bba0a5a8d",
-          "source": null
+          "sha256": "fcfc4d837ab661731d9676e40f6a56ee945b3729b2780f55c64b6773ed29ce9e",
+          "source": {
+            "source_file": "Suzumi (Magical).glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Native magical-wand wrist sweep retained; target fingers fitted around the clover stem; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native magical-girl wand presentation and sweeping clover cast"
+          }
         },
         {
           "name": "Momo",
-          "sha256": "6d5e1c153457eb89db75157bdb7f9bae75cda5aaf0aad6632cf89522da2d76bb",
-          "source": null
+          "sha256": "840b97852be14a5500fb707ba3e054348d893a00fd3a151797722a930b49d36c",
+          "source": {
+            "source_file": "Reijo.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Native unarmed wrist action retained; target fingers closed into fists; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native martial-arts crouch, rising kick and balanced recovery"
+          }
         },
         {
           "name": "Rosette",
-          "sha256": "a87040e45edf8c7349929e203dc3575baf781289b644ce3cb6f1ec99c7e84923",
-          "source": null
+          "sha256": "2034a86ffcacb4e4cd21df9cf68d785f06ca1d427b19211cd28343ccdc1b0576",
+          "source": {
+            "source_file": "Reisa (Magical).glb",
+            "source_clip": "Exs_Cutin_03",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native airborne magical-doll flourish and pointed charm release"
+          }
         },
         {
           "name": "Meilin",
-          "sha256": "9789fe917299f3169aa3a90df2e1fe6ec7ba2ecb80ab68fe3147ee051d729fed",
-          "source": null
+          "sha256": "f605683638688ec2f40e225dcb3d290fe2bf6a05c26c34993bd743d791e8da75",
+          "source": {
+            "source_file": "Niya.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Fan tilts through the native forearm arc with its paper face presented; target fingers fitted around the pivot; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native fan ritual, graceful pivot and broad ceremonial flourish"
+          }
         },
         {
           "name": "Nevia",
-          "sha256": "79b5ac5e755d46979613e03ae5220b1c3f7a8275a3c75e84596b7f552d2fd39a",
-          "source": null
+          "sha256": "dcb7fe0fe7f0398b0ca6ff154ef68eef5a48b3cc221a6ca970f3c69af0e5fd3c",
+          "source": {
+            "source_file": "Airi.glb",
+            "source_clip": "Exs",
+            "adaptation": [
+              "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+              "Non-root body translation deltas scaled to the target/source height ratio",
+              "Horizontal root travel removed; native vertical bounce retained",
+              "Source props, expressions, scale and visibility excluded",
+              "Native garment rotations fitted to target cloth categories and rest positions",
+              "30 fps quaternion resampling and normalized rotations",
+              "Smooth entry and recovery to the target bind pose",
+              "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+              "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+            ],
+            "description": "Native playful windup, buoyant hop and snow-charm toss"
+          }
         },
         {
           "name": "Quinn",
@@ -1599,209 +1760,856 @@
     {
       "character": "Marin",
       "clip": "Idle",
-      "rms_degrees": 3.0551354426592994e-07
+      "rms_degrees": 3.0551354426592994e-07,
+      "checked_tracks": 109,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Marin",
       "clip": "Walk",
-      "rms_degrees": 3.4641979726696033e-07
+      "rms_degrees": 3.4641979726696033e-07,
+      "checked_tracks": 110,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Marin",
-      "clip": "Attack",
-      "rms_degrees": 4.320613977895511e-07
+      "clip": "Run",
+      "rms_degrees": 3.5277665404602263e-07,
+      "checked_tracks": 240,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Marin",
+      "clip": "Defend",
+      "rms_degrees": 4.2688682312579694e-07,
+      "checked_tracks": 232,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Marin",
       "clip": "Victory",
-      "rms_degrees": 4.216487496210681e-07
+      "rms_degrees": 4.216487496210681e-07,
+      "checked_tracks": 112,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Marin",
+      "clip": "Lose",
+      "rms_degrees": 3.887409392493395e-07,
+      "checked_tracks": 249,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Viola",
       "clip": "Idle",
-      "rms_degrees": 4.618930630226137e-07
+      "rms_degrees": 4.618930630226137e-07,
+      "checked_tracks": 112,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Viola",
       "clip": "Walk",
-      "rms_degrees": 4.899115755694733e-07
+      "rms_degrees": 4.899115755694733e-07,
+      "checked_tracks": 118,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Viola",
-      "clip": "Attack",
-      "rms_degrees": 3.6515852864578917e-07
+      "clip": "Run",
+      "rms_degrees": 4.7141763339024847e-07,
+      "checked_tracks": 132,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Viola",
+      "clip": "Defend",
+      "rms_degrees": 3.944162896609164e-07,
+      "checked_tracks": 119,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Viola",
       "clip": "Victory",
-      "rms_degrees": 5.41617625538596e-07
+      "rms_degrees": 5.41617625538596e-07,
+      "checked_tracks": 123,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Viola",
+      "clip": "Lose",
+      "rms_degrees": 4.6667964747762196e-07,
+      "checked_tracks": 121,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Sora",
       "clip": "Idle",
-      "rms_degrees": 4.2688682312579694e-07
+      "rms_degrees": 4.2688682312579694e-07,
+      "checked_tracks": 90,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Sora",
       "clip": "Walk",
-      "rms_degrees": 3.771341067121988e-07
+      "rms_degrees": 3.771341067121988e-07,
+      "checked_tracks": 80,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Sora",
-      "clip": "Attack",
-      "rms_degrees": 4.7610847164557787e-07
+      "clip": "Run",
+      "rms_degrees": 5.696160937017525e-07,
+      "checked_tracks": 206,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Sora",
+      "clip": "Defend",
+      "rms_degrees": 4.47226035203829e-07,
+      "checked_tracks": 204,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Sora",
       "clip": "Victory",
-      "rms_degrees": 4.7610847164557787e-07
+      "rms_degrees": 4.7610847164557787e-07,
+      "checked_tracks": 84,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Sora",
+      "clip": "Lose",
+      "rms_degrees": 4.5705635316335665e-07,
+      "checked_tracks": 207,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Elise",
       "clip": "Idle",
-      "rms_degrees": 3.6515852864578917e-07
+      "rms_degrees": 3.6515852864578917e-07,
+      "checked_tracks": 146,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Elise",
       "clip": "Walk",
-      "rms_degrees": 3.5277665404602263e-07
+      "rms_degrees": 3.5277665404602263e-07,
+      "checked_tracks": 141,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Elise",
-      "clip": "Attack",
-      "rms_degrees": 3.771341067121988e-07
+      "clip": "Run",
+      "rms_degrees": 5.374988005499562e-07,
+      "checked_tracks": 178,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Elise",
+      "clip": "Defend",
+      "rms_degrees": 5.033362961095091e-07,
+      "checked_tracks": 174,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Elise",
       "clip": "Victory",
-      "rms_degrees": 4.216487496210681e-07
+      "rms_degrees": 4.216487496210681e-07,
+      "checked_tracks": 155,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Elise",
+      "clip": "Lose",
+      "rms_degrees": 4.163447806272884e-07,
+      "checked_tracks": 169,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Rina",
       "clip": "Idle",
-      "rms_degrees": 4.521679093716865e-07
+      "rms_degrees": 4.521679093716865e-07,
+      "checked_tracks": 145,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Rina",
       "clip": "Walk",
-      "rms_degrees": 4.4222893942245707e-07
+      "rms_degrees": 4.4222893942245707e-07,
+      "checked_tracks": 146,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Rina",
-      "clip": "Attack",
-      "rms_degrees": 4.853541595325402e-07
+      "clip": "Run",
+      "rms_degrees": 5.537903280108299e-07,
+      "checked_tracks": 169,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rina",
+      "clip": "Defend",
+      "rms_degrees": 4.5705635316335665e-07,
+      "checked_tracks": 165,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Rina",
       "clip": "Victory",
-      "rms_degrees": 5.249484598399787e-07
+      "rms_degrees": 5.249484598399787e-07,
+      "checked_tracks": 144,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rina",
+      "clip": "Lose",
+      "rms_degrees": 6.182584300456985e-07,
+      "checked_tracks": 172,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Fennel",
       "clip": "Idle",
-      "rms_degrees": 3.771341067121988e-07
+      "rms_degrees": 3.771341067121988e-07,
+      "checked_tracks": 151,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Fennel",
       "clip": "Walk",
-      "rms_degrees": 4.853541595325402e-07
+      "rms_degrees": 4.853541595325402e-07,
+      "checked_tracks": 177,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Fennel",
-      "clip": "Attack",
-      "rms_degrees": 4.7141763339024847e-07
+      "clip": "Run",
+      "rms_degrees": 5.812026921034686e-07,
+      "checked_tracks": 200,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Fennel",
+      "clip": "Defend",
+      "rms_degrees": 3.71194615726283e-07,
+      "checked_tracks": 199,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Fennel",
       "clip": "Victory",
-      "rms_degrees": 6.110270885318599e-07
+      "rms_degrees": 6.110270885318599e-07,
+      "checked_tracks": 163,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Fennel",
+      "clip": "Lose",
+      "rms_degrees": 4.944269850831253e-07,
+      "checked_tracks": 200,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Momo",
       "clip": "Idle",
-      "rms_degrees": 5.735043033016133e-07
+      "rms_degrees": 5.735043033016133e-07,
+      "checked_tracks": 117,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Momo",
       "clip": "Walk",
-      "rms_degrees": 5.735043033016133e-07
+      "rms_degrees": 5.735043033016133e-07,
+      "checked_tracks": 119,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Momo",
-      "clip": "Attack",
-      "rms_degrees": 5.374988005499562e-07
+      "clip": "Run",
+      "rms_degrees": 6.599846867463478e-07,
+      "checked_tracks": 108,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Momo",
+      "clip": "Defend",
+      "rms_degrees": 6.599846867463478e-07,
+      "checked_tracks": 159,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Momo",
       "clip": "Victory",
-      "rms_degrees": 5.164121436270794e-07
+      "rms_degrees": 5.164121436270794e-07,
+      "checked_tracks": 112,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Momo",
+      "clip": "Lose",
+      "rms_degrees": 5.41617625538596e-07,
+      "checked_tracks": 150,
+      "max_preserved_value_change": 2.916563590765206e-09,
+      "allowed_vertical_root_adjustment_meters": 0.021707269485701165,
+      "track_differences": []
     },
     {
       "character": "Rosette",
       "clip": "Idle",
-      "rms_degrees": 4.3717472841106217e-07
+      "rms_degrees": 4.3717472841106217e-07,
+      "checked_tracks": 132,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Rosette",
       "clip": "Walk",
-      "rms_degrees": 3.5902097340034655e-07
+      "rms_degrees": 3.5902097340034655e-07,
+      "checked_tracks": 119,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Rosette",
-      "clip": "Attack",
-      "rms_degrees": 3.197309949516638e-07
+      "clip": "Run",
+      "rms_degrees": 4.320613977895511e-07,
+      "checked_tracks": 101,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosette",
+      "clip": "Defend",
+      "rms_degrees": 3.266077170463155e-07,
+      "checked_tracks": 168,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Rosette",
       "clip": "Victory",
-      "rms_degrees": 4.0552878190423724e-07
+      "rms_degrees": 4.0552878190423724e-07,
+      "checked_tracks": 141,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosette",
+      "clip": "Lose",
+      "rms_degrees": 5.164121436270795e-07,
+      "checked_tracks": 169,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Meilin",
       "clip": "Idle",
-      "rms_degrees": 5.537903280108299e-07
+      "rms_degrees": 5.537903280108299e-07,
+      "checked_tracks": 146,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Meilin",
       "clip": "Walk",
-      "rms_degrees": 5.291649810690339e-07
+      "rms_degrees": 5.291649810690339e-07,
+      "checked_tracks": 152,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Meilin",
-      "clip": "Attack",
-      "rms_degrees": 3.771341067121988e-07
+      "clip": "Run",
+      "rms_degrees": 5.457053637224871e-07,
+      "checked_tracks": 96,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Meilin",
+      "clip": "Defend",
+      "rms_degrees": 4.899115755694733e-07,
+      "checked_tracks": 119,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Meilin",
       "clip": "Victory",
-      "rms_degrees": 5.120906271199366e-07
+      "rms_degrees": 5.120906271199366e-07,
+      "checked_tracks": 157,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Meilin",
+      "clip": "Lose",
+      "rms_degrees": 6.218425669122347e-07,
+      "checked_tracks": 93,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Nevia",
       "clip": "Idle",
-      "rms_degrees": 4.4222893942245707e-07
+      "rms_degrees": 4.4222893942245707e-07,
+      "checked_tracks": 139,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Nevia",
       "clip": "Walk",
-      "rms_degrees": 4.521679093716865e-07
+      "rms_degrees": 4.521679093716865e-07,
+      "checked_tracks": 121,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Nevia",
-      "clip": "Attack",
-      "rms_degrees": 4.320613977895511e-07
+      "clip": "Run",
+      "rms_degrees": 4.944269850831253e-07,
+      "checked_tracks": 138,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Nevia",
+      "clip": "Defend",
+      "rms_degrees": 3.771341067121988e-07,
+      "checked_tracks": 147,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
     },
     {
       "character": "Nevia",
       "clip": "Victory",
-      "rms_degrees": 4.47226035203829e-07
+      "rms_degrees": 4.47226035203829e-07,
+      "checked_tracks": 148,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Nevia",
+      "clip": "Lose",
+      "rms_degrees": 3.771341067121988e-07,
+      "checked_tracks": 145,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Quinn",
+      "clip": "Idle",
+      "rms_degrees": 3.3334260534115847e-07,
+      "checked_tracks": 176,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Quinn",
+      "clip": "Walk",
+      "rms_degrees": 4.899115755694733e-07,
+      "checked_tracks": 179,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Quinn",
+      "clip": "Run",
+      "rms_degrees": 5.291649810690339e-07,
+      "checked_tracks": 175,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Quinn",
+      "clip": "Attack",
+      "rms_degrees": 5.537903280108299e-07,
+      "checked_tracks": 176,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Quinn",
+      "clip": "Defend",
+      "rms_degrees": 5.657011600682982e-07,
+      "checked_tracks": 184,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Quinn",
+      "clip": "Victory",
+      "rms_degrees": 4.521679093716865e-07,
+      "checked_tracks": 180,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Quinn",
+      "clip": "Lose",
+      "rms_degrees": 5.333481685458536e-07,
+      "checked_tracks": 184,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Kimon",
+      "clip": "Idle",
+      "rms_degrees": 4.3717472841106217e-07,
+      "checked_tracks": 197,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Kimon",
+      "clip": "Walk",
+      "rms_degrees": 4.853541595325402e-07,
+      "checked_tracks": 196,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Kimon",
+      "clip": "Run",
+      "rms_degrees": 4.807535423417214e-07,
+      "checked_tracks": 196,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Kimon",
+      "clip": "Attack",
+      "rms_degrees": 4.944269850831253e-07,
+      "checked_tracks": 196,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Kimon",
+      "clip": "Defend",
+      "rms_degrees": 4.4222893942245707e-07,
+      "checked_tracks": 194,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Kimon",
+      "clip": "Victory",
+      "rms_degrees": 5.41617625538596e-07,
+      "checked_tracks": 194,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Kimon",
+      "clip": "Lose",
+      "rms_degrees": 5.077323297591604e-07,
+      "checked_tracks": 194,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Florielle",
+      "clip": "Idle",
+      "rms_degrees": 4.320613977895511e-07,
+      "checked_tracks": 209,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Florielle",
+      "clip": "Walk",
+      "rms_degrees": 4.320613977895511e-07,
+      "checked_tracks": 211,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Florielle",
+      "clip": "Run",
+      "rms_degrees": 4.216487496210681e-07,
+      "checked_tracks": 210,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Florielle",
+      "clip": "Attack",
+      "rms_degrees": 4.3717472841106217e-07,
+      "checked_tracks": 213,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Florielle",
+      "clip": "Defend",
+      "rms_degrees": 3.771341067121988e-07,
+      "checked_tracks": 210,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Florielle",
+      "clip": "Victory",
+      "rms_degrees": 4.6667964747762196e-07,
+      "checked_tracks": 213,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Florielle",
+      "clip": "Lose",
+      "rms_degrees": 3.1270308190255436e-07,
+      "checked_tracks": 215,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosaria",
+      "clip": "Idle",
+      "rms_degrees": 3.887409392493395e-07,
+      "checked_tracks": 145,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosaria",
+      "clip": "Walk",
+      "rms_degrees": 4.899115755694733e-07,
+      "checked_tracks": 148,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosaria",
+      "clip": "Run",
+      "rms_degrees": 6.289495698598161e-07,
+      "checked_tracks": 123,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosaria",
+      "clip": "Attack",
+      "rms_degrees": 4.899115755694733e-07,
+      "checked_tracks": 148,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosaria",
+      "clip": "Defend",
+      "rms_degrees": 5.537903280108299e-07,
+      "checked_tracks": 117,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosaria",
+      "clip": "Victory",
+      "rms_degrees": 3.944162896609164e-07,
+      "checked_tracks": 147,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    },
+    {
+      "character": "Rosaria",
+      "clip": "Lose",
+      "rms_degrees": 4.4222893942245707e-07,
+      "checked_tracks": 120,
+      "max_preserved_value_change": 0.0,
+      "allowed_vertical_root_adjustment_meters": 0.0,
+      "track_differences": []
+    }
+  ],
+  "replaced_attack_clips": [
+    {
+      "character": "Marin",
+      "rms_degrees": 78.98352627968363,
+      "core_body_rms_degrees": 76.14955032267578
+    },
+    {
+      "character": "Viola",
+      "rms_degrees": 72.0225051112994,
+      "core_body_rms_degrees": 59.88149113163043
+    },
+    {
+      "character": "Sora",
+      "rms_degrees": 64.67992077625708,
+      "core_body_rms_degrees": 52.96403477984308
+    },
+    {
+      "character": "Elise",
+      "rms_degrees": 64.17728337121028,
+      "core_body_rms_degrees": 46.71635920816651
+    },
+    {
+      "character": "Rina",
+      "rms_degrees": 61.4287954795577,
+      "core_body_rms_degrees": 42.865955075356034
+    },
+    {
+      "character": "Fennel",
+      "rms_degrees": 63.5355083917117,
+      "core_body_rms_degrees": 45.236835756360556
+    },
+    {
+      "character": "Momo",
+      "rms_degrees": 47.625697481942986,
+      "core_body_rms_degrees": 43.26541050271312
+    },
+    {
+      "character": "Rosette",
+      "rms_degrees": 69.32829070415758,
+      "core_body_rms_degrees": 54.83065076541899
+    },
+    {
+      "character": "Meilin",
+      "rms_degrees": 57.62952800989372,
+      "core_body_rms_degrees": 44.570615512682345
+    },
+    {
+      "character": "Nevia",
+      "rms_degrees": 60.515901365324744,
+      "core_body_rms_degrees": 40.52016298744969
     }
   ],
   "errors": [],
   "summary": {
     "characters": 14,
-    "replaced_clips": 58,
-    "preserved_clips_checked": 40,
+    "replaced_clips": 68,
+    "refreshed_attack_clips": 10,
+    "preserved_attack_clips": 4,
+    "replaced_attacks_checked": 10,
+    "preserved_clips_checked": 88,
     "errors": 0,
     "status": "passed"
   }

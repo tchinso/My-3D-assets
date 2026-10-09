@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "analyzed_on": "2026-10-08",
+  "analyzed_on": "2026-10-09",
   "model_count": 14,
   "classification_guide": {
     "appearance": "실제 원본 의상·머리·얼굴의 조합과 색상 편집 후 최종 외형을 기록; design_brief는 제작 목표이며 구체적 최종 파츠는 outfit·features에 기록",
@@ -24,6 +24,54 @@
     "donor_height_policy": "원본의 실제 프로필 키는 최종 캐릭터에 복사하거나 추정하지 않음"
   },
   "donors": {
+    "Airi.glb": {
+      "character": "Airi",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "갈색"
+        ],
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리"
+        ],
+        "description": "턱 아래에서 안쪽으로 모이는 갈색 단발"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "세일러복"
+        ],
+        "colors": [
+          "흰색",
+          "남색",
+          "민트색"
+        ],
+        "description": "민트색 리본과 남색 소매·치맛단 장식이 있는 흰색 세일러 원피스",
+        "legwear": [
+          "흰색 허벅지 길이 양말"
+        ],
+        "footwear": [
+          "갈색 구두"
+        ]
+      },
+      "original_features": [
+        "녹색 눈",
+        "민트색 원형·월계수 헤일로",
+        "머리 양옆의 작은 민트색 장식"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Airi.glb",
+        "preview_front": "analysis/previews/002_front.png",
+        "preview_back": "analysis/previews/002_back.png"
+      }
+    },
     "Asuna (School Uniform).glb": {
       "character": "Asuna",
       "source_timestamp": 1791003436,
@@ -962,6 +1010,52 @@
         "preview_back": "analysis/previews/159_back.png"
       }
     },
+    "Misaka Mikoto.glb": {
+      "character": "Misaka Mikoto",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "갈색"
+        ],
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리"
+        ],
+        "description": "목 위에서 끝나는 갈색 단발"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복"
+        ],
+        "colors": [
+          "베이지",
+          "흰색",
+          "회색"
+        ],
+        "description": "흰색 반소매 셔츠와 베이지 조끼, 회색 주름치마",
+        "legwear": [
+          "흰색 루즈삭스"
+        ],
+        "footwear": [
+          "갈색 구두"
+        ]
+      },
+      "original_features": [
+        "흰색 머리핀",
+        "하늘색 번개 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Misaka Mikoto.glb",
+        "preview_front": "analysis/previews/161_front.png",
+        "preview_back": "analysis/previews/161_back.png"
+      }
+    },
     "Miyako.glb": {
       "character": "Miyako",
       "source_timestamp": 1791003437,
@@ -1301,6 +1395,54 @@
         "preview_back": "analysis/previews/188_back.png"
       }
     },
+    "Niya.glb": {
+      "character": "Niya",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "검정"
+        ],
+        "length": "짧은 머리",
+        "styles": [
+          "단발",
+          "앞머리"
+        ],
+        "description": "턱 부근에서 끝나는 검은 단발"
+      },
+      "original_outfit": {
+        "styles": [
+          "기모노풍 의상"
+        ],
+        "colors": [
+          "흰색",
+          "검정",
+          "빨강"
+        ],
+        "description": "어깨가 열린 흰색 넓은 소매 의상과 검은 짧은 치마, 붉은 장식끈",
+        "legwear": [
+          "한쪽 흰색 타이하이 양말",
+          "반대쪽 흰색 니삭스"
+        ],
+        "footwear": [
+          "검은색과 빨간색 장식 구두"
+        ]
+      },
+      "original_features": [
+        "길이가 다른 붉은 뿔",
+        "금색 귀걸이",
+        "연분홍색 꽃 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Niya.glb",
+        "preview_front": "analysis/previews/190_front.png",
+        "preview_back": "analysis/previews/190_back.png"
+      }
+    },
     "Noa.glb": {
       "character": "Noa",
       "source_timestamp": 1791003437,
@@ -1396,6 +1538,55 @@
         "local_glb": "Nonomi.glb",
         "preview_front": "analysis/previews/196_front.png",
         "preview_back": "analysis/previews/196_back.png"
+      }
+    },
+    "Reijo.glb": {
+      "character": "Reijo",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "짙은 자주"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "생머리",
+          "양옆 경단",
+          "옆가르마"
+        ],
+        "description": "짙은 자주, 매우 긴 머리, 생머리·양옆 경단·옆가르마"
+      },
+      "original_outfit": {
+        "styles": [
+          "중국풍 복장",
+          "재킷"
+        ],
+        "colors": [
+          "짙은 녹색",
+          "빨강",
+          "검정"
+        ],
+        "description": "짙은 녹색 넓은 소매 재킷과 붉은 중국풍 깃, 검은 짧은 하의",
+        "legwear": [
+          "검은색 종아리 양말"
+        ],
+        "footwear": [
+          "붉은 장식 검은 부츠"
+        ]
+      },
+      "original_features": [
+        "양옆 둥근 머리장식",
+        "붉은 눈",
+        "붉은 꽃 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Reijo.glb",
+        "preview_front": "analysis/previews/203_front.png",
+        "preview_back": "analysis/previews/203_back.png"
       }
     },
     "Reisa (Magical).glb": {
@@ -1634,6 +1825,54 @@
         "local_glb": "Saori (Swimsuit).glb",
         "preview_front": "analysis/previews/220_front.png",
         "preview_back": "analysis/previews/220_back.png"
+      }
+    },
+    "Saten Ruiko.glb": {
+      "character": "Saten Ruiko",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "검정"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "생머리",
+          "앞머리"
+        ],
+        "description": "검정, 긴 머리, 생머리·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "세일러복"
+        ],
+        "colors": [
+          "흰색",
+          "남색",
+          "빨강"
+        ],
+        "description": "흰 민소매 세일러 상의와 붉은 목 리본, 남색 주름치마",
+        "legwear": [
+          "흰색 짧은 양말"
+        ],
+        "footwear": [
+          "갈색 구두"
+        ]
+      },
+      "original_features": [
+        "흰 꽃 머리장식",
+        "파란 눈",
+        "금색 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Saten Ruiko.glb",
+        "preview_front": "analysis/previews/222_front.png",
+        "preview_back": "analysis/previews/222_back.png"
       }
     },
     "Seia (Swimsuit).glb": {
@@ -2026,6 +2265,53 @@
         "preview_back": "analysis/previews/244_back.png"
       }
     },
+    "Suzumi (Magical).glb": {
+      "character": "Suzumi",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "회백색",
+          "연한 분홍 줄무늬"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "생머리",
+          "앞머리"
+        ],
+        "description": "회백색|연한 분홍 줄무늬, 매우 긴 머리, 생머리·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "마법소녀복"
+        ],
+        "colors": [
+          "분홍",
+          "흰색"
+        ],
+        "description": "흰색과 분홍색 프릴 드레스, 분홍색 허리 리본",
+        "legwear": [
+          "흰색 니하이 양말"
+        ],
+        "footwear": [
+          "분홍색 부츠"
+        ]
+      },
+      "original_features": [
+        "한쪽 머리 옆 흰색 날개",
+        "붉은 눈",
+        "보라색 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Suzumi (Magical).glb",
+        "preview_front": "analysis/previews/254_front.png",
+        "preview_back": "analysis/previews/254_back.png"
+      }
+    },
     "Tsurugi.glb": {
       "character": "Tsurugi",
       "source_timestamp": 1791003437,
@@ -2072,6 +2358,54 @@
         "local_glb": "Tsurugi.glb",
         "preview_front": "analysis/previews/269_front.png",
         "preview_back": "analysis/previews/269_back.png"
+      }
+    },
+    "Umika.glb": {
+      "character": "Umika",
+      "source_timestamp": 1791003438,
+      "original_hair": {
+        "colors": [
+          "회금색"
+        ],
+        "length": "중간 길이",
+        "styles": [
+          "굵은 컬",
+          "앞머리"
+        ],
+        "description": "회금색, 중간 길이, 굵은 컬·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "일본풍 복장",
+          "메이드복"
+        ],
+        "colors": [
+          "흰색",
+          "남색",
+          "금색"
+        ],
+        "description": "남색 넓은 소매와 금색 테두리의 흰색 기모노풍 메이드 원피스, 허리 장식 끈",
+        "legwear": [
+          "흰색 니삭스"
+        ],
+        "footwear": [
+          "흰색 구두"
+        ]
+      },
+      "original_features": [
+        "큰 남색 머리 리본",
+        "금색 옆머리 장식",
+        "하늘색 물결 모양 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Umika.glb",
+        "preview_front": "analysis/previews/272_front.png",
+        "preview_back": "analysis/previews/272_back.png"
       }
     },
     "Wakamo.glb": {
@@ -2235,8 +2569,8 @@
       "filename": "01_marine_maid.glb",
       "glb": "characters/01_marine_maid/01_marine_maid.glb",
       "sheet": "characters/01_marine_maid/01_marine_maid_sheet.png",
-      "bytes": 2316248,
-      "sha256": "997c2e2548edee40e617d7782ee032fd282a537fd583bacf115fef3e5135fc6f",
+      "bytes": 2609904,
+      "sha256": "aeb5eb82574380162bc8fb47b9ac821c45723702a3561ef03a3521aef5f1731d",
       "variants": [],
       "height": null,
       "body": {
@@ -2317,7 +2651,7 @@
         "Idle": 2.0,
         "Walk": 1.2000000476837158,
         "Run": 0.6666666865348816,
-        "Attack": 1.5499999523162842,
+        "Attack": 2.2333333492279053,
         "Defend": 1.3333333730697632,
         "Victory": 3.0,
         "Lose": 2.5
@@ -2328,7 +2662,8 @@
         "Victory": "Victory_Start",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -2380,6 +2715,22 @@
           ],
           "description": "Maid stumbles and settles defeated"
         },
+        "Attack": {
+          "source_file": "Mine.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Rapier shaft follows the native thrust forearm; target fingers fitted around its palm grip; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native airborne charge and descending rapier plunge"
+        },
         "Idle": {
           "source_file": "Momoi (Maid).glb",
           "source_clip": "Cafe_Idle",
@@ -2415,13 +2766,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Lively maid sprint with a large knee drive",
-        "Attack": "Ribbon rapier: measured fencing lunge and recovery",
+        "Attack": "Native airborne charge and descending rapier plunge",
         "Defend": "Alert maid recoil and ready guard",
         "Victory": "",
         "Lose": "Maid stumbles and settles defeated"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Ribbon rapier: measured fencing lunge and recovery",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native airborne charge and descending rapier plunge",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -2431,7 +2782,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6004495435388466,
         "chin_target": 0.5874495435388466,
@@ -2451,7 +2802,8 @@
         "Momoi (Maid).glb",
         "Hatsune Miku.glb",
         "Erika.glb",
-        "Yoshimi.glb"
+        "Yoshimi.glb",
+        "Mine.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Momoi (Maid).glb",
@@ -2462,6 +2814,7 @@
         "motion_run": "Momoi (Maid).glb",
         "motion_defend": "Momoi (Maid).glb",
         "motion_lose": "Momoi (Maid).glb",
+        "motion_attack": "Mine.glb",
         "motion_idle": "Momoi (Maid).glb",
         "motion_walk": "Momoi (Maid).glb",
         "motion_victory": "Momoi (Maid).glb"
@@ -2476,7 +2829,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/02_azure_reaper/02_azure_reaper.glb": {
@@ -2487,8 +2840,8 @@
       "filename": "02_azure_reaper.glb",
       "glb": "characters/02_azure_reaper/02_azure_reaper.glb",
       "sheet": "characters/02_azure_reaper/02_azure_reaper_sheet.png",
-      "bytes": 2124688,
-      "sha256": "d43d2326a538514ed8534b331a77d4e06cf612c58f09e1aea150fdeaa920e683",
+      "bytes": 2331856,
+      "sha256": "ad25367c8000ed52d11225987de60e1e59c726df96040f3fc4f7eed13042f251",
       "variants": [],
       "height": null,
       "body": {
@@ -2571,7 +2924,7 @@
         "Idle": 4.0,
         "Walk": 2.4000000953674316,
         "Run": 0.6666666865348816,
-        "Attack": 1.9500000476837158,
+        "Attack": 3.000000238418579,
         "Defend": 1.4000000953674316,
         "Victory": 3.000000238418579,
         "Lose": 2.9166669845581055
@@ -2582,7 +2935,8 @@
         "Victory": "Victory_Start",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -2634,6 +2988,22 @@
           ],
           "description": "Dramatic reaper collapse"
         },
+        "Attack": {
+          "source_file": "Saten Ruiko.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Scythe follows the native palm span; smooth wrist turnover during the raised windup keeps the concave cutting edge leading both sweeps; fingers fitted for native off-hand support; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native two-handed windup, full-body turn and broad crescent-scythe sweep"
+        },
         "Idle": {
           "source_file": "Haruka (Dress).glb",
           "source_clip": "Cafe_Idle",
@@ -2669,13 +3039,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Forward, determined reaper dash",
-        "Attack": "Crescent scythe: two-handed overhead reaping cut with inner edge leading",
+        "Attack": "Native two-handed windup, full-body turn and broad crescent-scythe sweep",
         "Defend": "Fierce two-arm reaper guard",
         "Victory": "",
         "Lose": "Dramatic reaper collapse"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Crescent scythe: two-handed overhead reaping cut with inner edge leading",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native two-handed windup, full-body turn and broad crescent-scythe sweep",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -2685,7 +3055,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6781693423374565,
         "chin_target": 0.6419243574275919,
@@ -2704,7 +3074,8 @@
       "source_parts": [
         "Haruka (Dress).glb",
         "Erika.glb",
-        "Tsurugi.glb"
+        "Tsurugi.glb",
+        "Saten Ruiko.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Haruka (Dress).glb",
@@ -2713,6 +3084,7 @@
         "motion_run": "Haruka (Dress).glb",
         "motion_defend": "Tsurugi.glb",
         "motion_lose": "Tsurugi.glb",
+        "motion_attack": "Saten Ruiko.glb",
         "motion_idle": "Haruka (Dress).glb",
         "motion_walk": "Haruka (Dress).glb",
         "motion_victory": "Haruka (Dress).glb"
@@ -2727,7 +3099,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/03_sky_cardigan/03_sky_cardigan.glb": {
@@ -2738,8 +3110,8 @@
       "filename": "03_sky_cardigan.glb",
       "glb": "characters/03_sky_cardigan/03_sky_cardigan.glb",
       "sheet": "characters/03_sky_cardigan/03_sky_cardigan_sheet.png",
-      "bytes": 2187824,
-      "sha256": "7dacc9c2e1daff82ea81ae66df72e7a73ebcdf8ffe31c944f1d24cd112319340",
+      "bytes": 2760376,
+      "sha256": "1f8e6b13a413fea63525de0bc7fe2c6b31299a7d4dd33ff6b3290f1512c3be8c",
       "variants": [],
       "height": null,
       "body": {
@@ -2820,7 +3192,7 @@
         "Idle": 1.6666667461395264,
         "Walk": 1.3333333730697632,
         "Run": 0.6000000238418579,
-        "Attack": 1.75,
+        "Attack": 4.933333396911621,
         "Defend": 1.3333333730697632,
         "Victory": 3.2333335876464844,
         "Lose": 2.4583334922790527
@@ -2831,7 +3203,8 @@
         "Victory": "Victory_Start",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -2883,6 +3256,22 @@
           ],
           "description": "Determined school stance gives way"
         },
+        "Attack": {
+          "source_file": "Misaka Mikoto.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native coin-flick charge and decisive forward spell release"
+        },
         "Idle": {
           "source_file": "Serika.glb",
           "source_clip": "Cafe_Idle",
@@ -2918,13 +3307,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Brisk schoolgirl sprint",
-        "Attack": "Azure wave: wide lateral trace followed by a flowing palm release",
+        "Attack": "Native coin-flick charge and decisive forward spell release",
         "Defend": "Compact, determined school guard",
         "Victory": "",
         "Lose": "Determined school stance gives way"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Azure wave: wide lateral trace followed by a flowing palm release",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native coin-flick charge and decisive forward spell release",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -2934,7 +3323,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.5934299159196788,
         "chin_target": 0.5804299159196787,
@@ -2955,7 +3344,8 @@
         "Azusa (Swimsuit).glb",
         "Nonomi.glb",
         "Miyo.glb",
-        "Hina (Swimsuit).glb"
+        "Hina (Swimsuit).glb",
+        "Misaka Mikoto.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Serika.glb",
@@ -2966,6 +3356,7 @@
         "motion_run": "Serika.glb",
         "motion_defend": "Serika.glb",
         "motion_lose": "Serika.glb",
+        "motion_attack": "Misaka Mikoto.glb",
         "motion_idle": "Serika.glb",
         "motion_walk": "Serika.glb",
         "motion_victory": "Serika.glb"
@@ -2980,7 +3371,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/04_tidal_dress/04_tidal_dress.glb": {
@@ -2991,8 +3382,8 @@
       "filename": "04_tidal_dress.glb",
       "glb": "characters/04_tidal_dress/04_tidal_dress.glb",
       "sheet": "characters/04_tidal_dress/04_tidal_dress_sheet.png",
-      "bytes": 2298744,
-      "sha256": "4873eaa1785e87849a1be62d387fb160df5613a746bc9506bc97648e839e69b1",
+      "bytes": 2695748,
+      "sha256": "69aad855e1edae1094232478df8c1148769386f3b3410093074b93e8af5f537a",
       "variants": [],
       "height": null,
       "body": {
@@ -3065,7 +3456,7 @@
         "Idle": 4.6666669845581055,
         "Walk": 2.6666667461395264,
         "Run": 0.6000000238418579,
-        "Attack": 2.0999999046325684,
+        "Attack": 4.0,
         "Defend": 2.3333334922790527,
         "Victory": 3.000000238418579,
         "Lose": 2.5
@@ -3076,7 +3467,8 @@
         "Victory": "Victory_Start",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs01"
       },
       "motion_sources": {
         "Run": {
@@ -3128,6 +3520,22 @@
           ],
           "description": "Controlled dress-wearer sinking defeat"
         },
+        "Attack": {
+          "source_file": "Umika.glb",
+          "source_clip": "Exs01",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native flowing festival flourish and arcing tidal cast"
+        },
         "Idle": {
           "source_file": "Sena (Casual).glb",
           "source_clip": "Cafe_Idle",
@@ -3163,13 +3571,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Composed, flowing dress run",
-        "Attack": "Tidal arc: overhead summoning circle and descending charm release",
+        "Attack": "Native flowing festival flourish and arcing tidal cast",
         "Defend": "Calm, braced dress guard",
         "Victory": "",
         "Lose": "Controlled dress-wearer sinking defeat"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Tidal arc: overhead summoning circle and descending charm release",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native flowing festival flourish and arcing tidal cast",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -3179,7 +3587,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6769838390760666,
         "chin_target": 0.6405448184145025,
@@ -3198,7 +3606,8 @@
       "source_parts": [
         "Sena (Casual).glb",
         "Shokuhou Misaki.glb",
-        "Seia.glb"
+        "Seia.glb",
+        "Umika.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Sena (Casual).glb",
@@ -3207,6 +3616,7 @@
         "motion_run": "Sena (Casual).glb",
         "motion_defend": "Sena (Casual).glb",
         "motion_lose": "Sena (Casual).glb",
+        "motion_attack": "Umika.glb",
         "motion_idle": "Sena (Casual).glb",
         "motion_walk": "Sena (Casual).glb",
         "motion_victory": "Sena (Casual).glb"
@@ -3221,7 +3631,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/05_rosy_blazer/05_rosy_blazer.glb": {
@@ -3232,8 +3642,8 @@
       "filename": "05_rosy_blazer.glb",
       "glb": "characters/05_rosy_blazer/05_rosy_blazer.glb",
       "sheet": "characters/05_rosy_blazer/05_rosy_blazer_sheet.png",
-      "bytes": 2123936,
-      "sha256": "b5356dde321f041d4ea74834d29703da05ebfc49a31e741ad7c93c59c1a88285",
+      "bytes": 2382616,
+      "sha256": "02b04264649009d1b1d839df0299b6aa77d884ef0ff07082bbca028bf2c379a7",
       "variants": [],
       "height": null,
       "body": {
@@ -3312,7 +3722,7 @@
         "Idle": 5.000000476837158,
         "Walk": 1.3333334922790527,
         "Run": 0.6666666865348816,
-        "Attack": 1.600000023841858,
+        "Attack": 2.766666889190674,
         "Defend": 1.666666865348816,
         "Victory": 3.000000238418579,
         "Lose": 2.7916669845581055
@@ -3323,7 +3733,8 @@
         "Victory": "Victory_Start",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -3375,6 +3786,22 @@
           ],
           "description": "Asymmetric academy fall and exhausted finish"
         },
+        "Attack": {
+          "source_file": "Koharu.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native overhead windup and emphatic academy spell toss"
+        },
         "Idle": {
           "source_file": "Reisa.glb",
           "source_clip": "Cafe_Idle",
@@ -3410,13 +3837,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Confident academy charge",
-        "Attack": "Rose pulse: two compact forward casts with a guarded free hand",
+        "Attack": "Native overhead windup and emphatic academy spell toss",
         "Defend": "Measured academy defensive stance",
         "Victory": "",
         "Lose": "Asymmetric academy fall and exhausted finish"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Rose pulse: two compact forward casts with a guarded free hand",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native overhead windup and emphatic academy spell toss",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -3426,7 +3853,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6146595444653316,
         "chin_target": 0.6016595444653315,
@@ -3455,6 +3882,7 @@
         "motion_run": "Reisa.glb",
         "motion_defend": "Noa.glb",
         "motion_lose": "Noa.glb",
+        "motion_attack": "Koharu.glb",
         "motion_idle": "Reisa.glb",
         "motion_walk": "Reisa.glb",
         "motion_victory": "Reisa.glb"
@@ -3469,7 +3897,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/06_clover_sprite/06_clover_sprite.glb": {
@@ -3480,8 +3908,8 @@
       "filename": "06_clover_sprite.glb",
       "glb": "characters/06_clover_sprite/06_clover_sprite.glb",
       "sheet": "characters/06_clover_sprite/06_clover_sprite_sheet.png",
-      "bytes": 2152576,
-      "sha256": "48d4f16fd062af5f7d5f6ff4baaebf30dd5dc0824685b2915efbab3e09adf6c5",
+      "bytes": 2634504,
+      "sha256": "a6a49d4f305c36d7b5a97fdb22afb6d79f3d4ff1bbe736b64f1489ce96529fea",
       "variants": [],
       "height": null,
       "body": {
@@ -3558,7 +3986,7 @@
         "Idle": 4.0,
         "Walk": 1.3333333730697632,
         "Run": 0.6666666865348816,
-        "Attack": 1.850000023841858,
+        "Attack": 4.666666507720947,
         "Defend": 1.6000001430511475,
         "Victory": 3.000000238418579,
         "Lose": 2.5
@@ -3569,7 +3997,8 @@
         "Victory": "Victory_Start",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -3621,6 +4050,22 @@
           ],
           "description": "Small sprite flinch and collapse"
         },
+        "Attack": {
+          "source_file": "Suzumi (Magical).glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native magical-wand wrist sweep retained; target fingers fitted around the clover stem; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native magical-girl wand presentation and sweeping clover cast"
+        },
         "Idle": {
           "source_file": "Ibuki.glb",
           "source_clip": "Cafe_Idle",
@@ -3656,13 +4101,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Light, buoyant sprite run",
-        "Attack": "Clover bloom: rising wand spiral and a small outward seed flick",
+        "Attack": "Native magical-girl wand presentation and sweeping clover cast",
         "Defend": "Small, startled sprite protection",
         "Victory": "",
         "Lose": "Small sprite flinch and collapse"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Clover bloom: rising wand spiral and a small outward seed flick",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native magical-girl wand presentation and sweeping clover cast",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -3672,7 +4117,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6196845825326434,
         "chin_target": 0.6066845825326433,
@@ -3692,7 +4137,8 @@
         "Ibuki.glb",
         "Erika.glb",
         "Natsu.glb",
-        "Hina (Swimsuit).glb"
+        "Hina (Swimsuit).glb",
+        "Suzumi (Magical).glb"
       ],
       "source_roles": {
         "costume_and_rig": "Ibuki.glb",
@@ -3702,6 +4148,7 @@
         "motion_run": "Ibuki.glb",
         "motion_defend": "Ibuki.glb",
         "motion_lose": "Ibuki.glb",
+        "motion_attack": "Suzumi (Magical).glb",
         "motion_idle": "Ibuki.glb",
         "motion_walk": "Ibuki.glb",
         "motion_victory": "Ibuki.glb"
@@ -3716,7 +4163,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/07_neon_cat/07_neon_cat.glb": {
@@ -3727,8 +4174,8 @@
       "filename": "07_neon_cat.glb",
       "glb": "characters/07_neon_cat/07_neon_cat.glb",
       "sheet": "characters/07_neon_cat/07_neon_cat_sheet.png",
-      "bytes": 2657560,
-      "sha256": "853699a3d269165f29aed0e205710102a3fdaab0f25dd658dd556dbb4922236e",
+      "bytes": 2927064,
+      "sha256": "dc6bb113beb1f827c2142192168868aa39a2aea94ef01e324269b71d9facb870",
       "variants": [],
       "height": null,
       "body": {
@@ -3774,7 +4221,6 @@
         "양쪽 땋은 번",
         "부드러운 얼굴",
         "노출된 배꼽",
-        "휘어진 분홍색 고양이 꼬리",
         "원본 재킷 봉제선"
       ],
       "tags": [
@@ -3794,8 +4240,8 @@
         "#242335",
         "#a48dce"
       ],
-      "design_brief": "참고 이미지의 분홍 긴 레이어드 머리와 부드러운 앞머리, 양옆 땋은 번, 고양이 귀와 밝은 연보라 눈. 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠, 말린 고양이 꼬리.",
-      "weapon": "별도 무기 없이 주먹 공격",
+      "design_brief": "참고 이미지의 분홍 긴 레이어드 머리와 부드러운 앞머리, 양옆 땋은 번, 고양이 귀와 밝은 연보라 눈. 배꼽이 보이는 흰·분홍 현대 의상, 검정 팬티스타킹. 분홍 오픈 재킷, 크롭 캐미솔과 흰 쇼츠.",
+      "weapon": "별도 무기 없이 무술 발차기",
       "animations": [
         "Idle",
         "Walk",
@@ -3809,7 +4255,7 @@
         "Idle": 4.0,
         "Walk": 7.200000286102295,
         "Run": 0.6000000238418579,
-        "Attack": 1.5,
+        "Attack": 3.200000286102295,
         "Defend": 1.6666667461395264,
         "Victory": 3.000000238418579,
         "Lose": 2.8333334922790527
@@ -3820,7 +4266,8 @@
         "Victory": "Victory_Start",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -3869,6 +4316,22 @@
           ],
           "description": "City-cat loses balance and folds into a dramatic defeat"
         },
+        "Attack": {
+          "source_file": "Reijo.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native unarmed wrist action retained; target fingers closed into fists; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native martial-arts crouch, rising kick and balanced recovery"
+        },
         "Idle": {
           "source_file": "Saori (Swimsuit).glb",
           "source_clip": "Cafe_Idle",
@@ -3904,13 +4367,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Low, agile city-cat dash",
-        "Attack": "Cat pounce: lead paw jab followed by a rear paw cross",
+        "Attack": "Native martial-arts crouch, rising kick and balanced recovery",
         "Defend": "Agile, open city-cat guard",
         "Victory": "",
         "Lose": "City-cat loses balance and folds into a dramatic defeat"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Cat pounce: lead paw jab followed by a rear paw cross",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native martial-arts crouch, rising kick and balanced recovery",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -3920,7 +4383,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6775452394678972,
         "chin_target": 0.6422105381736589,
@@ -3934,15 +4397,16 @@
         "front_axis": "+Z",
         "physical_height_inferred": false
       },
-      "mesh_count": 28,
-      "triangle_count": 17874,
+      "mesh_count": 27,
+      "triangle_count": 17758,
       "source_parts": [
         "Saori (Swimsuit).glb",
         "Miyo.glb",
         "Kirara.glb",
         "Kazusa.glb",
         "Asuna (School Uniform).glb",
-        "Mika.glb"
+        "Mika.glb",
+        "Reijo.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Saori (Swimsuit).glb",
@@ -3953,6 +4417,7 @@
         "motion_run": "Saori (Swimsuit).glb",
         "motion_defend": "Asuna (School Uniform).glb",
         "motion_lose": "Mika.glb",
+        "motion_attack": "Reijo.glb",
         "motion_idle": "Saori (Swimsuit).glb",
         "motion_walk": "Saori (Swimsuit).glb",
         "motion_victory": "Saori (Swimsuit).glb"
@@ -3967,7 +4432,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/08_carmine_doll/08_carmine_doll.glb": {
@@ -3978,8 +4443,8 @@
       "filename": "08_carmine_doll.glb",
       "glb": "characters/08_carmine_doll/08_carmine_doll.glb",
       "sheet": "characters/08_carmine_doll/08_carmine_doll_sheet.png",
-      "bytes": 2943248,
-      "sha256": "eb6c9ad7d356193436227c78e1eb947f9172754cc7a9931b4acc3e1f48d90722",
+      "bytes": 3261956,
+      "sha256": "f158e2861751bcda37c2abd2a670a8d719da88acc1d132a3c93c9d209fd0b70a",
       "variants": [],
       "height": null,
       "body": {
@@ -4064,7 +4529,7 @@
         "Idle": 4.0,
         "Walk": 1.3333333730697632,
         "Run": 0.6000000238418579,
-        "Attack": 1.7999999523162842,
+        "Attack": 3.2333335876464844,
         "Defend": 1.6000001430511475,
         "Victory": 8.866666793823242,
         "Lose": 3.0
@@ -4075,7 +4540,8 @@
         "Victory": "Cafe_Reaction",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs_Cutin_03"
       },
       "motion_sources": {
         "Run": {
@@ -4127,6 +4593,22 @@
           ],
           "description": "Expressive doll collapse"
         },
+        "Attack": {
+          "source_file": "Reisa (Magical).glb",
+          "source_clip": "Exs_Cutin_03",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native airborne magical-doll flourish and pointed charm release"
+        },
         "Idle": {
           "source_file": "Reisa (Magical).glb",
           "source_clip": "Cafe_Idle",
@@ -4162,13 +4644,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Playful, asymmetric doll sprint",
-        "Attack": "Clockwork doll: alternating angular hand strikes with a ticking head",
+        "Attack": "Native airborne magical-doll flourish and pointed charm release",
         "Defend": "Expressive, drawn-in doll protection",
         "Victory": "",
         "Lose": "Expressive doll collapse"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Clockwork doll: alternating angular hand strikes with a ticking head",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native airborne magical-doll flourish and pointed charm release",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -4178,7 +4660,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6781694122613314,
         "chin_target": 0.642197184187356,
@@ -4210,6 +4692,7 @@
         "motion_run": "Mutsuki.glb",
         "motion_defend": "Sakurako (Idol).glb",
         "motion_lose": "Sakurako (Idol).glb",
+        "motion_attack": "Reisa (Magical).glb",
         "motion_idle": "Reisa (Magical).glb",
         "motion_walk": "Reisa (Magical).glb",
         "motion_victory": "Reisa (Magical).glb"
@@ -4224,7 +4707,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/09_crimson_qipao/09_crimson_qipao.glb": {
@@ -4235,8 +4718,8 @@
       "filename": "09_crimson_qipao.glb",
       "glb": "characters/09_crimson_qipao/09_crimson_qipao.glb",
       "sheet": "characters/09_crimson_qipao/09_crimson_qipao_sheet.png",
-      "bytes": 2968456,
-      "sha256": "e33140c2a2f8b0a3bc05f0ba425a9bf23cb3193f5c041561878d340dcb36089a",
+      "bytes": 3330724,
+      "sha256": "6951a01054904514dd8c008946b1278556ac15c53330baa57bed3456ddfdd04a",
       "variants": [],
       "height": null,
       "body": {
@@ -4317,7 +4800,7 @@
         "Idle": 4.0,
         "Walk": 6.333333492279053,
         "Run": 0.6000000238418579,
-        "Attack": 1.850000023841858,
+        "Attack": 7.233333587646484,
         "Defend": 1.3333333730697632,
         "Victory": 9.333333969116211,
         "Lose": 2.9166669845581055
@@ -4328,7 +4811,8 @@
         "Victory": "Cafe_Reaction",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -4380,6 +4864,22 @@
           ],
           "description": "Dramatic fan-user fall"
         },
+        "Attack": {
+          "source_file": "Niya.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Fan tilts through the native forearm arc with its paper face presented; target fingers fitted around the pivot; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native fan ritual, graceful pivot and broad ceremonial flourish"
+        },
         "Idle": {
           "source_file": "Kisaki.glb",
           "source_clip": "Cafe_Idle",
@@ -4415,13 +4915,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Strong, deliberate forward pursuit",
-        "Attack": "Peony fan: cross-body fan slice and outward wrist flourish",
+        "Attack": "Native fan ritual, graceful pivot and broad ceremonial flourish",
         "Defend": "Graceful, balanced fan-user guard",
         "Victory": "",
         "Lose": "Dramatic fan-user fall"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Peony fan: cross-body fan slice and outward wrist flourish",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native fan ritual, graceful pivot and broad ceremonial flourish",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -4431,7 +4931,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6405513107998528,
         "chin_target": 0.6056359936876078,
@@ -4451,7 +4951,8 @@
         "Kisaki.glb",
         "Serika (Swimsuit).glb",
         "Wakamo.glb",
-        "Mimori.glb"
+        "Mimori.glb",
+        "Niya.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Kisaki.glb",
@@ -4460,6 +4961,7 @@
         "motion_run": "Wakamo.glb",
         "motion_defend": "Mimori.glb",
         "motion_lose": "Wakamo.glb",
+        "motion_attack": "Niya.glb",
         "motion_idle": "Kisaki.glb",
         "motion_walk": "Kisaki.glb",
         "motion_victory": "Kisaki.glb"
@@ -4474,7 +4976,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/10_snow_buns/10_snow_buns.glb": {
@@ -4485,8 +4987,8 @@
       "filename": "10_snow_buns.glb",
       "glb": "characters/10_snow_buns/10_snow_buns.glb",
       "sheet": "characters/10_snow_buns/10_snow_buns_sheet.png",
-      "bytes": 2690464,
-      "sha256": "c6346a3a1054078eb534be0019e31e6af22b315ea0239b84225afe29bea69f62",
+      "bytes": 2997120,
+      "sha256": "5ea5a8859b071a8fafadfdf56c8e83b07c2bd724d4f71548919f341fe7472736",
       "variants": [],
       "height": null,
       "body": {
@@ -4561,7 +5063,7 @@
         "Idle": 10.333333969116211,
         "Walk": 1.3333333730697632,
         "Run": 0.6000000238418579,
-        "Attack": 2.200000047683716,
+        "Attack": 3.4000000953674316,
         "Defend": 1.3333333730697632,
         "Victory": 6.833333492279053,
         "Lose": 1.8750001192092896
@@ -4572,7 +5074,8 @@
         "Victory": "Cafe_Reaction",
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
-        "Lose": "Vital_Death"
+        "Lose": "Vital_Death",
+        "Attack": "Exs"
       },
       "motion_sources": {
         "Run": {
@@ -4624,6 +5127,22 @@
           ],
           "description": "Gentle snow-character folding defeat"
         },
+        "Attack": {
+          "source_file": "Airi.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native casting wrist performance retained; target fingers fitted around the small charm stem; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native playful windup, buoyant hop and snow-charm toss"
+        },
         "Idle": {
           "source_file": "Mutsuki (Dress).glb",
           "source_clip": "Cafe_Idle",
@@ -4659,13 +5178,13 @@
         "Idle": "",
         "Walk": "",
         "Run": "Soft but decisive snow-dress run",
-        "Attack": "Snow crystal: gather with both hands, raise, then release symmetrically",
+        "Attack": "Native playful windup, buoyant hop and snow-charm toss",
         "Defend": "Gentle, protective snow stance",
         "Victory": "",
         "Lose": "Gentle snow-character folding defeat"
       },
-      "attack_motion": "custom skeletal animation",
-      "attack_description": "Snow crystal: gather with both hands, raise, then release symmetrically",
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Native playful windup, buoyant hop and snow-charm toss",
       "animation_playback": {
         "Idle": "loop",
         "Walk": "loop",
@@ -4675,7 +5194,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6435158775564155,
         "chin_target": 0.608959861781205,
@@ -4695,7 +5214,8 @@
         "Mutsuki (Dress).glb",
         "Kirara.glb",
         "Seia.glb",
-        "Atsuko.glb"
+        "Atsuko.glb",
+        "Airi.glb"
       ],
       "source_roles": {
         "costume_and_rig": "Mutsuki (Dress).glb",
@@ -4704,6 +5224,7 @@
         "motion_run": "Atsuko.glb",
         "motion_defend": "Atsuko.glb",
         "motion_lose": "Atsuko.glb",
+        "motion_attack": "Airi.glb",
         "motion_idle": "Mutsuki (Dress).glb",
         "motion_walk": "Mutsuki (Dress).glb",
         "motion_victory": "Mutsuki (Dress).glb"
@@ -4718,7 +5239,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/11_quinn_adventurer/11_quinn_adventurer.glb": {
@@ -5015,7 +5536,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Purposeful, observant scout walk",
       "victory_description": "Small scout victory salute"
@@ -5028,8 +5549,8 @@
       "filename": "12_kimon_fox_idol.glb",
       "glb": "characters/12_kimon_fox_idol/12_kimon_fox_idol.glb",
       "sheet": "characters/12_kimon_fox_idol/12_kimon_fox_idol_sheet.png",
-      "bytes": 3292740,
-      "sha256": "9d5e007aaf77670f461ed71d47f8dad4ff6ee5e5b85a3863b0b87122d7af915c",
+      "bytes": 3362324,
+      "sha256": "dfb44979ea2896857ede6115e55b0eff668d3fc4cc244a3f025cb873aaeb5197",
       "variants": [],
       "height": null,
       "body": {
@@ -5063,7 +5584,7 @@
           "청록색",
           "노란색"
         ],
-        "description": "Seia의 실제 상의·칼라·주름치마를 크림색·청록색으로 편집하고 Hina (Swimsuit)의 해부학 복부 메시로 노출된 허리를 조합. 단순 치마 덮개를 제거해 원본 플리츠·주름·봉제선을 드러내고, 직물 무늬·접힌 음영을 넣은 체크 긴 패널과 넓은 분리형 소매를 조합",
+        "description": "Seia의 실제 상의·칼라·주름치마를 크림색·청록색으로 편집하고 Hina (Swimsuit)의 해부학 복부 메시로 노출된 허리를 조합. 단순 치마 덮개를 제거해 원본 플리츠·주름·봉제선을 드러내고, 직물 무늬·접힌 음영을 넣은 체크 긴 패널과 넓은 분리형 소매를 조합. 목 리본을 실제 블라우스 표면에 붙이고 같은 스킨 가중치로 함께 움직이도록 피팅",
         "legwear": [
           "맨다리"
         ],
@@ -5122,10 +5643,10 @@
         "Run": "Move_Ing",
         "Defend": "Vital_Panic",
         "Lose": "Vital_Death",
+        "Attack": "Exs",
         "Idle": "Cafe_Idle",
         "Walk": "Cafe_Walk",
-        "Victory": "Victory_Start",
-        "Attack": "Exs"
+        "Victory": "Victory_Start"
       },
       "motion_sources": {
         "Run": {
@@ -5177,6 +5698,22 @@
           ],
           "description": "Fox idol falters and settles into defeat"
         },
+        "Attack": {
+          "source_file": "Izuna.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
+            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
+          ],
+          "description": "Native fox-ninja casting flourish, with a fitted starbell baton grip"
+        },
         "Idle": {
           "source_file": "Izuna.glb",
           "source_clip": "Cafe_Idle",
@@ -5226,22 +5763,6 @@
             "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
           ],
           "description": "Exuberant fox-ninja victory"
-        },
-        "Attack": {
-          "source_file": "Izuna.glb",
-          "source_clip": "Exs",
-          "adaptation": [
-            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
-            "Non-root body translation deltas scaled to the target/source height ratio",
-            "Horizontal root travel removed; native vertical bounce retained",
-            "Source props, expressions, scale and visibility excluded",
-            "Native garment rotations fitted to target cloth categories and rest positions",
-            "30 fps quaternion resampling and normalized rotations",
-            "Smooth entry and recovery to the target bind pose",
-            "Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained",
-            "Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps"
-          ],
-          "description": "Native fox-ninja casting flourish, with a fitted starbell baton grip"
         }
       },
       "motion_descriptions": {
@@ -5264,7 +5785,7 @@
         "Victory": "once",
         "Lose": "once_hold"
       },
-      "build_revision": 5,
+      "build_revision": 6,
       "head_fit": {
         "neck_top": 0.6362680687415477,
         "chin_target": 0.6090875668808888,
@@ -5279,7 +5800,7 @@
         "physical_height_inferred": false
       },
       "mesh_count": 44,
-      "triangle_count": 15258,
+      "triangle_count": 16788,
       "source_parts": [
         "Seia.glb",
         "Izuna (Swimsuit).glb",
@@ -5295,10 +5816,10 @@
         "motion_run": "Izuna.glb",
         "motion_defend": "Izuna.glb",
         "motion_lose": "Seia.glb",
+        "motion_attack": "Izuna.glb",
         "motion_idle": "Izuna.glb",
         "motion_walk": "Izuna.glb",
-        "motion_victory": "Izuna.glb",
-        "motion_attack": "Izuna.glb"
+        "motion_victory": "Izuna.glb"
       },
       "evidence": {
         "manifest": "characters/manifest.json",
@@ -5310,7 +5831,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Buoyant fox-ninja walk",
       "victory_description": "Exuberant fox-ninja victory"
@@ -5602,7 +6123,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Measured, composed witch walk",
       "victory_description": "Cheerful witch celebration"
@@ -5896,7 +6417,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory와 소품용 Attack은 유지. 새 4명은 일곱 모션을 원본에서 선정하고, 14명 각각 다른 원본의 Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Gentle ceremonial walk",
       "victory_description": "Courteous bridal celebration"

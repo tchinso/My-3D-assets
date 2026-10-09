@@ -1,0 +1,30 @@
+{
+  "file": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets\\characters\\02_azure_reaper\\02_azure_reaper.glb",
+  "method": "Exported skinned inner/outer blade midpoints and inner-edge tangent; sharp-edge outward normal dotted with its velocity",
+  "strike_windows": [
+    {
+      "phase_window": [
+        0.3,
+        0.42
+      ],
+      "samples": 121,
+      "cutting_edge_leading_fraction": 0.9256198347107438,
+      "mean_signed_edge_velocity_mps": 1.5543080212462184,
+      "min_signed_edge_velocity_mps": -0.3013460696521806,
+      "max_signed_edge_velocity_mps": 3.939766365227813
+    },
+    {
+      "phase_window": [
+        0.66,
+        0.78
+      ],
+      "samples": 121,
+      "cutting_edge_leading_fraction": 1.0,
+      "mean_signed_edge_velocity_mps": 2.743360262704068,
+      "min_signed_edge_velocity_mps": 0.15648792909745865,
+      "max_signed_edge_velocity_mps": 4.251586864277238
+    }
+  ],
+  "criteria": "Both sweep windows have positive mean edge-leading velocity; at least 95% of primary-strike samples lead with the cutting edge",
+  "pass": true
+}

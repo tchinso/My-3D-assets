@@ -328,6 +328,8 @@ def _garment(b,p):
                    j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
             idx=idx[~skirt]
     mat=b.wardrobe_material('Reference tailored source / '+b.src.name+' / '+p['mat']['name'],p,_repaint(b,p))
+    if cid==12 and p is b.main_body:
+        b.kimon_blouse_surface=(pos,idx,b.map_bones(p,b.src,np.zeros(3)),p['w'])
     b.mesh('Reference donor garment / '+p['name'],pos,idx,mat,uv=p['uv'],norm=None,
            j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
 
@@ -534,6 +536,86 @@ def _leatherwork(b,gold,cream):
         b.mesh('Quinn twin leaf dagger',vertices,[[0,3,2],[3,1,2]],b.material('Quinn dagger steel','#dce6e8',metal=.65),bone)
 
 
+def _kimon_clothing_bow(b,mat):
+    """Drape the existing bow onto the exported blouse and inherit its skinning."""
+    pos,idx,joints,weights=b.kimon_blouse_surface
+    triangles=pos[idx];center=triangles.mean(1)
+    front=(center[:,2]>.015)&(center[:,1]>.50)&(center[:,1]<.65)&(np.abs(center[:,0])<.10)
+    idx=idx[front];triangles=triangles[front]
+    a=triangles[:,0,:2];ab=triangles[:,1,:2]-a;ac=triangles[:,2,:2]-a
+    determinant=ab[:,0]*ac[:,1]-ab[:,1]*ac[:,0]
+    denominator=np.where(np.abs(determinant)>1e-12,determinant,1)
+
+    def fit(points,clearance=.0015):
+        fitted=np.asarray(points,float).copy();out_j=[];out_w=[]
+        for point in fitted:
+            ap=point[:2]-a
+            u=(ap[:,0]*ac[:,1]-ap[:,1]*ac[:,0])/denominator
+            v=(ab[:,0]*ap[:,1]-ab[:,1]*ap[:,0])/denominator
+            bary=np.c_[1-u-v,u,v]
+            inside=(bary>=-1e-8).all(1)&(np.abs(determinant)>1e-12)
+            # At the collar edge, use the closest cloth point for depth and
+            # weights while preserving the bow's original outline in X/Y.
+            nearest=np.zeros_like(bary);distance=np.full(len(idx),np.inf)
+            for first,second in ((0,1),(1,2),(2,0)):
+                edge=triangles[:,second,:2]-triangles[:,first,:2]
+                t=np.clip(((point[:2]-triangles[:,first,:2])*edge).sum(1)/np.maximum((edge*edge).sum(1),1e-15),0,1)
+                q=triangles[:,first,:2]+t[:,None]*edge
+                d=((point[:2]-q)**2).sum(1);closer=d<distance
+                nearest[closer]=0;nearest[closer,first]=1-t[closer];nearest[closer,second]=t[closer]
+                distance[closer]=d[closer]
+            nearest[inside]=bary[inside];distance[inside]=0
+            nearest=np.maximum(nearest,0);nearest/=nearest.sum(1)[:,None]
+            depth=(triangles[:,:,2]*nearest).sum(1)
+            eligible=distance<=distance.min()+1e-12
+            chosen=int(np.argmax(np.where(eligible,depth,-np.inf)))
+            point[2]+=clearance+depth[chosen]
+            combined={}
+            for vertex,factor in zip(idx[chosen],nearest[chosen]):
+                for joint,weight in zip(joints[vertex],weights[vertex]):
+                    combined[int(joint)]=combined.get(int(joint),0)+factor*weight
+            influence=sorted(combined.items(),key=lambda item:item[1],reverse=True)[:4]
+            jj=[joint for joint,_ in influence];ww=[weight for _,weight in influence]
+            out_j.append(jj+[0]*(4-len(jj)));out_w.append(ww+[0]*(4-len(ww)))
+        return fitted,np.asarray(out_j),np.asarray(out_w)
+
+    def cloth_patch(name,vertices,faces):
+        # Extra samples keep long tails on the curved blouse between corners.
+        points=[];indices=[];steps=16
+        for face in faces:
+            triangle=np.asarray(vertices,float)[face];slots={}
+            for row in range(steps+1):
+                for col in range(steps-row+1):
+                    slots[row,col]=len(points)
+                    points.append(triangle[0]+(triangle[1]-triangle[0])*row/steps+(triangle[2]-triangle[0])*col/steps)
+            for row in range(steps):
+                for col in range(steps-row):
+                    indices.append([slots[row,col],slots[row+1,col],slots[row,col+1]])
+                    if row+col<steps-1:indices.append([slots[row+1,col],slots[row+1,col+1],slots[row,col+1]])
+        points,j,w=fit(points,.0075);b.mesh(name,points,indices,mat,j=j,w=w)
+
+    s=.047;y=.59
+    for side in (-1,1):
+        cloth_patch('Kimon orange bow tie loop',[[0,y,.004],[side*s,y+s*.55,0],
+                    [side*s*1.18,y-s*.55,0],[0,y-s*.12,.004]],[[0,1,2],[0,2,3]])
+        cloth_patch('Kimon orange bow tie tail',[[0,y,0],[side*s*.28,y-s*1.3,0],
+                    [side*s*.7,y-s*1.12,0]],[[0,1,2]])
+    points=[];faces=[];segments=24;rings=12
+    for row in range(rings+1):
+        theta=math.pi*row/rings
+        for col in range(segments+1):
+            phi=2*math.pi*col/segments
+            points.append([s*.22*math.sin(theta)*math.cos(phi),y+s*.25*math.cos(theta),
+                           s*.15*(1+math.sin(theta)*math.sin(phi))])
+    for row in range(rings):
+        for col in range(segments):
+            i=row*(segments+1)+col;k=i+segments+1;faces.extend([[i,i+1,k],[i+1,k+1,k]])
+    points,j,w=fit(points);b.mesh('Kimon orange bow tie knot',points,faces,mat,j=j,w=w)
+    anchor,_,_=fit([[0,y,0]])
+    b.appearance_fit['clothing_ribbon']={'method':'Original bow outline draped onto retained blouse triangles with interpolated garment skin weights',
+        'surface_clearance':.0015,'fold_clearance':.0075,'knot_anchor':anchor[0].tolist(),'torso_helper_depth_offset':0}
+
+
 def _fox_panels(b,gold,cream):
     orange=b.material('Kimon orange piping','#ed8830');teal=b.material('Kimon turquoise silk','#7ed2d2')
     texture=_woven_texture('#fff0d1');d=ImageDraw.Draw(texture)
@@ -582,7 +664,7 @@ def _fox_panels(b,gold,cream):
         for edge in [0,cols]:
             points=[v[k*(cols+1)+edge]for k in range(rows+1)]
             b.tube('Kimon orange panel border',points,[.0025]*(rows+1),orange,bones)
-    b.bow('Kimon orange bow tie',[0,.59,.101],.047,orange,'Bip001 Spine1')
+    _kimon_clothing_bow(b,orange)
     # Deliberate star/bell motifs instead of the swimsuit donor's headband.
     _point(b,'Kimon lilac hair star',[-.047,b.headpos[1]+.205,.148],.020,b.material('Kimon violet stars','#a09ccb'))
     b.bow('Kimon ponytail ribbon',[.164,b.headpos[1]+.15,-.025],.032,teal)
@@ -822,7 +904,7 @@ def outfits(b):
     {11:_leatherwork,12:_fox_panels,13:_witch,14:_bride}[b.c['id']](b,gold,cream)
     details={
         11:'Original Serika jacket shoulder/back topology and atlas cropped and fitted over the retained blouse pintucks; charcoal tailoring, fitted pleated ivory cravat with gold-framed teal pendant, twelve-pleat paired-jewel cuffs, scalloped leather waist, black belt, angular silver buckle, linked chain and silver rivets; dark donor twin-tail locks fitted into broad waves',
-        12:'Original rigged Seia skirt pleats and cream hem exposed by removing the primitive skirt overlay; turquoise source atlas, folded checked panels with woven shading, piping and stitched edges; original gathered sleeves preserved',
+        12:'Original rigged Seia skirt pleats and cream hem exposed by removing the primitive skirt overlay; turquoise source atlas, folded checked panels with woven shading, piping and stitched edges; original gathered sleeves preserved; clothing bow draped onto the retained blouse and sharing its interpolated skin weights',
         13:'Original Seia gathered sleeve topology and cuff atlases retargeted to the character rest arms; folded navy constellation-embroidered cape, rose damask inner lining, gold braid and source Reisa dress frills preserved',
         14:'Original Mari Idol ruffle hem topology and stitch atlas fitted onto four silk tiers; ivory and lilac embroidered satin with woven shading and sewn borders; original Saori corset and large back bow preserved',
     }

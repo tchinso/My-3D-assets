@@ -1,0 +1,52 @@
+{
+  "errors": [],
+  "Momo": {
+    "non_tail_mesh_buffers_identical": true,
+    "buffers_compared": 162,
+    "removed_tail_triangles": 116
+  },
+  "Kimon": {
+    "samples_per_clip": 33,
+    "surface_clearance": 0.0015,
+    "contact_error_tolerance": 2e-05,
+    "gap_by_clip": {
+      "Idle": {
+        "minimum_gap": 0.0015000249619667827,
+        "maximum_gap": 0.0015000249741386194,
+        "maximum_contact_error": 2.497413861932314e-08
+      },
+      "Walk": {
+        "minimum_gap": 0.0015000249741385862,
+        "maximum_gap": 0.001500024984077445,
+        "maximum_contact_error": 2.4984077444910324e-08
+      },
+      "Run": {
+        "minimum_gap": 0.0015000249422148124,
+        "maximum_gap": 0.0015000249741387013,
+        "maximum_contact_error": 2.4974138701288826e-08
+      },
+      "Attack": {
+        "minimum_gap": 0.001500024922821724,
+        "maximum_gap": 0.001500024974138739,
+        "maximum_contact_error": 2.497413873901906e-08
+      },
+      "Defend": {
+        "minimum_gap": 0.001500024922821724,
+        "maximum_gap": 0.0015000249741387109,
+        "maximum_contact_error": 2.4974138710829805e-08
+      },
+      "Victory": {
+        "minimum_gap": 0.001500024922821724,
+        "maximum_gap": 0.0015000249741388056,
+        "maximum_contact_error": 2.4974138805589075e-08
+      },
+      "Lose": {
+        "minimum_gap": 0.0015000249675282049,
+        "maximum_gap": 0.0015000250469130111,
+        "maximum_contact_error": 2.5046913011087663e-08
+      }
+    },
+    "contact_preserved": true
+  },
+  "valid": true
+}

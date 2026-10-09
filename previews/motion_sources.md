@@ -1,23 +1,38 @@
 # 원본 모션 선정 내역
 
-2026-10-08 수정. 원본 파일은 `C:\Codex\BlueArchive-GLB`에서 읽고 수정하지 않습니다.
+2026-10-09 수정. 원본 파일은 `C:\Codex\BlueArchive-GLB`에서 읽고 수정하지 않습니다.
 
-| 캐릭터 | Run | Defend | Lose |
-| --- | --- | --- | --- |
-| Marin | Momoi (Maid).glb · `Move_Ing` | Momoi (Maid).glb · `Vital_Panic` | Momoi (Maid).glb · `Vital_Death` |
-| Viola | Haruka (Dress).glb · `Move_Ing` | Tsurugi.glb · `Vital_Panic` | Tsurugi.glb · `Vital_Death` |
-| Sora | Serika.glb · `Move_Ing` | Serika.glb · `Vital_Panic` | Serika.glb · `Vital_Death` |
-| Elise | Sena (Casual).glb · `Move_Ing` | Sena (Casual).glb · `Vital_Panic` | Sena (Casual).glb · `Vital_Death` |
-| Rina | Reisa.glb · `Move_Ing` | Noa.glb · `Vital_Panic` | Noa.glb · `Vital_Death` |
-| Fennel | Ibuki.glb · `Move_Ing` | Ibuki.glb · `Vital_Panic` | Ibuki.glb · `Vital_Death` |
-| Momo | Saori (Swimsuit).glb · `Move_Ing` | Asuna (School Uniform).glb · `Vital_Panic` | Mika.glb · `Vital_Death` |
-| Rosette | Mutsuki.glb · `Move_Ing` | Sakurako (Idol).glb · `Vital_Panic` | Sakurako (Idol).glb · `Vital_Death` |
-| Meilin | Wakamo.glb · `Move_Ing` | Mimori.glb · `Vital_Panic` | Wakamo.glb · `Vital_Death` |
-| Nevia | Atsuko.glb · `Move_Ing` | Atsuko.glb · `Vital_Panic` | Atsuko.glb · `Vital_Death` |
-| Quinn | Neru.glb · `Move_Ing` | Mine.glb · `Vital_Panic` | Mine.glb · `Vital_Death` |
-| Kimon | Izuna.glb · `Move_Ing` | Izuna.glb · `Vital_Panic` | Seia.glb · `Vital_Death` |
-| Florielle | Eri.glb · `DiceRace_Run` | Eri.glb · `Vital_Panic` | Eri.glb · `Vital_Death` |
-| Rosaria | Mari (Idol).glb · `Move_Ing` | Mari (Idol).glb · `Vital_Panic` | Mari (Idol).glb · `Vital_Death` |
+| 캐릭터 | Attack | Run | Defend | Lose |
+| --- | --- | --- | --- | --- |
+| Marin | Mine.glb · `Exs` | Momoi (Maid).glb · `Move_Ing` | Momoi (Maid).glb · `Vital_Panic` | Momoi (Maid).glb · `Vital_Death` |
+| Viola | Saten Ruiko.glb · `Exs` | Haruka (Dress).glb · `Move_Ing` | Tsurugi.glb · `Vital_Panic` | Tsurugi.glb · `Vital_Death` |
+| Sora | Misaka Mikoto.glb · `Exs` | Serika.glb · `Move_Ing` | Serika.glb · `Vital_Panic` | Serika.glb · `Vital_Death` |
+| Elise | Umika.glb · `Exs01` | Sena (Casual).glb · `Move_Ing` | Sena (Casual).glb · `Vital_Panic` | Sena (Casual).glb · `Vital_Death` |
+| Rina | Koharu.glb · `Exs` | Reisa.glb · `Move_Ing` | Noa.glb · `Vital_Panic` | Noa.glb · `Vital_Death` |
+| Fennel | Suzumi (Magical).glb · `Exs` | Ibuki.glb · `Move_Ing` | Ibuki.glb · `Vital_Panic` | Ibuki.glb · `Vital_Death` |
+| Momo | Reijo.glb · `Exs` | Saori (Swimsuit).glb · `Move_Ing` | Asuna (School Uniform).glb · `Vital_Panic` | Mika.glb · `Vital_Death` |
+| Rosette | Reisa (Magical).glb · `Exs_Cutin_03` | Mutsuki.glb · `Move_Ing` | Sakurako (Idol).glb · `Vital_Panic` | Sakurako (Idol).glb · `Vital_Death` |
+| Meilin | Niya.glb · `Exs` | Wakamo.glb · `Move_Ing` | Mimori.glb · `Vital_Panic` | Wakamo.glb · `Vital_Death` |
+| Nevia | Airi.glb · `Exs` | Atsuko.glb · `Move_Ing` | Atsuko.glb · `Vital_Panic` | Atsuko.glb · `Vital_Death` |
+| Quinn | Neru.glb · `Exs` | Neru.glb · `Move_Ing` | Mine.glb · `Vital_Panic` | Mine.glb · `Vital_Death` |
+| Kimon | Izuna.glb · `Exs` | Izuna.glb · `Move_Ing` | Izuna.glb · `Vital_Panic` | Seia.glb · `Vital_Death` |
+| Florielle | Eri.glb · `Exs` | Eri.glb · `DiceRace_Run` | Eri.glb · `Vital_Panic` | Eri.glb · `Vital_Death` |
+| Rosaria | Mimori.glb · `Exs` | Mari (Idol).glb · `Move_Ing` | Mari (Idol).glb · `Vital_Panic` | Mari (Idol).glb · `Vital_Death` |
+
+## 1–10번 공격 동작
+
+| 캐릭터 | 원본 | 동작·보정 |
+| --- | --- | --- |
+| Marin | Mine.glb · `Exs` | Native airborne charge and descending rapier plunge |
+| Viola | Saten Ruiko.glb · `Exs` | Native two-handed windup, full-body turn and broad crescent-scythe sweep |
+| Sora | Misaka Mikoto.glb · `Exs` | Native coin-flick charge and decisive forward spell release |
+| Elise | Umika.glb · `Exs01` | Native flowing festival flourish and arcing tidal cast |
+| Rina | Koharu.glb · `Exs` | Native overhead windup and emphatic academy spell toss |
+| Fennel | Suzumi (Magical).glb · `Exs` | Native magical-girl wand presentation and sweeping clover cast |
+| Momo | Reijo.glb · `Exs` | Native martial-arts crouch, rising kick and balanced recovery |
+| Rosette | Reisa (Magical).glb · `Exs_Cutin_03` | Native airborne magical-doll flourish and pointed charm release |
+| Meilin | Niya.glb · `Exs` | Native fan ritual, graceful pivot and broad ceremonial flourish |
+| Nevia | Airi.glb · `Exs` | Native playful windup, buoyant hop and snow-charm toss |
 
 ## Quinn·Kimon·Florielle·Rosaria의 전체 모션
 

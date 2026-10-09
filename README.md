@@ -33,11 +33,13 @@ Quinn의 트윈테일 뿌리와 붉은 리본은 실제 두피·머리 표면에
 
 Momo는 Miyo의 앞머리·얼굴·원본 미소 입, Kirara의 긴 웨이브·양쪽 번, Kazusa의 고양이 귀를 조합하고 눈을 연보라색으로 편집했습니다. Meilin은 Serika (Swimsuit)의 트윈테일 단면을 넓히고 실제 묶음 위치에 붉은 꽃리본·금색 줄과 펜던트를 추가했습니다. Rina는 머리 크기와 관절 위치를 유지하며 몸통 폭을 20%, 몸통 두께를 14%, 팔다리 단면을 17–18% 줄였습니다. `previews/appearance_changes.png`에서 세 캐릭터의 전후 모습을 비교할 수 있습니다.
 
+2026-10-09 수정에서는 Momo의 뒤쪽 고양이 꼬리만 제거했습니다. Kimon의 목 리본은 실제 블라우스 표면에 붙이고 옷과 같은 스킨 가중치를 사용해 동작 중에도 함께 움직이도록 조정했습니다. `previews/attachment_changes.png`에서 수정 전후를 비교할 수 있습니다.
+
 Marin의 원본 트윈테일을 느슨한 1–2회 롤로 조정하고 Erika의 실제 휘어진 아호게를 조합했습니다. 차 서비스와 펜싱 성격에 맞는 땋은 디테일·남색 리본·진주와 작은 차·숟가락 장식도 유지했습니다. Viola는 Erika의 실제 짧은 레이어드 단발을 진한 청보라색으로 편집하고 파란 장미를 유지했습니다. Rosette는 Reisa (Magical)의 정수리·앞머리·얼굴 옆 머리를 유지하고 Seia (Swimsuit)의 실제 두 번 말린 굵은 포니테일 파츠를 복제·반사해 양쪽 롤 트윈테일로 피팅했습니다. 연분홍색에서 민트·아쿠아색으로 이어지는 머리 끝과 중앙 앞머리 컬도 적용했습니다. `previews/hair_changes.png`에서 이번 머리 수정의 전후 모습을 비교할 수 있습니다.
 
 ## 미리보기
 
-`previews/lineup.png`는 전체 14명의 캐릭터 연락판입니다. `previews/motion_grid.gif`와 7종 모션별 포즈 연락판도 제공됩니다. `previews/run_grid.gif`는 14명의 달리기를 정면에서, `previews/run_side_grid.gif`는 측면에서 보여 줍니다. `previews/run_side_sequence.png`에는 각 캐릭터의 원본 이름과 달리기 한 주기의 6개 측면 포즈가 있습니다. 모션 연락판은 캐릭터별 주기를 같은 위상으로 맞춰 비교하며, 각 원본의 실제 재생 시간은 GLB와 뷰어에서 유지됩니다.
+`previews/lineup.png`는 전체 14명의 캐릭터 연락판입니다. `previews/motion_grid.gif`와 7종 모션별 포즈 연락판도 제공됩니다. `previews/attack_grid.gif`는 14명의 공격을, `previews/attack_sequence.png`는 원본 이름과 공격 동작의 8개 포즈를 보여 줍니다. `previews/run_grid.gif`는 14명의 달리기를 정면에서, `previews/run_side_grid.gif`는 측면에서 보여 줍니다. `previews/run_side_sequence.png`에는 각 캐릭터의 원본 이름과 달리기 한 주기의 6개 측면 포즈가 있습니다. 모션 연락판은 캐릭터별 주기를 같은 위상으로 맞춰 비교하며, 각 원본의 실제 재생 시간은 GLB와 뷰어에서 유지됩니다.
 
 로컬 3D 뷰어는 저장소 루트에서 아래 명령을 실행한 뒤 `http://localhost:8000/viewer/`를 열면 됩니다. GLB 선택, 회전·확대 및 애니메이션 재생을 지원하며 외부 네트워크 없이 동작합니다.
 
@@ -47,7 +49,7 @@ python -m http.server 8000 --bind 127.0.0.1
 
 ## 애니메이션
 
-각 GLB에 `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose`가 포함됩니다. 2026-10-08 수정에서는 14명 모두의 `Run`·`Defend`·`Lose`를 서로 다른 원본 캐릭터의 모션으로 교체했습니다. Quinn·Kimon·Florielle·Rosaria의 나머지 모션도 원본에서 새로 선정했습니다. 기존 10명의 원본 대기·걷기·승리와 소품용 공격은 유지합니다.
+각 GLB에 `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose`가 포함됩니다. 2026-10-08 수정에서는 14명 모두의 `Run`·`Defend`·`Lose`를 서로 다른 원본 캐릭터의 모션으로 교체했습니다. Quinn·Kimon·Florielle·Rosaria의 나머지 모션도 원본에서 새로 선정했습니다. 2026-10-09 수정에서는 1–10번의 `Attack`을 각자 다른 원본 전투 동작으로 교체했습니다. 11–14번의 공격과 기존 대기·걷기·승리 등 나머지 모션은 유지합니다.
 
 원본의 몸통·팔·다리 회전 곡선을 각 의상 골격의 기본 자세와 비율에 맞춰 리타게팅합니다. 달리기는 원본의 넓은 보폭과 무릎 동작을 사용하고, 이동 경로는 제자리로 보정합니다. 손가락·손목은 실제 소품에 맞춰 조정합니다. 원본의 메시 숨김·무기·효과는 복사하지 않습니다. 반복 모션은 처음과 끝을 연결하고, `Lose`는 원본 패배 동작 뒤의 마지막 자세를 유지합니다. 뷰어에서는 모션 버튼을 다시 누르면 처음부터 재생합니다. 실시간 옷감·머리카락 물리는 포함하지 않습니다.
 
@@ -55,16 +57,16 @@ python -m http.server 8000 --bind 127.0.0.1
 
 | 캐릭터 | 공격 동작 |
 | --- | --- |
-| Marin | 레이피어를 겨누고 한 발 내딛는 펜싱 찌르기 |
-| Viola | 양손으로 낫을 들어 안쪽 날로 내려 베기 |
-| Sora | 옆으로 큰 물결을 그리고 손바닥으로 방출 |
-| Elise | 머리 위로 둥근 소환 궤적을 그리는 물결 동작 |
-| Rina | 짧고 정확한 두 차례 참 방출 |
-| Fennel | 클로버 지팡이를 나선으로 올린 뒤 씨앗을 튕기는 동작 |
-| Momo | 앞손 고양이 잽에 이은 뒷손 크로스 |
-| Rosette | 좌우로 각진 태엽 인형 타격과 고개 움직임 |
-| Meilin | 몸 앞을 가로지르는 부채 베기와 손목 회전 |
-| Nevia | 양손으로 눈 결정을 모아 들어 올리고 방출 |
+| Marin | 도약한 뒤 레이피어로 내려찍는 찌르기 |
+| Viola | 몸을 크게 감아 낫의 안쪽 날이 먼저 닿는 회전 베기 |
+| Sora | 동전을 튕기듯 손끝을 겨누고 마력을 방출 |
+| Elise | 축제 공연처럼 넓고 부드러운 소환 궤적 |
+| Rina | 머리 위로 손을 들어 참을 던지는 주문 |
+| Fennel | 클로버 지팡이를 크게 휘두르는 마법 동작 |
+| Momo | 중심을 낮춘 뒤 몸을 돌리는 무술 발차기 |
+| Rosette | 공중으로 떠올라 인형 참을 휘두르는 동작 |
+| Meilin | 몸을 돌리며 부채를 펼치는 의식 동작 |
+| Nevia | 눈덩이를 던지듯 발랄하게 손을 뻗는 동작 |
 
 새 4명의 동작 설명은 `model_features.json`의 `motion_descriptions`와 원본 표에 기록합니다. 별도의 투사체·마법 VFX는 포함하지 않습니다.
 
@@ -81,6 +83,10 @@ node tools/validate_gltf.cjs
 ```
 
 제작 스크립트만 원본 파츠 폴더가 필요합니다. 제공된 GLB·시트·뷰어·검사 도구는 그 폴더 없이 사용 가능합니다. `previews/gltf_validation.json`에는 Khronos 검증 결과, `previews/validation.json`에는 파일·스킨·애니메이션·시트 검사 결과가 저장됩니다. `previews/motion_validation.json`에는 41개 위상에서 측정한 모션별 관절 곡선의 중복 검사와 가장 가까운 캐릭터 쌍의 각도 차이를 기록합니다.
+
+`previews/attachment_validation.json`은 Momo의 꼬리 외 메시 보존과 Kimon 리본의 7개 모션 중 옷 표면 접촉을 검사한 결과입니다. 수정 전 GLB를 별도로 보관한 경우 `tools/validate_motions.py --before <폴더>`로 나머지 모션 보존을, `tools/validate_attachments.py --before <폴더>`로 부착물 수정을 다시 검사할 수 있습니다.
+
+Viola는 첫 베기와 반대 방향의 되베기 사이에 낫을 부드럽게 돌립니다. `previews/viola_cutting_edge.png`는 타격 포즈를, `previews/cutting_edge_validation.json`은 최종 GLB의 실제 날 정점 이동과 안쪽 날의 바깥 법선을 비교한 결과를 보여 줍니다.
 
 ## 출처
 

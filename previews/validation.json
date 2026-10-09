@@ -1,7 +1,7 @@
 {
-  "generated_utc": "2026-10-08T11:40:45.501235+00:00",
+  "generated_utc": "2026-10-09T10:41:18.721051+00:00",
   "root": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets",
-  "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, original motion provenance, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
+  "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, native motion provenance including Attack, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
   "errors": [],
   "warnings": [],
   "characters": [
@@ -11,12 +11,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2316248,
+        "bytes": 2609904,
         "nodes": 370,
         "meshes": 44,
         "skins": 1,
         "embedded_images": 9,
-        "accessors": 1479,
+        "accessors": 1704,
         "skin_bind_residuals": [
           1.4153760155040216e-07
         ],
@@ -130,18 +130,21 @@
             }
           },
           "anatomical_motion_fingerprint": "1d87cbdcbe4931cbc699eef5349bb82cbfe51d81c1109f00352858287d7fa65c",
-          "walk_normalized_phase_max_difference": 0.37045754818803484,
-          "walk_normalized_phase_rms_difference": 0.25318009470636293
+          "walk_normalized_phase_max_difference": 0.3704575480412707,
+          "walk_normalized_phase_rms_difference": 0.25318009460420116
         },
         "Attack": {
-          "channels": 27,
-          "duration_seconds": 1.5499999523162842,
-          "moving_channels": 27,
+          "channels": 224,
+          "duration_seconds": 2.2333333492279053,
+          "moving_channels": 224,
           "loop_endpoints_exact": false,
-          "description": "Ribbon rapier: measured fencing lunge and recovery",
+          "description": "Native airborne charge and descending rapier plunge",
+          "source_file": "Mine.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.6586205867306522,
-          "anatomical_motion_fingerprint": "c4536e6109ed94a44371529b70801b7fe24139c791a2b7bf9a2544bd313ff734"
+          "sampled_minimum_ground_gap": 0.00013615361602297527,
+          "sampled_geometry_max_displacement": 2.277127824780057,
+          "anatomical_motion_fingerprint": "f93990787a1d472cfaf1e058bccb6996cc82296cca76f6d1164687d2f539801e"
         },
         "Defend": {
           "channels": 232,
@@ -177,10 +180,10 @@
           "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_minimum_ground_gap": 0.00853334393979576,
-          "sampled_geometry_max_displacement": 1.0046524682712816,
+          "sampled_geometry_max_displacement": 1.0046524688405638,
           "anatomical_motion_fingerprint": "5ace2e63b250479e96408f9215bc04acf2d449cd15ac99ebf099c58ca0068656",
-          "terminal_pose_displacement": 1.0046524047387397,
-          "terminal_pose_hold_max_error": 6.780488376643104e-08
+          "terminal_pose_displacement": 1.0046524053080217,
+          "terminal_pose_hold_max_error": 6.780488405677652e-08
         }
       },
       "status": "passed",
@@ -194,12 +197,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2124688,
+        "bytes": 2331856,
         "nodes": 215,
         "meshes": 35,
         "skins": 1,
         "embedded_images": 9,
-        "accessors": 1119,
+        "accessors": 1244,
         "skin_bind_residuals": [
           9.688339597246909e-08
         ],
@@ -317,14 +320,17 @@
           "walk_normalized_phase_rms_difference": 0.09087339514535936
         },
         "Attack": {
-          "channels": 37,
-          "duration_seconds": 1.9500000476837158,
-          "moving_channels": 37,
+          "channels": 124,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 124,
           "loop_endpoints_exact": false,
-          "description": "Crescent scythe: two-handed overhead reaping cut with inner edge leading",
+          "description": "Native two-handed windup, full-body turn and broad crescent-scythe sweep",
+          "source_file": "Saten Ruiko.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.8546224451032614,
-          "anatomical_motion_fingerprint": "2a3216d909c658f60d8fc5454e111db7bb284c717aa674fede547700e99e0598"
+          "sampled_minimum_ground_gap": 0.00020447272323427106,
+          "sampled_geometry_max_displacement": 1.2229083169631074,
+          "anatomical_motion_fingerprint": "ca42724b739007b25c66fe3a29269649617e69cb7c0f1195e26af40bcdf9d962"
         },
         "Defend": {
           "channels": 119,
@@ -377,14 +383,14 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2187824,
+        "bytes": 2760376,
         "nodes": 400,
         "meshes": 100,
         "skins": 1,
         "embedded_images": 9,
-        "accessors": 1635,
+        "accessors": 1856,
         "skin_bind_residuals": [
-          1.4770825711520338e-07
+          1.5338193439773466e-07
         ],
         "vertex_records": 8107,
         "triangles": 10181,
@@ -496,18 +502,21 @@
             }
           },
           "anatomical_motion_fingerprint": "f3005da184c8236d6f9fffac1ff14bec52ab0e7c4ee52287a06daf2e4097f722",
-          "walk_normalized_phase_max_difference": 0.35321834852453343,
-          "walk_normalized_phase_rms_difference": 0.13172890159612222
+          "walk_normalized_phase_max_difference": 0.3532183485822919,
+          "walk_normalized_phase_rms_difference": 0.13172890161657172
         },
         "Attack": {
-          "channels": 27,
-          "duration_seconds": 1.75,
-          "moving_channels": 27,
+          "channels": 220,
+          "duration_seconds": 4.933333396911621,
+          "moving_channels": 220,
           "loop_endpoints_exact": false,
-          "description": "Azure wave: wide lateral trace followed by a flowing palm release",
+          "description": "Native coin-flick charge and decisive forward spell release",
+          "source_file": "Misaka Mikoto.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.45283991850014366,
-          "anatomical_motion_fingerprint": "69beddf3e3a02ef19a66713b199d9c5b2909c00d89b19eb0b6a0bf61b5f43f14"
+          "sampled_minimum_ground_gap": 8.64290913837884e-08,
+          "sampled_geometry_max_displacement": 0.6311384769706863,
+          "anatomical_motion_fingerprint": "e4ab8083d29f8e01c258f8dc4d8e5cfdcedbac5d87410318fd825e74325356c5"
         },
         "Defend": {
           "channels": 204,
@@ -560,12 +569,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2298744,
+        "bytes": 2695748,
         "nodes": 317,
         "meshes": 10,
         "skins": 1,
         "embedded_images": 8,
-        "accessors": 1176,
+        "accessors": 1361,
         "skin_bind_residuals": [
           1.715567939055188e-07
         ],
@@ -676,17 +685,20 @@
           },
           "anatomical_motion_fingerprint": "fdd8b758d3dca94f1b38d71e3f0e679e78985580e4380a4900202b25edb18b42",
           "walk_normalized_phase_max_difference": 0.45552226521543737,
-          "walk_normalized_phase_rms_difference": 0.12760017321693481
+          "walk_normalized_phase_rms_difference": 0.1276001732169358
         },
         "Attack": {
-          "channels": 25,
-          "duration_seconds": 2.0999999046325684,
-          "moving_channels": 25,
+          "channels": 184,
+          "duration_seconds": 4.0,
+          "moving_channels": 184,
           "loop_endpoints_exact": false,
-          "description": "Tidal arc: overhead summoning circle and descending charm release",
+          "description": "Native flowing festival flourish and arcing tidal cast",
+          "source_file": "Umika.glb",
+          "source_clip": "Exs01",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.38075349663867486,
-          "anatomical_motion_fingerprint": "d6ca35cb215419d569cdcf048c6802a28c353344b72d2f06aee791a89448dc5a"
+          "sampled_minimum_ground_gap": 0.024212363424652463,
+          "sampled_geometry_max_displacement": 0.6952711098605266,
+          "anatomical_motion_fingerprint": "0adcd1d2f70c92b8fc12ebb2726639dc94c99139911d857b5a971cb759e971e6"
         },
         "Defend": {
           "channels": 174,
@@ -698,7 +710,7 @@
           "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_minimum_ground_gap": 0.02421236334008396,
-          "sampled_geometry_max_displacement": 0.47380007329364826,
+          "sampled_geometry_max_displacement": 0.47380007329364804,
           "anatomical_motion_fingerprint": "16804faee002a1410468a1e1148c458df95a6ad36443ca2048c4632c8121a27d"
         },
         "Victory": {
@@ -721,11 +733,11 @@
           "source_file": "Sena (Casual).glb",
           "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_minimum_ground_gap": 0.007496891323309834,
+          "sampled_minimum_ground_gap": 0.007496891323309806,
           "sampled_geometry_max_displacement": 1.006074699354644,
           "anatomical_motion_fingerprint": "58282b31447062f0d67ee9e557ab97ff7a0a4cd7b8ca3d130aa482ab28ea812e",
           "terminal_pose_displacement": 1.0059840263335178,
-          "terminal_pose_hold_max_error": 4.152926033472761e-08
+          "terminal_pose_hold_max_error": 4.1529260324916734e-08
         }
       },
       "status": "passed",
@@ -739,12 +751,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2123936,
+        "bytes": 2382616,
         "nodes": 270,
         "meshes": 14,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 1169,
+        "accessors": 1335,
         "skin_bind_residuals": [
           1.3781781707593692e-07
         ],
@@ -854,14 +866,17 @@
           "walk_normalized_phase_rms_difference": 0.2053302575330268
         },
         "Attack": {
-          "channels": 23,
-          "duration_seconds": 1.600000023841858,
-          "moving_channels": 23,
+          "channels": 165,
+          "duration_seconds": 2.766666889190674,
+          "moving_channels": 165,
           "loop_endpoints_exact": false,
-          "description": "Rose pulse: two compact forward casts with a guarded free hand",
+          "description": "Native overhead windup and emphatic academy spell toss",
+          "source_file": "Koharu.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.3440243685755953,
-          "anatomical_motion_fingerprint": "6164930a36ebbfeafafa0eec51fd48f07d8d2e47421eab9a8e7847f347690b55"
+          "sampled_minimum_ground_gap": 1.0909952847908133e-07,
+          "sampled_geometry_max_displacement": 0.5780435936396486,
+          "anatomical_motion_fingerprint": "44cdd4c4560971710a8028ef7735f40e038ed50f1f3813da6569f6dbf567efc8"
         },
         "Defend": {
           "channels": 165,
@@ -914,12 +929,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2152576,
+        "bytes": 2634504,
         "nodes": 308,
         "meshes": 19,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 1358,
+        "accessors": 1554,
         "skin_bind_residuals": [
           1.4268988602002171e-07
         ],
@@ -1029,14 +1044,17 @@
           "walk_normalized_phase_rms_difference": 0.10584631652162353
         },
         "Attack": {
-          "channels": 25,
-          "duration_seconds": 1.850000023841858,
-          "moving_channels": 25,
+          "channels": 195,
+          "duration_seconds": 4.666666507720947,
+          "moving_channels": 195,
           "loop_endpoints_exact": false,
-          "description": "Clover bloom: rising wand spiral and a small outward seed flick",
+          "description": "Native magical-girl wand presentation and sweeping clover cast",
+          "source_file": "Suzumi (Magical).glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.5085002589493345,
-          "anatomical_motion_fingerprint": "7bb65c6c9a5be1f3a077dd7d44f50596e5b08c5cfaf5d20836f6d71e0cec0dbc"
+          "sampled_minimum_ground_gap": 4.296385006294541e-05,
+          "sampled_geometry_max_displacement": 0.613777663434843,
+          "anatomical_motion_fingerprint": "f5c68f8d67950cf54bec9df0850a0b2b84c824aceb9ac3c39e4a3f8feebaa849"
         },
         "Defend": {
           "channels": 199,
@@ -1089,17 +1107,17 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2657560,
-        "nodes": 286,
-        "meshes": 28,
+        "bytes": 2927064,
+        "nodes": 285,
+        "meshes": 27,
         "skins": 1,
         "embedded_images": 10,
-        "accessors": 1126,
+        "accessors": 1277,
         "skin_bind_residuals": [
           1.1945988356407753e-07
         ],
-        "vertex_records": 13124,
-        "triangles": 17874,
+        "vertex_records": 13064,
+        "triangles": 17758,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -1212,18 +1230,21 @@
             }
           },
           "anatomical_motion_fingerprint": "15ddb20365fc50f891cffba23fd789211c32a46a14c3d7f16618d91f504cd040",
-          "walk_normalized_phase_max_difference": 0.353588097345459,
-          "walk_normalized_phase_rms_difference": 0.10729155300385335
+          "walk_normalized_phase_max_difference": 0.35612432636368063,
+          "walk_normalized_phase_rms_difference": 0.11006344698651407
         },
         "Attack": {
-          "channels": 37,
-          "duration_seconds": 1.5,
-          "moving_channels": 37,
+          "channels": 156,
+          "duration_seconds": 3.200000286102295,
+          "moving_channels": 156,
           "loop_endpoints_exact": false,
-          "description": "Cat pounce: lead paw jab followed by a rear paw cross",
+          "description": "Native martial-arts crouch, rising kick and balanced recovery",
+          "source_file": "Reijo.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.46434013325519036,
-          "anatomical_motion_fingerprint": "b055dd047b59d74f473babbbbb5241b8056fafe724d6fad1c54fe673dbe7254b"
+          "sampled_minimum_ground_gap": 0.009728024412540785,
+          "sampled_geometry_max_displacement": 0.8651066302207915,
+          "anatomical_motion_fingerprint": "5dbc1fb5d35f8368bb8924c67f963af9b9c12ed58cce8d946382af8b066a4577"
         },
         "Defend": {
           "channels": 159,
@@ -1258,7 +1279,7 @@
           "source_file": "Mika.glb",
           "source_clip": "Vital_Death",
           "max_quaternion_error": 1.1920928955078125e-07,
-          "sampled_minimum_ground_gap": 0.004457556907226476,
+          "sampled_minimum_ground_gap": 0.008179990391890067,
           "sampled_geometry_max_displacement": 1.0139746085562542,
           "anatomical_motion_fingerprint": "c25fedb83d0327c13f939acdc05aaefb024ea080570e2d5dfc7f6c5ad74ce4d5",
           "terminal_pose_displacement": 1.0139745412102263,
@@ -1276,12 +1297,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2943248,
+        "bytes": 3261956,
         "nodes": 343,
         "meshes": 47,
         "skins": 1,
         "embedded_images": 42,
-        "accessors": 1276,
+        "accessors": 1455,
         "skin_bind_residuals": [
           1.35504507171727e-07
         ],
@@ -1531,14 +1552,17 @@
           "walk_normalized_phase_rms_difference": 0.16998743054314144
         },
         "Attack": {
-          "channels": 27,
-          "duration_seconds": 1.7999999523162842,
-          "moving_channels": 27,
+          "channels": 178,
+          "duration_seconds": 3.2333335876464844,
+          "moving_channels": 178,
           "loop_endpoints_exact": false,
-          "description": "Clockwork doll: alternating angular hand strikes with a ticking head",
-          "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.34023593152995935,
-          "anatomical_motion_fingerprint": "513d50ab94e6dd1fe9268efdc472c48484d69a5a6752a8b0691f85297147e550"
+          "description": "Native airborne magical-doll flourish and pointed charm release",
+          "source_file": "Reisa (Magical).glb",
+          "source_clip": "Exs_Cutin_03",
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_minimum_ground_gap": 0.032246431394873605,
+          "sampled_geometry_max_displacement": 0.7256925887364118,
+          "anatomical_motion_fingerprint": "688c803e7974889ef925cea39b41c5fb03d061b4dbc8a6b1b230e2735a2d6a4f"
         },
         "Defend": {
           "channels": 168,
@@ -1591,12 +1615,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2968456,
+        "bytes": 3330724,
         "nodes": 236,
         "meshes": 54,
         "skins": 1,
         "embedded_images": 8,
-        "accessors": 1251,
+        "accessors": 1350,
         "skin_bind_residuals": [
           1.5541761495381286e-07
         ],
@@ -1710,14 +1734,17 @@
           "walk_normalized_phase_rms_difference": 0.21912924816587898
         },
         "Attack": {
-          "channels": 27,
-          "duration_seconds": 1.850000023841858,
-          "moving_channels": 27,
+          "channels": 98,
+          "duration_seconds": 7.233333587646484,
+          "moving_channels": 98,
           "loop_endpoints_exact": false,
-          "description": "Peony fan: cross-body fan slice and outward wrist flourish",
+          "description": "Native fan ritual, graceful pivot and broad ceremonial flourish",
+          "source_file": "Niya.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.38270801192525356,
-          "anatomical_motion_fingerprint": "356fe0f5bf4d53dcce09c187568c10c10e2882e908182defd41b53c02d5fdad1"
+          "sampled_minimum_ground_gap": 0.00024016890265564855,
+          "sampled_geometry_max_displacement": 0.8744043798325941,
+          "anatomical_motion_fingerprint": "bc02c33ece93cdd6f5b409ee741b462cc605c3f01405228d8bb7e404d75ee5fe"
         },
         "Defend": {
           "channels": 119,
@@ -1770,12 +1797,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2690464,
+        "bytes": 2997120,
         "nodes": 292,
         "meshes": 9,
         "skins": 1,
         "embedded_images": 7,
-        "accessors": 1045,
+        "accessors": 1210,
         "skin_bind_residuals": [
           1.4934159797697077e-07
         ],
@@ -1881,18 +1908,21 @@
             }
           },
           "anatomical_motion_fingerprint": "65a10b50c0f331504cf524fa59235c13c1f64dd06f60496cd24d3dbec1ac60bf",
-          "walk_normalized_phase_max_difference": 0.3883323294149574,
-          "walk_normalized_phase_rms_difference": 0.12374835594186209
+          "walk_normalized_phase_max_difference": 0.38833232652394345,
+          "walk_normalized_phase_rms_difference": 0.12374835517985686
         },
         "Attack": {
-          "channels": 25,
-          "duration_seconds": 2.200000047683716,
-          "moving_channels": 24,
+          "channels": 164,
+          "duration_seconds": 3.4000000953674316,
+          "moving_channels": 164,
           "loop_endpoints_exact": false,
-          "description": "Snow crystal: gather with both hands, raise, then release symmetrically",
+          "description": "Native playful windup, buoyant hop and snow-charm toss",
+          "source_file": "Airi.glb",
+          "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_geometry_max_displacement": 0.33990329776292566,
-          "anatomical_motion_fingerprint": "36c7be44a16f553365e33b4b08ef529570333f30652e98da5a0fcbf261716cc6"
+          "sampled_minimum_ground_gap": 8.979919329905039e-06,
+          "sampled_geometry_max_displacement": 0.5485800225999259,
+          "anatomical_motion_fingerprint": "29ffbf17c84b479e9679140bd0e03c14e585e3cfb9dde6878fd0872386767b7d"
         },
         "Defend": {
           "channels": 147,
@@ -1931,7 +1961,7 @@
           "sampled_geometry_max_displacement": 0.9112532397143888,
           "anatomical_motion_fingerprint": "dd4867f1d29ef8241e621e539a428b03c4da6c0143baf55f72934de92fd26216",
           "terminal_pose_displacement": 0.9112532320568044,
-          "terminal_pose_hold_max_error": 4.287242014188838e-08
+          "terminal_pose_hold_max_error": 4.287242015978924e-08
         }
       },
       "status": "passed",
@@ -2141,7 +2171,7 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 3292740,
+        "bytes": 3362324,
         "nodes": 340,
         "meshes": 44,
         "skins": 1,
@@ -2150,8 +2180,8 @@
         "skin_bind_residuals": [
           1.3554490335037016e-07
         ],
-        "vertex_records": 11021,
-        "triangles": 15258,
+        "vertex_records": 11925,
+        "triangles": 16788,
         "max_skin_weight_error": 1.1920928955078125e-07,
         "zero_normal_records": 0,
         "texture_dimensions": [
@@ -2265,7 +2295,7 @@
           },
           "anatomical_motion_fingerprint": "f66fdc49e10663870e13b7591024aa92bb315146d8190b182bf40772d4326b6c",
           "walk_normalized_phase_max_difference": 0.4521828611351258,
-          "walk_normalized_phase_rms_difference": 0.18438161924579421
+          "walk_normalized_phase_rms_difference": 0.1821095446712497
         },
         "Attack": {
           "channels": 196,

@@ -606,6 +606,16 @@ def check_asset(path, sheet_path=None, skip_sheets=False):
                         f"Animation {name} donor is missing from source_parts")
                 require(doc.get('extras', {}).get('native_clips', {}).get(name) == provenance['source_clip'],
                         f"Animation {name} original clip differs from its provenance")
+                if name in ('Run', 'Attack', 'Defend', 'Lose'):
+                    extras = animation.get('extras', {})
+                    require(extras.get('procedural') is False,
+                            f"Animation {name} must use a native donor performance")
+                    require(extras.get('nativeSourceClip') == provenance['source_clip'] and
+                            extras.get('source_clip') == provenance['source_clip'] and
+                            extras.get('source_file') == provenance['source_file'],
+                            f"Animation {name} clip metadata differs from its native donor provenance")
+            elif name == 'Attack':
+                require(False, "Animation Attack lacks native donor provenance")
             report["animations"][name] = clip
             if name in REQUIRED_CLIPS:
                 require(animation.get("extras", {}).get("loop") is (name in LOOP_CLIPS),
@@ -757,7 +767,7 @@ def main():
     args = parser.parse_args()
     root = args.root.resolve()
     report = {"generated_utc": datetime.now(timezone.utc).isoformat(), "root": str(root),
-              "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, original motion provenance, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
+              "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, native motion provenance including Attack, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
               "errors": [], "warnings": [], "characters": []}
     try:
         manifest = json.loads((root/"characters"/"manifest.json").read_text(encoding="utf-8"))
@@ -790,22 +800,31 @@ def main():
             if path.exists() and "bytes" in entry and path.stat().st_size != entry["bytes"]:
                 result["errors"].append("GLB size differs from manifest bytes")
                 result["status"] = "failed"
+            for name, clip in result['animations'].items():
+                if clip.get('source_file'):
+                    provenance = entry.get('motion_sources', {}).get(name, {})
+                    if (provenance.get('source_file') != clip['source_file'] or
+                            provenance.get('source_clip') != clip['source_clip'] or
+                            entry.get('native_clips', {}).get(name) != clip['source_clip']):
+                        result['errors'].append(f"Manifest {name} native donor provenance differs from the GLB")
+                        result['status'] = 'failed'
             report["characters"].append(result)
         gestures = {name: {} for name in ("Walk", "Run", "Attack", "Defend", "Victory", "Lose")}
-        donor_choices = {name: {} for name in ('Run', 'Defend', 'Lose')}
+        donor_choices = {name: {} for name in ('Run', 'Attack', 'Defend', 'Lose')}
         for character in report["characters"]:
             for name, seen in gestures.items():
                 clip = character["animations"].get(name, {})
                 if name in donor_choices:
                     source = clip.get('source_file')
                     require_source = source and clip.get('source_clip')
+                    source_key = source.casefold() if source else None
                     if not require_source:
                         report['errors'].append(f"{character['slug']} {name} lacks original motion provenance")
-                    elif source in donor_choices[name]:
-                        report['errors'].append(f"{name} donor {source} is reused by {donor_choices[name][source]} and {character['slug']}")
+                    elif source_key in donor_choices[name]:
+                        report['errors'].append(f"{name} donor {source} is reused by {donor_choices[name][source_key]} and {character['slug']}")
                     else:
-                        donor_choices[name][source] = character['slug']
-                if int(character["id"]) >= 11 and not clip.get("description"):
+                        donor_choices[name][source_key] = character['slug']
+                if (int(character["id"]) >= 11 or name == 'Attack') and not clip.get("description"):
                     report["errors"].append(f"{character['slug']} {name} lacks its authored motion description")
                 fingerprint = clip.get("anatomical_motion_fingerprint")
                 if not fingerprint:
