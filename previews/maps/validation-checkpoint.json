@@ -1,0 +1,293 @@
+{
+  "maps": [
+    {
+      "id": "Academy",
+      "meshes": 131,
+      "colliders": 321,
+      "surfaces": 304,
+      "screenshot": "Academy.png"
+    },
+    {
+      "id": "Asuria",
+      "meshes": 102,
+      "colliders": 53,
+      "surfaces": 23,
+      "screenshot": "Asuria.png"
+    },
+    {
+      "id": "BoilerRoom",
+      "meshes": 47,
+      "colliders": 17,
+      "surfaces": 7,
+      "screenshot": "BoilerRoom.png"
+    },
+    {
+      "id": "CapitalCity",
+      "meshes": 94,
+      "colliders": 56,
+      "surfaces": 30,
+      "screenshot": "CapitalCity.png"
+    },
+    {
+      "id": "CuriousMansion",
+      "meshes": 51,
+      "colliders": 20,
+      "surfaces": 23,
+      "screenshot": "CuriousMansion.png"
+    },
+    {
+      "id": "Deran",
+      "meshes": 109,
+      "colliders": 55,
+      "surfaces": 8,
+      "screenshot": "Deran.png"
+    },
+    {
+      "id": "EagleTown",
+      "meshes": 34,
+      "colliders": 9,
+      "surfaces": 49,
+      "screenshot": "EagleTown.png"
+    },
+    {
+      "id": "in-Academy",
+      "meshes": 83,
+      "colliders": 75,
+      "surfaces": 130,
+      "screenshot": "in-Academy.png"
+    },
+    {
+      "id": "Library",
+      "meshes": 46,
+      "colliders": 18,
+      "surfaces": 24,
+      "screenshot": "Library.png"
+    },
+    {
+      "id": "Mine",
+      "meshes": 67,
+      "colliders": 46,
+      "surfaces": 55,
+      "screenshot": "Mine.png"
+    },
+    {
+      "id": "NormalTown",
+      "meshes": 80,
+      "colliders": 72,
+      "surfaces": 15,
+      "screenshot": "NormalTown.png"
+    },
+    {
+      "id": "Nymphen",
+      "meshes": 40,
+      "colliders": 8,
+      "surfaces": 34,
+      "screenshot": "Nymphen.png"
+    },
+    {
+      "id": "Odanka",
+      "meshes": 60,
+      "colliders": 24,
+      "surfaces": 9,
+      "screenshot": "Odanka.png"
+    },
+    {
+      "id": "PEStorage",
+      "meshes": 33,
+      "colliders": 11,
+      "surfaces": 2,
+      "screenshot": "PEStorage.png"
+    },
+    {
+      "id": "Port",
+      "meshes": 79,
+      "colliders": 10,
+      "surfaces": 16,
+      "screenshot": "Port.png"
+    },
+    {
+      "id": "PrimitiveTown",
+      "meshes": 80,
+      "colliders": 24,
+      "surfaces": 46,
+      "screenshot": "PrimitiveTown.png"
+    },
+    {
+      "id": "Restaurant",
+      "meshes": 66,
+      "colliders": 24,
+      "surfaces": 2,
+      "screenshot": "Restaurant.png"
+    },
+    {
+      "id": "Sauna",
+      "meshes": 63,
+      "colliders": 43,
+      "surfaces": 14,
+      "screenshot": "Sauna.png"
+    },
+    {
+      "id": "ScienceRoom",
+      "meshes": 74,
+      "colliders": 15,
+      "surfaces": 5,
+      "screenshot": "ScienceRoom.png"
+    },
+    {
+      "id": "SnowyTown",
+      "meshes": 63,
+      "colliders": 20,
+      "surfaces": 20,
+      "screenshot": "SnowyTown.png"
+    },
+    {
+      "id": "SpiralStair",
+      "meshes": 43,
+      "colliders": 26,
+      "surfaces": 131,
+      "screenshot": "SpiralStair.png"
+    },
+    {
+      "id": "Storage",
+      "meshes": 53,
+      "colliders": 22,
+      "surfaces": 1,
+      "screenshot": "Storage.png"
+    },
+    {
+      "id": "Toilet",
+      "meshes": 43,
+      "colliders": 20,
+      "surfaces": 1,
+      "screenshot": "Toilet.png"
+    },
+    {
+      "id": "Underground",
+      "meshes": 48,
+      "colliders": 20,
+      "surfaces": 22,
+      "screenshot": "Underground.png"
+    },
+    {
+      "id": "Village",
+      "meshes": 109,
+      "colliders": 31,
+      "surfaces": 33,
+      "screenshot": "Village.png"
+    }
+  ],
+  "characters": [
+    {
+      "name": "Marin",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Viola",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Sora",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Elise",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Rina",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Fennel",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Momo",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Rosette",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Meilin",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Nevia",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Quinn",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Kimon",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Florielle",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    },
+    {
+      "name": "Rosaria",
+      "motions": 7,
+      "heightRangeVerified": [
+        1.2,
+        1.85
+      ]
+    }
+  ]
+}

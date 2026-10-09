@@ -47,7 +47,21 @@ Marin의 원본 트윈테일을 느슨한 1–2회 롤로 조정하고 Erika의 
 python -m http.server 8000 --bind 127.0.0.1
 ```
 
-## 애니메이션
+## 맵 탐험 뷰어
+
+`node tools/serve_viewers.cjs`로 전용 로컬 서버를 실행할 수 있습니다. Node.js 외에 패키지 설치가 필요하지 않습니다. 위 Python 서버도 사용할 수 있습니다.
+
+같은 서버에서 `http://localhost:8000/map-viewer/`를 열면 참고 이미지 25장에 대응하는 3D 맵과 기존 14명의 캐릭터를 조합해 탐험할 수 있습니다. 예를 들어 `http://localhost:8000/map-viewer/?map=Academy&character=Marin`은 학원과 Marin을 선택합니다. 선택은 주소와 브라우저에 저장됩니다.
+
+방향키 / WASD로 이동하고 Shift 또는 달리기 버튼으로 달립니다. 모바일에서는 왼쪽 조이스틱으로 이동합니다. 화면 드래그로 카메라를 돌리고 휠로 거리를 조절하며, 3인칭·1인칭·전체 맵 시점을 선택할 수 있습니다. `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose` 버튼은 기존 GLB의 실제 모션을 재생합니다. 가까운 사물은 E / 살펴보기 버튼으로 확인하고, 화면을 PNG로 저장할 수 있습니다.
+
+캐릭터는 내장 텍스처·골격·모션을 유지한 채 신장을 약 1.5m로 맞춥니다. 가구와 건물도 같은 단위로 제작합니다. 맵은 실제 입체 메시로 구성되며 벽·가구 충돌, 계단·다리·복층 바닥 높이와 미니맵을 지원합니다. 원본 이미지는 `map-viewer/references`에 보관하고 비교 버튼과 선택 썸네일에만 사용합니다. 원본 게임의 빛나는 별 모양 워프 표시는 제외했습니다.
+
+건물·지형·배치와 눈에 보이는 장식은 이미지를 분석해 수작업으로 재구성한 것입니다. 단일 이미지에서 보이지 않는 후면이나 정확한 치수·형상은 추정했으며, 원본 게임의 맵 에셋을 복원한 것은 아닙니다. 재구성 내역은 각 맵의 `features`와 `previews/maps/validation.json`에 기록합니다.
+
+맵 코드는 `map-viewer/maps/`에서 종류별로 관리하며, `world-kit.js`는 입체 사물과 반복 메시 인스턴싱, `navigation.js`는 이동·충돌·높이 처리를 담당합니다. 외부 CDN이나 빌드 과정 없이 기존 정적 서버로 실행됩니다. 이동 검사는 `node tools/test_map_navigation.mjs`, 설치된 Edge와 번들 Playwright를 사용하는 전체 브라우저 검사는 서버 실행 후 `node tools/test_map_viewer.cjs`로 실행합니다.
+
+## 캐릭터 애니메이션
 
 각 GLB에 `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose`가 포함됩니다. 2026-10-08 수정에서는 14명 모두의 `Run`·`Defend`·`Lose`를 서로 다른 원본 캐릭터의 모션으로 교체했습니다. Quinn·Kimon·Florielle·Rosaria의 나머지 모션도 원본에서 새로 선정했습니다. 2026-10-09 수정에서는 1–10번의 `Attack`을 각자 다른 원본 전투 동작으로 교체했습니다. 11–14번의 공격과 기존 대기·걷기·승리 등 나머지 모션은 유지합니다.
 
