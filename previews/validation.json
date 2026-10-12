@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-09T10:41:18.721051+00:00",
+  "generated_utc": "2026-10-12T08:58:30.808837+00:00",
   "root": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets",
   "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, native motion provenance including Attack, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
   "errors": [],
@@ -2752,11 +2752,211 @@
       "id": 14,
       "name": "Rosaria",
       "slug": "14_rosaria_bride"
+    },
+    {
+      "glb": "characters/15_scarlet_familiar/15_scarlet_familiar.glb",
+      "sheet": "characters/15_scarlet_familiar/15_scarlet_familiar_sheet.png",
+      "errors": [],
+      "warnings": [],
+      "metrics": {
+        "bytes": 2358512,
+        "nodes": 305,
+        "meshes": 81,
+        "skins": 1,
+        "embedded_images": 11,
+        "accessors": 1358,
+        "skin_bind_residuals": [
+          9.068202899698008e-08
+        ],
+        "vertex_records": 8556,
+        "triangles": 9738,
+        "max_skin_weight_error": 1.1920928955078125e-07,
+        "zero_normal_records": 0,
+        "texture_dimensions": [
+          [
+            256,
+            256
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            128,
+            128
+          ],
+          [
+            1024,
+            1024
+          ],
+          [
+            256,
+            256
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            512,
+            512
+          ],
+          [
+            1024,
+            1024
+          ],
+          [
+            1024,
+            1024
+          ]
+        ],
+        "rest_geometry_floor_y": -3.0184948619328943e-05,
+        "sheet_dimensions": [
+          2400,
+          1800
+        ]
+      },
+      "animations": {
+        "Idle": {
+          "channels": 78,
+          "duration_seconds": 1.6666667461395264,
+          "moving_channels": 71,
+          "loop_endpoints_exact": true,
+          "description": "Mischievous anticipation",
+          "source_file": "Mutsuki (New Year).glb",
+          "source_clip": "Cafe_Idle",
+          "max_quaternion_error": 1.1920928955078125e-07,
+          "sampled_minimum_ground_gap": 0.0029251164128372533,
+          "sampled_geometry_max_displacement": 0.18495479137038862
+        },
+        "Walk": {
+          "channels": 83,
+          "duration_seconds": 1.2000000476837158,
+          "moving_channels": 74,
+          "loop_endpoints_exact": true,
+          "description": "Light, impish steps",
+          "source_file": "Mutsuki (New Year).glb",
+          "source_clip": "Cafe_Walk",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_minimum_ground_gap": 0.007148932809859547,
+          "sampled_geometry_max_displacement": 0.29963789522590695,
+          "anatomical_motion_fingerprint": "4f16e2fcd2f7fb5c657d14a7858b5abc2234bc25d77c2de9e099194dcda1e376"
+        },
+        "Run": {
+          "channels": 112,
+          "duration_seconds": 0.6666666865348816,
+          "moving_channels": 108,
+          "loop_endpoints_exact": true,
+          "description": "Impetuous rush with Kasumi's original running stride",
+          "source_file": "Kasumi.glb",
+          "source_clip": "Move_Ing",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_minimum_ground_gap": 0.005792251882407415,
+          "sampled_geometry_max_displacement": 0.424109521213635,
+          "anatomical_arms": {
+            "L": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.4267118728683098,
+              "mean_outward_upperarm_ratio": 0.32738181010201023,
+              "min_elbow_flex_degrees": 89.39193691833457,
+              "max_elbow_flex_degrees": 107.12413455201624,
+              "min_elbow_drop_upperarm_ratio": 0.7099553867783318
+            },
+            "R": {
+              "sample_count": 9,
+              "max_outward_upperarm_ratio": 0.8610717591427476,
+              "mean_outward_upperarm_ratio": 0.8178859665978471,
+              "min_elbow_flex_degrees": 61.607088755935315,
+              "max_elbow_flex_degrees": 74.00307074228795,
+              "min_elbow_drop_upperarm_ratio": 0.4266205639898548
+            }
+          },
+          "anatomical_legs": {
+            "L": {
+              "fore_aft_stride_leg_lengths": 0.44093907319708175,
+              "vertical_stride_leg_lengths": 0.6777671882768123
+            },
+            "R": {
+              "fore_aft_stride_leg_lengths": 0.48024045092438766,
+              "vertical_stride_leg_lengths": 0.6840647650300609
+            }
+          },
+          "anatomical_motion_fingerprint": "927625a6df9b942e34150c515cab445c86d6cd41b6752b4ecf872339cb201979",
+          "walk_normalized_phase_max_difference": 0.3389298099462963,
+          "walk_normalized_phase_rms_difference": 0.09377396999140158
+        },
+        "Attack": {
+          "channels": 113,
+          "duration_seconds": 4.0,
+          "moving_channels": 113,
+          "loop_endpoints_exact": false,
+          "description": "Kasumi's emphatic native EX gesture for a winged magic attack",
+          "source_file": "Kasumi.glb",
+          "source_clip": "Exs",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_minimum_ground_gap": 3.047055023125237e-05,
+          "sampled_geometry_max_displacement": 1.1324764682607555,
+          "anatomical_motion_fingerprint": "0f0bf2262f1a01af122c96c9cbdf3d52c5c67eede437254c6008367ae4922ca2"
+        },
+        "Defend": {
+          "channels": 117,
+          "duration_seconds": 1.6000001430511475,
+          "moving_channels": 117,
+          "loop_endpoints_exact": false,
+          "description": "Startled, theatrical recoil before regaining composure",
+          "source_file": "Aru.glb",
+          "source_clip": "Vital_Panic",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_minimum_ground_gap": 3.047055023125237e-05,
+          "sampled_geometry_max_displacement": 0.9733824108162475,
+          "anatomical_motion_fingerprint": "ee939ab193bc6e126ec1b29de9e625de49754ab76bf1367c616655f3e512c7f9"
+        },
+        "Victory": {
+          "channels": 83,
+          "duration_seconds": 3.000000238418579,
+          "moving_channels": 83,
+          "loop_endpoints_exact": false,
+          "description": "Playful victory flourish",
+          "source_file": "Mutsuki (New Year).glb",
+          "source_clip": "Victory_Start",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_minimum_ground_gap": 3.047055023125237e-05,
+          "sampled_geometry_max_displacement": 0.7868946948928769,
+          "anatomical_motion_fingerprint": "2a6e2a41a9e2f0146e0c69d856b5dd35a9194766d05569835f311ba1304895b9"
+        },
+        "Lose": {
+          "channels": 121,
+          "duration_seconds": 3.750000238418579,
+          "moving_channels": 121,
+          "loop_endpoints_exact": false,
+          "description": "Dramatic collapse that settles into a held defeated pose",
+          "source_file": "Aru.glb",
+          "source_clip": "Vital_Death",
+          "max_quaternion_error": 5.960464477539063e-08,
+          "sampled_minimum_ground_gap": 3.047055023125237e-05,
+          "sampled_geometry_max_displacement": 0.7966384619201958,
+          "anatomical_motion_fingerprint": "1b60ca91107f6253a8981a74a8c07b509abe01939ef9a3a5b75b91addfc79137",
+          "terminal_pose_displacement": 0.7596601698578773,
+          "terminal_pose_hold_max_error": 8.304549041743432e-08
+        }
+      },
+      "status": "passed",
+      "id": 15,
+      "name": "Koa",
+      "slug": "15_scarlet_familiar"
     }
   ],
   "summary": {
-    "characters": 14,
-    "passed": 14,
+    "characters": 15,
+    "passed": 15,
     "errors": 0,
     "warnings": 0,
     "status": "passed",

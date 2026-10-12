@@ -20,10 +20,13 @@
 | 12 | 키몬 / Kimon | 황금색 단발·여우 귀, 크림·주황·청록 아이돌 의상, 분리형 소매·긴 치마 패널, 별 배턴 | `characters/12_kimon_fox_idol` |
 | 13 | 플로리엘 / Florielle | 적갈색 긴 컬·꽃 달린 마녀 모자, 분홍·크림 프릴 드레스·별무늬 망토, 지팡이와 책·흰 팬티스타킹 | `characters/13_florielle_witch` |
 | 14 | 로사리아 / Rosaria | 연금발 긴 컬·보석 왕관, 흰색 겹프릴 하이로 웨딩 드레스, 장미 부케·맨발 | `characters/14_rosaria_bride` |
+| 15 | 코아 / Koa | 긴 진홍색 머리·붉은 눈, 흰 반소매 셔츠·다크 초콜릿색 조끼와 플리츠 스커트·빨간 넥타이, 흰 치맛단 프릴·짙은 갈색 사이하이 양말, 거의 검은 청록색 박쥐 날개 두 쌍 | `characters/15_scarlet_familiar` |
 
-`characters/manifest.json`에 파일 경로·색·디자인·원본 파츠가 기록되어 있습니다. 저장소 루트의 `models.json`, `model_features.json`, `model_features.schema.json`은 14명의 카탈로그입니다. 원본의 동일 이름 데이터와 렌더 자료로 파츠를 선정했습니다. 원본 폴더는 수정하지 않습니다.
+`characters/manifest.json`에 파일 경로·색·디자인·원본 파츠가 기록되어 있습니다. 저장소 루트의 `models.json`, `model_features.json`, `model_features.schema.json`은 15명의 카탈로그입니다. 원본의 동일 이름 데이터와 렌더 자료로 파츠를 선정했습니다. 원본 폴더는 수정하지 않습니다.
 
 11–14번은 기존 참고 이미지의 머리·의상 실루엣과 색상을 기준으로 추가했습니다. 2026-10-08 수정에서는 Quinn을 두 새 사진에 맞춰 차콜 재킷·크라바트·커프스·가죽 장식으로 조정했습니다. Kimon의 원본 플리츠, Florielle의 원본 주름 소매·직물 망토, Rosaria의 원본 레이스 프릴과 새틴 자수로 의상의 세부 표현을 보강했습니다. 실제 사용한 원본은 manifest와 카탈로그의 `source_roles`에, 추가 형상은 제작 코드와 GLB의 `extras`에 기록합니다.
+
+15번 Koa는 첨부 이미지를 기준으로 Rabu의 긴 머리를 진홍색으로 편집하고 붉은 눈을 적용했습니다. Shokuhou Misaki의 골격과 반소매 셔츠·조끼·플리츠 스커트를 다크 초콜릿색 교복으로 조합하고 빨간 넥타이, Hina (Dress)의 흰 치맛단 프릴, 짙은 갈색 사이하이 양말을 더했습니다. Hina의 원본 박쥐 날개를 거의 검은 청록색으로 편집하고 작은 윗날개 한 쌍을 피팅했습니다. 무기 없이 날개를 이용한 마법 공격을 합니다.
 
 Quinn의 트윈테일 뿌리와 붉은 리본은 실제 두피·머리 표면에 맞춰 피팅하고, 리본이 머리 뿌리 골격을 함께 따르도록 연결했습니다. 크라바트·브로치·가방 장식도 몸과 의상 표면에 맞췄습니다. `previews/quinn_attachment_changes.png`에서 정확한 측면의 부착 전후를 비교할 수 있습니다.
 
@@ -39,7 +42,7 @@ Marin의 원본 트윈테일을 느슨한 1–2회 롤로 조정하고 Erika의 
 
 ## 미리보기
 
-`previews/lineup.png`는 전체 14명의 캐릭터 연락판입니다. `previews/motion_grid.gif`와 7종 모션별 포즈 연락판도 제공됩니다. `previews/attack_grid.gif`는 14명의 공격을, `previews/attack_sequence.png`는 원본 이름과 공격 동작의 8개 포즈를 보여 줍니다. `previews/run_grid.gif`는 14명의 달리기를 정면에서, `previews/run_side_grid.gif`는 측면에서 보여 줍니다. `previews/run_side_sequence.png`에는 각 캐릭터의 원본 이름과 달리기 한 주기의 6개 측면 포즈가 있습니다. 모션 연락판은 캐릭터별 주기를 같은 위상으로 맞춰 비교하며, 각 원본의 실제 재생 시간은 GLB와 뷰어에서 유지됩니다.
+`previews/lineup.png`는 전체 15명의 캐릭터 연락판입니다. `previews/motion_grid.gif`와 7종 모션별 포즈 연락판도 제공됩니다. `previews/attack_grid.gif`는 15명의 공격을, `previews/attack_sequence.png`는 원본 이름과 공격 동작의 8개 포즈를 보여 줍니다. `previews/run_grid.gif`는 15명의 달리기를 정면에서, `previews/run_side_grid.gif`는 측면에서 보여 줍니다. `previews/run_side_sequence.png`에는 각 캐릭터의 원본 이름과 달리기 한 주기의 6개 측면 포즈가 있습니다. 모션 연락판은 캐릭터별 주기를 같은 위상으로 맞춰 비교하며, 각 원본의 실제 재생 시간은 GLB와 뷰어에서 유지됩니다.
 
 로컬 3D 뷰어는 저장소 루트에서 아래 명령을 실행한 뒤 `http://localhost:8000/viewer/`를 열면 됩니다. GLB 선택, 회전·확대 및 애니메이션 재생을 지원하며 외부 네트워크 없이 동작합니다.
 
@@ -51,7 +54,7 @@ python -m http.server 8000 --bind 127.0.0.1
 
 `node tools/serve_viewers.cjs`로 전용 로컬 서버를 실행할 수 있습니다. Node.js 외에 패키지 설치가 필요하지 않습니다. 위 Python 서버도 사용할 수 있습니다.
 
-같은 서버에서 `http://localhost:8000/map-viewer/`를 열면 참고 이미지 25장에 대응하는 3D 맵과 기존 14명의 캐릭터를 조합해 탐험할 수 있습니다. 예를 들어 `http://localhost:8000/map-viewer/?map=Academy&character=Marin`은 학원과 Marin을 선택합니다. 선택은 주소와 브라우저에 저장됩니다.
+같은 서버에서 `http://localhost:8000/map-viewer/`를 열면 참고 이미지 25장에 대응하는 3D 맵과 15명의 캐릭터를 조합해 탐험할 수 있습니다. 예를 들어 `http://localhost:8000/map-viewer/?map=Academy&character=Marin`은 학원과 Marin을 선택합니다. 선택은 주소와 브라우저에 저장됩니다.
 
 방향키 / WASD로 이동하고 Shift 또는 달리기 버튼으로 달리며, Space 또는 점프 버튼으로 점프합니다. 모바일에서는 왼쪽 조이스틱으로 이동합니다. 화면 드래그로 카메라를 돌리고 휠로 거리를 조절하며, 3인칭·1인칭·전체 맵 시점을 선택할 수 있습니다. `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose` 버튼은 기존 GLB의 실제 모션을 재생합니다. 가까운 사물은 E / 살펴보기 버튼으로 확인하고, 화면을 PNG로 저장할 수 있습니다.
 
@@ -65,9 +68,9 @@ python -m http.server 8000 --bind 127.0.0.1
 
 ## 캐릭터 애니메이션
 
-각 GLB에 `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose`가 포함됩니다. 2026-10-08 수정에서는 14명 모두의 `Run`·`Defend`·`Lose`를 서로 다른 원본 캐릭터의 모션으로 교체했습니다. Quinn·Kimon·Florielle·Rosaria의 나머지 모션도 원본에서 새로 선정했습니다. 2026-10-09 수정에서는 1–10번의 `Attack`을 각자 다른 원본 전투 동작으로 교체했습니다. 11–14번의 공격과 기존 대기·걷기·승리 등 나머지 모션은 유지합니다.
+각 GLB에 `Idle`, `Walk`, `Run`, `Attack`, `Defend`, `Victory`, `Lose`가 포함됩니다. 2026-10-08 수정에서는 당시 14명 모두의 `Run`·`Defend`·`Lose`를 서로 다른 원본 캐릭터의 모션으로 교체했습니다. Quinn·Kimon·Florielle·Rosaria의 나머지 모션도 원본에서 새로 선정했습니다. 2026-10-09 수정에서는 1–10번의 `Attack`을 각자 다른 원본 전투 동작으로 교체했습니다. 11–14번의 공격과 기존 대기·걷기·승리 등 나머지 모션은 유지했습니다. Koa의 걷기·공격·승리·패배를 포함한 모션도 원본에서 별도로 선정해 날개와 동작을 맞췄습니다.
 
-원본의 몸통·팔·다리 회전 곡선을 각 의상 골격의 기본 자세와 비율에 맞춰 리타게팅합니다. 달리기는 원본의 넓은 보폭과 무릎 동작을 사용하고, 이동 경로는 제자리로 보정합니다. 손가락·손목은 실제 소품에 맞춰 조정합니다. 원본의 메시 숨김·무기·효과는 복사하지 않습니다. 반복 모션은 처음과 끝을 연결하고, `Lose`는 원본 패배 동작 뒤의 마지막 자세를 유지합니다. 뷰어에서는 모션 버튼을 다시 누르면 처음부터 재생합니다. 실시간 옷감·머리카락 물리는 포함하지 않습니다.
+원본의 몸통·팔·다리 회전 곡선을 각 의상 골격의 기본 자세와 비율에 맞춰 리타게팅합니다. 달리기는 원본의 넓은 보폭과 무릎 동작을 사용하고, 이동 경로는 제자리로 보정합니다. 손가락·손목은 각 캐릭터의 소품이나 맨손 동작에 맞춰 조정합니다. 원본의 메시 숨김·무기·효과는 복사하지 않습니다. 반복 모션은 처음과 끝을 연결하고, `Lose`는 원본 패배 동작 뒤의 마지막 자세를 유지합니다. 뷰어에서는 모션 버튼을 다시 누르면 처음부터 재생합니다. 실시간 옷감·머리카락 물리는 포함하지 않습니다.
 
 캐릭터별 원본 파일·정확한 클립명·보정 내역은 `characters/manifest.json`, `model_features.json`과 GLB `extras.motion_sources`에 기록합니다. [모션 원본 표](previews/motion_sources.md)에서 전체 선정 내역을 볼 수 있습니다. 검사 도구는 실제 관절 움직임의 중복, 원본 출처, 반복 연결, 달리기 보폭과 패배 자세 유지를 확인합니다.
 
@@ -84,7 +87,7 @@ python -m http.server 8000 --bind 127.0.0.1
 | Meilin | 몸을 돌리며 부채를 펼치는 의식 동작 |
 | Nevia | 눈덩이를 던지듯 발랄하게 손을 뻗는 동작 |
 
-새 4명의 동작 설명은 `model_features.json`의 `motion_descriptions`와 원본 표에 기록합니다. 별도의 투사체·마법 VFX는 포함하지 않습니다.
+11–15번의 동작 설명은 `model_features.json`의 `motion_descriptions`와 원본 표에 기록합니다. 별도의 투사체·마법 VFX는 포함하지 않습니다.
 
 ## 재생성 및 검사
 

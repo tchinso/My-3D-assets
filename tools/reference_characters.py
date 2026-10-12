@@ -35,8 +35,16 @@ DESIGNS = [
          style='rose_bride', legs='bare', attack='bouquet',
          extra_source_roles={'bare_legs_and_feet':'Hina (Swimsuit).glb','ruffled_lace_hem':'Mari (Idol).glb'},
          design='네 번째 참고 이미지의 연한 금발 긴 컬과 작은 보석 왕관, 하늘색 눈. 원본 드레스의 코르셋·큰 리본과 흰색·연보라색 겹프릴 하이로 드레스, 진주 목걸이, 흰 장미 부케, 맨다리·맨발.'),
+    dict(id=15, slug='15_scarlet_familiar', name='Koa', name_ko='코아',
+         tagline='Scarlet familiar · dusk wings', hair='Rabu', face='Rabu',
+         hair_color='#ff646c', eye_color='#c92b43',
+         palette=['#3d2a29','#fff5ef','#d53142','#14232a'],
+         style='bat_school', legs='thigh', attack='magic',
+         extra_source_roles={'back_wings':'Hina.glb','ruffled_hem':'Hina (Dress).glb'},
+         design='첨부 이미지처럼 붉은 눈과 매우 긴 산호빛 적발, 풍성한 앞머리와 얼굴 옆 머리. 흰 반소매 블라우스와 빨간 넥타이, 금색 단추가 달린 짙은 초콜릿색 조끼·짧은 주름치마·흰 프릴 밑단, 맨 허벅지와 짙은 갈색 사이하이. 머리 양옆의 작은 박쥐 날개와 등 뒤의 펼친 검푸른 박쥐 날개.'),
 ]
-COSTUME_SOURCES = {11:'Sakurako (Idol)', 12:'Seia', 13:'Reisa (Magical)', 14:'Saori (Dress) (Cafe)'}
+COSTUME_SOURCES = {11:'Sakurako (Idol)', 12:'Seia', 13:'Reisa (Magical)', 14:'Saori (Dress) (Cafe)',
+                   15:'Shokuhou Misaki'}
 
 
 def color(hex):
@@ -83,6 +91,12 @@ def hair_selection(b,p,s,groups):
         factor=np.clip((.76-pos[:,1])/.25,0,1)
         pos[long,0]*=(1-.20*factor[long])
         pos[long,2]-=.035*factor[long]
+    if b.c['id']==15:
+        # Fan out Rabu's complete long donor locks without changing the scalp
+        # or the face-framing fringe. The source's separate helmet is omitted.
+        fall=np.clip((b.headpos[1]+.02-pos[:,1])/.54,0,1)
+        pos[:,0]*=1+.31*fall
+        pos[:,2]-=.035*fall
     b.appearance_fit['hair']={'method':'Preserved rigged donor locks; removed unrelated head accessories; tinted original atlas',
                               'donor':s.name+'.glb','iris_tint':b.c['eye_color']}
     if b.c['id']==11:
@@ -236,6 +250,19 @@ def _repaint(b,p):
         paint((r>g+25)&~skin,'#c5758e',True)
     elif b.c['id']==14:
         paint(c.max(2)<150,'#d7cfdf',True)
+    elif b.c['id']==15:
+        # Shokuhou's original blouse and short sleeves remain white. Her
+        # beige vest pigments resemble skin, so mask the torso's UV islands
+        # explicitly instead of exempting every warm pixel as exposed skin.
+        neutral=(c.max(2)-c.min(2)<70)&(c.max(2)<215)
+        red_badge=(r>90)&(r>g*1.26)&(r>bl*1.22)
+        paint(neutral|red_badge,'#402c2a',True)
+        center=p['pos'][p['idx']].mean(1)
+        vest=(center[:,1]>.443)&(center[:,1]<.632)&(np.abs(center[:,0])<.115)
+        torso_uv=_uv_region(p,np.flatnonzero(vest),im.size)
+        cloth=torso_uv&(c.min(2)<220)&~gold
+        shade=np.clip(.64+.42*lum,.67,1.04)
+        a[:,:,:3][cloth]=np.clip(color('#402b29')*shade[cloth,None],0,255).astype('u1')
     if p['mat'].get('alphaMode','OPAQUE')=='OPAQUE':a[:,:,3]=255
     return Image.fromarray(a)
 
@@ -306,6 +333,24 @@ def _garment(b,p):
             mi=b.material('Florielle ivory stockings','#f7eef0')
             b.mesh('Florielle plain ivory legwear',pos,idx[triangles],mi,uv=p['uv'],norm=p['norm'],
                    j=b.map_bones(p,b.src,np.zeros(3)),w=p['w']);keep[triangles]=False
+        elif cid==15:
+            if any(t in n for n in names for t in ('bag', 'wp_belt', 'weapon', 'pouch')):
+                keep[triangles]=False;continue
+            if hi[1]<.535 and abs(center[0])>.16 and any(t in n for n in names for t in ('hand','forearm','finger')):
+                mi=b.material('Koa bare forearms and hands','#f6d5c8')
+                b.mesh('Koa original arm anatomy without donor gloves',pos,idx[triangles],mi,
+                       uv=p['uv'],norm=p['norm'],j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
+                keep[triangles]=False;continue
+            if hi[1]<.30 and lo[1]<.07 and any('calf' in n for n in names):
+                mi=b.material('Koa dark chocolate thigh-high knit','#302021',_woven_texture('#302021'))
+                b.mesh('Koa donor fitted thigh-highs and shoes',pos,idx[triangles],mi,
+                       uv=p['uv'],norm=p['norm'],j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
+                keep[triangles]=False;continue
+            if lo[1]>.25 and hi[1]<.42 and any('thigh' in n for n in names):
+                mi=b.material('Koa exposed upper thighs','#f6d5c8')
+                b.mesh('Koa donor bare upper thighs',pos,idx[triangles],mi,
+                       uv=p['uv'],norm=p['norm'],j=b.map_bones(p,b.src,np.zeros(3)),w=p['w'])
+                keep[triangles]=False;continue
     if cid==12:
         centers=pos[idx].mean(1)
         waist=(centers[:,1]>.439)&(centers[:,1]<.505)&(np.abs(centers[:,0])<.110)
@@ -897,16 +942,152 @@ def _bride(b,gold,cream):
     b.bow('Rosaria bouquet silk bow',h+[0,.046,.019],.034,silk,bone)
 
 
+def _koa_frill(b):
+    """Keep Hina Dress's actual scalloped frill topology and sewn atlas."""
+    donor=b.source('Hina (Dress)')
+    part=next(p for p in donor.parts() if p['mat']['name'].endswith('_Frill'))
+    pos,joints=_rest_fit(b,part,donor)
+    # The donor's long skirt ends lower than the chosen pleated school skirt.
+    # Match its circumference and seat the white ruffle just below the hem.
+    pos[:,0]*=.73
+    pos[:,2]*=.78
+    frill_vertices=np.unique(part['idx'])
+    pos[:,1]=.268+(pos[:,1]-pos[frill_vertices,1].min())*.83
+    atlas=np.array(donor.image(part['mat']['pbrMetallicRoughness']['baseColorTexture']['index']))
+    lum=atlas[:,:,:3].astype(float)@np.array([.27,.57,.16])/255
+    atlas[:,:,:3]=np.clip(color('#f9f2ef')*(.77+.25*lum[:,:,None]),0,255).astype('u1')
+    material=b.wardrobe_material('Koa original Hina Dress ivory sewn frill',part,Image.fromarray(atlas))
+    b.mesh('Koa fitted original scalloped white skirt frill',pos,part['idx'],material,
+           uv=part['uv'],norm=None,j=joints,w=part['w'])
+
+
+def _koa_back_wings(b):
+    """Extract Hina's skinned bat membranes and keep their wing joint chain."""
+    donor=b.source('Hina')
+    part=next(p for p in donor.parts() if p['mat']['name']=='Hina_Original_Body')
+    wing_joint=np.array(['wing' in name.lower() for name in part['names']])
+    influence=(wing_joint[part['j']]*part['w']).sum(1)
+    triangles=part['idx'][influence[part['idx']].mean(1)>.9]
+    if len(triangles)<400:
+        raise ValueError('Hina wing membranes were not found in the source body mesh')
+    used=np.unique(triangles)
+    slots=np.full(len(part['pos']),-1,int);slots[used]=np.arange(len(used))
+    indices=slots[triangles]
+    joints=part['j'][used].copy();weights=part['w'][used].copy()
+    source_slots=np.unique(joints[weights>1e-6])
+    compact={int(old):new for new,old in enumerate(source_slots)}
+    remapped=np.zeros_like(joints)
+    for old,new in compact.items():remapped[joints==old]=new
+    small=dict(part,names=[part['names'][k] for k in source_slots],j=remapped)
+    source_head=next(i for i,n in enumerate(donor.doc['nodes'])
+                     if n.get('name')=='Bip001 Head' and i in donor.world)
+    delta=b.headpos-donor.world[source_head][:3,3]
+    delta[1]+=b.head_adjust
+    pos=part['pos'][used]+delta
+    pos[:,0]*=.80
+    new_joints=b.map_bones(small,donor,delta)
+    atlas=np.array(donor.image(part['mat']['pbrMetallicRoughness']['baseColorTexture']['index']))
+    lum=atlas[:,:,:3].astype(float)@np.array([.27,.57,.16])/255
+    atlas[:,:,:3]=np.clip(color('#182b31')*(.48+.70*lum[:,:,None]),0,255).astype('u1')
+    material=b.wardrobe_material('Koa original Hina dark teal bat wing atlas',part,Image.fromarray(atlas))
+    b.mesh('Koa original Hina rigged bat-wing membranes',pos,indices,material,
+           uv=part['uv'][used],norm=None,j=new_joints,w=weights)
+    b.appearance_fit['wings']={'source':'Hina.glb',
+        'method':'Extracted 492 original skinned wing triangles, fitted lateral span to 80%; retained donor wing joints under the target pelvis and recolored the membrane atlas',
+        'head_wings':'Fitted small paired scalloped membranes behind the hair'}
+
+
+def _koa_head_wings(b):
+    membrane=b.material('Koa small head-wing membrane','#172a30',_woven_texture('#172a30'))
+    rib=b.material('Koa small head-wing rib','#100f19')
+    y=b.headpos[1]+b.head_adjust
+    for side in (-1,1):
+        root=np.array([side*.126,y+.115,-.174])
+        outline=np.array([[.18,.145,-.18],[.245,.202,-.19],[.27,.145,-.203],
+                          [.365,.184,-.226],[.344,.121,-.233],[.431,.069,-.243],
+                          [.378,.052,-.241],[.327,.084,-.226],[.268,.061,-.207],
+                          [.208,.082,-.186],[.15,.084,-.175]],float)
+        outline[:,0]*=side;outline[:,1]+=y
+        vertices=np.vstack([root,outline])
+        faces=[[0,i,i+1] for i in range(1,len(vertices)-1)]
+        uv=np.c_[np.linspace(.08,.94,len(vertices)),np.linspace(.12,.88,len(vertices))]
+        b.mesh('Koa scalloped upper bat wing',vertices,faces,membrane,'Bip001 Head',uv=uv)
+        for tip in (outline[1],outline[3],outline[5]):
+            b.tube('Koa upper bat-wing dark finger',[root,tip],[.0032,.0012],rib,'Bip001 Head',8)
+        b.tube('Koa upper bat-wing edge',outline,[.0017]*len(outline),rib,'Bip001 Head',8)
+
+
+def _koa(b,gold,cream):
+    _koa_frill(b)
+    _koa_back_wings(b)
+    _koa_head_wings(b)
+    red=b.material('Koa crimson necktie','#c82335',_woven_texture('#ce2b3c'))
+    dark=b.material('Koa vest seam','#251b1d')
+    spine='Bip001 Spine1'
+    top=.627
+    z=_front_at(b,0,top)+.024
+    b.ellipsoid('Koa folded red tie knot',[0,top,z],[.015,.016,.007],red,spine,16,8)
+    tie=np.array([[x,y,_front_at(b,x,y)+.025] for x,y in
+                  ((-.009,.615),(.009,.615),(.014,.530),(0,.506),(-.014,.530))])
+    b.mesh('Koa long pointed crimson silk tie',tie,[[0,1,2],[0,2,4],[4,2,3]],red,spine)
+    for yy in (.492,.450):
+        z=_front_at(b,0,yy)+.013
+        b.ellipsoid('Koa brass vest button',[0,yy,z],[.006,.006,.0035],gold,spine,12,6)
+    for side in (-1,1):
+        edge=[]
+        for x,y in ((.048,.595),(.082,.554),(.087,.495),(.075,.446)):
+            x*=side;edge.append([x,y,_front_at(b,x,y)+.005])
+        b.tube('Koa fitted vest edge seam',edge,[.0018]*len(edge),dark,spine,8)
+    b.appearance_fit['costume']={'source':'Shokuhou Misaki.glb',
+        'method':'Original short blouse sleeves, V-neck vest, pleated school skirt and leg topology retained; atlas recolored to dark chocolate; red tie and brass buttons tailored over the torso',
+        'hem':'Hina (Dress).glb original frill UV and folds fitted below the shorter skirt',
+        'stockings':'Original lower-leg geometry retextured dark brown; upper thigh skin preserved'}
+
+
+def add_koa_wing_motions(b):
+    """Give the retained Hina wing joints a small character-specific gesture."""
+    from character_animations import _Rig, _axisq, _qinv, _qmul, _qnorm
+    from source_motion_refresh import _append_channel, _read_accessor
+    rig=_Rig(b.doc)
+    gestures={
+        'Idle':lambda t:3.0*np.sin(2*math.pi*t),
+        'Walk':lambda t:7.0*np.sin(2*math.pi*t),
+        'Run':lambda t:8.0*np.sin(4*math.pi*t),
+        'Attack':lambda t:17.0*np.sin(math.pi*t)**2,
+        'Defend':lambda t:-8.0*np.sin(math.pi*t)**2,
+        'Victory':lambda t:14.0*np.sin(math.pi*t)**2+3.0*np.sin(4*math.pi*t)**2,
+        'Lose':lambda t:-11.0*(min(1.0,t/.78)**2*(3-2*min(1.0,t/.78))),
+    }
+    for clip in b.doc['animations']:
+        name=clip['name']
+        times=_read_accessor(b,clip['samplers'][0]['input']).ravel()
+        phase=times/max(float(times[-1]),1e-8)
+        for side,sign in (('L',1),('R',-1)):
+            for segment,weight in (('01',1.0),('02',.43)):
+                node=b.bone[f'Hina::Bone_Wing_{side}{segment}']
+                parent=rig.parent[node]
+                parent_q=rig.rest_world_q[parent]
+                values=[]
+                for t in phase:
+                    world_delta=_axisq(rig.forward,sign*weight*gestures[name](float(t)))
+                    local_delta=_qmul(_qmul(_qinv(parent_q),world_delta),parent_q)
+                    values.append(_qnorm(_qmul(local_delta,rig.q[node])))
+                _append_channel(b,clip,clip['samplers'][0]['input'],rig,node,'rotation',values)
+        clip['extras']['secondaryMotion']='Authored flex of original Hina wing joints, synchronized to the chosen native body action'
+        b.motion_sources[name]['adaptation'].append('Original Hina skinned bat wings given a small synchronized secondary flex')
+
+
 def outfits(b):
     for p in b.costume_parts:_garment(b,p)
     gold=b.material('Reference accessory gold','#d8b775',metal=.65)
     cream=b.material('Reference ivory pearl','#fff5e7')
-    {11:_leatherwork,12:_fox_panels,13:_witch,14:_bride}[b.c['id']](b,gold,cream)
+    {11:_leatherwork,12:_fox_panels,13:_witch,14:_bride,15:_koa}[b.c['id']](b,gold,cream)
     details={
         11:'Original Serika jacket shoulder/back topology and atlas cropped and fitted over the retained blouse pintucks; charcoal tailoring, fitted pleated ivory cravat with gold-framed teal pendant, twelve-pleat paired-jewel cuffs, scalloped leather waist, black belt, angular silver buckle, linked chain and silver rivets; dark donor twin-tail locks fitted into broad waves',
         12:'Original rigged Seia skirt pleats and cream hem exposed by removing the primitive skirt overlay; turquoise source atlas, folded checked panels with woven shading, piping and stitched edges; original gathered sleeves preserved; clothing bow draped onto the retained blouse and sharing its interpolated skin weights',
         13:'Original Seia gathered sleeve topology and cuff atlases retargeted to the character rest arms; folded navy constellation-embroidered cape, rose damask inner lining, gold braid and source Reisa dress frills preserved',
         14:'Original Mari Idol ruffle hem topology and stitch atlas fitted onto four silk tiers; ivory and lilac embroidered satin with woven shading and sewn borders; original Saori corset and large back bow preserved',
+        15:'Original Shokuhou short sleeves, vest and pleated skirt recolored dark chocolate; Hina Dress sewn frill fitted under the hem; original Hina skinned bat wings recolored black teal, with smaller scalloped upper wings and a fitted red tie',
     }
     b.appearance_fit['reference']={'image_index':b.c['id']-10,
         'construction':'Catalog-selected rigged donor garments and original UVs with fitted folds, lace, embroidery and sewn accessories',

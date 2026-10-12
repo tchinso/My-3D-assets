@@ -1,6 +1,6 @@
 # 원본 모션 선정 내역
 
-2026-10-09 수정. 원본 파일은 `C:\Codex\BlueArchive-GLB`에서 읽고 수정하지 않습니다.
+2026-10-12 수정. 원본 파일은 `C:\Codex\BlueArchive-GLB`에서 읽고 수정하지 않습니다.
 
 | 캐릭터 | Attack | Run | Defend | Lose |
 | --- | --- | --- | --- | --- |
@@ -18,6 +18,7 @@
 | Kimon | Izuna.glb · `Exs` | Izuna.glb · `Move_Ing` | Izuna.glb · `Vital_Panic` | Seia.glb · `Vital_Death` |
 | Florielle | Eri.glb · `Exs` | Eri.glb · `DiceRace_Run` | Eri.glb · `Vital_Panic` | Eri.glb · `Vital_Death` |
 | Rosaria | Mimori.glb · `Exs` | Mari (Idol).glb · `Move_Ing` | Mari (Idol).glb · `Vital_Panic` | Mari (Idol).glb · `Vital_Death` |
+| Koa | Kasumi.glb · `Exs` | Kasumi.glb · `Move_Ing` | Aru.glb · `Vital_Panic` | Aru.glb · `Vital_Death` |
 
 ## 1–10번 공격 동작
 
@@ -34,7 +35,7 @@
 | Meilin | Niya.glb · `Exs` | Native fan ritual, graceful pivot and broad ceremonial flourish |
 | Nevia | Airi.glb · `Exs` | Native playful windup, buoyant hop and snow-charm toss |
 
-## Quinn·Kimon·Florielle·Rosaria의 전체 모션
+## 11–15번 캐릭터의 전체 모션
 
 ### Quinn
 
@@ -83,4 +84,16 @@
 | Defend | Mari (Idol).glb · `Vital_Panic` | Reserved, protective bridal recoil |
 | Victory | Mimori.glb · `Victory_Start` | Courteous bridal celebration |
 | Lose | Mari (Idol).glb · `Vital_Death` | Poised bridal character sinks defeated |
+
+### Koa
+
+| 모션 | 원본 | 동작·보정 |
+| --- | --- | --- |
+| Idle | Mutsuki (New Year).glb · `Cafe_Idle` | Mischievous anticipation |
+| Walk | Mutsuki (New Year).glb · `Cafe_Walk` | Light, impish steps |
+| Run | Kasumi.glb · `Move_Ing` | Impetuous rush with Kasumi's original running stride |
+| Attack | Kasumi.glb · `Exs` | Kasumi's emphatic native EX gesture for a winged magic attack |
+| Defend | Aru.glb · `Vital_Panic` | Startled, theatrical recoil before regaining composure |
+| Victory | Mutsuki (New Year).glb · `Victory_Start` | Playful victory flourish |
+| Lose | Aru.glb · `Vital_Death` | Dramatic collapse that settles into a held defeated pose |
 

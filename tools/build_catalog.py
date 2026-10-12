@@ -127,6 +127,13 @@ APPEARANCE = {
              legs=["맨다리"], feet=["맨발", "원본 해부학 발 메시"],
              features=["보석 작은 왕관", "긴 연금발 컬", "흰색 겹프릴", "뒤로 흐르는 드레스 자락", "흰 장미 부케", "맨발"],
              weapon="흰 장미와 잎을 묶은 부케"),
+    15: dict(hair_colors=["진홍색"], length="매우 긴 머리", styles=["긴 생머리", "긴 앞머리", "옆머리"],
+             hair="Rabu의 매우 긴 머리를 선명한 진홍색으로 편집하고 얼굴을 감싸는 앞머리와 양옆으로 흘러내리는 긴 머리카락을 유지. 눈은 붉은색으로 편집",
+             outfit_styles=["교복", "조끼", "플리츠 스커트"], outfit_colors=["흰색", "다크 초콜릿색", "빨간색"],
+             outfit="Shokuhou Misaki의 실제 의상 골격과 흰색 반소매 셔츠, 조끼, 플리츠 스커트를 조합하고 조끼·스커트를 다크 초콜릿색으로 편집. 빨간 넥타이와 Hina (Dress)의 흰색 치맛단 프릴을 더하고, Hina의 박쥐 날개를 거의 검은 청록색으로 바꿔 작은 윗날개 한 쌍과 함께 피팅",
+             legs=["짙은 갈색 사이하이 양말"], feet=["원본 구두"],
+             features=["긴 진홍색 머리", "붉은 눈", "흰색 반소매 셔츠", "다크 초콜릿색 조끼와 플리츠 스커트", "빨간 넥타이", "흰색 치맛단 프릴", "짙은 갈색 사이하이 양말", "거의 검은 청록색 박쥐 날개와 작은 윗날개"],
+             weapon="없음; 박쥐 날개를 펼치는 마법 공격"),
 }
 
 
@@ -383,7 +390,7 @@ def build(source):
                          "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"},
             "review_notes": ["원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
                              "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-                             "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"],
+                             "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"],
         }
         for clip_name, field in (("Walk", "walk_description"), ("Victory", "victory_description")):
             description = next((clip.get("extras", {}).get("description", "")
@@ -435,7 +442,7 @@ def build(source):
         if record['id'] <= 10:
             description = record['attack_description'].replace('|', '/')
             lines.append(f"| {record['character']} | {cell(record, 'Attack')} | {description} |")
-    lines.extend(['', '## Quinn·Kimon·Florielle·Rosaria의 전체 모션', ''])
+    lines.extend(['', '## 11–15번 캐릭터의 전체 모션', ''])
     for record in models.values():
         if record['id'] < 11:
             continue

@@ -2,292 +2,577 @@
   "maps": [
     {
       "id": "Academy",
-      "meshes": 131,
-      "colliders": 321,
+      "meshes": 303,
+      "colliders": 323,
       "surfaces": 304,
-      "screenshot": "Academy.png"
+      "features": [
+        "벽돌 학원과 종탑",
+        "높낮이가 있는 석조 테라스",
+        "폭포와 계단식 유적",
+        "세 개의 다리",
+        "거목의 작은 집",
+        "고대 원형극장"
+      ],
+      "interactions": 3,
+      "spawn": [
+        -4,
+        2.2,
+        6
+      ],
+      "calls": 115,
+      "triangles": 34901
     },
     {
       "id": "Asuria",
-      "meshes": 102,
+      "meshes": 286,
       "colliders": 53,
       "surfaces": 23,
-      "screenshot": "Asuria.png"
+      "features": [
+        "금빛 양파 돔과 미나레트",
+        "복숭아빛 왕궁 회랑",
+        "운하와 석조 다리",
+        "뾰족한 장식 성문",
+        "분수와 원형 광장",
+        "강변 시장"
+      ],
+      "interactions": 3,
+      "spawn": [
+        8,
+        0,
+        29
+      ],
+      "calls": 118,
+      "triangles": 38745
     },
     {
       "id": "BoilerRoom",
       "meshes": 47,
       "colliders": 17,
       "surfaces": 7,
-      "screenshot": "BoilerRoom.png"
+      "features": [
+        "석탄 저장 구역 · 세 종류의 보일러 · 굽은 배관과 이음쇠 · 삽 · 난간과 계단"
+      ],
+      "interactions": 1,
+      "spawn": [
+        -1,
+        0,
+        2
+      ],
+      "calls": 90,
+      "triangles": 34089
     },
     {
       "id": "CapitalCity",
-      "meshes": 94,
-      "colliders": 56,
+      "meshes": 198,
+      "colliders": 57,
       "surfaces": 30,
-      "screenshot": "CapitalCity.png"
+      "features": [
+        "푸른 첨탑의 흰 왕성",
+        "중앙 계단과 시민 광장",
+        "원형 회랑과 돔 목욕당",
+        "주황 기와 지붕",
+        "바닷가 성벽과 문장 성문"
+      ],
+      "interactions": 2,
+      "spawn": [
+        10,
+        0,
+        23
+      ],
+      "calls": 149,
+      "triangles": 54803
     },
     {
       "id": "CuriousMansion",
       "meshes": 51,
-      "colliders": 20,
+      "colliders": 21,
       "surfaces": 23,
-      "screenshot": "CuriousMansion.png"
+      "features": [
+        "붉은 계단 카펫 · 두 층의 회랑 · 아치 창과 촛대 · 녹색 수호상 · 바닥 원형 문양"
+      ],
+      "interactions": 1,
+      "spawn": [
+        0,
+        0,
+        6.5
+      ],
+      "calls": 95,
+      "triangles": 40453
     },
     {
       "id": "Deran",
-      "meshes": 109,
-      "colliders": 55,
+      "meshes": 217,
+      "colliders": 61,
       "surfaces": 8,
-      "screenshot": "Deran.png"
+      "features": [
+        "회청색 왕성과 뾰족한 성문",
+        "기둥 현관과 계단",
+        "산책 가능한 생울타리 미로",
+        "푸른 지붕의 긴 회관",
+        "천막 시장과 수레",
+        "동심원 분수 광장"
+      ],
+      "interactions": 3,
+      "spawn": [
+        0,
+        0,
+        27
+      ],
+      "calls": 159,
+      "triangles": 59217
     },
     {
       "id": "EagleTown",
-      "meshes": 34,
-      "colliders": 9,
+      "meshes": 66,
+      "colliders": 23,
       "surfaces": 49,
-      "screenshot": "EagleTown.png"
+      "features": [
+        "4단 암벽 테라스",
+        "실제 높이가 있는 돌계단",
+        "거대 해바라기의 꽃잎과 씨앗",
+        "알이 놓인 둥지",
+        "나뭇가지와 고원 연못"
+      ],
+      "interactions": 2,
+      "spawn": [
+        -6,
+        0,
+        12
+      ],
+      "calls": 114,
+      "triangles": 54205
     },
     {
       "id": "in-Academy",
-      "meshes": 83,
-      "colliders": 75,
+      "meshes": 85,
+      "colliders": 414,
       "surfaces": 130,
-      "screenshot": "in-Academy.png"
+      "features": [
+        "4개 상층 회랑 · 연결 계단 96단 · 체크 무늬 바닥 · 황동 난간 · 기둥 · 스테인드글라스 · 게시판과 시계"
+      ],
+      "interactions": 1,
+      "spawn": [
+        0,
+        0,
+        8.5
+      ],
+      "calls": 73,
+      "triangles": 101473
     },
     {
       "id": "Library",
       "meshes": 46,
-      "colliders": 18,
+      "colliders": 22,
       "surfaces": 24,
-      "screenshot": "Library.png"
+      "features": [
+        "수백 권의 입체 책 · 상층 서가와 사다리 · 두 구간 계단 · 원형 타일 무늬 · 대출 데스크 · 벽 그림과 괘종시계"
+      ],
+      "interactions": 3,
+      "spawn": [
+        -3,
+        0,
+        5.6
+      ],
+      "calls": 83,
+      "triangles": 72757
     },
     {
       "id": "Mine",
       "meshes": 67,
-      "colliders": 46,
+      "colliders": 57,
       "surfaces": 55,
-      "screenshot": "Mine.png"
+      "features": [
+        "4개 절벽 작업대",
+        "로프와 개별 판자의 협곡 다리",
+        "오를 수 있는 사다리 계단",
+        "광차와 침목 선로",
+        "3개 갱도 입구",
+        "연통 작업장과 광석 더미"
+      ],
+      "interactions": 5,
+      "spawn": [
+        -5.5,
+        0,
+        11
+      ],
+      "calls": 82,
+      "triangles": 50839
     },
     {
       "id": "NormalTown",
-      "meshes": 80,
+      "meshes": 158,
       "colliders": 72,
       "surfaces": 15,
-      "screenshot": "NormalTown.png"
+      "features": [
+        "붉은 기와와 원형 창문",
+        "촘촘한 대나무 숲",
+        "붉은 절벽의 층리",
+        "수호상 샘과 실개천",
+        "목조 다리와 돌길",
+        "찻집의 붉은 천"
+      ],
+      "interactions": 3,
+      "spawn": [
+        0,
+        0,
+        26
+      ],
+      "calls": 121,
+      "triangles": 91357
     },
     {
       "id": "Nymphen",
-      "meshes": 40,
-      "colliders": 8,
+      "meshes": 81,
+      "colliders": 18,
       "surfaces": 34,
-      "screenshot": "Nymphen.png"
+      "features": [
+        "거목 두 그루와 공중 가지",
+        "독립된 나무집 테라스",
+        "문에 새겨진 나선 무늬",
+        "실제 높이의 계단",
+        "뿌리 다리와 늘어진 넝쿨"
+      ],
+      "interactions": 2,
+      "spawn": [
+        1,
+        0.25,
+        11
+      ],
+      "calls": 94,
+      "triangles": 99351
     },
     {
       "id": "Odanka",
-      "meshes": 60,
-      "colliders": 24,
+      "meshes": 96,
+      "colliders": 25,
       "surfaces": 9,
-      "screenshot": "Odanka.png"
+      "features": [
+        "거목의 굵은 뿌리와 수피",
+        "곡선 시냇물과 판자 다리",
+        "통나무집과 벽돌 굴뚝",
+        "밭이랑과 열린 울타리",
+        "그루터기 나이테",
+        "갈대와 조각 기둥"
+      ],
+      "interactions": 4,
+      "spawn": [
+        -5,
+        0,
+        11
+      ],
+      "calls": 98,
+      "triangles": 91051
     },
     {
       "id": "PEStorage",
       "meshes": 33,
       "colliders": 11,
       "surfaces": 2,
-      "screenshot": "PEStorage.png"
+      "features": [
+        "기울어진 벤치 · 공 선반 · 줄무늬 허들 · 배트 상자 · 낮은 매트 단상 · 구겨진 종이 · 창틀과 배관"
+      ],
+      "interactions": 2,
+      "spawn": [
+        -2.4,
+        0,
+        3.5
+      ],
+      "calls": 69,
+      "triangles": 30485
     },
     {
       "id": "Port",
-      "meshes": 79,
+      "meshes": 119,
       "colliders": 10,
       "surfaces": 16,
-      "screenshot": "Port.png"
+      "features": [
+        "탑승 가능한 긴 목조 범선",
+        "선체의 판재와 말린 돛",
+        "돛대 로프와 조타륜",
+        "나무 부두와 계선 기둥",
+        "줄무늬 차양의 항구 시장",
+        "노 젓는 배와 떠다니는 통"
+      ],
+      "interactions": 2,
+      "spawn": [
+        -13,
+        1.2,
+        -3
+      ],
+      "calls": 82,
+      "triangles": 25559
     },
     {
       "id": "PrimitiveTown",
-      "meshes": 80,
-      "colliders": 24,
+      "meshes": 143,
+      "colliders": 38,
       "surfaces": 46,
-      "screenshot": "PrimitiveTown.png"
+      "features": [
+        "3단 풀밭 석축",
+        "새겨진 얼굴과 채색 토템",
+        "패턴을 새긴 신전 기둥",
+        "원형 석조 사당",
+        "짜임 무늬의 지붕과 문",
+        "높이에 맞춘 모든 계단"
+      ],
+      "interactions": 2,
+      "spawn": [
+        -6,
+        0,
+        14
+      ],
+      "calls": 100,
+      "triangles": 69697
     },
     {
       "id": "Restaurant",
       "meshes": 66,
-      "colliders": 24,
+      "colliders": 26,
       "surfaces": 2,
-      "screenshot": "Restaurant.png"
+      "features": [
+        "벽돌 돔 오븐 · 연통과 환기 후드 · 냄비와 국자 · 두 식탁과 의자 · 식기와 수건 선반 · 식량 상자와 통"
+      ],
+      "interactions": 9,
+      "spawn": [
+        1.8,
+        0,
+        3.8
+      ],
+      "calls": 93,
+      "triangles": 29725
     },
     {
       "id": "Sauna",
       "meshes": 63,
-      "colliders": 43,
+      "colliders": 44,
       "surfaces": 14,
-      "screenshot": "Sauna.png"
+      "features": [
+        "8개 휴식 매트 · 노란 수건 · 석조 난로 · 두 온탕과 계단 · 3개 샤워실 · 세면용품 · 중앙 벤치 · 입구 돌 정원"
+      ],
+      "interactions": 12,
+      "spawn": [
+        5.5,
+        0,
+        7
+      ],
+      "calls": 86,
+      "triangles": 39021
     },
     {
       "id": "ScienceRoom",
       "meshes": 74,
       "colliders": 15,
       "surfaces": 5,
-      "screenshot": "ScienceRoom.png"
+      "features": [
+        "약재 서랍 42개 · 열려 있는 서랍 · 유리관과 응축기 · 실험 노트 · 배관 · 흔들의자 · 약병 장식장 · 붉은 소파"
+      ],
+      "interactions": 3,
+      "spawn": [
+        -1.8,
+        0,
+        3.8
+      ],
+      "calls": 93,
+      "triangles": 26809
     },
     {
       "id": "SnowyTown",
-      "meshes": 63,
-      "colliders": 20,
+      "meshes": 141,
+      "colliders": 30,
       "surfaces": 20,
-      "screenshot": "SnowyTown.png"
+      "features": [
+        "눈 지붕과 개별 고드름",
+        "붉은 벽돌 굴뚝",
+        "전나무의 층별 적설",
+        "골목을 잇는 돌길",
+        "녹색 별장과 계단",
+        "석상과 얼어붙은 연못"
+      ],
+      "interactions": 6,
+      "spawn": [
+        1,
+        0,
+        13
+      ],
+      "calls": 129,
+      "triangles": 53931
     },
     {
       "id": "SpiralStair",
       "meshes": 43,
-      "colliders": 26,
+      "colliders": 29,
       "surfaces": 131,
-      "screenshot": "SpiralStair.png"
+      "features": [
+        "120개 실제 나선 계단",
+        "2.2회전 연속 이동 경로",
+        "거목 수피와 바닥 뿌리",
+        "정상 원형 단상과 황금 새",
+        "세 개의 아래층 문",
+        "창살과 넝쿨, 버섯"
+      ],
+      "interactions": 2,
+      "spawn": [
+        0,
+        0,
+        5.6
+      ],
+      "calls": 75,
+      "triangles": 52941
     },
     {
       "id": "Storage",
       "meshes": 53,
-      "colliders": 22,
+      "colliders": 24,
       "surfaces": 1,
-      "screenshot": "Storage.png"
+      "features": [
+        "쌓인 나무 상자 · 손잡이 보물상자 · 도자기와 포대 · 랜턴 · 장부 · 술병 · 접은 천 · 잡동사니"
+      ],
+      "interactions": 1,
+      "spawn": [
+        4.5,
+        0,
+        4.2
+      ],
+      "calls": 96,
+      "triangles": 34833
     },
     {
       "id": "Toilet",
       "meshes": 43,
-      "colliders": 20,
+      "colliders": 21,
       "surfaces": 1,
-      "screenshot": "Toilet.png"
+      "features": [
+        "4개 개별 칸막이와 변기 · 3개 소변기 · 거울과 세면대 · 환기 팬 · 마름모 타일 · 대걸레와 수건"
+      ],
+      "interactions": 1,
+      "spawn": [
+        0,
+        0,
+        3.6
+      ],
+      "calls": 76,
+      "triangles": 25173
     },
     {
       "id": "Underground",
       "meshes": 48,
-      "colliders": 20,
+      "colliders": 23,
       "surfaces": 22,
-      "screenshot": "Underground.png"
+      "features": [
+        "꺾인 3개 석조 통로",
+        "낱개 벽돌과 바닥 포석",
+        "16단 계단과 위쪽 착지점",
+        "반문이 있는 돌 아치",
+        "나무문 3개와 장식 문틀",
+        "오크통, 균열과 잔해, 작업대"
+      ],
+      "interactions": 3,
+      "spawn": [
+        0,
+        0,
+        5
+      ],
+      "calls": 85,
+      "triangles": 51719
     },
     {
       "id": "Village",
-      "meshes": 109,
+      "meshes": 200,
       "colliders": 31,
       "surfaces": 33,
-      "screenshot": "Village.png"
+      "features": [
+        "다채로운 목골조 주택",
+        "황금 지붕의 종탑과 붉은 교회",
+        "입체 물약 간판의 약방",
+        "도르래 우물과 허브 정원",
+        "아치형 수로교와 다리 위 집",
+        "기와 지붕과 작은 울타리"
+      ],
+      "interactions": 2,
+      "spawn": [
+        0,
+        0,
+        17
+      ],
+      "calls": 125,
+      "triangles": 30845
     }
   ],
   "characters": [
     {
       "name": "Marin",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5
     },
     {
       "name": "Viola",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.4999999999999998
     },
     {
       "name": "Sora",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.4999999999999998
     },
     {
       "name": "Elise",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5
     },
     {
       "name": "Rina",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5
     },
     {
       "name": "Fennel",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5000000000000002
     },
     {
       "name": "Momo",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.4999999999999998
     },
     {
       "name": "Rosette",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5
     },
     {
       "name": "Meilin",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5000000000000002
     },
     {
       "name": "Nevia",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.4999999999999998
     },
     {
       "name": "Quinn",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.4999999999999998
     },
     {
       "name": "Kimon",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5
     },
     {
       "name": "Florielle",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5000000000000002
     },
     {
       "name": "Rosaria",
       "motions": 7,
-      "heightRangeVerified": [
-        1.2,
-        1.85
-      ]
+      "height": 1.5
+    },
+    {
+      "name": "Koa",
+      "motions": 7,
+      "height": 1.5
     }
   ]
 }

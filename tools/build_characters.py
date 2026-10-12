@@ -273,7 +273,7 @@ class Builder:
                 im=recolor(self,p,im)
             else:
                 a=np.array(im);lum=(a[:,:,:3].astype(float)@np.array([.27,.57,.16]))/255
-                col=rgb(self.c['hair_color']);shade=.64+.36*lum
+                col=rgb(self.c['hair_color']);shade=(.82+.22*lum if self.c['id']==15 else .64+.36*lum)
                 a[:,:,:3]=np.clip(col[None,None,:]*shade[:,:,None]*255,0,255).astype('u1');im=Image.fromarray(a)
         if mode=='face' and self.c['id']==3 and im:
             a=np.array(im);col=a[:,:,:3].astype(float);r,g,b=col.transpose(2,0,1)
@@ -806,6 +806,9 @@ class Builder:
                 if self.c['id']<11 else {})
         from source_motion_refresh import add_catalog_motions
         native.update(add_catalog_motions(self))
+        if self.c['id']==15:
+            from reference_characters import add_koa_wing_motions
+            add_koa_wing_motions(self)
         motion_sources = dict(getattr(self, 'motion_sources', {}))
         for clip_name, source_clip in native.items():
             motion_sources.setdefault(clip_name, {
@@ -826,8 +829,12 @@ class Builder:
         source_roles.update({'motion_'+name.lower(): record['source_file'] for name,record in motion_sources.items()})
         source_parts=list(dict.fromkeys(source_roles.values()))
         triangles=sum(self.doc['accessors'][p['indices']]['count']//3 for m in self.doc['meshes']for p in m['primitives'])
-        created='2026-10-07'if self.c['id']>=11 else'2026-10-06'
-        self.doc['extras']={'character':self.c['name'],'design_ko':self.c['design'],'created':created,'modified':'2026-10-09','source_parts':source_parts,'source_roles':source_roles,'original_work':'Original textured donor garment topology, tailored accessories, fitted chin/neck, catalog-selected original motions and attacks with fitted props','head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native,'motion_sources':motion_sources,'revision':6,'triangles':triangles}
+        created='2026-10-12' if self.c['id']==15 else '2026-10-07'if self.c['id']>=11 else'2026-10-06'
+        modified='2026-10-12' if self.c['id']==15 else '2026-10-09'
+        original_work=('Original donor garment, hair and wing topology; tailored tie, frill and head wings; fitted chin/neck; catalog-selected original body motions with authored secondary wing flex'
+                       if self.c['id']==15 else
+                       'Original textured donor garment topology, tailored accessories, fitted chin/neck, catalog-selected original motions and attacks with fitted props')
+        self.doc['extras']={'character':self.c['name'],'design_ko':self.c['design'],'created':created,'modified':modified,'source_parts':source_parts,'source_roles':source_roles,'original_work':original_work,'head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native,'motion_sources':motion_sources,'revision':6,'triangles':triangles}
         self.doc['buffers']=[{'byteLength':len(self.data)}];js=json.dumps(self.doc,ensure_ascii=False,separators=(',',':')).encode();js+=b' '*((-len(js))%4);binary=bytes(self.data)+b'\0'*((-len(self.data))%4)
         out=ROOT/'characters'/self.c['slug'];out.mkdir(parents=True,exist_ok=True);path=out/(self.c['slug']+'.glb');path.write_bytes(struct.pack('<III',0x46546c67,2,12+8+len(js)+8+len(binary))+struct.pack('<II',len(js),0x4e4f534a)+js+struct.pack('<II',len(binary),0x004e4942)+binary)
         return {'id':self.c['id'],'slug':self.c['slug'],'name':self.c['name'],'name_ko':self.c['name_ko'],'tagline':self.c['tagline'],'palette':self.c['palette'],'design':self.c['design'],'source_parts':source_parts,'source_roles':source_roles,'animations':[a['name']for a in self.doc['animations']],'glb':str(path.relative_to(ROOT)).replace('\\','/'),'sheet':f'characters/{self.c["slug"]}/{self.c["slug"]}_sheet.png','bytes':path.stat().st_size,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'revision':6,'costume_source':self.src.name+'.glb','triangles':triangles,'head_fit':self.head_fit,'appearance_fit':self.appearance_fit,'native_clips':native,'motion_sources':motion_sources}

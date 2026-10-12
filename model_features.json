@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "analyzed_on": "2026-10-09",
-  "model_count": 14,
+  "analyzed_on": "2026-10-12",
+  "model_count": 15,
   "classification_guide": {
     "appearance": "실제 원본 의상·머리·얼굴의 조합과 색상 편집 후 최종 외형을 기록; design_brief는 제작 목표이며 구체적 최종 파츠는 outfit·features에 기록",
     "height": "전체 캐릭터는 SD 비율. height는 null이며 실제 신장 수치를 제공하지 않음",
@@ -70,6 +70,57 @@
         "local_glb": "Airi.glb",
         "preview_front": "analysis/previews/002_front.png",
         "preview_back": "analysis/previews/002_back.png"
+      }
+    },
+    "Aru.glb": {
+      "character": "Aru",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "분홍색"
+        ],
+        "length": "긴 머리",
+        "styles": [
+          "생머리",
+          "앞머리",
+          "부분 묶음"
+        ],
+        "description": "긴 분홍색 옆머리와 뒤쪽에서 묶은 부분"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "롱코트"
+        ],
+        "colors": [
+          "짙은 빨간색",
+          "흰색",
+          "검은색",
+          "금색"
+        ],
+        "description": "흰 셔츠와 붉은 리본, 짧은 붉은 교복에 검은 털 깃이 있는 긴 붉은 코트",
+        "legwear": [
+          "맨다리",
+          "발목 스트랩"
+        ],
+        "footwear": [
+          "검은색 스트랩 구두"
+        ]
+      },
+      "original_features": [
+        "검정·금색 뿔",
+        "노란색 눈",
+        "붉은 원형·방사형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Aru.glb",
+        "preview_front": "analysis/previews/018_front.png",
+        "preview_back": "analysis/previews/018_back.png"
       }
     },
     "Asuna (School Uniform).glb": {
@@ -410,6 +461,57 @@
         "preview_back": "analysis/previews/063_back.png"
       }
     },
+    "Hina (Dress).glb": {
+      "character": "Hina",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "은백색"
+        ],
+        "length": null,
+        "styles": [
+          "올림머리",
+          "높은 포니테일",
+          "앞머리",
+          "웨이브"
+        ],
+        "description": "머리를 높게 올려 뒤쪽으로 둥글게 말아 내린 은백색 머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "드레스"
+        ],
+        "colors": [
+          "짙은 보라색",
+          "검은색",
+          "금색"
+        ],
+        "description": "별무늬가 있는 보라색 무릎 길이 드레스와 긴 보라색 장갑, 가는 목걸이",
+        "legwear": [
+          "보라색 허벅지 길이 양말"
+        ],
+        "footwear": [
+          "보라색 스트랩 구두"
+        ]
+      },
+      "original_features": [
+        "네 갈래 검은 뿔",
+        "보라색 박쥐 날개",
+        "보라색 눈",
+        "검정·보라색 왕관형 헤일로",
+        "파란 귀걸이"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Hina (Dress).glb",
+        "preview_front": "analysis/previews/071_front.png",
+        "preview_back": "analysis/previews/071_back.png"
+      }
+    },
     "Hina (Swimsuit).glb": {
       "character": "Hina",
       "source_timestamp": 1791003436,
@@ -458,6 +560,58 @@
         "local_glb": "Hina (Swimsuit).glb",
         "preview_front": "analysis/previews/072_front.png",
         "preview_back": "analysis/previews/072_back.png"
+      }
+    },
+    "Hina.glb": {
+      "character": "Hina",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "은백색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "웨이브",
+          "앞머리",
+          "부분 묶음"
+        ],
+        "description": "무릎 부근까지 풍성하게 내려오는 은백색 머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "군복풍"
+        ],
+        "colors": [
+          "남색",
+          "흰색",
+          "금색",
+          "보라색"
+        ],
+        "description": "금색 띠와 장식이 많은 남색 짧은 교복, 흰색 긴 코트와 검은 장갑",
+        "legwear": [
+          "짙은 보라색 허벅지 길이 양말"
+        ],
+        "footwear": [
+          "검은색·금색 레이스업 부츠"
+        ]
+      },
+      "original_features": [
+        "네 갈래 검은 뿔",
+        "보라색 박쥐 날개",
+        "보라색 눈",
+        "금색 머리 장식",
+        "검정·보라색 왕관형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Hina.glb",
+        "preview_front": "analysis/previews/073_front.png",
+        "preview_back": "analysis/previews/073_back.png"
       }
     },
     "Ibuki.glb": {
@@ -616,6 +770,54 @@
         "local_glb": "Izuna.glb",
         "preview_front": "analysis/previews/091_front.png",
         "preview_back": "analysis/previews/091_back.png"
+      }
+    },
+    "Kasumi.glb": {
+      "character": "Kasumi",
+      "source_timestamp": 1791003436,
+      "original_hair": {
+        "colors": [
+          "짙은 갈색"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "웨이브",
+          "앞머리"
+        ],
+        "description": "등 아래로 내려오며 끝이 크게 굽은 짙은 갈색 머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "작업복",
+          "흰 가운"
+        ],
+        "colors": [
+          "흰색",
+          "빨강",
+          "검정"
+        ],
+        "description": "붉은 셔츠와 검은 반바지 위에 넓은 소매의 흰 가운",
+        "legwear": [
+          "맨다리"
+        ],
+        "footwear": [
+          "빨간색 샌들"
+        ]
+      },
+      "original_features": [
+        "검은색 굽은 뿔",
+        "긴 검은 꼬리와 붉은 기계 장식",
+        "붉은색 날카로운 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Kasumi.glb",
+        "preview_front": "analysis/previews/104_front.png",
+        "preview_back": "analysis/previews/104_back.png"
       }
     },
     "Kazusa.glb": {
@@ -1250,6 +1452,54 @@
         "preview_back": "analysis/previews/175_back.png"
       }
     },
+    "Mutsuki (New Year).glb": {
+      "character": "Mutsuki",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "흰색",
+          "회색"
+        ],
+        "length": "중간 길이",
+        "styles": [
+          "올림머리",
+          "옆머리"
+        ],
+        "description": "회백색 머리를 뒤에서 크게 말아 올리고 옆머리를 남김"
+      },
+      "original_outfit": {
+        "styles": [
+          "기모노"
+        ],
+        "colors": [
+          "흰색",
+          "회색",
+          "자주색",
+          "남색"
+        ],
+        "description": "옅은 꽃무늬의 흰색 기모노와 자주색 허리띠, 짙은 목도리",
+        "legwear": [
+          "흰색 발목 양말"
+        ],
+        "footwear": [
+          "검은색과 빨간색 샌들"
+        ]
+      },
+      "original_features": [
+        "꽃 머리 장식",
+        "붉은색 각진 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Mutsuki (New Year).glb",
+        "preview_front": "analysis/previews/176_front.png",
+        "preview_back": "analysis/previews/176_back.png"
+      }
+    },
     "Mutsuki.glb": {
       "character": "Mutsuki",
       "source_timestamp": 1791003437,
@@ -1538,6 +1788,56 @@
         "local_glb": "Nonomi.glb",
         "preview_front": "analysis/previews/196_front.png",
         "preview_back": "analysis/previews/196_back.png"
+      }
+    },
+    "Rabu.glb": {
+      "character": "Rabu",
+      "source_timestamp": 1791003437,
+      "original_hair": {
+        "colors": [
+          "빨강"
+        ],
+        "length": "매우 긴 머리",
+        "styles": [
+          "생머리",
+          "앞머리"
+        ],
+        "description": "빨강, 매우 긴 머리, 생머리·앞머리"
+      },
+      "original_outfit": {
+        "styles": [
+          "교복",
+          "바이커 재킷"
+        ],
+        "colors": [
+          "검정",
+          "회색",
+          "흰색",
+          "노랑"
+        ],
+        "description": "검은 열린 재킷, 흰 셔츠와 노란 넥타이, 회색 주름치마",
+        "legwear": [
+          "짙은 회색 짧은 양말"
+        ],
+        "footwear": [
+          "검은색 발목 부츠"
+        ]
+      },
+      "original_features": [
+        "검은 바이커 헬멧",
+        "손가락 없는 장갑",
+        "흰 해골 장식",
+        "붉은 원형 헤일로"
+      ],
+      "source_confidence": {
+        "hair": "높음",
+        "outfit": "높음",
+        "features": "높음"
+      },
+      "evidence": {
+        "local_glb": "Rabu.glb",
+        "preview_front": "analysis/previews/201_front.png",
+        "preview_back": "analysis/previews/201_back.png"
       }
     },
     "Reijo.glb": {
@@ -2829,7 +3129,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/02_azure_reaper/02_azure_reaper.glb": {
@@ -3099,7 +3399,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/03_sky_cardigan/03_sky_cardigan.glb": {
@@ -3371,7 +3671,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/04_tidal_dress/04_tidal_dress.glb": {
@@ -3631,7 +3931,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/05_rosy_blazer/05_rosy_blazer.glb": {
@@ -3897,7 +4197,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/06_clover_sprite/06_clover_sprite.glb": {
@@ -4163,7 +4463,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/07_neon_cat/07_neon_cat.glb": {
@@ -4432,7 +4732,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/08_carmine_doll/08_carmine_doll.glb": {
@@ -4707,7 +5007,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/09_crimson_qipao/09_crimson_qipao.glb": {
@@ -4976,7 +5276,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/10_snow_buns/10_snow_buns.glb": {
@@ -5239,7 +5539,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ]
     },
     "characters/11_quinn_adventurer/11_quinn_adventurer.glb": {
@@ -5536,7 +5836,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Purposeful, observant scout walk",
       "victory_description": "Small scout victory salute"
@@ -5831,7 +6131,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Buoyant fox-ninja walk",
       "victory_description": "Exuberant fox-ninja victory"
@@ -6123,7 +6423,7 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Measured, composed witch walk",
       "victory_description": "Cheerful witch celebration"
@@ -6417,10 +6717,313 @@
       "review_notes": [
         "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
         "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
-        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 14명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
       ],
       "walk_description": "Gentle ceremonial walk",
       "victory_description": "Courteous bridal celebration"
+    },
+    "characters/15_scarlet_familiar/15_scarlet_familiar.glb": {
+      "id": 15,
+      "character": "Koa",
+      "name_ko": "코아",
+      "slug": "15_scarlet_familiar",
+      "filename": "15_scarlet_familiar.glb",
+      "glb": "characters/15_scarlet_familiar/15_scarlet_familiar.glb",
+      "sheet": "characters/15_scarlet_familiar/15_scarlet_familiar_sheet.png",
+      "bytes": 2358512,
+      "sha256": "c00ba582b6377901808a4820714be95c40c5f9a98f424211f0d822051a1c835b",
+      "variants": [],
+      "height": null,
+      "body": {
+        "build": null,
+        "proportions": "SD",
+        "description": "각 의상 원본의 SD 골격과 해부학 메시를 유지하며 머리 파츠를 턱·목에 맞춰 조합; 실제 체격이나 신장은 추정하지 않음"
+      },
+      "hair": {
+        "colors": [
+          "진홍색"
+        ],
+        "color_hex": "#ff646c",
+        "length": "매우 긴 머리",
+        "styles": [
+          "긴 생머리",
+          "긴 앞머리",
+          "옆머리"
+        ],
+        "description": "Rabu의 매우 긴 머리를 선명한 진홍색으로 편집하고 얼굴을 감싸는 앞머리와 양옆으로 흘러내리는 긴 머리카락을 유지. 눈은 붉은색으로 편집"
+      },
+      "outfit": {
+        "styles": [
+          "교복",
+          "조끼",
+          "플리츠 스커트"
+        ],
+        "colors": [
+          "흰색",
+          "다크 초콜릿색",
+          "빨간색"
+        ],
+        "description": "Shokuhou Misaki의 실제 의상 골격과 흰색 반소매 셔츠, 조끼, 플리츠 스커트를 조합하고 조끼·스커트를 다크 초콜릿색으로 편집. 빨간 넥타이와 Hina (Dress)의 흰색 치맛단 프릴을 더하고, Hina의 박쥐 날개를 거의 검은 청록색으로 바꿔 작은 윗날개 한 쌍과 함께 피팅",
+        "legwear": [
+          "짙은 갈색 사이하이 양말"
+        ],
+        "footwear": [
+          "원본 구두"
+        ]
+      },
+      "features": [
+        "긴 진홍색 머리",
+        "붉은 눈",
+        "흰색 반소매 셔츠",
+        "다크 초콜릿색 조끼와 플리츠 스커트",
+        "빨간 넥타이",
+        "흰색 치맛단 프릴",
+        "짙은 갈색 사이하이 양말",
+        "거의 검은 청록색 박쥐 날개와 작은 윗날개"
+      ],
+      "tags": [
+        "SD",
+        "진홍색",
+        "긴 생머리",
+        "긴 앞머리",
+        "옆머리",
+        "교복",
+        "조끼",
+        "플리츠 스커트",
+        "짙은 갈색 사이하이 양말"
+      ],
+      "palette": [
+        "#3d2a29",
+        "#fff5ef",
+        "#d53142",
+        "#14232a"
+      ],
+      "design_brief": "첨부 이미지처럼 붉은 눈과 매우 긴 산호빛 적발, 풍성한 앞머리와 얼굴 옆 머리. 흰 반소매 블라우스와 빨간 넥타이, 금색 단추가 달린 짙은 초콜릿색 조끼·짧은 주름치마·흰 프릴 밑단, 맨 허벅지와 짙은 갈색 사이하이. 머리 양옆의 작은 박쥐 날개와 등 뒤의 펼친 검푸른 박쥐 날개.",
+      "weapon": "없음; 박쥐 날개를 펼치는 마법 공격",
+      "animations": [
+        "Idle",
+        "Walk",
+        "Run",
+        "Attack",
+        "Defend",
+        "Victory",
+        "Lose"
+      ],
+      "animation_duration_seconds": {
+        "Idle": 1.6666667461395264,
+        "Walk": 1.2000000476837158,
+        "Run": 0.6666666865348816,
+        "Attack": 4.0,
+        "Defend": 1.6000001430511475,
+        "Victory": 3.000000238418579,
+        "Lose": 3.750000238418579
+      },
+      "native_source_clips": {
+        "Run": "Move_Ing",
+        "Defend": "Vital_Panic",
+        "Lose": "Vital_Death",
+        "Attack": "Exs",
+        "Idle": "Cafe_Idle",
+        "Walk": "Cafe_Walk",
+        "Victory": "Victory_Start"
+      },
+      "motion_sources": {
+        "Run": {
+          "source_file": "Kasumi.glb",
+          "source_clip": "Move_Ing",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Continuous endpoint correction for an exact loop seam",
+            "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+            "Native arm and wrist performance retained without a held prop",
+            "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+            "Original Hina skinned bat wings given a small synchronized secondary flex"
+          ],
+          "description": "Impetuous rush with Kasumi's original running stride"
+        },
+        "Defend": {
+          "source_file": "Aru.glb",
+          "source_clip": "Vital_Panic",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native arm and wrist performance retained without a held prop",
+            "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+            "Original Hina skinned bat wings given a small synchronized secondary flex"
+          ],
+          "description": "Startled, theatrical recoil before regaining composure"
+        },
+        "Lose": {
+          "source_file": "Aru.glb",
+          "source_clip": "Vital_Death",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Native final defeat pose held for the final 20% of the output clip",
+            "Native arm and wrist performance retained without a held prop",
+            "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+            "Original Hina skinned bat wings given a small synchronized secondary flex"
+          ],
+          "description": "Dramatic collapse that settles into a held defeated pose"
+        },
+        "Attack": {
+          "source_file": "Kasumi.glb",
+          "source_clip": "Exs",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native arm and wrist performance retained without a held prop",
+            "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+            "Original Hina skinned bat wings given a small synchronized secondary flex"
+          ],
+          "description": "Kasumi's emphatic native EX gesture for a winged magic attack"
+        },
+        "Idle": {
+          "source_file": "Mutsuki (New Year).glb",
+          "source_clip": "Cafe_Idle",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Continuous endpoint correction for an exact loop seam",
+            "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+            "Native arm and wrist performance retained without a held prop",
+            "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+            "Original Hina skinned bat wings given a small synchronized secondary flex"
+          ],
+          "description": "Mischievous anticipation"
+        },
+        "Walk": {
+          "source_file": "Mutsuki (New Year).glb",
+          "source_clip": "Cafe_Walk",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Continuous endpoint correction for an exact loop seam",
+            "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+            "Native arm and wrist performance retained without a held prop",
+            "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+            "Original Hina skinned bat wings given a small synchronized secondary flex"
+          ],
+          "description": "Light, impish steps"
+        },
+        "Victory": {
+          "source_file": "Mutsuki (New Year).glb",
+          "source_clip": "Victory_Start",
+          "adaptation": [
+            "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+            "Non-root body translation deltas scaled to the target/source height ratio",
+            "Horizontal root travel removed; native vertical bounce retained",
+            "Source props, expressions, scale and visibility excluded",
+            "Native garment rotations fitted to target cloth categories and rest positions",
+            "30 fps quaternion resampling and normalized rotations",
+            "Smooth entry and recovery to the target bind pose",
+            "Native arm and wrist performance retained without a held prop",
+            "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+            "Original Hina skinned bat wings given a small synchronized secondary flex"
+          ],
+          "description": "Playful victory flourish"
+        }
+      },
+      "motion_descriptions": {
+        "Idle": "Mischievous anticipation",
+        "Walk": "Light, impish steps",
+        "Run": "Impetuous rush with Kasumi's original running stride",
+        "Attack": "Kasumi's emphatic native EX gesture for a winged magic attack",
+        "Defend": "Startled, theatrical recoil before regaining composure",
+        "Victory": "Playful victory flourish",
+        "Lose": "Dramatic collapse that settles into a held defeated pose"
+      },
+      "attack_motion": "retargeted original animation",
+      "attack_description": "Kasumi's emphatic native EX gesture for a winged magic attack",
+      "animation_playback": {
+        "Idle": "loop",
+        "Walk": "loop",
+        "Run": "loop",
+        "Attack": "once",
+        "Defend": "once",
+        "Victory": "once",
+        "Lose": "once_hold"
+      },
+      "build_revision": 6,
+      "head_fit": {
+        "neck_top": 0.6763932152740029,
+        "chin_target": 0.641566040994202,
+        "vertical_adjustment": -0.009600813259041718
+      },
+      "rig": {
+        "name": "Unified SD character rig",
+        "skin_count": 1,
+        "joint_count": 224,
+        "up_axis": "+Y",
+        "front_axis": "+Z",
+        "physical_height_inferred": false
+      },
+      "mesh_count": 81,
+      "triangle_count": 9738,
+      "source_parts": [
+        "Shokuhou Misaki.glb",
+        "Rabu.glb",
+        "Hina.glb",
+        "Hina (Dress).glb",
+        "Kasumi.glb",
+        "Aru.glb",
+        "Mutsuki (New Year).glb"
+      ],
+      "source_roles": {
+        "costume_and_rig": "Shokuhou Misaki.glb",
+        "hair": "Rabu.glb",
+        "face": "Rabu.glb",
+        "back_wings": "Hina.glb",
+        "ruffled_hem": "Hina (Dress).glb",
+        "motion_run": "Kasumi.glb",
+        "motion_defend": "Aru.glb",
+        "motion_lose": "Aru.glb",
+        "motion_attack": "Kasumi.glb",
+        "motion_idle": "Mutsuki (New Year).glb",
+        "motion_walk": "Mutsuki (New Year).glb",
+        "motion_victory": "Mutsuki (New Year).glb"
+      },
+      "evidence": {
+        "manifest": "characters/manifest.json",
+        "builder": "tools/build_characters.py",
+        "character_sheet": "characters/15_scarlet_familiar/15_scarlet_familiar_sheet.png",
+        "appearance_method": "실제 원본 의상 파츠·선택적 텍스처 색상 편집·내보낸 GLB 메타데이터를 기준으로 최종 외형 기록; 시트는 해당 GLB를 렌더한 결과",
+        "height_method": "각 원본 SD 골격의 좌표를 실제 신장으로 환산하지 않음"
+      },
+      "review_notes": [
+        "원본 캐릭터의 프로필 키와 체형 분류는 새 캐릭터에 전달하지 않음",
+        "의상의 실제 주름·프릴·레이스·골격을 유지하고 선택적 색상 편집을 적용",
+        "기존 10명의 Idle·Walk·Victory는 유지하고 Attack을 개별 원본의 전투 동작으로 교체. 15명 각각 다른 원본의 Attack·Run·Defend·Lose를 리타게팅. 원본 파일·클립·보정은 motion_sources에 기록. Lose는 마지막 패배 자세를 유지; 실시간 옷감 물리는 포함하지 않음"
+      ],
+      "walk_description": "Light, impish steps",
+      "victory_description": "Playful victory flourish"
     }
   }
 }

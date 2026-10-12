@@ -328,7 +328,7 @@ async function boot() {
     const resize=()=>{const w=$('world').clientWidth,h=$('world').clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();};new ResizeObserver(resize).observe($('world'));resize();
     setupInput();
     const response=await fetch('../characters/manifest.json');if(!response.ok)throw new Error(`캐릭터 목록 ${response.status}`);entries=await response.json();
-    if(maps.length!==25||entries.length!==14)throw new Error('25개 맵 / 14개 캐릭터 목록을 확인해 주세요.');
+    if(maps.length!==25||entries.length!==15)throw new Error('25개 맵 / 15개 캐릭터 목록을 확인해 주세요.');
     buildPickers();
     const params=new URLSearchParams(location.search);let saved={};try{saved=JSON.parse(localStorage.getItem('little-world-selection')||'{}');}catch{ /* optional */ }
     const mapRequest=params.get('map')||saved.map,characterRequest=params.get('character')||saved.character;

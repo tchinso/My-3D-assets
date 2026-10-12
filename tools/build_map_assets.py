@@ -17,7 +17,9 @@ references = args.root / 'map-viewer' / 'references'
 portraits = args.root / 'map-viewer' / 'portraits'
 references.mkdir(parents=True, exist_ok=True)
 portraits.mkdir(parents=True, exist_ok=True)
-images = sorted(p for p in args.source.iterdir() if p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'})
+images = sorted(p for p in args.source.iterdir()
+                if p.suffix.lower() in {'.png', '.jpg', '.jpeg', '.webp'}
+                and not p.stem.endswith('-contact'))
 if len(images) != 25:
     raise ValueError(f'Expected exactly 25 reference images, found {len(images)}')
 for image in images:

@@ -21,7 +21,7 @@ from character_animations import (_Rig, _IDENTITY, _EPS, _native_samples,
 
 
 # A different original performance is selected for every character in each
-# refreshed category. The four additions also receive their own cafe gestures.
+# refreshed category. Reference-led additions also receive their own cafe gestures.
 _RUN = {
     1: ('Momoi (Maid)', 'Move_Ing', 'Lively maid sprint with a large knee drive'),
     2: ('Haruka (Dress)', 'Move_Ing', 'Forward, determined reaper dash'),
@@ -37,6 +37,7 @@ _RUN = {
     12: ('Izuna', 'Move_Ing', 'Energetic fox-ninja bounding sprint'),
     13: ('Eri', 'DiceRace_Run', 'Expressive witch race run with free arm carriage'),
     14: ('Mari (Idol)', 'Move_Ing', 'Poised, buoyant bridal dash'),
+    15: ('Kasumi', 'Move_Ing', 'Impetuous rush with Kasumi\'s original running stride'),
 }
 _DEFEND = {
     1: ('Momoi (Maid)', 'Vital_Panic', 'Alert maid recoil and ready guard'),
@@ -53,6 +54,7 @@ _DEFEND = {
     12: ('Izuna', 'Vital_Panic', 'Springy fox-ninja ready stance'),
     13: ('Eri', 'Vital_Panic', 'Witch recoil and braced casting guard'),
     14: ('Mari (Idol)', 'Vital_Panic', 'Reserved, protective bridal recoil'),
+    15: ('Aru', 'Vital_Panic', 'Startled, theatrical recoil before regaining composure'),
 }
 _LOSE = {
     1: ('Momoi (Maid)', 'Vital_Death', 'Maid stumbles and settles defeated'),
@@ -69,12 +71,14 @@ _LOSE = {
     12: ('Seia', 'Vital_Death', 'Fox idol falters and settles into defeat'),
     13: ('Eri', 'Vital_Death', 'Witch staggers and lowers into exhaustion'),
     14: ('Mari (Idol)', 'Vital_Death', 'Poised bridal character sinks defeated'),
+    15: ('Aru', 'Vital_Death', 'Dramatic collapse that settles into a held defeated pose'),
 }
 _ADDITIONS = {
     11: ('Shiroko', 'Quiet scout breathing', 'Purposeful, observant scout walk', 'Small scout victory salute'),
     12: ('Izuna', 'Bright fox-ninja anticipation', 'Buoyant fox-ninja walk', 'Exuberant fox-ninja victory'),
     13: ('Eri', 'Thoughtful witch idle', 'Measured, composed witch walk', 'Cheerful witch celebration'),
     14: ('Mimori', 'Graceful, reserved bridal idle', 'Gentle ceremonial walk', 'Courteous bridal celebration'),
+    15: ('Mutsuki (New Year)', 'Mischievous anticipation', 'Light, impish steps', 'Playful victory flourish'),
 }
 _ATTACK = {
     1: ('Mine', 'Exs', 'Native airborne charge and descending rapier plunge'),
@@ -91,6 +95,7 @@ _ATTACK = {
     12: ('Izuna', 'Exs', 'Native fox-ninja casting flourish, with a fitted starbell baton grip'),
     13: ('Eri', 'Exs', 'Native witch stirring and casting sweep, with a fitted flower-staff grip'),
     14: ('Mimori', 'Exs', 'Native support flourish, adapted to lifting the rose bouquet'),
+    15: ('Kasumi', 'Exs', 'Kasumi\'s emphatic native EX gesture for a winged magic attack'),
 }
 _ATTACK_GRIPS = {
     1: 'Rapier shaft follows the native thrust forearm; target fingers fitted around its palm grip',
@@ -329,7 +334,7 @@ def _fit_prop_grips(rig, number, name, rotations, translations, root_values, fad
     if name == 'Attack' and number <= 10:
         _fit_attack_prop_grips(rig, number, rotations, translations, root_values, fade)
         return
-    if number == 7:
+    if number in (7, 15):
         return
     sides = ('L', 'R') if number == 11 else ('R',)
     for frame, activity in enumerate(fade):
@@ -533,9 +538,13 @@ def _retarget(builder, name, selection, target_rig):
         adaptation.append('Smooth entry and recovery to the target bind pose')
     if name == 'Attack' and int(builder.c['id']) <= 10:
         adaptation.append(_attack_grip_description(int(builder.c['id']))+'; native shoulders and elbows retained')
+    elif int(builder.c['id']) == 15:
+        adaptation.append('Native arm and wrist performance retained without a held prop')
     elif int(builder.c['id']) != 7:
         adaptation.append('Only target wrists and fingers refitted for actual prop carriage; native shoulders and elbows retained')
-    adaptation.append('Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps')
+    adaptation.append('Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps'
+                      if int(builder.c['id']) == 15 else
+                      'Actual skinned hair, clothing, body and prop vertices fitted above the bind floor at keys and interpolation quarter steps')
     provenance = {'source_file': donor+'.glb', 'source_clip': animation['name'],
                   'adaptation': adaptation, 'description': description}
     clip = {'name': name, 'channels': [], 'samplers': [], 'extras': {
@@ -560,6 +569,10 @@ def _retarget(builder, name, selection, target_rig):
         if builder.c['id'] == 7:
             clip['extras'].update(attackStyle='martial_arts_kick', weaponAware=False,
                                   gripAdaptation='Native unarmed wrist action retained; target fingers closed into fists')
+            clip['extras'].pop('propBind')
+        if builder.c['id'] == 15:
+            clip['extras'].update(weaponAware=False, propGrip='None',
+                                  gripAdaptation='Native unarmed arm and wrist motion retained for winged magic')
             clip['extras'].pop('propBind')
         if builder.c['id'] == 2:
             clip['extras']['bladeCuttingEdge'] = 'Concave inner cutting edge leads both sweeps; a smooth wrist turnover during the raised windup puts the decorated convex spine behind the return stroke'
@@ -700,13 +713,14 @@ def _retarget(builder, name, selection, target_rig):
         _fit_prop_grips(target_rig, int(builder.c['id']), name, rotations, translations, root_values, fade)
         if name == 'Attack' and int(builder.c['id']) <= 10:
             clip['extras']['gripAdaptation'] = _attack_grip_description(int(builder.c['id']))+'; native shoulders and elbows retained'
-        elif int(builder.c['id']) != 7:
+        elif int(builder.c['id']) not in (7, 15):
             clip['extras']['gripAdaptation'] = 'Wrist orientation and target finger curl only; native shoulders and elbows retained'
     maximum_floor_lift = _fit_geometry_floor(builder._motion_floor, rotations, translations, root_values)
     clip['extras']['geometryFloorFit'] = True
     clip['extras']['skinnedGeometryFloorFit'] = {'maximumRootRaiseMeters': maximum_floor_lift,
                                               'bindFloorMeters': builder._motion_floor.floor,
-                                              'includes': ['body', 'clothing', 'hair', 'props']}
+                                              'includes': ['body', 'clothing', 'hair', 'wings'] if int(builder.c['id']) == 15
+                                                          else ['body', 'clothing', 'hair', 'props']}
     if loop:
         root_values[-1] = root_values[0]
     if name == 'Lose':

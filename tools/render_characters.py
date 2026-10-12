@@ -8,6 +8,7 @@ Dependencies: numpy>=2, Pillow>=10, moderngl>=5.12. No source corpus is required
 from __future__ import annotations
 
 import argparse
+import io
 import json
 import math
 from pathlib import Path
@@ -27,6 +28,19 @@ BOLD_PATHS = [Path("C:/Windows/Fonts/malgunbd.ttf"), Path("/usr/share/fonts/true
 MOTION_TIMES = {"Idle": 0.2, "Walk": 0.25, "Run": 0.22, "Attack": 0.57,
                 "Defend": 0.5, "Victory": 0.65, "Lose": 0.9}
 LOOP_MOTIONS = {"Idle", "Walk", "Run"}
+
+
+def save_preview(image, output, **options):
+    """Update OneDrive-hosted proofs without truncating a synchronized file."""
+    data=io.BytesIO()
+    image.save(data, format=output.suffix[1:].upper(), **options)
+    payload=data.getvalue()
+    try:
+        with output.open('r+b') as stream:
+            stream.write(payload)
+            stream.truncate()
+    except FileNotFoundError:
+        output.write_bytes(payload)
 
 
 def font(size, bold=False):
@@ -159,7 +173,7 @@ def refresh_sheet_motions(entry, glb, pose_renderer):
             raise ValueError(f"Cannot refresh unexpected sheet dimensions: {output}")
         canvas = image.convert("RGB")
     draw_motion_studies(canvas, glb, pose_renderer)
-    canvas.save(output, optimize=True)
+    save_preview(canvas, output, optimize=True)
     return output
 
 
@@ -205,7 +219,7 @@ def character_sheet(root, entry, glb, hero_renderer, pose_renderer):
     draw_motion_studies(canvas, glb, pose_renderer)
     draw.text((65, 1760), "CHARACTER COLLECTION / MODEL-ACCURATE TURNAROUND", font=font(16, True), fill=MUTED)
     output = glb.path.with_name(f"{entry['slug']}_sheet.png")
-    canvas.save(output, optimize=True)
+    save_preview(canvas, output, optimize=True)
     return output
 
 
@@ -232,7 +246,7 @@ def contact_sheet(entries, glbs, renderer, output, motion=None, fraction=0.3, *,
         draw.text((x+25, y+681), name, font=fit_font(draw, name, 29, 396, True), fill=INK)
         draw.text((x+25, y+725), entry.get("name_ko", ""), font=font(21), fill=MUTED)
         draw.rectangle((x+26, y+757, x+415, y+761), fill=accent)
-    canvas.save(output, optimize=True)
+    save_preview(canvas, output, optimize=True)
 
 
 def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12, angle=18):
@@ -280,8 +294,8 @@ def animation_grid(entries, glbs, renderer, output, motions=None, frame_count=12
         durations.extend([frame_ms]*frame_count)
         if len(motions) > 1 or motion not in LOOP_MOTIONS:
             durations[-1] = max(500, frame_ms)
-    frames[0].save(output, save_all=True, append_images=frames[1:], duration=durations,
-                   loop=0, disposal=2, optimize=False)
+    save_preview(frames[0], output, save_all=True, append_images=frames[1:], duration=durations,
+                 loop=0, disposal=2, optimize=False)
 
 
 def run_side_sequence(entries, glbs, renderer, output):
@@ -308,7 +322,7 @@ def run_side_sequence(entries, glbs, renderer, output):
             draw.text((22,y+82+i*19),text,font=font(15),fill=MUTED)
         draw.text((22,y+127),source.get('source_clip',''),font=font(15),fill=MUTED)
         draw.text((22,y+149),f'{duration:.2f} s / in place',font=font(15),fill=MUTED)
-    canvas.save(output)
+    save_preview(canvas, output)
 
 
 def attack_sequence(entries, glbs, renderer, output):
@@ -334,7 +348,7 @@ def attack_sequence(entries, glbs, renderer, output):
             draw.text((22, y+72+index*19), line, font=font(15), fill=MUTED)
         draw.text((22, y+120), source.get('source_clip', ''), font=font(15), fill=MUTED)
         draw.text((22, y+143), f'{duration:.2f} s / in place', font=font(15), fill=MUTED)
-    canvas.save(output, optimize=True)
+    save_preview(canvas, output, optimize=True)
 
 
 def load_entries(root):

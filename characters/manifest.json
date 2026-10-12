@@ -2480,5 +2480,220 @@
         "description": "Native support flourish, adapted to lifting the rose bouquet"
       }
     }
+  },
+  {
+    "id": 15,
+    "slug": "15_scarlet_familiar",
+    "name": "Koa",
+    "name_ko": "코아",
+    "tagline": "Scarlet familiar · dusk wings",
+    "palette": [
+      "#3d2a29",
+      "#fff5ef",
+      "#d53142",
+      "#14232a"
+    ],
+    "design": "첨부 이미지처럼 붉은 눈과 매우 긴 산호빛 적발, 풍성한 앞머리와 얼굴 옆 머리. 흰 반소매 블라우스와 빨간 넥타이, 금색 단추가 달린 짙은 초콜릿색 조끼·짧은 주름치마·흰 프릴 밑단, 맨 허벅지와 짙은 갈색 사이하이. 머리 양옆의 작은 박쥐 날개와 등 뒤의 펼친 검푸른 박쥐 날개.",
+    "source_parts": [
+      "Shokuhou Misaki.glb",
+      "Rabu.glb",
+      "Hina.glb",
+      "Hina (Dress).glb",
+      "Kasumi.glb",
+      "Aru.glb",
+      "Mutsuki (New Year).glb"
+    ],
+    "source_roles": {
+      "costume_and_rig": "Shokuhou Misaki.glb",
+      "hair": "Rabu.glb",
+      "face": "Rabu.glb",
+      "back_wings": "Hina.glb",
+      "ruffled_hem": "Hina (Dress).glb",
+      "motion_run": "Kasumi.glb",
+      "motion_defend": "Aru.glb",
+      "motion_lose": "Aru.glb",
+      "motion_attack": "Kasumi.glb",
+      "motion_idle": "Mutsuki (New Year).glb",
+      "motion_walk": "Mutsuki (New Year).glb",
+      "motion_victory": "Mutsuki (New Year).glb"
+    },
+    "animations": [
+      "Idle",
+      "Walk",
+      "Run",
+      "Attack",
+      "Defend",
+      "Victory",
+      "Lose"
+    ],
+    "glb": "characters/15_scarlet_familiar/15_scarlet_familiar.glb",
+    "sheet": "characters/15_scarlet_familiar/15_scarlet_familiar_sheet.png",
+    "bytes": 2358512,
+    "sha256": "c00ba582b6377901808a4820714be95c40c5f9a98f424211f0d822051a1c835b",
+    "revision": 6,
+    "costume_source": "Shokuhou Misaki.glb",
+    "triangles": 9738,
+    "head_fit": {
+      "neck_top": 0.6763932152740029,
+      "chin_target": 0.641566040994202,
+      "vertical_adjustment": -0.009600813259041718
+    },
+    "appearance_fit": {
+      "hair": {
+        "method": "Preserved rigged donor locks; removed unrelated head accessories; tinted original atlas",
+        "donor": "Rabu.glb",
+        "iris_tint": "#c92b43"
+      },
+      "wings": {
+        "source": "Hina.glb",
+        "method": "Extracted 492 original skinned wing triangles, fitted lateral span to 80%; retained donor wing joints under the target pelvis and recolored the membrane atlas",
+        "head_wings": "Fitted small paired scalloped membranes behind the hair"
+      },
+      "costume": {
+        "source": "Shokuhou Misaki.glb",
+        "method": "Original short blouse sleeves, V-neck vest, pleated school skirt and leg topology retained; atlas recolored to dark chocolate; red tie and brass buttons tailored over the torso",
+        "hem": "Hina (Dress).glb original frill UV and folds fitted below the shorter skirt",
+        "stockings": "Original lower-leg geometry retextured dark brown; upper thigh skin preserved"
+      },
+      "reference": {
+        "image_index": 5,
+        "construction": "Catalog-selected rigged donor garments and original UVs with fitted folds, lace, embroidery and sewn accessories",
+        "outfit_details": "Original Shokuhou short sleeves, vest and pleated skirt recolored dark chocolate; Hina Dress sewn frill fitted under the hem; original Hina skinned bat wings recolored black teal, with smaller scalloped upper wings and a fitted red tie",
+        "original_sd_proportions": true
+      }
+    },
+    "native_clips": {
+      "Run": "Move_Ing",
+      "Defend": "Vital_Panic",
+      "Lose": "Vital_Death",
+      "Attack": "Exs",
+      "Idle": "Cafe_Idle",
+      "Walk": "Cafe_Walk",
+      "Victory": "Victory_Start"
+    },
+    "motion_sources": {
+      "Run": {
+        "source_file": "Kasumi.glb",
+        "source_clip": "Move_Ing",
+        "adaptation": [
+          "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+          "Non-root body translation deltas scaled to the target/source height ratio",
+          "Horizontal root travel removed; native vertical bounce retained",
+          "Source props, expressions, scale and visibility excluded",
+          "Native garment rotations fitted to target cloth categories and rest positions",
+          "30 fps quaternion resampling and normalized rotations",
+          "Continuous endpoint correction for an exact loop seam",
+          "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+          "Native arm and wrist performance retained without a held prop",
+          "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+          "Original Hina skinned bat wings given a small synchronized secondary flex"
+        ],
+        "description": "Impetuous rush with Kasumi's original running stride"
+      },
+      "Defend": {
+        "source_file": "Aru.glb",
+        "source_clip": "Vital_Panic",
+        "adaptation": [
+          "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+          "Non-root body translation deltas scaled to the target/source height ratio",
+          "Horizontal root travel removed; native vertical bounce retained",
+          "Source props, expressions, scale and visibility excluded",
+          "Native garment rotations fitted to target cloth categories and rest positions",
+          "30 fps quaternion resampling and normalized rotations",
+          "Smooth entry and recovery to the target bind pose",
+          "Native arm and wrist performance retained without a held prop",
+          "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+          "Original Hina skinned bat wings given a small synchronized secondary flex"
+        ],
+        "description": "Startled, theatrical recoil before regaining composure"
+      },
+      "Lose": {
+        "source_file": "Aru.glb",
+        "source_clip": "Vital_Death",
+        "adaptation": [
+          "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+          "Non-root body translation deltas scaled to the target/source height ratio",
+          "Horizontal root travel removed; native vertical bounce retained",
+          "Source props, expressions, scale and visibility excluded",
+          "Native garment rotations fitted to target cloth categories and rest positions",
+          "30 fps quaternion resampling and normalized rotations",
+          "Native final defeat pose held for the final 20% of the output clip",
+          "Native arm and wrist performance retained without a held prop",
+          "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+          "Original Hina skinned bat wings given a small synchronized secondary flex"
+        ],
+        "description": "Dramatic collapse that settles into a held defeated pose"
+      },
+      "Attack": {
+        "source_file": "Kasumi.glb",
+        "source_clip": "Exs",
+        "adaptation": [
+          "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+          "Non-root body translation deltas scaled to the target/source height ratio",
+          "Horizontal root travel removed; native vertical bounce retained",
+          "Source props, expressions, scale and visibility excluded",
+          "Native garment rotations fitted to target cloth categories and rest positions",
+          "30 fps quaternion resampling and normalized rotations",
+          "Smooth entry and recovery to the target bind pose",
+          "Native arm and wrist performance retained without a held prop",
+          "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+          "Original Hina skinned bat wings given a small synchronized secondary flex"
+        ],
+        "description": "Kasumi's emphatic native EX gesture for a winged magic attack"
+      },
+      "Idle": {
+        "source_file": "Mutsuki (New Year).glb",
+        "source_clip": "Cafe_Idle",
+        "adaptation": [
+          "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+          "Non-root body translation deltas scaled to the target/source height ratio",
+          "Horizontal root travel removed; native vertical bounce retained",
+          "Source props, expressions, scale and visibility excluded",
+          "Native garment rotations fitted to target cloth categories and rest positions",
+          "30 fps quaternion resampling and normalized rotations",
+          "Continuous endpoint correction for an exact loop seam",
+          "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+          "Native arm and wrist performance retained without a held prop",
+          "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+          "Original Hina skinned bat wings given a small synchronized secondary flex"
+        ],
+        "description": "Mischievous anticipation"
+      },
+      "Walk": {
+        "source_file": "Mutsuki (New Year).glb",
+        "source_clip": "Cafe_Walk",
+        "adaptation": [
+          "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+          "Non-root body translation deltas scaled to the target/source height ratio",
+          "Horizontal root travel removed; native vertical bounce retained",
+          "Source props, expressions, scale and visibility excluded",
+          "Native garment rotations fitted to target cloth categories and rest positions",
+          "30 fps quaternion resampling and normalized rotations",
+          "Continuous endpoint correction for an exact loop seam",
+          "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
+          "Native arm and wrist performance retained without a held prop",
+          "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+          "Original Hina skinned bat wings given a small synchronized secondary flex"
+        ],
+        "description": "Light, impish steps"
+      },
+      "Victory": {
+        "source_file": "Mutsuki (New Year).glb",
+        "source_clip": "Victory_Start",
+        "adaptation": [
+          "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
+          "Non-root body translation deltas scaled to the target/source height ratio",
+          "Horizontal root travel removed; native vertical bounce retained",
+          "Source props, expressions, scale and visibility excluded",
+          "Native garment rotations fitted to target cloth categories and rest positions",
+          "30 fps quaternion resampling and normalized rotations",
+          "Smooth entry and recovery to the target bind pose",
+          "Native arm and wrist performance retained without a held prop",
+          "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
+          "Original Hina skinned bat wings given a small synchronized secondary flex"
+        ],
+        "description": "Playful victory flourish"
+      }
+    }
   }
 ]
