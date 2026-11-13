@@ -1,0 +1,125 @@
+{
+  "valid": true,
+  "errors": [],
+  "scope": "Exported Koa rig, inverse bind matrices, attachment frames, native motion provenance, exact loops and every used skinned vertex at keys and interpolation quarter steps",
+  "sha256": "d97133fd5b8de91d9b8a861ac528911fd36a5c4b8141deb9fabdacb1f677c821",
+  "used_vertices": 8556,
+  "pinned_scalp_vertices": 379,
+  "upper_wing_attachments": 2,
+  "maximum_bind_matrix_error": 7.03587453299015e-07,
+  "bind_floor": -3.016030286460464e-05,
+  "floor_tolerance": 0.002,
+  "attachment_frame_tolerance": 3e-06,
+  "clips": {
+    "Idle": {
+      "source_file": "Mutsuki (New Year).glb",
+      "source_clip": "Cafe_Idle",
+      "duration_seconds": 1.6666667461395264,
+      "keys_and_subframes_checked": 201,
+      "maximum_attachment_frame_error": {
+        "Rabu::Point_hair_B_00": 3.3306690738754696e-16,
+        "Hina::Wing_Root": 2.220446049250313e-16
+      },
+      "maximum_head_wing_contact_error": 8.795225968534492e-09,
+      "loop_endpoint_error": 0.0,
+      "minimum_vertex_height": 0.002866586729135066,
+      "maximum_floor_penetration": 0.0,
+      "all_vertices_finite": true
+    },
+    "Walk": {
+      "source_file": "Mutsuki (New Year).glb",
+      "source_clip": "Cafe_Walk",
+      "duration_seconds": 1.2000000476837158,
+      "keys_and_subframes_checked": 145,
+      "maximum_attachment_frame_error": {
+        "Rabu::Point_hair_B_00": 3.3306690738754696e-16,
+        "Hina::Wing_Root": 2.220446049250313e-16
+      },
+      "maximum_head_wing_contact_error": 8.848355295860977e-09,
+      "loop_endpoint_error": 0.0,
+      "minimum_vertex_height": 0.00011982911530495339,
+      "maximum_floor_penetration": 0.0,
+      "all_vertices_finite": true
+    },
+    "Run": {
+      "source_file": "Shokuhou Misaki.glb",
+      "source_clip": "Move_Ing",
+      "duration_seconds": 0.6000000238418579,
+      "keys_and_subframes_checked": 73,
+      "maximum_attachment_frame_error": {
+        "Rabu::Point_hair_B_00": 4.440892098500626e-16,
+        "Hina::Wing_Root": 2.220446049250313e-16
+      },
+      "maximum_head_wing_contact_error": 8.444251938313774e-09,
+      "loop_endpoint_error": 0.0,
+      "minimum_vertex_height": 0.00011982793237966981,
+      "maximum_floor_penetration": 0.0,
+      "all_vertices_finite": true
+    },
+    "Attack": {
+      "source_file": "Chise.glb",
+      "source_clip": "Exs",
+      "duration_seconds": 2.4000000953674316,
+      "keys_and_subframes_checked": 289,
+      "maximum_attachment_frame_error": {
+        "Rabu::Point_hair_B_00": 4.440892098500626e-16,
+        "Hina::Wing_Root": 2.220446049250313e-16
+      },
+      "maximum_head_wing_contact_error": 8.913538017928102e-09,
+      "loop_endpoint_error": 0.0,
+      "minimum_vertex_height": -3.0188806141098234e-05,
+      "maximum_floor_penetration": 2.8503276493593464e-08,
+      "all_vertices_finite": true
+    },
+    "Defend": {
+      "source_file": "Aru.glb",
+      "source_clip": "Vital_Panic",
+      "duration_seconds": 1.6000001430511475,
+      "keys_and_subframes_checked": 193,
+      "maximum_attachment_frame_error": {
+        "Rabu::Point_hair_B_00": 4.440892098500626e-16,
+        "Hina::Wing_Root": 1.1102230246251565e-16
+      },
+      "maximum_head_wing_contact_error": 8.833515014947113e-09,
+      "loop_endpoint_error": 0.0,
+      "minimum_vertex_height": -3.113249655775299e-05,
+      "maximum_floor_penetration": 9.721936931483499e-07,
+      "all_vertices_finite": true
+    },
+    "Victory": {
+      "source_file": "Mutsuki (New Year).glb",
+      "source_clip": "Victory_Start",
+      "duration_seconds": 3.000000238418579,
+      "keys_and_subframes_checked": 361,
+      "maximum_attachment_frame_error": {
+        "Rabu::Point_hair_B_00": 4.440892098500626e-16,
+        "Hina::Wing_Root": 2.220446049250313e-16
+      },
+      "maximum_head_wing_contact_error": 8.836050019271624e-09,
+      "loop_endpoint_error": 0.0,
+      "minimum_vertex_height": -3.017631655188123e-05,
+      "maximum_floor_penetration": 1.601368727658731e-08,
+      "all_vertices_finite": true
+    },
+    "Lose": {
+      "source_file": "Aru.glb",
+      "source_clip": "Vital_Death",
+      "duration_seconds": 3.750000238418579,
+      "keys_and_subframes_checked": 457,
+      "maximum_attachment_frame_error": {
+        "Rabu::Point_hair_B_00": 4.440892098500626e-16,
+        "Hina::Wing_Root": 2.220446049250313e-16
+      },
+      "maximum_head_wing_contact_error": 9.046672484920582e-09,
+      "loop_endpoint_error": 0.0,
+      "minimum_vertex_height": -3.0188806141098234e-05,
+      "maximum_floor_penetration": 2.8503276493593464e-08,
+      "all_vertices_finite": true
+    }
+  },
+  "proofs": [
+    "koa_motion_sequence.png",
+    "koa_run.gif",
+    "koa_attack.gif"
+  ]
+}

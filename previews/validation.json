@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-10-12T08:58:30.808837+00:00",
+  "generated_utc": "2026-11-13T08:54:43.572992+00:00",
   "root": "C:\\Users\\chuum\\OneDrive\\문서\\GitHub\\My-3D-assets",
   "scope": "GLB structure, accessor safety, skin bind/weights, seven clips, native motion provenance including Attack, exact loops, run/walk distinction, running stride and arm anatomy, held defeat pose, duplicate anatomical gestures/donors and PNG sheets",
   "errors": [],
@@ -2759,12 +2759,12 @@
       "errors": [],
       "warnings": [],
       "metrics": {
-        "bytes": 2358512,
+        "bytes": 2068176,
         "nodes": 305,
         "meshes": 81,
         "skins": 1,
         "embedded_images": 11,
-        "accessors": 1358,
+        "accessors": 1198,
         "skin_bind_residuals": [
           9.068202899698008e-08
         ],
@@ -2826,126 +2826,126 @@
       },
       "animations": {
         "Idle": {
-          "channels": 78,
+          "channels": 49,
           "duration_seconds": 1.6666667461395264,
-          "moving_channels": 71,
+          "moving_channels": 35,
           "loop_endpoints_exact": true,
           "description": "Mischievous anticipation",
           "source_file": "Mutsuki (New Year).glb",
           "source_clip": "Cafe_Idle",
           "max_quaternion_error": 1.1920928955078125e-07,
           "sampled_minimum_ground_gap": 0.0029251164128372533,
-          "sampled_geometry_max_displacement": 0.18495479137038862
+          "sampled_geometry_max_displacement": 0.055609229238505184
         },
         "Walk": {
-          "channels": 83,
+          "channels": 54,
           "duration_seconds": 1.2000000476837158,
-          "moving_channels": 74,
+          "moving_channels": 44,
           "loop_endpoints_exact": true,
           "description": "Light, impish steps",
           "source_file": "Mutsuki (New Year).glb",
           "source_clip": "Cafe_Walk",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_minimum_ground_gap": 0.007148932809859547,
-          "sampled_geometry_max_displacement": 0.29963789522590695,
+          "sampled_geometry_max_displacement": 0.34617579550000754,
           "anatomical_motion_fingerprint": "4f16e2fcd2f7fb5c657d14a7858b5abc2234bc25d77c2de9e099194dcda1e376"
         },
         "Run": {
-          "channels": 112,
-          "duration_seconds": 0.6666666865348816,
-          "moving_channels": 108,
+          "channels": 103,
+          "duration_seconds": 0.6000000238418579,
+          "moving_channels": 82,
           "loop_endpoints_exact": true,
-          "description": "Impetuous rush with Kasumi's original running stride",
-          "source_file": "Kasumi.glb",
+          "description": "Restrained schoolgirl run on the original costume rig, with a balanced torso and compact stride",
+          "source_file": "Shokuhou Misaki.glb",
           "source_clip": "Move_Ing",
           "max_quaternion_error": 5.960464477539063e-08,
-          "sampled_minimum_ground_gap": 0.005792251882407415,
-          "sampled_geometry_max_displacement": 0.424109521213635,
+          "sampled_minimum_ground_gap": 0.00596969842885808,
+          "sampled_geometry_max_displacement": 0.5328822040673936,
           "anatomical_arms": {
             "L": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.4267118728683098,
-              "mean_outward_upperarm_ratio": 0.32738181010201023,
-              "min_elbow_flex_degrees": 89.39193691833457,
-              "max_elbow_flex_degrees": 107.12413455201624,
-              "min_elbow_drop_upperarm_ratio": 0.7099553867783318
+              "max_outward_upperarm_ratio": 0.3593816504162291,
+              "mean_outward_upperarm_ratio": 0.22930967971690816,
+              "min_elbow_flex_degrees": 111.23111966250872,
+              "max_elbow_flex_degrees": 137.4163505301294,
+              "min_elbow_drop_upperarm_ratio": 0.9248469555541301
             },
             "R": {
               "sample_count": 9,
-              "max_outward_upperarm_ratio": 0.8610717591427476,
-              "mean_outward_upperarm_ratio": 0.8178859665978471,
-              "min_elbow_flex_degrees": 61.607088755935315,
-              "max_elbow_flex_degrees": 74.00307074228795,
-              "min_elbow_drop_upperarm_ratio": 0.4266205639898548
+              "max_outward_upperarm_ratio": 0.5253156189940794,
+              "mean_outward_upperarm_ratio": 0.4423365071744295,
+              "min_elbow_flex_degrees": 97.91965263448611,
+              "max_elbow_flex_degrees": 108.1782405855642,
+              "min_elbow_drop_upperarm_ratio": 0.7406186144978943
             }
           },
           "anatomical_legs": {
             "L": {
-              "fore_aft_stride_leg_lengths": 0.44093907319708175,
-              "vertical_stride_leg_lengths": 0.6777671882768123
+              "fore_aft_stride_leg_lengths": 1.2673899513586109,
+              "vertical_stride_leg_lengths": 0.43746023042499166
             },
             "R": {
-              "fore_aft_stride_leg_lengths": 0.48024045092438766,
-              "vertical_stride_leg_lengths": 0.6840647650300609
+              "fore_aft_stride_leg_lengths": 1.2664964576440627,
+              "vertical_stride_leg_lengths": 0.4710049024464144
             }
           },
-          "anatomical_motion_fingerprint": "927625a6df9b942e34150c515cab445c86d6cd41b6752b4ecf872339cb201979",
-          "walk_normalized_phase_max_difference": 0.3389298099462963,
-          "walk_normalized_phase_rms_difference": 0.09377396999140158
+          "anatomical_motion_fingerprint": "22ea5b1ae3fb1f6df8a5fc3769019f8f543d65873642f18d489c90fe35f512dd",
+          "walk_normalized_phase_max_difference": 0.45562387746485883,
+          "walk_normalized_phase_rms_difference": 0.07707925988718223
         },
         "Attack": {
-          "channels": 113,
-          "duration_seconds": 4.0,
-          "moving_channels": 113,
+          "channels": 100,
+          "duration_seconds": 2.4000000953674316,
+          "moving_channels": 100,
           "loop_endpoints_exact": false,
-          "description": "Kasumi's emphatic native EX gesture for a winged magic attack",
-          "source_file": "Kasumi.glb",
+          "description": "Grounded two-hand gathering gesture and a forward palm cast, facing the target",
+          "source_file": "Chise.glb",
           "source_clip": "Exs",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_minimum_ground_gap": 3.047055023125237e-05,
-          "sampled_geometry_max_displacement": 1.1324764682607555,
-          "anatomical_motion_fingerprint": "0f0bf2262f1a01af122c96c9cbdf3d52c5c67eede437254c6008367ae4922ca2"
+          "sampled_geometry_max_displacement": 0.5341818046140725,
+          "anatomical_motion_fingerprint": "b0ae185a63cb5299e581a959a3d41b6ca6d7e2c91626a1eb62b41187f382f1c0"
         },
         "Defend": {
-          "channels": 117,
+          "channels": 92,
           "duration_seconds": 1.6000001430511475,
-          "moving_channels": 117,
+          "moving_channels": 92,
           "loop_endpoints_exact": false,
           "description": "Startled, theatrical recoil before regaining composure",
           "source_file": "Aru.glb",
           "source_clip": "Vital_Panic",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_minimum_ground_gap": 3.047055023125237e-05,
-          "sampled_geometry_max_displacement": 0.9733824108162475,
+          "sampled_geometry_max_displacement": 1.0450588363844093,
           "anatomical_motion_fingerprint": "ee939ab193bc6e126ec1b29de9e625de49754ab76bf1367c616655f3e512c7f9"
         },
         "Victory": {
-          "channels": 83,
+          "channels": 53,
           "duration_seconds": 3.000000238418579,
-          "moving_channels": 83,
+          "moving_channels": 53,
           "loop_endpoints_exact": false,
           "description": "Playful victory flourish",
           "source_file": "Mutsuki (New Year).glb",
           "source_clip": "Victory_Start",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_minimum_ground_gap": 3.047055023125237e-05,
-          "sampled_geometry_max_displacement": 0.7868946948928769,
+          "sampled_geometry_max_displacement": 0.4173023336690651,
           "anatomical_motion_fingerprint": "2a6e2a41a9e2f0146e0c69d856b5dd35a9194766d05569835f311ba1304895b9"
         },
         "Lose": {
-          "channels": 121,
+          "channels": 96,
           "duration_seconds": 3.750000238418579,
-          "moving_channels": 121,
+          "moving_channels": 96,
           "loop_endpoints_exact": false,
           "description": "Dramatic collapse that settles into a held defeated pose",
           "source_file": "Aru.glb",
           "source_clip": "Vital_Death",
           "max_quaternion_error": 5.960464477539063e-08,
           "sampled_minimum_ground_gap": 3.047055023125237e-05,
-          "sampled_geometry_max_displacement": 0.7966384619201958,
+          "sampled_geometry_max_displacement": 0.7949336288232534,
           "anatomical_motion_fingerprint": "1b60ca91107f6253a8981a74a8c07b509abe01939ef9a3a5b75b91addfc79137",
-          "terminal_pose_displacement": 0.7596601698578773,
-          "terminal_pose_hold_max_error": 8.304549041743432e-08
+          "terminal_pose_displacement": 0.7004501318235168,
+          "terminal_pose_hold_max_error": 9.107458572969733e-08
         }
       },
       "status": "passed",

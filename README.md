@@ -28,11 +28,13 @@
 
 15번 Koa는 첨부 이미지를 기준으로 Rabu의 긴 머리를 진홍색으로 편집하고 붉은 눈을 적용했습니다. Shokuhou Misaki의 골격과 반소매 셔츠·조끼·플리츠 스커트를 다크 초콜릿색 교복으로 조합하고 빨간 넥타이, Hina (Dress)의 흰 치맛단 프릴, 짙은 갈색 사이하이 양말을 더했습니다. Hina의 원본 박쥐 날개를 거의 검은 청록색으로 편집하고 작은 윗날개 한 쌍을 피팅했습니다. 무기 없이 날개를 이용한 마법 공격을 합니다.
 
+2026-11-13 Koa 수정에서는 두피·앞머리와 얼굴을 머리 골격에 고정하고 작은 날개 뿌리를 실제 머리 표면에 붙였습니다. 큰 날개는 등 위쪽의 Spine1에 연결하고 메시와 관절에 같은 비율 보정을 적용했습니다. 달리기는 `Shokuhou Misaki / Move_Ing`, 공격은 `Chise / Exs`의 전방 시전 동작을 사용합니다. 머리 끝과 날개는 각각 Rabu·Hina의 원본 보조 모션을 약하게 적용하며, 모든 보정 후 실제 스킨 정점의 바닥 접촉을 검사합니다. [달리기 GIF](previews/koa_run.gif), [공격 GIF](previews/koa_attack.gif), [각도별 연속 포즈](previews/koa_motion_sequence.png)에서 확인할 수 있습니다.
+
 Quinn의 트윈테일 뿌리와 붉은 리본은 실제 두피·머리 표면에 맞춰 피팅하고, 리본이 머리 뿌리 골격을 함께 따르도록 연결했습니다. 크라바트·브로치·가방 장식도 몸과 의상 표면에 맞췄습니다. `previews/quinn_attachment_changes.png`에서 정확한 측면의 부착 전후를 비교할 수 있습니다.
 
 소라는 추가로 전달한 머리·교복 참고 이미지에 맞춰 변경했습니다. Azusa (Swimsuit)의 뾰족한 중앙 앞머리와 얼굴 옆 머리, Miyo의 묶이지 않은 긴 웨이브, Serika의 실제 라펠·주머니·주름치마를 조합했습니다. 기존 폴더 이름 `03_sky_cardigan`은 파일 경로 호환을 위해 유지했습니다.
 
-앞으로의 수정도 원본 `C:\Codex\BlueArchive-GLB`의 `models.json`, `model_features.json`, `model_features.schema.json`과 `previews`에서 의상·얼굴·머리·골격·모션을 선정한 뒤 조합·색상 편집·필요한 비율 수정을 적용합니다. 새 파츠와 변형은 생성 코드 및 GLB/manifest의 출처 기록에 반영하고, 최종 GLB를 기준으로 저장소 카탈로그와 미리보기를 다시 생성합니다.
+앞으로의 수정도 원본 `C:\Codex\BlueArchiveGLB`의 `models.json`, `model_features.json`, `model_features.schema.json`과 `previews`에서 의상·얼굴·머리·골격·모션을 선정한 뒤 조합·색상 편집·필요한 비율 수정을 적용합니다. 새 파츠와 변형은 생성 코드 및 GLB/manifest의 출처 기록에 반영하고, 최종 GLB를 기준으로 저장소 카탈로그와 미리보기를 다시 생성합니다.
 
 Momo는 Miyo의 앞머리·얼굴·원본 미소 입, Kirara의 긴 웨이브·양쪽 번, Kazusa의 고양이 귀를 조합하고 눈을 연보라색으로 편집했습니다. Meilin은 Serika (Swimsuit)의 트윈테일 단면을 넓히고 실제 묶음 위치에 붉은 꽃리본·금색 줄과 펜던트를 추가했습니다. Rina는 머리 크기와 관절 위치를 유지하며 몸통 폭을 20%, 몸통 두께를 14%, 팔다리 단면을 17–18% 줄였습니다. `previews/appearance_changes.png`에서 세 캐릭터의 전후 모습을 비교할 수 있습니다.
 
@@ -93,12 +95,13 @@ python -m http.server 8000 --bind 127.0.0.1
 
 ```powershell
 python -m pip install -r requirements.txt
-python tools/build_characters.py --source C:\Codex\BlueArchive-GLB
-python tools/build_catalog.py --source C:\Codex\BlueArchive-GLB
+python tools/build_characters.py --source C:\Codex\BlueArchiveGLB
+python tools/build_catalog.py --source C:\Codex\BlueArchiveGLB
 python tools/render_characters.py --root .
 python tools/validate_characters.py --root .
 python tools/validate_motions.py --root .
 node tools/validate_gltf.cjs
+python tools/validate_koa.py --proofs
 ```
 
 제작 스크립트만 원본 파츠 폴더가 필요합니다. 제공된 GLB·시트·뷰어·검사 도구는 그 폴더 없이 사용 가능합니다. `previews/gltf_validation.json`에는 Khronos 검증 결과, `previews/validation.json`에는 파일·스킨·애니메이션·시트 검사 결과가 저장됩니다. `previews/motion_validation.json`에는 41개 위상에서 측정한 모션별 관절 곡선의 중복 검사와 가장 가까운 캐릭터 쌍의 각도 차이를 기록합니다.

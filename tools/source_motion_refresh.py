@@ -37,7 +37,7 @@ _RUN = {
     12: ('Izuna', 'Move_Ing', 'Energetic fox-ninja bounding sprint'),
     13: ('Eri', 'DiceRace_Run', 'Expressive witch race run with free arm carriage'),
     14: ('Mari (Idol)', 'Move_Ing', 'Poised, buoyant bridal dash'),
-    15: ('Kasumi', 'Move_Ing', 'Impetuous rush with Kasumi\'s original running stride'),
+    15: ('Shokuhou Misaki', 'Move_Ing', 'Restrained schoolgirl run on the original costume rig, with a balanced torso and compact stride'),
 }
 _DEFEND = {
     1: ('Momoi (Maid)', 'Vital_Panic', 'Alert maid recoil and ready guard'),
@@ -95,7 +95,7 @@ _ATTACK = {
     12: ('Izuna', 'Exs', 'Native fox-ninja casting flourish, with a fitted starbell baton grip'),
     13: ('Eri', 'Exs', 'Native witch stirring and casting sweep, with a fitted flower-staff grip'),
     14: ('Mimori', 'Exs', 'Native support flourish, adapted to lifting the rose bouquet'),
-    15: ('Kasumi', 'Exs', 'Kasumi\'s emphatic native EX gesture for a winged magic attack'),
+    15: ('Chise', 'Exs', 'Grounded two-hand gathering gesture and a forward palm cast, facing the target'),
 }
 _ATTACK_GRIPS = {
     1: 'Rapier shaft follows the native thrust forearm; target fingers fitted around its palm grip',
@@ -578,6 +578,10 @@ def _retarget(builder, name, selection, target_rig):
             clip['extras']['bladeCuttingEdge'] = 'Concave inner cutting edge leads both sweeps; a smooth wrist turnover during the raised windup puts the decorated convex spine behind the return stroke'
     exact = builder.source_node_map if donor == builder.src.name else {}
     secondaries = _secondary_map(source_rig, target_rig, animation, exact)
+    if int(builder.c['id']) == 15:
+        # Another character's short hair must never rotate Koa's scalp/fringe.
+        secondaries = {node: value for node, value in secondaries.items()
+                       if _cloth_kind(target_rig.nodes[node].get('name', '')) != 'hair'}
     rotations, translations = {}, {}
     for source_node, target_node in node_map.items():
         if any(c['target'] == {'node': source_node, 'path': 'rotation'} for c in channels):
@@ -591,6 +595,13 @@ def _retarget(builder, name, selection, target_rig):
         if target_node not in rotations:
             rotations[target_node] = _rotation_samples(source, animation, source_rig, target_rig,
                                                        source_node, target_node, native_times, weight)
+    if int(builder.c['id']) == 15:
+        from reference_characters import koa_secondary_rotations
+        native_secondary, secondary_sources = koa_secondary_rotations(builder, target_rig, name, progress)
+        rotations.update(native_secondary)
+        clip['extras']['secondarySources'] = secondary_sources
+        clip['extras']['secondaryMotion'] = 'Native Rabu distal locks and native Hina wings; scalp fixed to Head and wing origin fixed to Spine1'
+        adaptation.append('Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction')
     for node, values in rotations.items():
         if loop:
             correction = _qmul(_qinv(values[-1]), values[0])
@@ -636,7 +647,8 @@ def _retarget(builder, name, selection, target_rig):
         _qmul(world_q[source_rig.root], source_rest_inverse), target_rig.rest_world_q[root])))
         for _, world_q in source_poses])
     heading_correction = _IDENTITY.copy()
-    if loop:
+    align_heading = loop or (int(builder.c['id']) == 15 and name == 'Attack')
+    if align_heading:
         rest_inverse = _qinv(target_rig.rest_world_q[root])
         facings = np.asarray([_qrot(_qmul(_qmul(parent_q, q), rest_inverse), target_rig.forward)
                               for q in root_rotations])
@@ -649,6 +661,8 @@ def _retarget(builder, name, selection, target_rig):
         root_rotations = np.asarray([_qnorm(_qmul(_qinv(parent_q), _qmul(
             heading_correction, _qmul(parent_q, q)))) for q in root_rotations])
         clip['extras']['removedConstantHeadingDegrees'] = float(angle)
+        if not loop:
+            adaptation.append('Constant source attack heading aligned forward; native casting turn retained')
     if loop:
         correction = _qmul(_qinv(root_rotations[-1]), root_rotations[0])
         root_rotations = np.asarray([_qnorm(_qmul(q, _slerp(_IDENTITY, correction, s)))
@@ -661,7 +675,7 @@ def _retarget(builder, name, selection, target_rig):
             root_rotations[-1] = target_rig.q[root]
     rotations[root] = root_rotations
     world_delta = (source_world-source_rig.pos[source_rig.root])*(target_rig.height/source_rig.height)
-    if loop:
+    if align_heading:
         world_delta = np.asarray([_qrot(heading_correction, delta) for delta in world_delta])
     up = target_rig.up
     horizontal = world_delta-np.outer(world_delta @ up, up)

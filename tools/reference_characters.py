@@ -94,9 +94,11 @@ def hair_selection(b,p,s,groups):
     if b.c['id']==15:
         # Fan out Rabu's complete long donor locks without changing the scalp
         # or the face-framing fringe. The source's separate helmet is omitted.
-        fall=np.clip((b.headpos[1]+.02-pos[:,1])/.54,0,1)
-        pos[:,0]*=1+.31*fall
-        pos[:,2]-=.035*fall
+        pos=_koa_hair_fit(pos,b.headpos[1])
+        head=next(i for i,n in enumerate(s.doc['nodes']) if n.get('name')=='Bip001 Head' and i in s.world)
+        delta=b.headpos-s.world[head][:3,3]
+        delta[1]+=b.head_adjust
+        b.koa_hair_surface=(pos+delta,idx[keep])
     b.appearance_fit['hair']={'method':'Preserved rigged donor locks; removed unrelated head accessories; tinted original atlas',
                               'donor':s.name+'.glb','iris_tint':b.c['eye_color']}
     if b.c['id']==11:
@@ -104,6 +106,67 @@ def hair_selection(b,p,s,groups):
             attachment_fit='Twin-tail roots fitted inward and forward into the scalp; corresponding rest pivots follow the same fit',
             ribbons='Red bow knots projected onto the fitted twin-tail root surface')
     return pos,idx[keep]
+
+
+def _koa_hair_fit(points,head_y):
+    points=np.array(points,dtype=float,copy=True)
+    fall=np.clip((head_y+.02-points[:,1])/.54,0,1)
+    points[:,0]*=1+.31*fall
+    points[:,2]-=.035*fall
+    return points
+
+
+def fit_koa_hair_pivots(b):
+    """Fit donor pivots with their locks, so flex cannot pull the scalp apart."""
+    donor=b.source('Rabu')
+    head=next(i for i,n in enumerate(donor.doc['nodes']) if n.get('name')=='Bip001 Head' and i in donor.world)
+    delta=b.headpos-donor.world[head][:3,3]
+    delta[1]+=b.head_adjust
+    changed=set()
+    for name,node in b.bone.items():
+        if name.startswith('Rabu::') and 'hair' in name.lower():
+            b.world[node]=b.world[node].copy()
+            b.world[node][:3,3]=_koa_hair_fit((b.world[node][:3,3]-delta)[None,:],b.headpos[1])[0]+delta
+            changed.add(node)
+    _koa_rest_locals(b,changed)
+    b.appearance_fit['hair'].update(
+        attachment_fit='Scalp and fringe follow Head; donor hair pivots receive the same fit as the locks; only distal Rabu chains receive native secondary motion',
+        scalp_parent='Bip001 Head')
+
+
+def fit_koa_head_weights(b,pos,joints,weights,mode):
+    """Remove donor clothing/face influences from the assembled head."""
+    joints=joints.copy();weights=weights.copy()
+    if mode=='face':
+        joints[:]=b.head;weights[:]=0;weights[:,0]=1
+        return joints,weights
+    parents={child:i for i,n in enumerate(b.doc['nodes']) for child in n.get('children',[])}
+    def under_head(node):
+        while node!=b.head and node in parents:node=parents[node]
+        return node==b.head
+    for node in np.unique(joints):
+        if not under_head(int(node)):joints[joints==node]=b.head
+    # Blend the skull patch into a rigid Head binding, leaving the long locks
+    # skinned to their own fitted chain. The upper-wing anchors share this patch.
+    blend=np.clip((pos[:,1]-(b.headpos[1]+.055))/.045,0,1)
+    blend=blend*blend*(3-2*blend)
+    for row,amount in enumerate(blend):
+        head_weight=amount+(1-amount)*weights[row,joints[row]==b.head].sum()
+        remaining=[(int(j),float(w)*(1-amount)) for j,w in zip(joints[row],weights[row]) if j!=b.head and w>1e-8]
+        remaining=sorted(remaining,key=lambda item:item[1],reverse=True)[:3]
+        joints[row]=b.head;weights[row]=0;weights[row,0]=head_weight
+        for slot,(joint,weight) in enumerate(remaining,1):joints[row,slot]=joint;weights[row,slot]=weight
+    weights/=np.maximum(weights.sum(1)[:,None],1e-12)
+    return joints,weights
+
+
+def _koa_rest_locals(b,changed):
+    parents={child:i for i,n in enumerate(b.doc['nodes']) for child in n.get('children',[])}
+    for node in changed:
+        parent=parents.get(node)
+        local=np.linalg.inv(b.world[parent])@b.world[node] if parent is not None else b.world[node]
+        for key in ('translation','rotation','scale'):b.doc['nodes'][node].pop(key,None)
+        b.doc['nodes'][node]['matrix']=local.T.reshape(-1).tolist()
 
 
 def _quinn_tail_fit(points, head_y):
@@ -979,13 +1042,23 @@ def _koa_back_wings(b):
     remapped=np.zeros_like(joints)
     for old,new in compact.items():remapped[joints==old]=new
     small=dict(part,names=[part['names'][k] for k in source_slots],j=remapped)
-    source_head=next(i for i,n in enumerate(donor.doc['nodes'])
-                     if n.get('name')=='Bip001 Head' and i in donor.world)
-    delta=b.headpos-donor.world[source_head][:3,3]
-    delta[1]+=b.head_adjust
-    pos=part['pos'][used]+delta
-    pos[:,0]*=.80
-    new_joints=b.map_bones(small,donor,delta)
+    source_root=next(i for i,n in enumerate(donor.doc['nodes']) if n.get('name')=='Wing_Root' and i in donor.world)
+    anchor=b.world[b.bone['Bip001 Spine1']][:3,3]+[0,.005,-.045]
+    def fit(points):return (points-donor.world[source_root][:3,3])*[.80,1,1]+anchor
+    pos=fit(part['pos'][used])
+    new_joints=b.map_bones(small,donor,np.zeros(3))
+    root=b.bone['Hina::Wing_Root'];spine=b.bone['Bip001 Spine1']
+    for node in b.doc['nodes']:
+        if root in node.get('children',[]):node['children'].remove(root)
+    b.doc['nodes'][spine].setdefault('children',[]).append(root)
+    changed=set()
+    for name,node in b.bone.items():
+        if not name.startswith('Hina::') or 'wing' not in name.lower():continue
+        source=next(i for i,n in enumerate(donor.doc['nodes']) if n.get('name')==name.split('::',1)[1] and i in donor.world)
+        b.world[node]=donor.world[source].copy()
+        b.world[node][:3,3]=fit(donor.world[source][None,:3,3])[0]
+        changed.add(node)
+    _koa_rest_locals(b,changed)
     atlas=np.array(donor.image(part['mat']['pbrMetallicRoughness']['baseColorTexture']['index']))
     lum=atlas[:,:,:3].astype(float)@np.array([.27,.57,.16])/255
     atlas[:,:,:3]=np.clip(color('#182b31')*(.48+.70*lum[:,:,None]),0,255).astype('u1')
@@ -993,21 +1066,50 @@ def _koa_back_wings(b):
     b.mesh('Koa original Hina rigged bat-wing membranes',pos,indices,material,
            uv=part['uv'][used],norm=None,j=new_joints,w=weights)
     b.appearance_fit['wings']={'source':'Hina.glb',
-        'method':'Extracted 492 original skinned wing triangles, fitted lateral span to 80%; retained donor wing joints under the target pelvis and recolored the membrane atlas',
-        'head_wings':'Fitted small paired scalloped membranes behind the hair'}
+        'method':f'Extracted {len(triangles)} original skinned wing triangles; mesh and all donor wing pivots fitted together at 80% lateral span; wing root attached to the upper-back Spine1 joint',
+        'attachment':{'parent':'Bip001 Spine1','position':anchor.tolist()},
+        'head_wings':'Small paired membranes rooted inside the rigid scalp patch'}
+
+
+def _koa_closest_hair(b,point):
+    """Closest point on actual hair triangles, including triangle interiors."""
+    positions,indices=b.koa_hair_surface
+    a,c,d=positions[indices].transpose(1,0,2)
+    ab=c-a;ac=d-a;ap=point-a
+    aa=(ab*ab).sum(1);cc=(ac*ac).sum(1);cross=(ab*ac).sum(1)
+    den=np.maximum(aa*cc-cross*cross,1e-18)
+    u=((ap*ab).sum(1)*cc-(ap*ac).sum(1)*cross)/den
+    v=((ap*ac).sum(1)*aa-(ap*ab).sum(1)*cross)/den
+    projected=a+u[:,None]*ab+v[:,None]*ac
+    candidates=[projected[(u>=0)&(v>=0)&(u+v<=1)]]
+    for start,end in ((a,c),(c,d),(d,a)):
+        edge=end-start
+        t=np.clip(((point-start)*edge).sum(1)/np.maximum((edge*edge).sum(1),1e-18),0,1)
+        candidates.append(start+t[:,None]*edge)
+    candidates=np.concatenate(candidates)
+    return candidates[np.argmin(((candidates-point)**2).sum(1))]
 
 
 def _koa_head_wings(b):
     membrane=b.material('Koa small head-wing membrane','#172a30',_woven_texture('#172a30'))
     rib=b.material('Koa small head-wing rib','#100f19')
     y=b.headpos[1]+b.head_adjust
+    anchors=[]
     for side in (-1,1):
         root=np.array([side*.126,y+.115,-.174])
+        surface=_koa_closest_hair(b,root)
+        # Bury the attachment slightly into the scalp rather than leaving a
+        # visible gap in profile. The outer tips retain their designed silhouette.
+        fitted=surface+np.array([-side*.003,0,.004])
         outline=np.array([[.18,.145,-.18],[.245,.202,-.19],[.27,.145,-.203],
                           [.365,.184,-.226],[.344,.121,-.233],[.431,.069,-.243],
                           [.378,.052,-.241],[.327,.084,-.226],[.268,.061,-.207],
                           [.208,.082,-.186],[.15,.084,-.175]],float)
         outline[:,0]*=side;outline[:,1]+=y
+        blend=np.clip((.30-np.abs(outline[:,0]))/(.30-.126),0,1)
+        outline+=(fitted-root)*blend[:,None]
+        root=fitted
+        anchors.append({'side':'L' if side>0 else 'R','position':root.tolist(),'surface_point':surface.tolist()})
         vertices=np.vstack([root,outline])
         faces=[[0,i,i+1] for i in range(1,len(vertices)-1)]
         uv=np.c_[np.linspace(.08,.94,len(vertices)),np.linspace(.12,.88,len(vertices))]
@@ -1015,6 +1117,7 @@ def _koa_head_wings(b):
         for tip in (outline[1],outline[3],outline[5]):
             b.tube('Koa upper bat-wing dark finger',[root,tip],[.0032,.0012],rib,'Bip001 Head',8)
         b.tube('Koa upper bat-wing edge',outline,[.0017]*len(outline),rib,'Bip001 Head',8)
+    b.appearance_fit['wings']['head_anchors']=anchors
 
 
 def _koa(b,gold,cream):
@@ -1044,37 +1147,39 @@ def _koa(b,gold,cream):
         'stockings':'Original lower-leg geometry retextured dark brown; upper thigh skin preserved'}
 
 
-def add_koa_wing_motions(b):
-    """Give the retained Hina wing joints a small character-specific gesture."""
-    from character_animations import _Rig, _axisq, _qinv, _qmul, _qnorm
-    from source_motion_refresh import _append_channel, _read_accessor
-    rig=_Rig(b.doc)
-    gestures={
-        'Idle':lambda t:3.0*np.sin(2*math.pi*t),
-        'Walk':lambda t:7.0*np.sin(2*math.pi*t),
-        'Run':lambda t:8.0*np.sin(4*math.pi*t),
-        'Attack':lambda t:17.0*np.sin(math.pi*t)**2,
-        'Defend':lambda t:-8.0*np.sin(math.pi*t)**2,
-        'Victory':lambda t:14.0*np.sin(math.pi*t)**2+3.0*np.sin(4*math.pi*t)**2,
-        'Lose':lambda t:-11.0*(min(1.0,t/.78)**2*(3-2*min(1.0,t/.78))),
-    }
-    for clip in b.doc['animations']:
-        name=clip['name']
-        times=_read_accessor(b,clip['samplers'][0]['input']).ravel()
-        phase=times/max(float(times[-1]),1e-8)
-        for side,sign in (('L',1),('R',-1)):
-            for segment,weight in (('01',1.0),('02',.43)):
-                node=b.bone[f'Hina::Bone_Wing_{side}{segment}']
-                parent=rig.parent[node]
-                parent_q=rig.rest_world_q[parent]
-                values=[]
-                for t in phase:
-                    world_delta=_axisq(rig.forward,sign*weight*gestures[name](float(t)))
-                    local_delta=_qmul(_qmul(_qinv(parent_q),world_delta),parent_q)
-                    values.append(_qnorm(_qmul(local_delta,rig.q[node])))
-                _append_channel(b,clip,clip['samplers'][0]['input'],rig,node,'rotation',values)
-        clip['extras']['secondaryMotion']='Authored flex of original Hina wing joints, synchronized to the chosen native body action'
-        b.motion_sources[name]['adaptation'].append('Original Hina skinned bat wings given a small synchronized secondary flex')
+def koa_secondary_rotations(b,rig,name,progress):
+    """Use each part's own native curves, before loop/floor/held-pose fitting."""
+    from character_animations import _Rig, _slerp
+    from source_motion_refresh import _rotation_samples
+    wanted={'Idle':'Cafe_Idle','Walk':'Cafe_Walk','Run':'Move_Ing','Attack':'Exs',
+            'Defend':'Vital_Panic','Victory':'Victory_Start','Lose':'Vital_Death'}[name]
+    distal={'bone_hair_BL_02','bone_hair_BL_03','bone_hair_BR_02','bone_hair_BR_03',
+            'bone_hair_B_L_01','bone_hair_B_L_02','bone_hair_B_R_01','bone_hair_B_R_02'}
+    rotations={};sources=[]
+    for donor_name in ('Rabu','Hina'):
+        donor=b.source(donor_name)
+        source_rig=_Rig(donor.doc)
+        animation=next(a for a in donor.doc['animations'] if a['name']==wanted)
+        channels=[c for c in animation['channels'] if c['target']['path']=='rotation']
+        starts=[float(donor.acc(animation['samplers'][c['sampler']]['input'])[0,0]) for c in channels]
+        ends=[float(donor.acc(animation['samplers'][c['sampler']]['input'])[-1,0]) for c in channels]
+        times=min(starts)+progress*(max(ends)-min(starts))
+        count=0
+        for channel in channels:
+            source_node=channel['target']['node']
+            bone=donor.doc['nodes'][source_node].get('name','')
+            if not (bone in distal if donor_name=='Rabu' else 'wing' in bone.lower()):continue
+            target=b.bone.get(donor_name+'::'+bone)
+            if target is None:continue
+            weight,cap=(.25,8.) if donor_name=='Rabu' else (.35,3. if bone=='Wing_Root' else 18.)
+            values=_rotation_samples(donor,animation,source_rig,rig,source_node,target,times,weight)
+            for frame,value in enumerate(values):
+                angle=2*math.acos(float(np.clip(abs(np.dot(value,rig.q[target])),0,1)))
+                if angle>math.radians(cap):values[frame]=_slerp(rig.q[target],value,math.radians(cap)/angle)
+            rotations[target]=values;count+=1
+        sources.append({'source_file':donor_name+'.glb','source_clip':wanted,'rotation_tracks':count,
+                        'scope':'distal hair only' if donor_name=='Rabu' else 'fitted upper-back wing chain'})
+    return rotations,sources
 
 
 def outfits(b):

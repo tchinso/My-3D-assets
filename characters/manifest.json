@@ -2499,8 +2499,8 @@
       "Rabu.glb",
       "Hina.glb",
       "Hina (Dress).glb",
-      "Kasumi.glb",
       "Aru.glb",
+      "Chise.glb",
       "Mutsuki (New Year).glb"
     ],
     "source_roles": {
@@ -2509,10 +2509,10 @@
       "face": "Rabu.glb",
       "back_wings": "Hina.glb",
       "ruffled_hem": "Hina (Dress).glb",
-      "motion_run": "Kasumi.glb",
+      "motion_run": "Shokuhou Misaki.glb",
       "motion_defend": "Aru.glb",
       "motion_lose": "Aru.glb",
-      "motion_attack": "Kasumi.glb",
+      "motion_attack": "Chise.glb",
       "motion_idle": "Mutsuki (New Year).glb",
       "motion_walk": "Mutsuki (New Year).glb",
       "motion_victory": "Mutsuki (New Year).glb"
@@ -2528,9 +2528,9 @@
     ],
     "glb": "characters/15_scarlet_familiar/15_scarlet_familiar.glb",
     "sheet": "characters/15_scarlet_familiar/15_scarlet_familiar_sheet.png",
-    "bytes": 2358512,
-    "sha256": "c00ba582b6377901808a4820714be95c40c5f9a98f424211f0d822051a1c835b",
-    "revision": 6,
+    "bytes": 2068176,
+    "sha256": "d97133fd5b8de91d9b8a861ac528911fd36a5c4b8141deb9fabdacb1f677c821",
+    "revision": 7,
     "costume_source": "Shokuhou Misaki.glb",
     "triangles": 9738,
     "head_fit": {
@@ -2542,12 +2542,50 @@
       "hair": {
         "method": "Preserved rigged donor locks; removed unrelated head accessories; tinted original atlas",
         "donor": "Rabu.glb",
-        "iris_tint": "#c92b43"
+        "iris_tint": "#c92b43",
+        "attachment_fit": "Scalp and fringe follow Head; donor hair pivots receive the same fit as the locks; only distal Rabu chains receive native secondary motion",
+        "scalp_parent": "Bip001 Head"
       },
       "wings": {
         "source": "Hina.glb",
-        "method": "Extracted 492 original skinned wing triangles, fitted lateral span to 80%; retained donor wing joints under the target pelvis and recolored the membrane atlas",
-        "head_wings": "Fitted small paired scalloped membranes behind the hair"
+        "method": "Extracted 492 original skinned wing triangles; mesh and all donor wing pivots fitted together at 80% lateral span; wing root attached to the upper-back Spine1 joint",
+        "attachment": {
+          "parent": "Bip001 Spine1",
+          "position": [
+            2.3825966210518925e-07,
+            0.5337218396914194,
+            -0.011235145291411335
+          ]
+        },
+        "head_wings": "Small paired membranes rooted inside the rigid scalp patch",
+        "head_anchors": [
+          {
+            "side": "R",
+            "position": [
+              -0.1042711841095286,
+              0.7719896862038249,
+              -0.13920765283625428
+            ],
+            "surface_point": [
+              -0.1072711841095286,
+              0.7719896862038249,
+              -0.14320765283625428
+            ]
+          },
+          {
+            "side": "L",
+            "position": [
+              0.10427141600890638,
+              0.771989693082008,
+              -0.13920810325884897
+            ],
+            "surface_point": [
+              0.10727141600890638,
+              0.771989693082008,
+              -0.14320810325884897
+            ]
+          }
+        ]
       },
       "costume": {
         "source": "Shokuhou Misaki.glb",
@@ -2573,7 +2611,7 @@
     },
     "motion_sources": {
       "Run": {
-        "source_file": "Kasumi.glb",
+        "source_file": "Shokuhou Misaki.glb",
         "source_clip": "Move_Ing",
         "adaptation": [
           "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
@@ -2586,9 +2624,9 @@
           "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
           "Native arm and wrist performance retained without a held prop",
           "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-          "Original Hina skinned bat wings given a small synchronized secondary flex"
+          "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
         ],
-        "description": "Impetuous rush with Kasumi's original running stride"
+        "description": "Restrained schoolgirl run on the original costume rig, with a balanced torso and compact stride"
       },
       "Defend": {
         "source_file": "Aru.glb",
@@ -2603,7 +2641,7 @@
           "Smooth entry and recovery to the target bind pose",
           "Native arm and wrist performance retained without a held prop",
           "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-          "Original Hina skinned bat wings given a small synchronized secondary flex"
+          "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
         ],
         "description": "Startled, theatrical recoil before regaining composure"
       },
@@ -2620,12 +2658,12 @@
           "Native final defeat pose held for the final 20% of the output clip",
           "Native arm and wrist performance retained without a held prop",
           "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-          "Original Hina skinned bat wings given a small synchronized secondary flex"
+          "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
         ],
         "description": "Dramatic collapse that settles into a held defeated pose"
       },
       "Attack": {
-        "source_file": "Kasumi.glb",
+        "source_file": "Chise.glb",
         "source_clip": "Exs",
         "adaptation": [
           "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
@@ -2637,9 +2675,10 @@
           "Smooth entry and recovery to the target bind pose",
           "Native arm and wrist performance retained without a held prop",
           "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-          "Original Hina skinned bat wings given a small synchronized secondary flex"
+          "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction",
+          "Constant source attack heading aligned forward; native casting turn retained"
         ],
-        "description": "Kasumi's emphatic native EX gesture for a winged magic attack"
+        "description": "Grounded two-hand gathering gesture and a forward palm cast, facing the target"
       },
       "Idle": {
         "source_file": "Mutsuki (New Year).glb",
@@ -2655,7 +2694,7 @@
           "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
           "Native arm and wrist performance retained without a held prop",
           "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-          "Original Hina skinned bat wings given a small synchronized secondary flex"
+          "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
         ],
         "description": "Mischievous anticipation"
       },
@@ -2673,7 +2712,7 @@
           "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
           "Native arm and wrist performance retained without a held prop",
           "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-          "Original Hina skinned bat wings given a small synchronized secondary flex"
+          "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
         ],
         "description": "Light, impish steps"
       },
@@ -2690,7 +2729,7 @@
           "Smooth entry and recovery to the target bind pose",
           "Native arm and wrist performance retained without a held prop",
           "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-          "Original Hina skinned bat wings given a small synchronized secondary flex"
+          "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
         ],
         "description": "Playful victory flourish"
       }

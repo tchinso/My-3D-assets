@@ -1,6 +1,6 @@
 """Catalog the delivered characters and their local donor provenance.
 
-Usage: python tools/build_catalog.py --source C:/Codex/BlueArchive-GLB
+Usage: python tools/build_catalog.py --source C:/Codex/BlueArchiveGLB
 Writes models.json, model_features.json and model_features.schema.json at the
 repository root. models.json retains the supplied timestamp-inventory format.
 The feature catalog distinguishes authored final appearance from donor metadata;
@@ -19,7 +19,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_SOURCE = Path("C:/Codex/BlueArchive-GLB")
+DEFAULT_SOURCE = Path("C:/Codex/BlueArchiveGLB")
 SOURCE_FILES = ("models.json", "model_features.json", "model_features.schema.json")
 CLIPS = ("Idle", "Walk", "Run", "Attack", "Defend", "Victory", "Lose")
 
@@ -430,7 +430,7 @@ def build(source):
     for filename, value in (("models.json", inventory), ("model_features.json", catalog), ("model_features.schema.json", schema)):
         (ROOT/filename).write_text(json.dumps(value, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
     lines = ['# 원본 모션 선정 내역', '',
-             catalog['analyzed_on']+' 수정. 원본 파일은 `C:\\Codex\\BlueArchive-GLB`에서 읽고 수정하지 않습니다.', '',
+             catalog['analyzed_on']+' 수정. 원본 파일은 `C:\\Codex\\BlueArchiveGLB`에서 읽고 수정하지 않습니다.', '',
              '| 캐릭터 | Attack | Run | Defend | Lose |', '| --- | --- | --- | --- | --- |']
     def cell(record, name):
         item = record['motion_sources'][name]

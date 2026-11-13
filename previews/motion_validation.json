@@ -325,9 +325,9 @@
         },
         {
           "name": "Koa",
-          "sha256": "1db3c6346b9c1d0f0a00d9f998fc94a94ee424883683e32373a80567f07299a0",
+          "sha256": "a4e7a366373a09a808ca8f747582918b41aa7ebcaea59c719856bc057d8e2cf8",
           "source": {
-            "source_file": "Kasumi.glb",
+            "source_file": "Shokuhou Misaki.glb",
             "source_clip": "Move_Ing",
             "adaptation": [
               "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
@@ -340,9 +340,9 @@
               "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
               "Native arm and wrist performance retained without a held prop",
               "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-              "Original Hina skinned bat wings given a small synchronized secondary flex"
+              "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
             ],
-            "description": "Impetuous rush with Kasumi's original running stride"
+            "description": "Restrained schoolgirl run on the original costume rig, with a balanced torso and compact stride"
           }
         }
       ]
@@ -669,7 +669,7 @@
               "Smooth entry and recovery to the target bind pose",
               "Native arm and wrist performance retained without a held prop",
               "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-              "Original Hina skinned bat wings given a small synchronized secondary flex"
+              "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
             ],
             "description": "Startled, theatrical recoil before regaining composure"
           }
@@ -998,7 +998,7 @@
               "Native final defeat pose held for the final 20% of the output clip",
               "Native arm and wrist performance retained without a held prop",
               "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-              "Original Hina skinned bat wings given a small synchronized secondary flex"
+              "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
             ],
             "description": "Dramatic collapse that settles into a held defeated pose"
           }
@@ -1273,7 +1273,7 @@
               "Constant source horizontal heading aligned to the target rest heading; dynamic turns retained",
               "Native arm and wrist performance retained without a held prop",
               "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-              "Original Hina skinned bat wings given a small synchronized secondary flex"
+              "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
             ],
             "description": "Light, impish steps"
           }
@@ -1543,7 +1543,7 @@
               "Smooth entry and recovery to the target bind pose",
               "Native arm and wrist performance retained without a held prop",
               "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-              "Original Hina skinned bat wings given a small synchronized secondary flex"
+              "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction"
             ],
             "description": "Playful victory flourish"
           }
@@ -1862,9 +1862,9 @@
         },
         {
           "name": "Koa",
-          "sha256": "689563f60b4fabbef6a9d5ffc1c18580dc40b50cdfa02e857b1d6cd0f7dee792",
+          "sha256": "feb356872b0b58449ed3cce9016de6b62f33330072f3ba386911a695c9e9c990",
           "source": {
-            "source_file": "Kasumi.glb",
+            "source_file": "Chise.glb",
             "source_clip": "Exs",
             "adaptation": [
               "Main anatomical rotations and translations retargeted through source and target rest-parent bases",
@@ -1876,9 +1876,10 @@
               "Smooth entry and recovery to the target bind pose",
               "Native arm and wrist performance retained without a held prop",
               "Actual skinned hair, clothing, body and wing vertices fitted above the bind floor at keys and interpolation quarter steps",
-              "Original Hina skinned bat wings given a small synchronized secondary flex"
+              "Part-specific native Rabu hair-tip and Hina wing rotations damped and fitted before full-geometry floor correction",
+              "Constant source attack heading aligned forward; native casting turn retained"
             ],
-            "description": "Kasumi's emphatic native EX gesture for a winged magic attack"
+            "description": "Grounded two-hand gathering gesture and a forward palm cast, facing the target"
           }
         }
       ]

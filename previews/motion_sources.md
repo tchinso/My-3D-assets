@@ -1,6 +1,6 @@
 # 원본 모션 선정 내역
 
-2026-10-12 수정. 원본 파일은 `C:\Codex\BlueArchive-GLB`에서 읽고 수정하지 않습니다.
+2026-11-13 수정. 원본 파일은 `C:\Codex\BlueArchiveGLB`에서 읽고 수정하지 않습니다.
 
 | 캐릭터 | Attack | Run | Defend | Lose |
 | --- | --- | --- | --- | --- |
@@ -18,7 +18,7 @@
 | Kimon | Izuna.glb · `Exs` | Izuna.glb · `Move_Ing` | Izuna.glb · `Vital_Panic` | Seia.glb · `Vital_Death` |
 | Florielle | Eri.glb · `Exs` | Eri.glb · `DiceRace_Run` | Eri.glb · `Vital_Panic` | Eri.glb · `Vital_Death` |
 | Rosaria | Mimori.glb · `Exs` | Mari (Idol).glb · `Move_Ing` | Mari (Idol).glb · `Vital_Panic` | Mari (Idol).glb · `Vital_Death` |
-| Koa | Kasumi.glb · `Exs` | Kasumi.glb · `Move_Ing` | Aru.glb · `Vital_Panic` | Aru.glb · `Vital_Death` |
+| Koa | Chise.glb · `Exs` | Shokuhou Misaki.glb · `Move_Ing` | Aru.glb · `Vital_Panic` | Aru.glb · `Vital_Death` |
 
 ## 1–10번 공격 동작
 
@@ -91,8 +91,8 @@
 | --- | --- | --- |
 | Idle | Mutsuki (New Year).glb · `Cafe_Idle` | Mischievous anticipation |
 | Walk | Mutsuki (New Year).glb · `Cafe_Walk` | Light, impish steps |
-| Run | Kasumi.glb · `Move_Ing` | Impetuous rush with Kasumi's original running stride |
-| Attack | Kasumi.glb · `Exs` | Kasumi's emphatic native EX gesture for a winged magic attack |
+| Run | Shokuhou Misaki.glb · `Move_Ing` | Restrained schoolgirl run on the original costume rig, with a balanced torso and compact stride |
+| Attack | Chise.glb · `Exs` | Grounded two-hand gathering gesture and a forward palm cast, facing the target |
 | Defend | Aru.glb · `Vital_Panic` | Startled, theatrical recoil before regaining composure |
 | Victory | Mutsuki (New Year).glb · `Victory_Start` | Playful victory flourish |
 | Lose | Aru.glb · `Vital_Death` | Dramatic collapse that settles into a held defeated pose |
